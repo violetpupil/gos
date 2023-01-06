@@ -1,12 +1,9 @@
 // 封装 temporal 客户端
-// 必须先调用 Init() 初始化客户端，才能调用其它函数
-// 可以设置环境变量 TEMPORAL_ADDR，指定 temporal 地址
-// 不设置的话，默认为 localhost:7233
+// 必须先调用 Init 初始化客户端，才能调用其它函数
 package temporal
 
 import (
 	"context"
-	"os"
 
 	"go.temporal.io/sdk/client"
 )
@@ -14,8 +11,8 @@ import (
 var temporal client.Client
 
 // Init 初始化客户端
-func Init() error {
-	addr := os.Getenv("TEMPORAL_ADDR")
+// addr 传空的话，默认连接 localhost:7233
+func Init(addr string) error {
 	options := client.Options{
 		HostPort: addr,
 	}
