@@ -2,7 +2,10 @@ module github.com/violetpupil/components
 
 go 1.19
 
-require go.temporal.io/sdk v1.19.0
+require (
+	go.temporal.io/sdk v1.19.0
+	gorm.io/gorm v1.24.3
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
@@ -14,6 +17,8 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0 // indirect
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
