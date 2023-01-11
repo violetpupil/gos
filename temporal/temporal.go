@@ -25,7 +25,7 @@ func Init(addr string) error {
 	return nil
 }
 
-// ExecuteWorkflow 执行工作流
+// ExecuteWorkflow 异步执行工作流
 func ExecuteWorkflow(
 	ctx context.Context,
 	id, queue string,
@@ -40,8 +40,8 @@ func ExecuteWorkflow(
 	return run, err
 }
 
-// ExecuteWorkflowRe 执行工作流，停止任务id相同的旧工作流
-func ExecuteWorkflowRe(
+// ExecuteWorkflowSync 同步执行工作流，停止任务id相同的旧工作流
+func ExecuteWorkflowSync(
 	ctx context.Context,
 	id, queue string,
 	workflow any,
