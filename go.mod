@@ -3,6 +3,7 @@ module github.com/violetpupil/components
 go 1.19
 
 require (
+	go.temporal.io/api v1.13.0
 	go.temporal.io/sdk v1.19.0
 	gorm.io/gorm v1.24.3
 )
@@ -24,7 +25,6 @@ require (
 	github.com/robfig/cron v1.2.0 // indirect
 	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/stretchr/testify v1.8.1 // indirect
-	go.temporal.io/api v1.13.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	golang.org/x/net v0.1.0 // indirect
 	golang.org/x/sys v0.1.0 // indirect

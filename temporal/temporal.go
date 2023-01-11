@@ -5,6 +5,7 @@ package temporal
 import (
 	"context"
 
+	"go.temporal.io/api/enums/v1"
 	"go.temporal.io/sdk/client"
 )
 
@@ -34,6 +35,22 @@ func ExecuteWorkflow(
 	options := client.StartWorkflowOptions{
 		ID:        id,
 		TaskQueue: queue,
+	}
+	run, err := temporal.ExecuteWorkflow(ctx, options, workflow, args...)
+	return run, err
+}
+
+// ExecuteWorkflowRe 执行工作流，停止任务id相同的旧工作流
+func ExecuteWorkflowRe(
+	ctx context.Context,
+	id, queue string,
+	workflow any,
+	args ...any,
+) (client.WorkflowRun, error) {
+	options := client.StartWorkflowOptions{
+		ID:                    id,
+		TaskQueue:             queue,
+		WorkflowIDReusePolicy: enums.WORKFLOW_ID_REUSE_POLICY_TERMINATE_IF_RUNNING,
 	}
 	run, err := temporal.ExecuteWorkflow(ctx, options, workflow, args...)
 	return run, err
