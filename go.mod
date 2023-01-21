@@ -3,13 +3,16 @@ module github.com/violetpupil/components
 go 1.19
 
 require (
+	github.com/go-redis/redis/v8 v8.11.5
 	go.temporal.io/api v1.13.0
 	go.temporal.io/sdk v1.19.0
 	gorm.io/gorm v1.24.3
 )
 
 require (
+	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/facebookgo/clock v0.0.0-20150410010913-600d898af40a // indirect
 	github.com/gogo/googleapis v1.4.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
