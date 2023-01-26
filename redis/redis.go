@@ -1,4 +1,4 @@
-// 封装 redis 客户端
+// 封装 redis 客户端，基于命令封装第三方库
 // 必须先调用 Init 进行初始化
 package redis
 
@@ -43,3 +43,7 @@ func Decr(ctx context.Context, key string) (int64, error) {
 func Get(ctx context.Context, key string) (string, error) {
 	return client.Get(ctx, key).Result()
 }
+
+// Expire 设置过期时间
+// https://redis.io/commands/expire/
+func Expire() {}
