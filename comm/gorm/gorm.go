@@ -12,3 +12,16 @@ import (
 func RecordNotFound(e error) bool {
 	return errors.Is(e, gorm.ErrRecordNotFound)
 }
+
+// crud 数据库操作
+// 必须先调用 Init 初始化
+type crud struct {
+	U *update
+}
+
+var Crud *crud
+
+func Init(db *gorm.DB) {
+	Crud = new(crud)
+	Crud.U = &update{db}
+}
