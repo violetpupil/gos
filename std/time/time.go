@@ -13,3 +13,8 @@ func Cost() func() {
 	}
 	return f
 }
+
+// In 修改时间时区
+func In(t time.Time, utcOffset float32) time.Time {
+	return t.In(time.FixedZone("", int(utcOffset*3600)))
+}
