@@ -8,6 +8,14 @@ type update struct {
 	db *gorm.DB
 }
 
+// Save 更新单条记录的所有字段
+// value 为数据模型指针，如果主键匹配不到记录，则插入数据
+// 如果更新或插入了数据，则返回 true
+func (u *update) Save(value any) (bool, error) {
+	db := u.db.Save(value)
+	return db.RowsAffected == 1, db.Error
+}
+
 // Update 更新数据表的一个字段，返回更新记录条数
 // model 为数据模型指针
 //
