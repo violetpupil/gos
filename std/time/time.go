@@ -18,3 +18,8 @@ func Cost() func() {
 func In(t time.Time, utcOffset float32) time.Time {
 	return t.In(time.FixedZone("", int(utcOffset*3600)))
 }
+
+// FixedZone 返回指定时区的 Location 对象
+func FixedZone(utcOffset float32) *time.Location {
+	return time.FixedZone("", int(utcOffset*3600))
+}
