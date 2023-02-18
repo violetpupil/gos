@@ -5,6 +5,13 @@ import (
 	"time"
 )
 
+// 最新go版本中已支持这三个常量
+const (
+	DateTime = "2006-01-02 15:04:05"
+	DateOnly = "2006-01-02"
+	TimeOnly = "15:04:05"
+)
+
 // Cost 标准日志库记录函数耗时，在函数顶部调用 defer Cost()()
 func Cost() func() {
 	s := time.Now()
