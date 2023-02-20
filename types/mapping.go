@@ -1,4 +1,4 @@
-package mapping
+package types
 
 import (
 	"fmt"
