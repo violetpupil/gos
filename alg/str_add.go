@@ -75,10 +75,10 @@ func PosAdd(b1, b2 byte, carry bool) (byte, bool, error) {
 	if carry {
 		sum += 1
 	}
-	// 发生进位
-	if sum > 9 {
-		return sum - 10 + 48, true, nil
+	div, rem := sum/10, sum%10
+	if div == 1 {
+		return rem + 48, true, nil
 	} else {
-		return sum + 48, false, nil
+		return rem + 48, false, nil
 	}
 }
