@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/smtp"
 
-	"github.com/violetpupil/components/mapping"
+	"github.com/violetpupil/components/types"
 )
 
 // SendMail 发送邮件
@@ -19,7 +19,7 @@ func SendMail(
 		"Subject":      subject,
 		"Content-Type": "text/html; charset=UTF-8",
 	}
-	header := mapping.Join(headers, ": ", "\r\n")
+	header := types.Join(headers, ": ", "\r\n")
 	msg := fmt.Sprint(header, "\r\n\r\n", body)
 
 	addr := fmt.Sprint(host, ":", port)
