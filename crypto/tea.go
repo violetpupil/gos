@@ -1,5 +1,5 @@
 // tea加密
-// 密文为16进制字符串
+// 密文为16进制32位字符串，每次加密得到的密文都不相同
 package crypto
 
 import (
@@ -39,10 +39,12 @@ func PadKey(key string) string {
 
 // encrypt 加密字节
 func encrypt(plain, key []byte) []byte {
+	// TODO
 	return plain
 }
 
 // decrypt 解密字节
 func decrypt(cipher, key []byte) []byte {
+	// TODO
 	return cipher
 }
