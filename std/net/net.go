@@ -1,6 +1,9 @@
 package net
 
-import "net"
+import (
+	"errors"
+	"net"
+)
 
 // InterfaceUp 网卡是否启用
 func InterfaceUp(i net.Interface) bool {
@@ -46,4 +49,19 @@ func Interfaces() ([]net.Interface, error) {
 		}
 	}
 	return dst, nil
+}
+
+// Ipv4 网卡ipv4地址
+func Ipv4(i net.Interface) (net.IP, error) {
+	addrs, err := i.Addrs()
+	if err != nil {
+		return nil, err
+	}
+	for _, a := range addrs {
+		ipnet, ok := a.(*net.IPNet)
+		if ok && ipnet.IP.To4() != nil {
+			return ipnet.IP, nil
+		}
+	}
+	return nil, errors.New("the interface does not have an ipv4 address")
 }
