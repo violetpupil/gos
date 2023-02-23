@@ -21,3 +21,29 @@ func InterfaceLoopback(i net.Interface) bool {
 func InterfaceMulticast(i net.Interface) bool {
 	return i.Flags&net.FlagMulticast != 0
 }
+
+// InterfacePhysical 是否为物理网卡
+func InterfacePhysical(i net.Interface) bool {
+	if InterfaceLoopback(i) {
+		return false
+	}
+	if i.Name == "vEthernet (WSL)" {
+		return false
+	}
+	return true
+}
+
+// Interfaces 启用的物理网卡
+func Interfaces() ([]net.Interface, error) {
+	ifs, err := net.Interfaces()
+	if err != nil {
+		return nil, err
+	}
+	dst := make([]net.Interface, 0)
+	for _, i := range ifs {
+		if InterfacePhysical(i) && InterfaceUp(i) {
+			dst = append(dst, i)
+		}
+	}
+	return dst, nil
+}
