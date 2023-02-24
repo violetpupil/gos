@@ -1,7 +1,6 @@
 package net
 
 import (
-	"errors"
 	"net"
 
 	"github.com/sirupsen/logrus"
@@ -44,6 +43,7 @@ func Interfaces() ([]net.Interface, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	dst := make([]net.Interface, 0)
 	for _, i := range ifs {
 		if InterfacePhysical(i) && InterfaceUp(i) {
@@ -54,37 +54,41 @@ func Interfaces() ([]net.Interface, error) {
 }
 
 // Ipv4 网卡ipv4地址
-func Ipv4(i net.Interface) (net.IP, error) {
+func Ipv4(i net.Interface) ([]net.IP, error) {
 	addrs, err := i.Addrs()
 	if err != nil {
 		return nil, err
 	}
+
+	ips := make([]net.IP, 0)
 	for _, a := range addrs {
 		ipnet, ok := a.(*net.IPNet)
 		// 是ipv4地址
 		if ok && ipnet.IP.To4() != nil {
-			return ipnet.IP, nil
+			ips = append(ips, ipnet.IP)
 		}
 	}
-	return nil, errors.New("the interface does not have an ipv4 address")
+	return ips, nil
 }
 
 // InterfacesIpv4 启用的物理网卡ipv4地址
 func InterfacesIpv4() ([]net.IP, error) {
-	// 启用的物理网卡
-	ifs, err := Interfaces()
+	ifs, err := net.Interfaces()
 	if err != nil {
 		return nil, err
 	}
 
 	ips := make([]net.IP, 0)
 	for _, i := range ifs {
-		ip, err := Ipv4(i)
-		if err != nil {
-			logrus.Error("interface ipv4 error ", err)
-			continue
+		// 启用的物理网卡
+		if InterfacePhysical(i) && InterfaceUp(i) {
+			ipsIf, err := Ipv4(i)
+			if err != nil {
+				logrus.Error("interface ipv4 error ", err)
+				continue
+			}
+			ips = append(ips, ipsIf...)
 		}
-		ips = append(ips, ip)
 	}
 	return ips, nil
 }
