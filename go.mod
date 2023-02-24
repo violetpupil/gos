@@ -7,6 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.8.2
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/sirupsen/logrus v1.6.0
+	github.com/sony/sonyflake v1.1.0
 	github.com/zsais/go-gin-prometheus v0.1.0
 	go.temporal.io/api v1.13.0
 	go.temporal.io/sdk v1.19.0
