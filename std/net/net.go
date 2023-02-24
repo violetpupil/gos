@@ -3,6 +3,8 @@ package net
 import (
 	"errors"
 	"net"
+
+	"github.com/sirupsen/logrus"
 )
 
 // InterfaceUp 网卡是否启用
@@ -59,9 +61,30 @@ func Ipv4(i net.Interface) (net.IP, error) {
 	}
 	for _, a := range addrs {
 		ipnet, ok := a.(*net.IPNet)
+		// 是ipv4地址
 		if ok && ipnet.IP.To4() != nil {
 			return ipnet.IP, nil
 		}
 	}
 	return nil, errors.New("the interface does not have an ipv4 address")
+}
+
+// InterfacesIpv4 启用的物理网卡ipv4地址
+func InterfacesIpv4() ([]net.IP, error) {
+	// 启用的物理网卡
+	ifs, err := Interfaces()
+	if err != nil {
+		return nil, err
+	}
+
+	ips := make([]net.IP, 0)
+	for _, i := range ifs {
+		ip, err := Ipv4(i)
+		if err != nil {
+			logrus.Error("interface ipv4 error ", err)
+			continue
+		}
+		ips = append(ips, ip)
+	}
+	return ips, nil
 }
