@@ -8,5 +8,5 @@ import (
 func TestElem(t *testing.T) {
 	var n int
 	p := &n
-	fmt.Println(Elem(p))
+	fmt.Println(Pointer(p))
 }
