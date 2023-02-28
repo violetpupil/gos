@@ -22,7 +22,7 @@ func StrAdd(str1, str2 string) (string, error) {
 	for i := 1; i <= len(str1); i++ {
 		// 取对应位置的值，如果第二个字符串长度不够，取值0
 		b1 := str1[len(str1)-i]
-		var b2 byte = 48
+		var b2 byte = '0'
 		if i <= len(str2) {
 			b2 = str2[len(str2)-i]
 		}
@@ -50,9 +50,9 @@ func Reverse(x any) {
 // ErrNan 传入的参数不是数字
 var ErrNan = errors.New("not a number")
 
-// BtoN 将编码值转为数字
+// BtoN 编码值减去最小编码值，转为数字
 func BtoN(b byte) (byte, error) {
-	n := b - 48
+	n := b - '0'
 	if n > 9 {
 		return 0, ErrNan
 	}
@@ -62,6 +62,7 @@ func BtoN(b byte) (byte, error) {
 // PosAdd 两个数字字符串对应位置相加，carry表示上一次相加是否进位
 // 返回当前位置相加结果，以及下一次是否进位
 func PosAdd(b1, b2 byte, carry bool) (byte, bool, error) {
+	// 转为数字
 	n1, err := BtoN(b1)
 	if err != nil {
 		return 0, false, err
@@ -76,9 +77,10 @@ func PosAdd(b1, b2 byte, carry bool) (byte, bool, error) {
 		sum += 1
 	}
 	div, rem := sum/10, sum%10
+	// 还原成编码值
 	if div == 1 {
-		return rem + 48, true, nil
+		return rem + '0', true, nil
 	} else {
-		return rem + 48, false, nil
+		return rem + '0', false, nil
 	}
 }
