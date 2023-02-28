@@ -8,6 +8,9 @@ import (
 	"fmt"
 )
 
+// 密钥最小长度
+const KeyMinLen = 16
+
 // Encrypt 加密字符串
 func Encrypt(plain, key string) string {
 	key = PadKey(key)
@@ -27,12 +30,12 @@ func Decrypt(cipher, key string) (string, error) {
 	return string(plain), nil
 }
 
-// PadKey 填充密钥，结果最少16位
+// PadKey 填充密钥
 func PadKey(key string) string {
-	if len(key) >= 16 {
+	if len(key) >= KeyMinLen {
 		return key
 	}
-	pad := bytes.Repeat([]byte{0}, 16-len(key))
+	pad := bytes.Repeat([]byte{0}, KeyMinLen-len(key))
 	key = fmt.Sprintf("%s_%s", key, string(pad))
 	return key
 }

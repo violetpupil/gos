@@ -8,7 +8,7 @@ import (
 // Format 数据格式
 type Format struct {
 	ByteOrder binary.ByteOrder
-	Format    string
+	Format    []byte
 }
 
 // NewFormat 将格式字符串转为对象
@@ -17,13 +17,13 @@ func NewFormat(src string) *Format {
 	f := new(Format)
 	if strings.HasPrefix(src, "<") {
 		f.ByteOrder = binary.LittleEndian
-		f.Format = src[1:]
+		f.Format = []byte(src[1:])
 	} else if strings.HasPrefix(src, ">") {
 		f.ByteOrder = binary.BigEndian
-		f.Format = src[1:]
+		f.Format = []byte(src[1:])
 	} else {
 		f.ByteOrder = binary.BigEndian
-		f.Format = src
+		f.Format = []byte(src)
 	}
 	return f
 }
