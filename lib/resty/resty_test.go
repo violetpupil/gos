@@ -6,9 +6,10 @@ import (
 )
 
 func TestGet(t *testing.T) {
-	res, err := Get("https://httpbin.org/get", false)
+	Init(true)
+	res, err := Get("https://httpbin.org/get", nil)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%+v", res)
+	fmt.Printf("%+v\n", res)
 }

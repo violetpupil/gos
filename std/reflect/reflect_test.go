@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestElem(t *testing.T) {
+func TestPointer(t *testing.T) {
 	var n int
 	p := &n
 	fmt.Println(Pointer(p))
