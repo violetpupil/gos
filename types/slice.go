@@ -1,3 +1,5 @@
+// 切片
+// 逐个添加元素，扩容后的容量首次为2^3，之后指数递增
 package types
 
 import "sort"

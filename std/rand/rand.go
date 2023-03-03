@@ -11,3 +11,12 @@ func RandBytes(length int) ([]byte, error) {
 	}
 	return b, nil
 }
+
+// RandByte 生成随机字节
+func RandByte() (byte, error) {
+	bs, err := RandBytes(1)
+	if err != nil {
+		return 0, err
+	}
+	return bs[0], nil
+}
