@@ -16,6 +16,10 @@ import "github.com/go-resty/resty/v2"
 // SetHeaderMultiValues 多个参数，参数可能有多个值
 // SetHeaders 多个参数，同一个键会覆盖
 //
+// 请求体 SetBody
+// 支持类型`string`, `[]byte`, `struct`, `map`, `slice`, `io.Reader`.
+// 支持指针，struct、map、slice类型会发送json请求体
+//
 // 认证请求头 `Authorization: <scheme> <token>`
 // https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml
 // SetAuthScheme 认证方案，默认为Bearer - OAuth 2.0

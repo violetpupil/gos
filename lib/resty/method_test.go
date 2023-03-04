@@ -13,3 +13,12 @@ func TestGet(t *testing.T) {
 	}
 	fmt.Printf("%+v\n", res)
 }
+
+func TestPost(t *testing.T) {
+	Init(true)
+	res, err := Post("https://httpbin.org/post", nil)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", res)
+}
