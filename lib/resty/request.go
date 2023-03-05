@@ -19,7 +19,8 @@ import "github.com/go-resty/resty/v2"
 // 请求体 SetBody
 // 支持类型`string`, `[]byte`, `struct`, `map`, `slice`, `io.Reader`，支持指针
 // struct、map、slice类型自动json编码，并设置 Content-Type 为 application/json
-// 否则 Content-Type 为 "text/plain; charset=utf-8"
+// string类型 Content-Type 为 "text/plain; charset=utf-8"
+// []byte类型 Content-Type 根据内容检测，保底为 "text/plain; charset=utf-8"
 //
 // 认证请求头 `Authorization: <scheme> <token>`
 // https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml
