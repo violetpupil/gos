@@ -17,8 +17,9 @@ import "github.com/go-resty/resty/v2"
 // SetHeaders 多个参数，同一个键会覆盖
 //
 // 请求体 SetBody
-// 支持类型`string`, `[]byte`, `struct`, `map`, `slice`, `io.Reader`.
-// 支持指针，struct、map、slice类型会发送json请求体
+// 支持类型`string`, `[]byte`, `struct`, `map`, `slice`, `io.Reader`，支持指针
+// struct、map、slice类型自动json编码，并设置 Content-Type 为 application/json
+// 否则 Content-Type 为 "text/plain; charset=utf-8"
 //
 // 认证请求头 `Authorization: <scheme> <token>`
 // https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml
@@ -26,9 +27,9 @@ import "github.com/go-resty/resty/v2"
 // SetAuthToken 认证令牌
 // SetBasicAuth basic认证 "Basic <base64-encoded-value>"
 //
-// 响应体自动解码，与Response.Result配合使用
-// 响应码为200~299，响应体类型为json或xml
-// SetResult 指定响应体结构
+// 响应体自动解码，当类型为json或xml时
+// SetResult 指定响应体结构，响应码200~299，与Response.Result配合使用
+// SetError 指定响应体结构，响应码>399，与Response.Error配合使用
 //
 // EnableTrace 是否追踪请求信息
 type ReqHook = func(*resty.Request) *resty.Request

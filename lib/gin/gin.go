@@ -13,6 +13,7 @@ import (
 func main() {
 	e := gin.Default()
 	AdminGroup(e)
+	e.POST("/echo", Echo)
 	fmt.Print(e.Run())
 }
 
@@ -36,4 +37,10 @@ func AdminAuth(c *gin.Context) {
 		return
 	}
 	c.Next()
+}
+
+// Echo 打印请求信息
+func Echo(c *gin.Context) {
+	fmt.Println("echo request header")
+	fmt.Println(c.Request.Header)
 }

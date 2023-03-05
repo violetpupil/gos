@@ -24,7 +24,9 @@ type Response struct {
 	Size       int64          // 响应体字节数
 	Body       []byte         // 响应体字节
 	String     string         // 响应体字符串，去掉首尾空白
-	Result     any            // 响应体自动解码，与Request.SetResult配合使用，类型断言用指针
+	// 响应体自动解码，类型断言用指针
+	Result any // 响应码200~299，与Request.SetResult配合使用
+	Error  any // 响应码>399，与Request.SetError配合使用
 
 	// 统计信息
 	// TotalTime ≈ ConnTime + ServerTime + ResponseTime
@@ -67,6 +69,7 @@ func ToResponse(src *resty.Response) *Response {
 	dst.Body = src.Body()
 	dst.String = src.String()
 	dst.Result = src.Result()
+	dst.Error = src.Error()
 
 	dst.TotalTime = src.Time()
 	dst.SentAt = src.Request.Time
