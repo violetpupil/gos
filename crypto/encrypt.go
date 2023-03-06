@@ -21,8 +21,8 @@ func EncryptStr(plain, key string) (string, error) {
 
 // EncryptByte 加密字节
 func EncryptByte(plain, key []byte) ([]byte, error) {
-	// 填充明文
-	_, err := PadPlain(plain)
+	// 填充明文，最终总长度为8的倍数
+	plain, err := PadPlain(plain)
 	if err != nil {
 		return nil, err
 	}
@@ -30,8 +30,34 @@ func EncryptByte(plain, key []byte) ([]byte, error) {
 	if len(ks) < 4 {
 		return nil, ErrKeyLen
 	}
+	k0, k1, k2, k3 := ks[0], ks[1], ks[2], ks[3]
 
+	// 分块明文、密文
+	var plainB, cipherB [2]uint32
 	cipher := make([]byte, 0)
+	for i := 0; i < len(plain); i += 8 {
+		// 8个字节为一块
+		block := plain[i : i+8]
+		vs := binary.SplitUint32(binary.LittleEndian, block)
+		if len(vs) < 2 {
+			return nil, ErrBlockLen
+		}
+
+		// 一块分为两个uint32组
+		v0, v1 := vs[0], vs[1]
+		v0 ^= cipherB[0]
+		v1 ^= cipherB[1]
+		plainTmp := [2]uint32{v0, v1}
+
+		v0, v1 = Encrypt(v0, v1, k0, k1, k2, k3)
+		v0 ^= plainB[0]
+		v1 ^= plainB[1]
+		plainB = plainTmp
+		cipherB = [2]uint32{v0, v1}
+
+		block = binary.ComUint32(binary.LittleEndian, v0, v1)
+		cipher = append(cipher, block...)
+	}
 	return cipher, nil
 }
 

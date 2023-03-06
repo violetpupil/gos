@@ -24,8 +24,12 @@ const (
 // 迭代累加常量
 var Delta uint32 = 0x9e3779b9
 
-// 密钥长度不足
-var ErrKeyLen = errors.New("insufficient key length")
+var (
+	// 密钥长度不足
+	ErrKeyLen = errors.New("insufficient key length")
+	// 加密块长度不足
+	ErrBlockLen = errors.New("insufficient block length")
+)
 
 // PadKey 填充密钥
 func PadKey(key string) string {
