@@ -22,6 +22,15 @@ import "github.com/go-resty/resty/v2"
 // string类型 Content-Type 为 "text/plain; charset=utf-8"
 // []byte类型 Content-Type 根据内容检测，保底为 "text/plain; charset=utf-8"
 //
+// 表单
+// 只传键值 Content-Type 为 application/x-www-form-urlencoded
+// 上传文件 Content-Type 为 multipart/form-data
+// SetFile 上传单文件
+// SetFileReader 上传单文件，使用io.Reader
+// SetFiles 上传多文件
+// SetFormData 设置表单键值对
+// SetFormDataFromValues 设置表单键值对，支持多值
+//
 // 认证请求头 `Authorization: <scheme> <token>`
 // https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml
 // SetAuthScheme 认证方案，默认为Bearer - OAuth 2.0
