@@ -32,7 +32,8 @@ func EncryptByte(plain, key []byte) ([]byte, error) {
 	}
 	k0, k1, k2, k3 := ks[0], ks[1], ks[2], ks[3]
 
-	// 分块明文、密文
+	// 分块明文存储当前块明文和上一块密文异或结果
+	// 分块密文存储当前块密文
 	var plainB, cipherB [2]uint32
 	cipher := make([]byte, 0)
 	for i := 0; i < len(plain); i += 8 {
