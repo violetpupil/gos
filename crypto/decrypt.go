@@ -4,6 +4,7 @@ import (
 	"encoding/hex"
 
 	"github.com/violetpupil/components/std/binary"
+	"github.com/violetpupil/components/types"
 )
 
 // DecryptStr 解密字符串，密钥长度不固定，只有前16个字节有效
@@ -21,7 +22,7 @@ func DecryptStr(cipher, key string) (string, error) {
 func DecryptByte(cipher, key []byte) ([]byte, error) {
 	ks := binary.SplitUint32(binary.BigEndian, key)
 	if len(ks) < 4 {
-		return nil, ErrKeyLen
+		return nil, ErrKey
 	}
 	k0, k1, k2, k3 := ks[0], ks[1], ks[2], ks[3]
 
@@ -54,8 +55,8 @@ func DecryptByte(cipher, key []byte) ([]byte, error) {
 		plain = append(plain, block...)
 	}
 	// 去掉明文填充字节
-	plain = UnPadPlain(plain)
-	return plain, nil
+	plain, err := UnPadPlain(plain)
+	return plain, err
 }
 
 // Decrypt 解密
@@ -75,12 +76,21 @@ func Decrypt(v0, v1, k0, k1, k2, k3 uint32) (uint32, uint32) {
 }
 
 // UnPadPlain 还原明文 header+pad+salt+plain+zeros
-func UnPadPlain(plain []byte) []byte {
+func UnPadPlain(plain []byte) ([]byte, error) {
+	// 密文无效，导致明文长度不足
+	if len(plain) < 1 {
+		return nil, ErrCipher
+	}
+
 	// header后3位代表pad长度
 	padLen := plain[0] & 7
 	// header为1个字节，salt为2个字节
 	start := 1 + 2 + padLen
 	end := len(plain) - ZeroLen
+	if !types.Safe(int(start), end, cap(plain)) {
+		return nil, ErrCipher
+	}
+
 	plain = plain[start:end]
-	return plain
+	return plain, nil
 }

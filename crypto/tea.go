@@ -25,10 +25,12 @@ const (
 var Delta uint32 = 0x9e3779b9
 
 var (
-	// 密钥长度不足
-	ErrKeyLen = errors.New("insufficient key length")
+	// 密钥无效
+	ErrKey = errors.New("key invalid")
 	// 加密块长度不足
 	ErrBlockLen = errors.New("insufficient block length")
+	// 密文无效
+	ErrCipher = errors.New("cipher invalid")
 )
 
 // PadKey 填充密钥

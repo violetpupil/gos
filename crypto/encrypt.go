@@ -28,7 +28,7 @@ func EncryptByte(plain, key []byte) ([]byte, error) {
 	}
 	ks := binary.SplitUint32(binary.BigEndian, key)
 	if len(ks) < 4 {
-		return nil, ErrKeyLen
+		return nil, ErrKey
 	}
 	k0, k1, k2, k3 := ks[0], ks[1], ks[2], ks[3]
 
