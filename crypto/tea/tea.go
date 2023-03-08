@@ -3,7 +3,7 @@
 // 明文越长，密文越长
 // https://baike.baidu.com/item/TEA加密算法
 // https://zh.wikipedia.org/zh-hans/微型加密算法
-package crypto
+package tea
 
 import (
 	"bytes"

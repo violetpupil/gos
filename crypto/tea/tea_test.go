@@ -1,4 +1,4 @@
-package crypto
+package tea
 
 import "testing"
 
