@@ -4,6 +4,9 @@ import "os"
 
 // Execute 使用指定方法请求 http.MethodGet
 func Execute(method, url string, hook ReqHook) (*Response, error) {
+	if client == nil {
+		Init()
+	}
 	req := client.R()
 	if hook != nil {
 		req = hook(req)
@@ -17,6 +20,9 @@ func Execute(method, url string, hook ReqHook) (*Response, error) {
 }
 
 func Get(url string, hook ReqHook) (*Response, error) {
+	if client == nil {
+		Init()
+	}
 	req := client.R()
 	if hook != nil {
 		req = hook(req)
@@ -30,6 +36,9 @@ func Get(url string, hook ReqHook) (*Response, error) {
 }
 
 func Post(url string, hook ReqHook) (*Response, error) {
+	if client == nil {
+		Init()
+	}
 	req := client.R()
 	if hook != nil {
 		req = hook(req)
@@ -48,6 +57,9 @@ func PostFile(url string, hook ReqHook, name string) (*Response, error) {
 	bytes, err := os.ReadFile(name)
 	if err != nil {
 		return nil, err
+	}
+	if client == nil {
+		Init()
 	}
 	req := client.R().SetBody(bytes)
 	if hook != nil {

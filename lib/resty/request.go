@@ -2,6 +2,8 @@ package resty
 
 import "github.com/go-resty/resty/v2"
 
+type Request = resty.Request
+
 // ReqHook 设置请求信息
 // 查询字符串，键区分大小写
 // SetQueryParam 单个参数，同一个键会覆盖

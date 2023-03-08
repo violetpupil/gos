@@ -9,10 +9,6 @@ import (
 var client *resty.Client
 
 // Init 初始化客户端
-// trace 表示是否追踪请求信息
-func Init(trace bool) {
+func Init() {
 	client = resty.New()
-	if trace {
-		client = client.EnableTrace()
-	}
 }

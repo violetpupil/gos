@@ -6,7 +6,7 @@ import (
 )
 
 func TestGet(t *testing.T) {
-	Init(true)
+	Init()
 	res, err := Get("https://httpbin.org/get", nil)
 	if err != nil {
 		panic(err)
@@ -15,7 +15,7 @@ func TestGet(t *testing.T) {
 }
 
 func TestPost(t *testing.T) {
-	Init(true)
+	Init()
 	res, err := Post("https://httpbin.org/post", nil)
 	if err != nil {
 		panic(err)
@@ -24,7 +24,7 @@ func TestPost(t *testing.T) {
 }
 
 func TestPostFile(t *testing.T) {
-	Init(true)
+	Init()
 	res, err := PostFile("https://httpbin.org/post", nil, "./method.go")
 	if err != nil {
 		panic(err)
