@@ -1,3 +1,4 @@
+// 非200响应码会正常返回响应，不会返回错误
 package resty
 
 import "os"
