@@ -9,7 +9,7 @@ import (
 // 默认加载当前路径.env文件
 // 不会覆盖已有的环境变量
 func Load(filenames ...string) {
-	err := godotenv.Load()
+	err := godotenv.Load(filenames...)
 	if err != nil {
 		logrus.Error("godotenv load error ", err)
 	}

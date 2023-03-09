@@ -5,6 +5,7 @@ package xfyun
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/resty"
@@ -28,8 +29,21 @@ type UploadRes struct {
 	} `json:"content"`
 }
 
+// Valid 验证语音转写设置是否有效
+func (a *xfyun) Valid() error {
+	if a == nil || a.appid == "" || a.lfAsrSecret == "" {
+		return fmt.Errorf("argument insufficient %+v", a)
+	}
+	return nil
+}
+
 // Upload 上传音频文件
 func (a *xfyun) Upload(name string) error {
+	err := a.Valid()
+	if err != nil {
+		return err
+	}
+
 	// 查询字符串参数
 	info, err := os.Stat(name)
 	if err != nil {
