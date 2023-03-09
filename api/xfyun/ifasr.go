@@ -1,4 +1,5 @@
 // 语音转写
+// 必须先 SetLfAsrSecret 设置语音转写密钥
 // https://www.xfyun.cn/doc/asr/ifasr_new/API.html
 package xfyun
 
@@ -28,18 +29,13 @@ type UploadRes struct {
 }
 
 // Upload 上传音频文件
-func (a *xfyun) Upload(secret, name string) error {
-	err := InitEnv()
-	if err != nil {
-		return err
-	}
-
+func (a *xfyun) Upload(name string) error {
 	// 查询字符串参数
 	info, err := os.Stat(name)
 	if err != nil {
 		return err
 	}
-	qs := a.SignA(secret)
+	qs := a.SignA(a.lfAsrSecret)
 	qs["fileName"] = info.Name
 	qs["fileSize"] = strconv.ToString(info.Size)
 	// TODO 音频时长
@@ -66,6 +62,6 @@ func (a *xfyun) Upload(secret, name string) error {
 	} else if body.Code != ResCodeSuss {
 		return body.Error()
 	}
-	logrus.Info("upload success %+v", body)
+	logrus.Infof("upload success %+v", body)
 	return nil
 }

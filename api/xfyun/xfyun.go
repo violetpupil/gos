@@ -1,11 +1,10 @@
 // 科大讯飞api调用
-// 先 Init 初始化，否则 appid 会使用 XfyunAppid 环境变量
+// 必须先 Init 初始化
 // 不同服务的密钥不同
 // https://www.xfyun.cn/doc/
 package xfyun
 
 import (
-	"errors"
 	"fmt"
 	"os"
 
@@ -14,28 +13,26 @@ import (
 )
 
 type xfyun struct {
-	appid string
+	appid       string
+	lfAsrSecret string // 语音转写密钥
 }
 
 var Xfyun *xfyun
 
 // Init 初始化api调用
 func Init(appid string) {
-	Xfyun = &xfyun{appid}
+	Xfyun = &xfyun{appid: appid}
 }
 
-// InitEnv 用环境变量初始化api调用，返回初始化错误
-func InitEnv() error {
-	if Xfyun != nil {
-		return nil
-	}
+// InitEnv 用环境变量初始化api调用
+func InitEnv() {
+	Init(os.Getenv("XfyunAppid"))
+	SetLfAsrSecret(os.Getenv("XfyunLfAsrSecret"))
+}
 
-	appid := os.Getenv("XfyunAppid")
-	if appid == "" {
-		return errors.New("xfyun not init and env empty")
-	}
-	Xfyun = &xfyun{appid}
-	return nil
+// SetLfAsrSecret 设置语音转写密钥
+func SetLfAsrSecret(s string) {
+	Xfyun.lfAsrSecret = s
 }
 
 // SignA 生成签名并构造请求参数，secret为服务密钥
