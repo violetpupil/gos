@@ -29,6 +29,11 @@ type UploadRes struct {
 
 // Upload 上传音频文件
 func (a *xfyun) Upload(secret, name string) error {
+	err := InitEnv()
+	if err != nil {
+		return err
+	}
+
 	// 查询字符串参数
 	info, err := os.Stat(name)
 	if err != nil {

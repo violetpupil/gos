@@ -1,11 +1,13 @@
 // 科大讯飞api调用
-// 必须先 Init 初始化
+// 先 Init 初始化，否则 appid 会使用 XfyunAppid 环境变量
 // 不同服务的密钥不同
 // https://www.xfyun.cn/doc/
 package xfyun
 
 import (
+	"errors"
 	"fmt"
+	"os"
 
 	"github.com/violetpupil/components/crypto/sign"
 	"github.com/violetpupil/components/std/time"
@@ -20,6 +22,20 @@ var Xfyun *xfyun
 // Init 初始化api调用
 func Init(appid string) {
 	Xfyun = &xfyun{appid}
+}
+
+// InitEnv 用环境变量初始化api调用，返回初始化错误
+func InitEnv() error {
+	if Xfyun != nil {
+		return nil
+	}
+
+	appid := os.Getenv("XfyunAppid")
+	if appid == "" {
+		return errors.New("xfyun not init and env empty")
+	}
+	Xfyun = &xfyun{appid}
+	return nil
 }
 
 // SignA 生成签名并构造请求参数，secret为服务密钥
