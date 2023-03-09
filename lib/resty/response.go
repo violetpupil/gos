@@ -1,6 +1,8 @@
 package resty
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -27,6 +29,8 @@ type Response struct {
 	// 响应体自动解码，类型断言用指针
 	Result any // 响应码200~299，与Request.SetResult配合使用
 	Error  any // 响应码>399，与Request.SetError配合使用
+
+	IsJson bool // 响应体是否为json编码
 
 	// 统计信息
 	// TotalTime ≈ ConnTime + ServerTime + ResponseTime
@@ -71,6 +75,8 @@ func ToResponse(src *resty.Response) *Response {
 	dst.Result = src.Result()
 	dst.Error = src.Error()
 
+	dst.IsJson = json.Valid(dst.Body)
+
 	dst.TotalTime = src.Time()
 	dst.SentAt = src.Request.Time
 	dst.ReceivedAt = src.ReceivedAt()
@@ -91,4 +97,9 @@ func ToResponse(src *resty.Response) *Response {
 	dst.ConnIdleTime = ti.ConnIdleTime
 	dst.RequestAttempt = ti.RequestAttempt
 	return dst
+}
+
+// ToError 请求失败时，返回错误
+func (r *Response) ToError() error {
+	return fmt.Errorf("response fail: %s %s", r.Status, r.String)
 }

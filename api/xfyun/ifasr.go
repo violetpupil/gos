@@ -22,7 +22,7 @@ const (
 type UploadRes struct {
 	ResBody
 	Content struct {
-		OrderId          string `json:"orderId"`
+		OrderId          string `json:"orderId"` // 订单id
 		TaskEstimateTime int    `json:"taskEstimateTime"`
 	} `json:"content"`
 }
@@ -49,11 +49,17 @@ func (a *xfyun) Upload(secret, name string) error {
 		return err
 	}
 
-	// 假设响应码200对应处理码成功
 	var body UploadRes
 	err = json.Unmarshal(res.Body, &body)
 	if err != nil {
-		return err
+		logrus.Error("json unmarshal error ", err)
+		return res.ToError()
+	}
+	// 解码成功，但没有获取到处理码
+	if body.Code == "" {
+		return res.ToError()
+	} else if body.Code != ResCodeSuss {
+		return body.Error()
 	}
 	logrus.Info("upload success %+v", body)
 	return nil

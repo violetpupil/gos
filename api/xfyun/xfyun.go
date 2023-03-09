@@ -43,6 +43,7 @@ type ResBody struct {
 	DescInfo string `json:"descInfo"` // 处理结果
 }
 
-func (r ResBody) Error() string {
-	return fmt.Sprintf("response fail %s %s", r.Code, r.DescInfo)
+// Error 处理失败时，获取错误
+func (r ResBody) Error() error {
+	return fmt.Errorf("xfyun api: %s %s", r.Code, r.DescInfo)
 }
