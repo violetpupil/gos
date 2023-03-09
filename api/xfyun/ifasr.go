@@ -3,6 +3,9 @@
 package xfyun
 
 import (
+	"encoding/json"
+
+	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/resty"
 	"github.com/violetpupil/components/std/os"
 	"github.com/violetpupil/components/std/strconv"
@@ -37,7 +40,7 @@ func (a *xfyun) Upload(secret, name string) error {
 	// TODO 音频时长
 	qs["duration"] = ""
 
-	_, err = resty.Post(UrlUpload, func(r *resty.Request) *resty.Request {
+	res, err := resty.Post(UrlUpload, func(r *resty.Request) *resty.Request {
 		r.SetHeader("Content-Type", "application/json")
 		r.SetQueryParams(qs)
 		return r
@@ -46,6 +49,12 @@ func (a *xfyun) Upload(secret, name string) error {
 		return err
 	}
 
-	// TODO
+	// 假设响应码200对应处理码成功
+	var body UploadRes
+	err = json.Unmarshal(res.Body, &body)
+	if err != nil {
+		return err
+	}
+	logrus.Info("upload success %+v", body)
 	return nil
 }

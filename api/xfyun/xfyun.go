@@ -34,7 +34,7 @@ func (a *xfyun) SignA(secret string) map[string]string {
 	return m
 }
 
-// 请求成功
+// 处理成功
 const ResCodeSuss = "000000"
 
 // ResBody 通用响应体
