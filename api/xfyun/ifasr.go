@@ -85,8 +85,8 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 const (
 	OrderStatusCreated  = 0  // 已创建
 	OrderStatusProcess  = 3  // 处理中
-	OrderStatusComplete = 4  // 处理成功
-	OrderStatusFailed   = -1 // 处理失败
+	OrderStatusComplete = 4  // 处理完成-成功
+	OrderStatusFailed   = -1 // 处理完成-失败
 )
 
 // GetResultRes 获取处理结果响应体
@@ -96,17 +96,18 @@ type GetResultRes struct {
 	Content struct {
 		OrderInfo struct {
 			OrderId          string `json:"orderId"`          // 订单id
-			FailType         int    `json:"failType"`         // 订单失败类型
+			FailType         int    `json:"failType"`         // 订单失败类型，处理成功时响应0
 			Status           int    `json:"status"`           // 订单流程状态
 			OriginalDuration int    `json:"originalDuration"` // 上传设置音频时长，单位毫秒
 			RealDuration     int    `json:"realDuration"`     // 实际处理音频时长，单位毫秒
+			ExpireTime       int    `json:"expireTime"`       // 已完成订单删除时间戳，毫秒
 		} `json:"orderInfo"` // 转写订单信息
 		OrderResult      string `json:"orderResult"`      // 转写结果
 		TaskEstimateTime int    `json:"taskEstimateTime"` // 订单预估剩余耗时，单位毫秒
 	} `json:"content"`
 }
 
-// GetResult 获取处理结果，上传音频后72小时可查
+// GetResult 获取处理结果，处理完成后72小时可查
 func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
