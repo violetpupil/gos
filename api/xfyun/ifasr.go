@@ -106,7 +106,7 @@ type GetResultRes struct {
 	} `json:"content"`
 }
 
-// GetResult 获取处理结果
+// GetResult 获取处理结果，上传音频后72小时可查
 func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
