@@ -1,6 +1,7 @@
 package xfyun
 
 import (
+	"encoding/json"
 	"fmt"
 	"testing"
 
@@ -19,4 +20,14 @@ func Test_xfyun_GetResult(t *testing.T) {
 	InitEnv()
 	_, err := Xfyun.GetResult("DKHJQ20230310113506626000968003F300000")
 	fmt.Println(err)
+}
+
+func TestLattice_UnmarshalJSON(t *testing.T) {
+	s := `{"json_1best": "{\"st\": {\"bg\": \"bg\"}}"}`
+	var l Lattice
+	err := json.Unmarshal([]byte(s), &l)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", l)
 }

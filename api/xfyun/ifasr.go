@@ -4,6 +4,7 @@
 package xfyun
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/sirupsen/logrus"
@@ -114,7 +115,23 @@ type OrderResult struct {
 }
 
 type Lattice struct {
-	Json1best string `json:"json_1best"` // json字符串
+	Json1best Json1best
+}
+
+// UnmarshalJSON json解码
+// json_1best 响应字段是json字符串，将其直接解码为对象
+func (l *Lattice) UnmarshalJSON(data []byte) error {
+	type tmp struct {
+		Json1best string `json:"json_1best"`
+	}
+
+	var t tmp
+	err := json.Unmarshal(data, &t)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal([]byte(t.Json1best), &l.Json1best)
+	return err
 }
 
 type Json1best struct {
