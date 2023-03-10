@@ -102,7 +102,7 @@ type GetResultRes struct {
 			RealDuration     int    `json:"realDuration"`     // 实际处理音频时长，单位毫秒
 		} `json:"orderInfo"` // 转写订单信息
 		OrderResult      string `json:"orderResult"`      // 转写结果
-		TaskEstimateTime int    `json:"taskEstimateTime"` // 订单预估耗时，单位毫秒
+		TaskEstimateTime int    `json:"taskEstimateTime"` // 订单预估剩余耗时，单位毫秒
 	} `json:"content"`
 }
 
