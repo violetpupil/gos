@@ -102,9 +102,45 @@ type GetResultRes struct {
 			RealDuration     int    `json:"realDuration"`     // 实际处理音频时长，单位毫秒
 			ExpireTime       int    `json:"expireTime"`       // 已完成订单删除时间戳，毫秒
 		} `json:"orderInfo"` // 转写订单信息
-		OrderResult      string `json:"orderResult"`      // 转写结果
+		OrderResult      string `json:"orderResult"`      // 转写结果，json字符串
 		TaskEstimateTime int    `json:"taskEstimateTime"` // 订单预估剩余耗时，单位毫秒
 	} `json:"content"`
+}
+
+// OrderResult 转写结果
+type OrderResult struct {
+	Lattice  []Lattice `json:"lattice"`
+	Lattice2 []Lattice `json:"lattice2"`
+}
+
+type Lattice struct {
+	Json1best string `json:"json_1best"` // json字符串
+}
+
+type Json1best struct {
+	St St `json:"st"`
+}
+
+type St struct {
+	Bg string `json:"bg"`
+	Ed string `json:"ed"`
+	Rl string `json:"rl"`
+	Rt []Rt   `json:"rt"`
+}
+
+type Rt struct {
+	Ws []Ws `json:"ws"`
+}
+
+type Ws struct {
+	Wb int64 `json:"wb"`
+	We int64 `json:"we"`
+	Cw []Cw  `json:"cw"`
+}
+
+type Cw struct {
+	W  string `json:"w"`
+	Wp string `json:"wp"`
 }
 
 // GetResult 获取处理结果，处理完成后72小时可查
