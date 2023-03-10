@@ -4,7 +4,6 @@
 package xfyun
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/sirupsen/logrus"
@@ -65,16 +64,9 @@ func (a *xfyun) Upload(name string) error {
 	}
 
 	var body UploadRes
-	err = json.Unmarshal(res.Body, &body)
+	err = Unmarshal(res, &body)
 	if err != nil {
-		logrus.Error("json unmarshal error ", err)
-		return res.ToError()
-	}
-	// 解码成功，但没有获取到处理码
-	if body.Code == "" {
-		return res.ToError()
-	} else if body.Code != ResCodeSuss {
-		return body.Error()
+		return err
 	}
 	logrus.Infof("upload success %+v", body)
 	return nil
