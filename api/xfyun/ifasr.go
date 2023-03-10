@@ -23,8 +23,8 @@ const (
 type UploadRes struct {
 	ResBody
 	Content struct {
-		OrderId          string `json:"orderId"` // 订单id
-		TaskEstimateTime int    `json:"taskEstimateTime"`
+		OrderId          string `json:"orderId"`          // 订单id
+		TaskEstimateTime int    `json:"taskEstimateTime"` // 订单预估耗时，单位毫秒
 	} `json:"content"`
 }
 
@@ -37,17 +37,17 @@ func (a *xfyun) Valid() error {
 }
 
 // Upload 上传音频文件
-func (a *xfyun) Upload(name string) error {
+func (a *xfyun) Upload(name string) (*UploadRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	// 查询字符串参数
 	info, err := os.Stat(name)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	qs := a.SignA(a.lfAsrSecret)
 	qs["fileName"] = info.Name
@@ -58,7 +58,7 @@ func (a *xfyun) Upload(name string) error {
 	// 请求体
 	bytes, err := os.ReadFile(name)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	res, err := resty.Post(UrlUpload, func(r *resty.Request) *resty.Request {
 		r.SetHeader("Content-Type", "application/json")
@@ -67,14 +67,70 @@ func (a *xfyun) Upload(name string) error {
 		return r
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
+	// 可能存在未知字段
+	logrus.Info("upload response body ", res.String)
 
 	var body UploadRes
 	err = Unmarshal(res, &body)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	logrus.Infof("upload success %+v", body)
-	return nil
+	return &body, nil
+}
+
+// 订单流程状态
+const (
+	OrderStatusCreated  = 0  // 已创建
+	OrderStatusProcess  = 3  // 处理中
+	OrderStatusComplete = 4  // 处理成功
+	OrderStatusFailed   = -1 // 处理失败
+)
+
+// GetResultRes 获取处理结果响应体
+// 响应代码为成功时，才能确定订单状态
+type GetResultRes struct {
+	ResBody
+	Content struct {
+		OrderInfo struct {
+			OrderId          string `json:"orderId"`          // 订单id
+			FailType         int    `json:"failType"`         // 订单失败类型
+			Status           int    `json:"status"`           // 订单流程状态
+			OriginalDuration int    `json:"originalDuration"` // 上传设置音频时长，单位毫秒
+			RealDuration     int    `json:"realDuration"`     // 实际处理音频时长，单位毫秒
+		} `json:"orderInfo"` // 转写订单信息
+		OrderResult      string `json:"orderResult"`      // 转写结果
+		TaskEstimateTime int    `json:"taskEstimateTime"` // 订单预估耗时，单位毫秒
+	} `json:"content"`
+}
+
+// GetResult 获取处理结果
+func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
+	// 检查密钥设置
+	err := a.Valid()
+	if err != nil {
+		return nil, err
+	}
+
+	// 查询字符串参数
+	qs := a.SignA(a.lfAsrSecret)
+	qs["orderId"] = orderId
+	res, err := resty.Post(UrlGetResult, func(r *resty.Request) *resty.Request {
+		r.SetHeader("Content-Type", "multipart/form-data")
+		r.SetQueryParams(qs)
+		return r
+	})
+	if err != nil {
+		return nil, err
+	}
+	// 可能存在未知字段
+	logrus.Info("get result response ", res.String)
+
+	var body GetResultRes
+	err = Unmarshal(res, &body)
+	if err != nil {
+		return nil, err
+	}
+	return &body, nil
 }

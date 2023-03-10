@@ -50,13 +50,13 @@ func (a *xfyun) SignA(secret string) map[string]string {
 	return m
 }
 
-// 处理成功
+// 响应成功时，才能获取到响应内容
 const ResCodeSuss = "000000"
 
 // ResBody 通用响应体
 type ResBody struct {
-	Code     string `json:"code"`     // 处理码
-	DescInfo string `json:"descInfo"` // 处理结果
+	Code     string `json:"code"`     // 响应代码
+	DescInfo string `json:"descInfo"` // 响应信息
 }
 
 // Error 处理失败时，获取错误
@@ -64,7 +64,7 @@ func (r ResBody) Error() error {
 	return fmt.Errorf("xfyun api: %s %s", r.Code, r.DescInfo)
 }
 
-// CodeI 获取处理码，实现ResBodyI
+// CodeI 获取响应代码，实现ResBodyI
 func (r ResBody) CodeI() string {
 	return r.Code
 }
@@ -76,14 +76,15 @@ type ResBodyI interface {
 	CodeI() string
 }
 
-// Unmarshal 响应体json解码，处理码不是成功时返回错误
+// Unmarshal 响应体json解码，响应代码不是成功时返回错误
+// body 必须传不为nil的指针
 func Unmarshal(res *resty.Response, body ResBodyI) error {
-	err := json.Unmarshal(res.Body, &body)
+	err := json.Unmarshal(res.Body, body)
 	if err != nil {
 		logrus.Error("json unmarshal error ", err)
 		return res.ToError()
 	}
-	// 解码成功，但没有获取到处理码
+	// 解码成功，但没有获取到响应代码
 	if body.CodeI() == "" {
 		return res.ToError()
 	} else if body.CodeI() != ResCodeSuss {
