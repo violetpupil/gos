@@ -70,7 +70,7 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 	if err != nil {
 		return nil, err
 	}
-	// 可能存在未知字段
+	// 打印所有字段
 	logrus.Info("upload response body ", res.String)
 
 	var body UploadRes
@@ -126,7 +126,7 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	if err != nil {
 		return nil, err
 	}
-	// 可能存在未知字段
+	// 打印所有字段
 	logrus.Info("get result response ", res.String)
 
 	var body GetResultRes
