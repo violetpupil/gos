@@ -5,6 +5,11 @@ import (
 	"time"
 )
 
+var (
+	// ReadFile 读取文件字节
+	ReadFile = os.ReadFile
+)
+
 type FileInfo struct {
 	Name    string      // 文件名
 	Size    int64       // 文件字节数

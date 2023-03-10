@@ -38,6 +38,7 @@ func (a *xfyun) Valid() error {
 
 // Upload 上传音频文件
 func (a *xfyun) Upload(name string) error {
+	// 检查密钥设置
 	err := a.Valid()
 	if err != nil {
 		return err
@@ -54,9 +55,15 @@ func (a *xfyun) Upload(name string) error {
 	// TODO 音频时长
 	qs["duration"] = ""
 
+	// 请求体
+	bytes, err := os.ReadFile(name)
+	if err != nil {
+		return err
+	}
 	res, err := resty.Post(UrlUpload, func(r *resty.Request) *resty.Request {
 		r.SetHeader("Content-Type", "application/json")
 		r.SetQueryParams(qs)
+		r.SetBody(bytes)
 		return r
 	})
 	if err != nil {
