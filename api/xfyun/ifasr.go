@@ -52,8 +52,9 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 	qs := a.SignA(a.lfAsrSecret)
 	qs["fileName"] = info.Name
 	qs["fileSize"] = strconv.ToString(info.Size)
-	// TODO 音频时长
-	qs["duration"] = ""
+	// 音频时长，单位为毫秒
+	// 必须有值，设置为0订单也可以成功
+	qs["duration"] = "0"
 
 	// 请求体
 	bytes, err := os.ReadFile(name)
@@ -117,7 +118,7 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	qs := a.SignA(a.lfAsrSecret)
 	qs["orderId"] = orderId
 	res, err := resty.Post(UrlGetResult, func(r *resty.Request) *resty.Request {
-		r.SetHeader("Content-Type", "multipart/form-data")
+		r.SetHeader("Content-Type", "application/json")
 		r.SetQueryParams(qs)
 		return r
 	})
