@@ -122,7 +122,7 @@ type OrderResult struct {
 }
 
 type Lattice struct {
-	Json1best Json1best
+	Json1best Json1best `json:"json_1best"`
 }
 
 // UnmarshalJSON json解码
