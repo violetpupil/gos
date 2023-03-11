@@ -109,9 +109,11 @@ type GetResultRes struct {
 }
 
 // OrderResult 转写结果
+// lattice 中 json_1best 是字符串
+// lattice2 中 json_1best 是对象
 type OrderResult struct {
-	Lattice  []Lattice `json:"lattice"`
-	Lattice2 []Lattice `json:"lattice2"`
+	Lattice  []Lattice  `json:"lattice"`
+	Lattice2 []Lattice2 `json:"lattice2"`
 }
 
 type Lattice struct {
@@ -128,10 +130,15 @@ func (l *Lattice) UnmarshalJSON(data []byte) error {
 	var t tmp
 	err := json.Unmarshal(data, &t)
 	if err != nil {
+		logrus.Error("json unmarshal error ", err)
 		return err
 	}
 	err = json.Unmarshal([]byte(t.Json1best), &l.Json1best)
 	return err
+}
+
+type Lattice2 struct {
+	Json1best Json1best `json:"json_1best"`
 }
 
 type Json1best struct {

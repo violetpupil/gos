@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/godotenv"
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/violetpupil/components/std/os"
 )
 
 func Test_xfyun_Upload(t *testing.T) {
@@ -19,7 +20,7 @@ func Test_xfyun_Upload(t *testing.T) {
 
 func Test_xfyun_GetResult(t *testing.T) {
 	// 日志不加引号
-	logrus.Init()
+	logrus.SetFormatter(&logrus.TextFormatter{DisableQuote: true})
 	godotenv.Load("../../.env")
 	InitEnv()
 	_, err := Xfyun.GetResult("DKHJQ20230310113506626000968003F300000")
@@ -34,4 +35,20 @@ func TestLattice_UnmarshalJSON(t *testing.T) {
 		panic(err)
 	}
 	fmt.Printf("%+v\n", l)
+}
+
+func Test_xfyun_OrderResult(t *testing.T) {
+	logrus.SetReportCaller(true)
+	bs, err := os.ReadFile("./test_data/get_result_res.json")
+	if err != nil {
+		panic(err)
+	}
+
+	var res GetResultRes
+	err = json.Unmarshal(bs, &res)
+	if err != nil {
+		panic(err)
+	}
+	err = Xfyun.OrderResult(&res)
+	fmt.Println(err)
 }
