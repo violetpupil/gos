@@ -42,6 +42,7 @@ func InterfacePhysical(i net.Interface) bool {
 func Interfaces() ([]net.Interface, error) {
 	ifs, err := net.Interfaces()
 	if err != nil {
+		logrus.Error("net interfaces error ", err)
 		return nil, err
 	}
 
@@ -58,6 +59,7 @@ func Interfaces() ([]net.Interface, error) {
 func Ipv4(i net.Interface) ([]net.IP, error) {
 	addrs, err := i.Addrs()
 	if err != nil {
+		logrus.Error("addrs error ", err)
 		return nil, err
 	}
 
@@ -78,6 +80,7 @@ func Ipv4(i net.Interface) ([]net.IP, error) {
 func InterfacesIpv4() ([]net.IP, error) {
 	ifs, err := net.Interfaces()
 	if err != nil {
+		logrus.Error("net interfaces error ", err)
 		return nil, err
 	}
 
@@ -101,6 +104,7 @@ func InterfacesIpv4() ([]net.IP, error) {
 func HostIp() (net.IP, error) {
 	conn, err := net.Dial("ip:icmp", "8.8.8.8")
 	if err != nil {
+		logrus.Error("dial error ", err)
 		return nil, err
 	}
 	defer conn.Close()

@@ -3,6 +3,7 @@ package tea
 import (
 	"encoding/hex"
 
+	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/std/binary"
 	"github.com/violetpupil/components/types"
 )
@@ -12,6 +13,7 @@ func DecryptStr(cipher, key string) (string, error) {
 	key = PadKey(key)
 	cipherB, err := hex.DecodeString(cipher)
 	if err != nil {
+		logrus.Error("decode string error ", err)
 		return "", err
 	}
 	plain, err := DecryptByte(cipherB, []byte(key))

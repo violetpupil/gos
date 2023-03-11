@@ -42,12 +42,14 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
 	if err != nil {
+		logrus.Error("valid error ", err)
 		return nil, err
 	}
 
 	// 查询字符串参数
 	info, err := os.Stat(name)
 	if err != nil {
+		logrus.Error("stat error ", err)
 		return nil, err
 	}
 	qs := a.SignA(a.lfAsrSecret)
@@ -60,6 +62,7 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 	// 请求体
 	bytes, err := os.ReadFile(name)
 	if err != nil {
+		logrus.Error("read file error ", err)
 		return nil, err
 	}
 	res, err := resty.Post(UrlUpload, func(r *resty.Request) *resty.Request {
@@ -69,6 +72,7 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 		return r
 	})
 	if err != nil {
+		logrus.Error("post error ", err)
 		return nil, err
 	}
 	// 打印所有字段
@@ -77,6 +81,7 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 	var body UploadRes
 	err = Unmarshal(res, &body)
 	if err != nil {
+		logrus.Error("unmarshal error ", err)
 		return nil, err
 	}
 	return &body, nil
@@ -172,6 +177,7 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
 	if err != nil {
+		logrus.Error("valid error ", err)
 		return nil, err
 	}
 
@@ -184,6 +190,7 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 		return r
 	})
 	if err != nil {
+		logrus.Error("post error ", err)
 		return nil, err
 	}
 	// 打印所有字段
@@ -192,6 +199,7 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	var body GetResultRes
 	err = Unmarshal(res, &body)
 	if err != nil {
+		logrus.Error("unmarshal error ", err)
 		return nil, err
 	}
 	return &body, nil
@@ -202,6 +210,7 @@ func (a *xfyun) OrderResult(res *GetResultRes) error {
 	var result OrderResult
 	err := json.Unmarshal([]byte(res.Content.OrderResult), &result)
 	if err != nil {
+		logrus.Error("json unmarshal error ", err)
 		return err
 	}
 	logrus.Infof("order result %+v", result)

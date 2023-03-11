@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/hex"
 
+	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/std/binary"
 	"github.com/violetpupil/components/std/rand"
 )
@@ -13,6 +14,7 @@ func EncryptStr(plain, key string) (string, error) {
 	key = PadKey(key)
 	cipherB, err := EncryptByte([]byte(plain), []byte(key))
 	if err != nil {
+		logrus.Error("encrypt byte error ", err)
 		return "", err
 	}
 	cipher := hex.EncodeToString(cipherB)
@@ -24,6 +26,7 @@ func EncryptByte(plain, key []byte) ([]byte, error) {
 	// 填充明文，最终总长度为8的倍数
 	plain, err := PadPlain(plain)
 	if err != nil {
+		logrus.Error("pad plain error ", err)
 		return nil, err
 	}
 	ks := binary.SplitUint32(binary.BigEndian, key)
@@ -91,16 +94,19 @@ func PadPlain(plain []byte) ([]byte, error) {
 	// header前5位随机，后3位代表填充长度
 	header, err := rand.RandByte()
 	if err != nil {
+		logrus.Error("gen header error ", err)
 		return nil, err
 	}
 	header = header&0xf8 | byte(padLen)
 	// 填充随机字节
 	pad, err := rand.RandBytes(padLen)
 	if err != nil {
+		logrus.Error("gen pad error ", err)
 		return nil, err
 	}
 	salt, err := rand.RandBytes(2)
 	if err != nil {
+		logrus.Error("gen salt error ", err)
 		return nil, err
 	}
 	// 填充0字节，加长密文长度

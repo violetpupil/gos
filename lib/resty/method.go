@@ -1,7 +1,11 @@
 // 非200响应码会正常返回响应，不会返回错误
 package resty
 
-import "os"
+import (
+	"os"
+
+	"github.com/violetpupil/components/lib/logrus"
+)
 
 // Execute 使用指定方法请求 http.MethodGet
 func Execute(method, url string, hook ReqHook) (*Response, error) {
@@ -15,6 +19,7 @@ func Execute(method, url string, hook ReqHook) (*Response, error) {
 
 	res, err := req.Execute(method, url)
 	if err != nil {
+		logrus.Error("execute error ", err)
 		return nil, err
 	}
 	return ToResponse(res), nil
@@ -31,6 +36,7 @@ func Get(url string, hook ReqHook) (*Response, error) {
 
 	res, err := req.Get(url)
 	if err != nil {
+		logrus.Error("get error ", err)
 		return nil, err
 	}
 	return ToResponse(res), nil
@@ -47,6 +53,7 @@ func Post(url string, hook ReqHook) (*Response, error) {
 
 	res, err := req.Post(url)
 	if err != nil {
+		logrus.Error("post error ", err)
 		return nil, err
 	}
 	return ToResponse(res), nil
@@ -57,6 +64,7 @@ func Post(url string, hook ReqHook) (*Response, error) {
 func PostFile(url string, hook ReqHook, name string) (*Response, error) {
 	bytes, err := os.ReadFile(name)
 	if err != nil {
+		logrus.Error("read file error ", err)
 		return nil, err
 	}
 	if client == nil {
@@ -69,6 +77,7 @@ func PostFile(url string, hook ReqHook, name string) (*Response, error) {
 
 	res, err := req.Post(url)
 	if err != nil {
+		logrus.Error("post error ", err)
 		return nil, err
 	}
 	return ToResponse(res), nil

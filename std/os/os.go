@@ -3,6 +3,8 @@ package os
 import (
 	"os"
 	"time"
+
+	"github.com/violetpupil/components/lib/logrus"
 )
 
 var (
@@ -22,6 +24,7 @@ type FileInfo struct {
 func Stat(name string) (*FileInfo, error) {
 	info, err := os.Stat(name)
 	if err != nil {
+		logrus.Error("stat error ", err)
 		return nil, err
 	}
 	fi := &FileInfo{

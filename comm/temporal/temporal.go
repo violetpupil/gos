@@ -5,6 +5,7 @@ package temporal
 import (
 	"context"
 
+	"github.com/sirupsen/logrus"
 	"go.temporal.io/api/enums/v1"
 	"go.temporal.io/sdk/client"
 )
@@ -19,6 +20,7 @@ func Init(addr string) error {
 	}
 	c, err := client.Dial(options)
 	if err != nil {
+		logrus.Error("dial error ", err)
 		return err
 	}
 	temporal = c

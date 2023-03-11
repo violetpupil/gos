@@ -3,6 +3,8 @@ package alg
 import (
 	"errors"
 	"sort"
+
+	"github.com/sirupsen/logrus"
 )
 
 // StrAdd 两个数字字符串相加
@@ -32,6 +34,7 @@ func StrAdd(str1, str2 string) (string, error) {
 		var err error
 		pos, carry, err = PosAdd(b1, b2, carry)
 		if err != nil {
+			logrus.Error("pos add error ", err)
 			return "", err
 		}
 		result = append(result, pos)
@@ -65,10 +68,12 @@ func PosAdd(b1, b2 byte, carry bool) (byte, bool, error) {
 	// 转为数字
 	n1, err := BtoN(b1)
 	if err != nil {
+		logrus.Error("n1 to number error ", err)
 		return 0, false, err
 	}
 	n2, err := BtoN(b2)
 	if err != nil {
+		logrus.Error("n2 to number error ", err)
 		return 0, false, err
 	}
 
