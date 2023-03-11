@@ -189,3 +189,14 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	}
 	return &body, nil
 }
+
+// OrderResult 解码转写结果
+func (a *xfyun) OrderResult(res *GetResultRes) error {
+	var result OrderResult
+	err := json.Unmarshal([]byte(res.Content.OrderResult), &result)
+	if err != nil {
+		return err
+	}
+	logrus.Infof("order result %+v", result)
+	return nil
+}

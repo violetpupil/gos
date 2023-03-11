@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/violetpupil/components/lib/godotenv"
+	"github.com/violetpupil/components/lib/logrus"
 )
 
 func Test_xfyun_Upload(t *testing.T) {
@@ -16,6 +17,8 @@ func Test_xfyun_Upload(t *testing.T) {
 }
 
 func Test_xfyun_GetResult(t *testing.T) {
+	// 日志不加引号
+	logrus.Init()
 	godotenv.Load("../../.env")
 	InitEnv()
 	_, err := Xfyun.GetResult("DKHJQ20230310113506626000968003F300000")
