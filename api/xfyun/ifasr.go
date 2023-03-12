@@ -1,4 +1,4 @@
-// 语音转写
+// 语音转写 Long Form Automatic Speech Recognition
 // 必须先 SetLfAsrSecret 设置语音转写密钥
 // https://www.xfyun.cn/doc/asr/ifasr_new/API.html
 package xfyun
