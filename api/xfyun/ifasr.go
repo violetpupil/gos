@@ -228,9 +228,13 @@ func (a *xfyun) OrderResult(res *GetResultRes) error {
 		logrus.Error("json unmarshal error ", err)
 		return err
 	}
+	a.Sentence(result.Lattice)
+	return err
+}
 
-	// 拼接句子输出
-	for _, la := range result.Lattice {
+// Sentence 拼接句子输出
+func (a *xfyun) Sentence(las []Lattice) {
+	for _, la := range las {
 		for _, rt := range la.Json1best.St.Rt {
 			for _, ws := range rt.Ws {
 				if len(ws.Cw) > 0 {
@@ -244,5 +248,4 @@ func (a *xfyun) OrderResult(res *GetResultRes) error {
 			}
 		}
 	}
-	return err
 }
