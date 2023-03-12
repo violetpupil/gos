@@ -4,11 +4,11 @@
 package xfyun
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/resty"
+	"github.com/violetpupil/components/std/json"
 	"github.com/violetpupil/components/std/os"
 	"github.com/violetpupil/components/std/strconv"
 )
@@ -213,6 +213,6 @@ func (a *xfyun) OrderResult(res *GetResultRes) error {
 		logrus.Error("json unmarshal error ", err)
 		return err
 	}
-	logrus.Infof("order result %+v", result)
-	return nil
+	err = json.Dump(result, "./test_data/order_result.json")
+	return err
 }

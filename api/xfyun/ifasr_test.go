@@ -1,13 +1,12 @@
 package xfyun
 
 import (
-	"encoding/json"
 	"fmt"
 	"testing"
 
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/godotenv"
-	"github.com/violetpupil/components/std/os"
+	"github.com/violetpupil/components/std/json"
 )
 
 func Test_xfyun_Upload(t *testing.T) {
@@ -39,13 +38,9 @@ func TestLattice_UnmarshalJSON(t *testing.T) {
 
 func Test_xfyun_OrderResult(t *testing.T) {
 	logrus.SetReportCaller(true)
-	bs, err := os.ReadFile("./test_data/get_result_res.json")
-	if err != nil {
-		panic(err)
-	}
 
 	var res GetResultRes
-	err = json.Unmarshal(bs, &res)
+	err := json.Load("./test_data/get_result_res.json", &res)
 	if err != nil {
 		panic(err)
 	}
