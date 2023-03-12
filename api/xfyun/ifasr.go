@@ -117,10 +117,11 @@ type GetResultRes struct {
 // lattice 中 json_1best 是字符串
 // lattice2 中 json_1best 是对象
 type OrderResult struct {
-	Lattice  []Lattice  `json:"lattice"`
-	Lattice2 []Lattice2 `json:"lattice2"`
+	Lattice  []Lattice  `json:"lattice"`  // 顺滑处理后的结果
+	Lattice2 []Lattice2 `json:"lattice2"` // 未顺滑处理的结果
 }
 
+// Lattice 单句转写结果
 type Lattice struct {
 	Json1best Json1best `json:"json_1best"`
 }
@@ -142,35 +143,49 @@ func (l *Lattice) UnmarshalJSON(data []byte) error {
 	return err
 }
 
+// Lattice2 单句转写结果
 type Lattice2 struct {
 	Json1best Json1best `json:"json_1best"`
 }
 
+// Json1best 单句转写结果
 type Json1best struct {
 	St St `json:"st"`
 }
 
+// St 单句转写结果
 type St struct {
-	Bg string `json:"bg"`
-	Ed string `json:"ed"`
+	Bg string `json:"bg"` // 单句开始时间 毫秒
+	Ed string `json:"ed"` // 单句结束时间 毫秒
 	Rl string `json:"rl"`
-	Rt []Rt   `json:"rt"`
+	Rt []Rt   `json:"rt"` // 词语识别结果
 }
 
+// Rt 词语识别结果
 type Rt struct {
 	Ws []Ws `json:"ws"`
 }
 
+// Ws 词语识别结果
 type Ws struct {
-	Wb int64 `json:"wb"`
-	We int64 `json:"we"`
-	Cw []Cw  `json:"cw"`
+	Wb int64 `json:"wb"` // 词语相对St.Bg开始帧数 一帧10ms
+	We int64 `json:"we"` // 词语相对St.Bg结束帧数 一帧10ms
+	Cw []Cw  `json:"cw"` // 词语识别结果
 }
 
+// Cw 词语识别结果
 type Cw struct {
-	W  string `json:"w"`
-	Wp string `json:"wp"`
+	W  string `json:"w"`  // 识别结果
+	Wp string `json:"wp"` // 词语类型
 }
+
+// 词语类型
+const (
+	WpNormal = "n" // 正常词
+	WpSmooth = "s" // 顺滑
+	WpPunct  = "p" // 标点
+	WpSeg    = "g" // 分段标识，对应Cw.W为空
+)
 
 // GetResult 获取处理结果，处理完成后72小时可查
 func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
@@ -213,6 +228,21 @@ func (a *xfyun) OrderResult(res *GetResultRes) error {
 		logrus.Error("json unmarshal error ", err)
 		return err
 	}
-	err = json.Dump(result, "./test_data/order_result.json")
+
+	// 拼接句子输出
+	for _, la := range result.Lattice {
+		for _, rt := range la.Json1best.St.Rt {
+			for _, ws := range rt.Ws {
+				if len(ws.Cw) > 0 {
+					cw := ws.Cw[0]
+					if cw.Wp == WpSeg {
+						fmt.Println()
+					} else {
+						fmt.Print(cw.W)
+					}
+				}
+			}
+		}
+	}
 	return err
 }
