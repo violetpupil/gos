@@ -4,6 +4,8 @@ import (
 	"strconv"
 )
 
+var ParseInt = strconv.ParseInt
+
 // ToString 将其它类型转为string，不支持的类型返回空字符串
 func ToString(i any) string {
 	switch v := i.(type) {

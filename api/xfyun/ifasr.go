@@ -13,6 +13,7 @@ import (
 	"github.com/violetpupil/components/std/json"
 	"github.com/violetpupil/components/std/os"
 	"github.com/violetpupil/components/std/strconv"
+	"github.com/violetpupil/components/std/time"
 )
 
 const (
@@ -190,8 +191,8 @@ type Json1best struct {
 
 // St 单句转写结果
 type St struct {
-	Bg string `json:"bg"` // 单句开始时间 毫秒
-	Ed string `json:"ed"` // 单句结束时间 毫秒
+	Bg string `json:"bg"` // 单句开始时间毫秒数
+	Ed string `json:"ed"` // 单句结束时间毫秒数
 	Rl string `json:"rl"`
 	Rt []Rt   `json:"rt"` // 词语识别结果
 }
@@ -297,7 +298,7 @@ func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
 				if len(ws.Cw) > 0 {
 					cw := ws.Cw[0]
 					switch cw.Wp {
-					case WpNormal:
+					case WpNormal, WpSmooth:
 						line += cw.W
 					// 标点用空格代替
 					case WpPunct:
@@ -308,10 +309,23 @@ func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
 		}
 
 		if line != "" {
+			// 将毫秒数转为时间字符串
+			bg, err := a.VideoTime(la.Json1best.St.Bg)
+			if err != nil {
+				// 会导致字幕缺失
+				logrus.Error("bg video time error ", err)
+				continue
+			}
+			ed, err := a.VideoTime(la.Json1best.St.Ed)
+			if err != nil {
+				// 会导致字幕缺失
+				logrus.Error("ed video time error ", err)
+				continue
+			}
 			sub := libGoSubs.Subtitle{
 				Id:    i,
-				Start: la.Json1best.St.Bg,
-				End:   la.Json1best.St.Ed,
+				Start: bg,
+				End:   ed,
 				Line:  []string{line},
 			}
 			subs = append(subs, sub)
@@ -321,4 +335,15 @@ func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
 	name := orderId + ".srt"
 	err := libGoSubs.WriteSrt(subs, name)
 	return err
+}
+
+// VideoTime 将毫秒数转为视频时间字符串
+func (a *xfyun) VideoTime(msec string) (string, error) {
+	ms, err := strconv.ParseInt(msec, 10, 64)
+	if err != nil {
+		logrus.Error("parse int error ", err)
+		return "", err
+	}
+	t := time.Video(ms)
+	return t, nil
 }
