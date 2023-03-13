@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
+	"github.com/violetpupil/components/lib/libGoSubs"
 	"github.com/violetpupil/components/lib/resty"
 	"github.com/violetpupil/components/std/json"
 	"github.com/violetpupil/components/std/os"
@@ -262,8 +263,8 @@ func (a *xfyun) OrderResult(res *GetResultRes) error {
 		logrus.Error("json unmarshal error ", err)
 		return err
 	}
-	a.Sentence(result.Lattice)
-	return nil
+	err = a.WriteSrt(res.Content.OrderInfo.OrderId, result.Lattice)
+	return err
 }
 
 // Sentence 拼接句子输出
@@ -282,4 +283,42 @@ func (a *xfyun) Sentence(las []Lattice) {
 			}
 		}
 	}
+}
+
+// WriteSrt 写srt字幕文件 订单id.srt
+func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
+	subs := make([]libGoSubs.Subtitle, 0)
+	// 处理每句
+	for i, la := range las {
+		var line string
+		// 处理每个词
+		for _, rt := range la.Json1best.St.Rt {
+			for _, ws := range rt.Ws {
+				if len(ws.Cw) > 0 {
+					cw := ws.Cw[0]
+					switch cw.Wp {
+					case WpNormal:
+						line += cw.W
+					// 标点用空格代替
+					case WpPunct:
+						line += " "
+					}
+				}
+			}
+		}
+
+		if line != "" {
+			sub := libGoSubs.Subtitle{
+				Id:    i,
+				Start: la.Json1best.St.Bg,
+				End:   la.Json1best.St.Ed,
+				Line:  []string{line},
+			}
+			subs = append(subs, sub)
+		}
+	}
+
+	name := orderId + ".srt"
+	err := libGoSubs.WriteSrt(subs, name)
+	return err
 }
