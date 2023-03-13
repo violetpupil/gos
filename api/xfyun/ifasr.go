@@ -6,6 +6,7 @@ package xfyun
 import (
 	"fmt"
 
+	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/resty"
 	"github.com/violetpupil/components/std/json"
@@ -20,6 +21,14 @@ const (
 	UrlGetResult = "https://raasr.xfyun.cn/v2/api/getResult"
 )
 
+// Valid 验证语音转写设置是否有效
+func (a *xfyun) Valid() error {
+	if a == nil || a.appid == "" || a.lfAsrSecret == "" {
+		return fmt.Errorf("argument insufficient %+v", a)
+	}
+	return nil
+}
+
 // UploadRes 上传音频文件响应体
 type UploadRes struct {
 	ResBody
@@ -27,14 +36,6 @@ type UploadRes struct {
 		OrderId          string `json:"orderId"`          // 订单id
 		TaskEstimateTime int    `json:"taskEstimateTime"` // 订单预估耗时，单位毫秒
 	} `json:"content"`
-}
-
-// Valid 验证语音转写设置是否有效
-func (a *xfyun) Valid() error {
-	if a == nil || a.appid == "" || a.lfAsrSecret == "" {
-		return fmt.Errorf("argument insufficient %+v", a)
-	}
-	return nil
 }
 
 // Upload 上传音频文件
@@ -47,6 +48,7 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 	}
 
 	// 查询字符串参数
+	// callbackUrl 订单完成时通知回调地址
 	info, err := os.Stat(name)
 	if err != nil {
 		logrus.Error("stat error ", err)
@@ -85,6 +87,38 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 		return nil, err
 	}
 	return &body, nil
+}
+
+// UploadCallback 订单完成时通知回调处理 get请求
+func (a *xfyun) UploadCallback(c *gin.Context) {
+	// qs参数
+	logrus.Info("upload callback url ", c.Request.URL)
+	// 订单id
+	orderId := c.Query("orderId")
+	// 订单状态 1 转写成功 -1 转写失败
+	status := c.Query("status")
+	if orderId == "" {
+		logrus.Info("callback order id empty")
+		return
+	}
+	if status == "-1" {
+		logrus.Info("recognition failed")
+		return
+	}
+	if status != "1" {
+		logrus.Info("unknown order status")
+		return
+	}
+	logrus.Info("recognition success")
+
+	// 查询结果并打印句子
+	res, err := a.GetResult(orderId)
+	if err != nil {
+		logrus.Error("get result error ", err)
+		return
+	}
+	err = a.OrderResult(res)
+	logrus.Info("order result error ", err)
 }
 
 // 订单流程状态
@@ -229,7 +263,7 @@ func (a *xfyun) OrderResult(res *GetResultRes) error {
 		return err
 	}
 	a.Sentence(result.Lattice)
-	return err
+	return nil
 }
 
 // Sentence 拼接句子输出
