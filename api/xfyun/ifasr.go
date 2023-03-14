@@ -1,5 +1,5 @@
 // 语音转写 Long Form Automatic Speech Recognition
-// 必须先 SetLfAsrSecret 设置语音转写密钥
+// 如果不使用 NewXfyun，必须先 SetLfAsrSecret 设置语音转写密钥
 // 上传音视频文件，可以设置处理结果回调，再调用结果查询接口
 // https://www.xfyun.cn/doc/asr/ifasr_new/API.html
 package xfyun
@@ -26,8 +26,8 @@ const (
 )
 
 // Valid 验证语音转写设置是否有效
-func (a *xfyun) Valid() error {
-	if a == nil || a.appid == "" || a.lfAsrSecret == "" {
+func (a *Client) Valid() error {
+	if a == nil || a.Appid == "" || a.LfAsrSecret == "" {
 		return fmt.Errorf("argument insufficient %+v", a)
 	}
 	return nil
@@ -40,7 +40,7 @@ func (a *xfyun) Valid() error {
 // 10<=X<30 3<=Y<6
 // 30<=X<60 6<=Y<10
 // 60<=X 10<=Y<20
-func (a *xfyun) SpeechToText(name string, timeout time.Duration) (string, error) {
+func (a *Client) SpeechToText(name string, timeout time.Duration) (string, error) {
 	resUp, err := a.Upload(name)
 	if err != nil {
 		logrus.Error("upload error ", err)
@@ -88,7 +88,7 @@ type UploadRes struct {
 }
 
 // Upload 上传音视频文件
-func (a *xfyun) Upload(name string) (*UploadRes, error) {
+func (a *Client) Upload(name string) (*UploadRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
 	if err != nil {
@@ -103,7 +103,7 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 		logrus.Error("stat error ", err)
 		return nil, err
 	}
-	qs := a.SignA(a.lfAsrSecret)
+	qs := a.SignA(a.LfAsrSecret)
 	qs["fileName"] = info.Name
 	qs["fileSize"] = strconv.ToString(info.Size)
 	// 音频时长，单位为毫秒
@@ -139,7 +139,7 @@ func (a *xfyun) Upload(name string) (*UploadRes, error) {
 }
 
 // UploadCallback 订单完成时通知回调处理 get请求
-func (a *xfyun) UploadCallback(c *gin.Context) {
+func (a *Client) UploadCallback(c *gin.Context) {
 	// qs参数
 	logrus.Info("upload callback url ", c.Request.URL)
 	// 订单id
@@ -300,7 +300,7 @@ const (
 // GetResult 获取处理结果，处理完成后72小时可查
 // 订单处理失败或处理中，会返回错误
 // 同一个订单最多获取100次结果
-func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
+func (a *Client) GetResult(orderId string) (*GetResultRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
 	if err != nil {
@@ -309,7 +309,7 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	}
 
 	// 查询字符串参数
-	qs := a.SignA(a.lfAsrSecret)
+	qs := a.SignA(a.LfAsrSecret)
 	qs["orderId"] = orderId
 	res, err := resty.Post(UrlGetResult, func(r *resty.Request) *resty.Request {
 		r.SetHeader("Content-Type", "application/json")
@@ -335,7 +335,7 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 }
 
 // OrderResult 解码转写结果，返回srt字幕
-func (a *xfyun) OrderResult(res *GetResultRes) (string, error) {
+func (a *Client) OrderResult(res *GetResultRes) (string, error) {
 	var result OrderResult
 	err := json.Unmarshal([]byte(res.Content.OrderResult), &result)
 	if err != nil {
@@ -347,7 +347,7 @@ func (a *xfyun) OrderResult(res *GetResultRes) (string, error) {
 }
 
 // Sentence 拼接句子输出
-func (a *xfyun) Sentence(las []Lattice) {
+func (a *Client) Sentence(las []Lattice) {
 	for _, la := range las {
 		for _, rt := range la.Json1best.St.Rt {
 			for _, ws := range rt.Ws {
@@ -365,7 +365,7 @@ func (a *xfyun) Sentence(las []Lattice) {
 }
 
 // Srt srt字幕
-func (a *xfyun) Srt(las []Lattice) (string, error) {
+func (a *Client) Srt(las []Lattice) (string, error) {
 	subs := make([]srt.Subtitle, 0)
 	// 处理每句
 	for i, la := range las {
@@ -413,7 +413,7 @@ func (a *xfyun) Srt(las []Lattice) (string, error) {
 }
 
 // VideoTime 将毫秒数转为视频时间字符串
-func (a *xfyun) VideoTime(msec string) (string, error) {
+func (a *Client) VideoTime(msec string) (string, error) {
 	ms, err := strconv.ParseInt(msec, 10, 64)
 	if err != nil {
 		logrus.Error("parse int error ", err)

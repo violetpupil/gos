@@ -1,5 +1,5 @@
-// 科大讯飞api调用
-// 必须先 Init 初始化
+// 科大讯飞api客户端
+// 如果不使用 NewXfyun，必须先 Init 初始化
 // 不同服务的密钥不同
 // https://www.xfyun.cn/doc/
 package xfyun
@@ -15,19 +15,26 @@ import (
 	"github.com/violetpupil/components/std/time"
 )
 
-type xfyun struct {
-	appid       string
-	lfAsrSecret string // 语音转写密钥
+type Client struct {
+	Appid       string `json:"appid"`
+	LfAsrSecret string `json:"lfAsrSecret"` // 语音转写密钥
 }
 
-var Xfyun *xfyun
+// NewXfyun 创建科大讯飞api客户端，cfg是配置json字符串
+func NewXfyun(cfg string) (*Client, error) {
+	c := new(Client)
+	err := json.Unmarshal([]byte(cfg), c)
+	return c, err
+}
 
-// Init 初始化api调用
+var Xfyun *Client
+
+// Init 初始化api客户端
 func Init(appid string) {
-	Xfyun = &xfyun{appid: appid}
+	Xfyun = &Client{Appid: appid}
 }
 
-// InitEnv 用环境变量初始化api调用
+// InitEnv 用环境变量初始化api客户端
 func InitEnv() {
 	Init(os.Getenv("XfyunAppid"))
 	SetLfAsrSecret(os.Getenv("XfyunLfAsrSecret"))
@@ -35,16 +42,16 @@ func InitEnv() {
 
 // SetLfAsrSecret 设置语音转写密钥
 func SetLfAsrSecret(s string) {
-	Xfyun.lfAsrSecret = s
+	Xfyun.LfAsrSecret = s
 }
 
 // SignA 生成签名并构造请求参数，secret为服务密钥
-func (a *xfyun) SignA(secret string) map[string]string {
+func (a *Client) SignA(secret string) map[string]string {
 	ts := time.Ts()
-	signA := sign.Sign(a.appid, ts, secret)
+	signA := sign.Sign(a.Appid, ts, secret)
 	m := map[string]string{
 		"signa": signA,
-		"appId": a.appid,
+		"appId": a.Appid,
 		"ts":    ts,
 	}
 	return m
