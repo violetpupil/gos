@@ -16,6 +16,19 @@ const (
 	VideoTime = "15:04:05,000"
 )
 
+const (
+	Second = time.Second
+)
+
+var (
+	Now   = time.Now
+	Since = time.Since
+)
+
+type (
+	Duration = time.Duration
+)
+
 // Cost 标准日志库记录函数耗时，在函数顶部调用 defer Cost()()
 func Cost() func() {
 	s := time.Now()

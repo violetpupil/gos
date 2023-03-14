@@ -44,8 +44,8 @@ func Test_xfyun_OrderResult(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Xfyun.OrderResult(&res)
-	fmt.Println(err)
+	sub, err := Xfyun.OrderResult(&res)
+	fmt.Println(sub, err)
 }
 
 func Test_xfyun_VideoTime(t *testing.T) {

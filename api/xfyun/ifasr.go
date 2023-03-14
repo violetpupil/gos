@@ -5,6 +5,7 @@
 package xfyun
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
@@ -33,9 +34,37 @@ func (a *xfyun) Valid() error {
 }
 
 // SpeechToText 语音转写，返回 srt 字幕
-// name 是本地音视频文件路径，timeout 是轮询获取识别结果超时秒数
-func (a *xfyun) SpeechToText(name string, timeout int) (string, error) {
-	return "", nil
+// name 是本地音视频文件路径，timeout 是轮询获取识别结果超时时间
+// 上传音视频后，直接轮询获取结果
+func (a *xfyun) SpeechToText(name string, timeout time.Duration) (string, error) {
+	resUp, err := a.Upload(name)
+	if err != nil {
+		logrus.Error("upload error ", err)
+		return "", err
+	}
+
+	var res *GetResultRes
+	start := time.Now()
+	for time.Since(start) < timeout {
+		res, err = a.GetResult(resUp.Content.OrderId)
+		// 转写成功
+		if err == nil {
+			break
+		}
+		// 转写失败
+		if errors.Is(err, ErrFail{}) {
+			logrus.Error(err)
+			return "", err
+		}
+		logrus.Error("get result error ", err)
+	}
+	// 超时后，返回最后一次错误
+	if err != nil {
+		return "", err
+	}
+
+	sub, err := a.OrderResult(res)
+	return sub, err
 }
 
 // UploadRes 上传音视频文件响应体
@@ -120,14 +149,17 @@ func (a *xfyun) UploadCallback(c *gin.Context) {
 	}
 	logrus.Info("recognition success")
 
-	// 查询结果并打印句子
+	// 查询结果
 	res, err := a.GetResult(orderId)
 	if err != nil {
 		logrus.Error("get result error ", err)
 		return
 	}
-	err = a.OrderResult(res)
-	logrus.Info("order result error ", err)
+	sub, err := a.OrderResult(res)
+	logrus.WithFields(logrus.Fields{
+		"Subtitle": sub,
+		"Error":    err,
+	}).Info("order result")
 }
 
 // 订单流程状态
@@ -154,6 +186,30 @@ type GetResultRes struct {
 		OrderResult      string `json:"orderResult"`      // 转写结果，json字符串
 		TaskEstimateTime int    `json:"taskEstimateTime"` // 订单预估剩余耗时，单位毫秒
 	} `json:"content"`
+}
+
+// 订单处理中错误
+var ErrProcessing = errors.New("order processing")
+
+// ErrFail 订单失败错误
+type ErrFail struct {
+	FailType int // 订单失败类型
+}
+
+func (e ErrFail) Error() string {
+	return fmt.Sprintf("order fail, type %d", e.FailType)
+}
+
+// CheckOrder 检查订单状态
+func (r *GetResultRes) CheckOrder() error {
+	switch r.Content.OrderInfo.Status {
+	case OrderStatusComplete:
+		return nil
+	case OrderStatusFailed:
+		return ErrFail{r.Content.OrderInfo.FailType}
+	default:
+		return ErrProcessing
+	}
 }
 
 // OrderResult 转写结果
@@ -231,6 +287,7 @@ const (
 )
 
 // GetResult 获取处理结果，处理完成后72小时可查
+// 订单处理失败或处理中，会返回错误
 func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
@@ -260,19 +317,21 @@ func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 		logrus.Error("unmarshal error ", err)
 		return nil, err
 	}
-	return &body, nil
+	// 检查订单状态
+	err = body.CheckOrder()
+	return &body, err
 }
 
-// OrderResult 解码转写结果
-func (a *xfyun) OrderResult(res *GetResultRes) error {
+// OrderResult 解码转写结果，返回srt字幕
+func (a *xfyun) OrderResult(res *GetResultRes) (string, error) {
 	var result OrderResult
 	err := json.Unmarshal([]byte(res.Content.OrderResult), &result)
 	if err != nil {
 		logrus.Error("json unmarshal error ", err)
-		return err
+		return "", err
 	}
-	err = a.WriteSrt(res.Content.OrderInfo.OrderId, result.Lattice)
-	return err
+	sub, err := a.Srt(result.Lattice)
+	return sub, err
 }
 
 // Sentence 拼接句子输出
@@ -293,8 +352,8 @@ func (a *xfyun) Sentence(las []Lattice) {
 	}
 }
 
-// WriteSrt 写srt字幕文件 订单id.srt
-func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
+// Srt srt字幕
+func (a *xfyun) Srt(las []Lattice) (string, error) {
 	subs := make([]srt.Subtitle, 0)
 	// 处理每句
 	for i, la := range las {
@@ -319,15 +378,13 @@ func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
 			// 将毫秒数转为时间字符串
 			bg, err := a.VideoTime(la.Json1best.St.Bg)
 			if err != nil {
-				// 会导致字幕缺失
 				logrus.Error("bg video time error ", err)
-				continue
+				return "", err
 			}
 			ed, err := a.VideoTime(la.Json1best.St.Ed)
 			if err != nil {
-				// 会导致字幕缺失
 				logrus.Error("ed video time error ", err)
-				continue
+				return "", err
 			}
 			sub := srt.Subtitle{
 				Id:    i + 1,
@@ -339,9 +396,8 @@ func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
 		}
 	}
 
-	name := orderId + ".srt"
-	err := srt.WriteSrt(subs, name)
-	return err
+	res := srt.Srt(subs)
+	return res, nil
 }
 
 // VideoTime 将毫秒数转为视频时间字符串
