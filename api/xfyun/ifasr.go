@@ -9,8 +9,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/lib/libGoSubs"
 	"github.com/violetpupil/components/lib/resty"
+	"github.com/violetpupil/components/media/srt"
 	"github.com/violetpupil/components/std/json"
 	"github.com/violetpupil/components/std/os"
 	"github.com/violetpupil/components/std/strconv"
@@ -295,7 +295,7 @@ func (a *xfyun) Sentence(las []Lattice) {
 
 // WriteSrt 写srt字幕文件 订单id.srt
 func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
-	subs := make([]libGoSubs.Subtitle, 0)
+	subs := make([]srt.Subtitle, 0)
 	// 处理每句
 	for i, la := range las {
 		var line string
@@ -329,7 +329,7 @@ func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
 				logrus.Error("ed video time error ", err)
 				continue
 			}
-			sub := libGoSubs.Subtitle{
+			sub := srt.Subtitle{
 				Id:    i + 1,
 				Start: bg,
 				End:   ed,
@@ -340,7 +340,7 @@ func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
 	}
 
 	name := orderId + ".srt"
-	err := libGoSubs.WriteSrt(subs, name)
+	err := srt.WriteSrt(subs, name)
 	return err
 }
 
