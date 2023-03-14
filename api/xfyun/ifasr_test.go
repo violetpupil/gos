@@ -3,6 +3,7 @@ package xfyun
 import (
 	"fmt"
 	"testing"
+	"time"
 
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/godotenv"
@@ -50,4 +51,14 @@ func Test_xfyun_OrderResult(t *testing.T) {
 
 func Test_xfyun_VideoTime(t *testing.T) {
 	fmt.Println(Xfyun.VideoTime("2650"))
+}
+
+func Test_xfyun_SpeechToText(t *testing.T) {
+	// 日志不加引号
+	logrus.SetFormatter(&logrus.TextFormatter{DisableQuote: true})
+	godotenv.Load("../../.env")
+	InitEnv()
+	// 官方测试数据
+	sub, err := Xfyun.SpeechToText("D:/file/跨境直播调研/测试文件/lfAsr_涉政.wav", 3*time.Minute)
+	fmt.Println(sub, err)
 }

@@ -5,6 +5,7 @@
 package xfyun
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 
@@ -12,7 +13,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/resty"
 	"github.com/violetpupil/components/media/srt"
-	"github.com/violetpupil/components/std/json"
 	"github.com/violetpupil/components/std/os"
 	"github.com/violetpupil/components/std/strconv"
 	"github.com/violetpupil/components/std/time"
@@ -33,9 +33,13 @@ func (a *xfyun) Valid() error {
 	return nil
 }
 
-// SpeechToText 语音转写，返回 srt 字幕
-// name 是本地音视频文件路径，timeout 是轮询获取识别结果超时时间
-// 上传音视频后，直接轮询获取结果
+// SpeechToText 上传音视频后，直接轮询获取语音转写结果，并转为srt字幕
+// name 是本地音视频文件路径，timeout 是轮询超时时间
+// 官方音频时长与理论处理时间分钟：
+// X<10 Y<3
+// 10<=X<30 3<=Y<6
+// 30<=X<60 6<=Y<10
+// 60<=X 10<=Y<20
 func (a *xfyun) SpeechToText(name string, timeout time.Duration) (string, error) {
 	resUp, err := a.Upload(name)
 	if err != nil {
@@ -45,18 +49,25 @@ func (a *xfyun) SpeechToText(name string, timeout time.Duration) (string, error)
 
 	var res *GetResultRes
 	start := time.Now()
-	for time.Since(start) < timeout {
+	for times := 1; time.Since(start) < timeout; times++ {
+		log := logrus.WithField("Times", times)
 		res, err = a.GetResult(resUp.Content.OrderId)
-		// 转写成功
 		if err == nil {
+			log.Info("get result success")
 			break
 		}
-		// 转写失败
 		if errors.Is(err, ErrFail{}) {
-			logrus.Error(err)
+			log.Error("get result fail ", err)
 			return "", err
 		}
-		logrus.Error("get result error ", err)
+		log.Error("get result error ", err)
+
+		// 订单处理中，间隔3s，否则间隔时间随次数增大
+		if errors.Is(err, ErrProcessing) {
+			time.Sleep(3 * time.Second)
+		} else {
+			time.Sleep(time.Duration(times) * time.Second)
+		}
 	}
 	// 超时后，返回最后一次错误
 	if err != nil {
@@ -288,6 +299,7 @@ const (
 
 // GetResult 获取处理结果，处理完成后72小时可查
 // 订单处理失败或处理中，会返回错误
+// 同一个订单最多获取100次结果
 func (a *xfyun) GetResult(orderId string) (*GetResultRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
