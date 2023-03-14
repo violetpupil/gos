@@ -47,3 +47,7 @@ func Test_xfyun_OrderResult(t *testing.T) {
 	err = Xfyun.OrderResult(&res)
 	fmt.Println(err)
 }
+
+func Test_xfyun_VideoTime(t *testing.T) {
+	fmt.Println(Xfyun.VideoTime("2650"))
+}

@@ -1,5 +1,6 @@
 // 语音转写 Long Form Automatic Speech Recognition
 // 必须先 SetLfAsrSecret 设置语音转写密钥
+// 上传音视频文件，可以设置处理结果回调，再调用结果查询接口
 // https://www.xfyun.cn/doc/asr/ifasr_new/API.html
 package xfyun
 
@@ -31,7 +32,13 @@ func (a *xfyun) Valid() error {
 	return nil
 }
 
-// UploadRes 上传音频文件响应体
+// SpeechToText 语音转写，返回 srt 字幕
+// name 是本地音视频文件路径，timeout 是轮询获取识别结果超时秒数
+func (a *xfyun) SpeechToText(name string, timeout int) (string, error) {
+	return "", nil
+}
+
+// UploadRes 上传音视频文件响应体
 type UploadRes struct {
 	ResBody
 	Content struct {
@@ -40,7 +47,7 @@ type UploadRes struct {
 	} `json:"content"`
 }
 
-// Upload 上传音频文件
+// Upload 上传音视频文件
 func (a *xfyun) Upload(name string) (*UploadRes, error) {
 	// 检查密钥设置
 	err := a.Valid()
@@ -323,7 +330,7 @@ func (a *xfyun) WriteSrt(orderId string, las []Lattice) error {
 				continue
 			}
 			sub := libGoSubs.Subtitle{
-				Id:    i,
+				Id:    i + 1,
 				Start: bg,
 				End:   ed,
 				Line:  []string{line},
