@@ -56,5 +56,5 @@ func Ts() string {
 
 // Video 将毫秒数转为视频时间字符串
 func Video(msec int64) string {
-	return time.UnixMilli(msec).In(FixedZone(0)).Format(VideoTime)
+	return time.UnixMilli(msec).UTC().Format(VideoTime)
 }

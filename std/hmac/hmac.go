@@ -3,6 +3,8 @@ package hmac
 import (
 	"crypto/hmac"
 	"crypto/sha1"
+	"crypto/sha256"
+	"encoding/base64"
 	"hash"
 )
 
@@ -17,4 +19,19 @@ func Sum(h func() hash.Hash, key string, s string) []byte {
 // HmacSha1 hmac消息认证码sha1哈希摘要
 func HmacSha1(key string, s string) []byte {
 	return Sum(sha1.New, key, s)
+}
+
+// HmacSha1Base64 hmac消息认证码sha1 base64摘要
+func HmacSha1Base64(key, s string) string {
+	return base64.StdEncoding.EncodeToString(HmacSha1(key, s))
+}
+
+// HmacSha256 hmac消息认证码sha256哈希摘要
+func HmacSha256(key string, s string) []byte {
+	return Sum(sha256.New, key, s)
+}
+
+// HmacSha256Base64 hmac消息认证码sha256 base64摘要
+func HmacSha256Base64(key, s string) string {
+	return base64.StdEncoding.EncodeToString(HmacSha256(key, s))
 }

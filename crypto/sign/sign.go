@@ -3,7 +3,6 @@
 package sign
 
 import (
-	"github.com/violetpupil/components/std/base64"
 	"github.com/violetpupil/components/std/hmac"
 	"github.com/violetpupil/components/std/md5"
 )
@@ -12,7 +11,6 @@ import (
 func Sign(appid, ts, secret string) string {
 	baseS := appid + ts
 	baseS = md5.Sum(baseS)
-	baseB := hmac.HmacSha1(secret, baseS)
-	baseS = base64.Encode(baseB)
+	baseS = hmac.HmacSha1Base64(secret, baseS)
 	return baseS
 }

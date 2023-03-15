@@ -9,7 +9,7 @@ import (
 )
 
 func TestSum(t *testing.T) {
-	fmt.Println(Sum(sha1.New, "", ""))
-	fmt.Println(Sum(sha256.New, "", ""))
-	fmt.Println(Sum(sha512.New, "", ""))
+	fmt.Printf("%x\n", Sum(sha1.New, "", ""))
+	fmt.Printf("%x\n", Sum(sha256.New, "", ""))
+	fmt.Printf("%x\n", Sum(sha512.New, "", ""))
 }
