@@ -29,6 +29,13 @@ type NiuTrans struct {
 	TransKey    string `json:"transKey" env:"XfyunTransKey"`       // 机器翻译密钥键
 }
 
+// NewNiuTrans 创建科大讯飞机器翻译客户端，cfg是配置json字符串
+func NewNiuTrans(cfg string) (*NiuTrans, error) {
+	a := new(NiuTrans)
+	err := json.Unmarshal([]byte(cfg), a)
+	return a, err
+}
+
 const (
 	UrlTrans = "https://ntrans.xfyun.cn/v2/ots"
 	// 签名请求头主机
