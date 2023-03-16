@@ -1,7 +1,7 @@
 // 机器翻译
 // 如果不使用 NewXfyun，必须先 SetTransSecret 设置密钥
 // https://www.xfyun.cn/doc/nlp/niutrans/API.html
-package xfyun
+package trans
 
 import (
 	"encoding/base64"
@@ -23,10 +23,10 @@ const (
 	LanguageEn  = "en"  // 英语
 )
 
-type niuTrans struct {
-	Appid       string `json:"appid"`
-	TransSecret string `json:"transSecret"` // 机器翻译密钥值
-	TransKey    string `json:"transKey"`    // 机器翻译密钥键
+type NiuTrans struct {
+	Appid       string `json:"appid" env:"XfyunAppid"`
+	TransSecret string `json:"transSecret" env:"XfyunTransSecret"` // 机器翻译密钥值
+	TransKey    string `json:"transKey" env:"XfyunTransKey"`       // 机器翻译密钥键
 }
 
 const (
@@ -86,7 +86,7 @@ func (res TranslateRes) Error() error {
 }
 
 // Translate 机器翻译 src源语种 dst目标语种 返回翻译文本
-func (a niuTrans) Translate(text, src, dst string) (string, error) {
+func (a NiuTrans) Translate(text, src, dst string) (string, error) {
 	// 检查密钥设置
 	if a.Appid == "" || a.TransSecret == "" || a.TransKey == "" {
 		return "", fmt.Errorf("argument insufficient %+v", a)
@@ -139,7 +139,7 @@ func (a niuTrans) Translate(text, src, dst string) (string, error) {
 
 // Sign 生成签名请求头
 // host 为请求头主机，line为请求行，body为请求体
-func (a niuTrans) Sign(host, line string, body []byte) map[string]string {
+func (a NiuTrans) Sign(host, line string, body []byte) map[string]string {
 	// 服务器时间不准可能导致请求失败
 	date := time.Now().UTC().Format(time.RFC1123)
 	// 请求体摘要

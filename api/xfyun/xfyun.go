@@ -7,13 +7,15 @@ package xfyun
 
 import (
 	"encoding/json"
-	"os"
+
+	"github.com/violetpupil/components/api/xfyun/asr"
+	"github.com/violetpupil/components/api/xfyun/trans"
 )
 
 type Client struct {
-	Appid    string   `json:"appid"`
-	LfAsr    lfAsr    `json:"lfAsr"`    // 语音转写
-	NiuTrans niuTrans `json:"niuTrans"` // 机器翻译
+	Appid    string         `json:"appid"`
+	LfAsr    asr.LfAsr      `json:"lfAsr"`    // 语音转写
+	NiuTrans trans.NiuTrans `json:"niuTrans"` // 机器翻译
 }
 
 // NewXfyun 创建科大讯飞api客户端，cfg是配置json字符串
@@ -29,16 +31,9 @@ var Xfyun *Client
 func Init(appid string) {
 	Xfyun = &Client{
 		Appid:    appid,
-		LfAsr:    lfAsr{Appid: appid},
-		NiuTrans: niuTrans{Appid: appid},
+		LfAsr:    asr.LfAsr{Appid: appid},
+		NiuTrans: trans.NiuTrans{Appid: appid},
 	}
-}
-
-// InitEnv 用环境变量初始化api客户端
-func InitEnv() {
-	Init(os.Getenv("XfyunAppid"))
-	SetLfAsrSecret(os.Getenv("XfyunLfAsrSecret"))
-	SetTransSecret(os.Getenv("XfyunTransKey"), os.Getenv("XfyunTransSecret"))
 }
 
 // SetLfAsrSecret 设置语音转写密钥
