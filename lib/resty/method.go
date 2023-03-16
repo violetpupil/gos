@@ -4,7 +4,7 @@ package resty
 import (
 	"os"
 
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // Execute 使用指定方法请求 http.MethodGet

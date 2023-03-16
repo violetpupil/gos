@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/lib/resty"
 	"github.com/violetpupil/components/std/hmac"
 	"github.com/violetpupil/components/std/sha256"
