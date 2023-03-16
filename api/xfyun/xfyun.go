@@ -10,10 +10,17 @@ import (
 
 	"github.com/violetpupil/components/api/xfyun/asr"
 	"github.com/violetpupil/components/api/xfyun/trans"
+	"github.com/violetpupil/components/lib/logrus"
 )
 
 type Client struct {
-	Appid    string         `json:"appid"`
+	// 配置
+	Appid       string `json:"appid"`
+	ApiSecret   string `json:"apiSecret"`   // api密钥值
+	ApiKey      string `json:"apiKey"`      // api密钥键
+	LfAsrSecret string `json:"lfAsrSecret"` // 语音转写密钥
+
+	// 服务集成
 	LfAsr    asr.LfAsr      `json:"lfAsr"`    // 语音转写
 	NiuTrans trans.NiuTrans `json:"niuTrans"` // 机器翻译
 }
@@ -22,7 +29,17 @@ type Client struct {
 func NewXfyun(cfg string) (*Client, error) {
 	c := new(Client)
 	err := json.Unmarshal([]byte(cfg), c)
-	return c, err
+	if err != nil {
+		logrus.Error("json unmarshal error ", err)
+		return nil, err
+	}
+
+	c.LfAsr.Appid = c.Appid
+	c.LfAsr.LfAsrSecret = c.LfAsrSecret
+	c.NiuTrans.Appid = c.Appid
+	c.NiuTrans.ApiKey = c.ApiKey
+	c.NiuTrans.ApiSecret = c.ApiSecret
+	return c, nil
 }
 
 var Xfyun *Client
@@ -41,8 +58,8 @@ func SetLfAsrSecret(s string) {
 	Xfyun.LfAsr.LfAsrSecret = s
 }
 
-// SetTransSecret 设置机器翻译密钥
-func SetTransSecret(k, s string) {
-	Xfyun.NiuTrans.TransKey = k
-	Xfyun.NiuTrans.TransSecret = s
+// SetApiSecret 设置api密钥
+func SetApiSecret(k, s string) {
+	Xfyun.NiuTrans.ApiKey = k
+	Xfyun.NiuTrans.ApiSecret = s
 }

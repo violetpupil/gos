@@ -24,9 +24,9 @@ const (
 )
 
 type NiuTrans struct {
-	Appid       string `json:"appid" env:"XfyunAppid"`
-	TransSecret string `json:"transSecret" env:"XfyunTransSecret"` // 机器翻译密钥值
-	TransKey    string `json:"transKey" env:"XfyunTransKey"`       // 机器翻译密钥键
+	Appid     string `json:"appid" env:"XfyunAppid"`
+	ApiSecret string `json:"apiSecret" env:"XfyunApiSecret"` // api密钥值
+	ApiKey    string `json:"apiKey" env:"XfyunApiKey"`       // api密钥键
 }
 
 // NewNiuTrans 创建科大讯飞机器翻译客户端，cfg是配置json字符串
@@ -95,7 +95,7 @@ func (res TranslateRes) Error() error {
 // Translate 机器翻译 src源语种 dst目标语种 返回翻译文本
 func (a NiuTrans) Translate(text, src, dst string) (string, error) {
 	// 检查密钥设置
-	if a.Appid == "" || a.TransSecret == "" || a.TransKey == "" {
+	if a.Appid == "" || a.ApiSecret == "" || a.ApiKey == "" {
 		return "", fmt.Errorf("argument insufficient %+v", a)
 	}
 
@@ -159,14 +159,14 @@ func (a NiuTrans) Sign(host, line string, body []byte) map[string]string {
 		line,
 		"digest: " + digest,
 	}, "\n")
-	sign := hmac.HmacSha256Base64(a.TransSecret, parts)
+	sign := hmac.HmacSha256Base64(a.ApiSecret, parts)
 	authorization := strings.Join([]string{
 		`api_key="%s"`,
 		`algorithm="hmac-sha256"`,
 		`headers="host date request-line digest"`,
 		`signature="%s"`,
 	}, ", ")
-	authorization = fmt.Sprintf(authorization, a.TransKey, sign)
+	authorization = fmt.Sprintf(authorization, a.ApiKey, sign)
 
 	headers := map[string]string{
 		"Host":          host,
