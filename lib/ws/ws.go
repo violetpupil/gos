@@ -1,4 +1,5 @@
 // websocket
+// https://www.rfc-editor.org/rfc/rfc6455
 // https://github.com/gobwas/ws-examples
 package ws
 

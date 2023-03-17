@@ -8,7 +8,7 @@ import (
 )
 
 // Execute 使用指定方法请求 http.MethodGet
-func Execute(method, url string, hook ReqHook) (*Response, error) {
+func Execute(method, url string, hook ReqHook) (*Res, error) {
 	if client == nil {
 		Init()
 	}
@@ -25,7 +25,7 @@ func Execute(method, url string, hook ReqHook) (*Response, error) {
 	return ToResponse(res), nil
 }
 
-func Get(url string, hook ReqHook) (*Response, error) {
+func Get(url string, hook ReqHook) (*Res, error) {
 	if client == nil {
 		Init()
 	}
@@ -42,7 +42,7 @@ func Get(url string, hook ReqHook) (*Response, error) {
 	return ToResponse(res), nil
 }
 
-func Post(url string, hook ReqHook) (*Response, error) {
+func Post(url string, hook ReqHook) (*Res, error) {
 	if client == nil {
 		Init()
 	}
@@ -61,7 +61,7 @@ func Post(url string, hook ReqHook) (*Response, error) {
 
 // PostFile 上传文件，直接读取文件字节
 // Content-Type 根据内容检测
-func PostFile(url string, hook ReqHook, name string) (*Response, error) {
+func PostFile(url string, hook ReqHook, name string) (*Res, error) {
 	bytes, err := os.ReadFile(name)
 	if err != nil {
 		logrus.Error("read file error ", err)

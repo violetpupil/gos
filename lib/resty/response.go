@@ -9,8 +9,10 @@ import (
 	"github.com/go-resty/resty/v2"
 )
 
-// Response http响应
-type Response struct {
+type Response = resty.Response
+
+// Res http响应
+type Res struct {
 	RestyRequest  *resty.Request
 	RestyResponse *resty.Response
 	HttpResponse  *http.Response
@@ -55,8 +57,8 @@ type Response struct {
 }
 
 // ToResponse 将 resty.Response 转为 Response
-func ToResponse(src *resty.Response) *Response {
-	dst := new(Response)
+func ToResponse(src *resty.Response) *Res {
+	dst := new(Res)
 	dst.RestyRequest = src.Request
 	dst.RestyResponse = src
 	dst.HttpResponse = src.RawResponse
@@ -100,6 +102,6 @@ func ToResponse(src *resty.Response) *Response {
 }
 
 // ToError 请求失败时，返回错误
-func (r *Response) ToError() error {
+func (r *Res) ToError() error {
 	return fmt.Errorf("response fail: %s %s", r.Status, r.String)
 }

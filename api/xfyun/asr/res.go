@@ -36,7 +36,7 @@ type ResBodyI interface {
 
 // Unmarshal 响应体json解码，响应代码不是成功时返回错误
 // body 必须传不为nil的指针
-func Unmarshal(res *resty.Response, body ResBodyI) error {
+func Unmarshal(res *resty.Res, body ResBodyI) error {
 	err := json.Unmarshal(res.Body, body)
 	if err != nil {
 		logrus.Error("json unmarshal error ", err)
