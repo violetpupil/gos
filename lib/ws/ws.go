@@ -18,17 +18,11 @@ type Websocket struct{}
 
 // ServeHTTP 实现http.Handler
 func (s *Websocket) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	// ws会构造响应
 	conn, _, _, err := ws.UpgradeHTTP(r, w)
 	if err != nil {
 		logrus.Error("upgrade websocket error ", err)
-		w.WriteHeader(http.StatusInternalServerError)
-		cnt, err := w.Write([]byte("sorry"))
-		if err != nil {
-			logrus.WithFields(logrus.Fields{
-				"Count": cnt,
-				"Error": err,
-			}).Error("response write")
-		}
+		return
 	}
 	logrus.Info("upgrade websocket success ", net.ConnId(conn))
 
