@@ -29,14 +29,13 @@ func (s *Websocket) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	go Echo(conn)
 }
 
-// Echo 回声
+// Echo 回显消息
 func Echo(conn net.Conn) {
 	defer func() {
 		logrus.Info("conn close ", net.ConnId(conn))
 		conn.Close()
 	}()
 
-	// TODO 处理客户端断开，退出循环
 	for {
 		// 阻塞读取数据
 		msg, op, err := wsutil.ReadClientData(conn)
@@ -46,7 +45,7 @@ func Echo(conn net.Conn) {
 		}
 		err = wsutil.WriteServerMessage(conn, op, msg)
 		logrus.WithFields(logrus.Fields{
-			"Message": msg,
+			"Message": string(msg),
 			"Opera":   op,
 			"Error":   err,
 		}).Info("write server message")
