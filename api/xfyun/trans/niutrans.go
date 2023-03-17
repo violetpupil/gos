@@ -127,14 +127,14 @@ func (a NiuTrans) Translate(text, src, dst string) (string, error) {
 	logrus.Info("translate response body ", res.String)
 
 	var resBody TranslateRes
-	err = json.Unmarshal(res.Body, &resBody)
+	err = json.Unmarshal(res.Body(), &resBody)
 	if err != nil {
 		logrus.Error("json unmarshal error ", err)
-		return "", res.ToError()
+		return "", resty.ToError(res)
 	}
 	// 请求失败
-	if res.StatusCode != 200 {
-		return "", resBody.StatusError(res.Status)
+	if res.StatusCode() != 200 {
+		return "", resBody.StatusError(res.Status())
 	}
 	// 处理失败
 	if resBody.Code != 0 {

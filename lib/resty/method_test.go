@@ -11,7 +11,7 @@ func TestGet(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%+v\n", res)
+	fmt.Printf("%+v\n", ToResponse(res))
 }
 
 func TestPost(t *testing.T) {
@@ -20,7 +20,7 @@ func TestPost(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%+v\n", res)
+	fmt.Printf("%+v\n", ToResponse(res))
 }
 
 func TestPostFile(t *testing.T) {
@@ -29,5 +29,5 @@ func TestPostFile(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%+v\n", res)
+	fmt.Printf("%+v\n", ToResponse(res))
 }

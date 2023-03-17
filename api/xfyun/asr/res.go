@@ -36,15 +36,15 @@ type ResBodyI interface {
 
 // Unmarshal 响应体json解码，响应代码不是成功时返回错误
 // body 必须传不为nil的指针
-func Unmarshal(res *resty.Res, body ResBodyI) error {
-	err := json.Unmarshal(res.Body, body)
+func Unmarshal(res *resty.Response, body ResBodyI) error {
+	err := json.Unmarshal(res.Body(), body)
 	if err != nil {
 		logrus.Error("json unmarshal error ", err)
-		return res.ToError()
+		return resty.ToError(res)
 	}
 	// 解码成功，但没有获取到响应代码
 	if body.CodeI() == "" {
-		return res.ToError()
+		return resty.ToError(res)
 	} else if body.CodeI() != ResCodeSuss {
 		return body.Error()
 	}

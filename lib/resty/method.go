@@ -4,11 +4,12 @@ package resty
 import (
 	"os"
 
+	"github.com/go-resty/resty/v2"
 	"github.com/sirupsen/logrus"
 )
 
 // Execute 使用指定方法请求 http.MethodGet
-func Execute(method, url string, hook ReqHook) (*Res, error) {
+func Execute(method, url string, hook ReqHook) (*resty.Response, error) {
 	if client == nil {
 		Init()
 	}
@@ -18,14 +19,10 @@ func Execute(method, url string, hook ReqHook) (*Res, error) {
 	}
 
 	res, err := req.Execute(method, url)
-	if err != nil {
-		logrus.Error("execute error ", err)
-		return nil, err
-	}
-	return ToResponse(res), nil
+	return res, err
 }
 
-func Get(url string, hook ReqHook) (*Res, error) {
+func Get(url string, hook ReqHook) (*resty.Response, error) {
 	if client == nil {
 		Init()
 	}
@@ -35,14 +32,10 @@ func Get(url string, hook ReqHook) (*Res, error) {
 	}
 
 	res, err := req.Get(url)
-	if err != nil {
-		logrus.Error("get error ", err)
-		return nil, err
-	}
-	return ToResponse(res), nil
+	return res, err
 }
 
-func Post(url string, hook ReqHook) (*Res, error) {
+func Post(url string, hook ReqHook) (*resty.Response, error) {
 	if client == nil {
 		Init()
 	}
@@ -52,16 +45,12 @@ func Post(url string, hook ReqHook) (*Res, error) {
 	}
 
 	res, err := req.Post(url)
-	if err != nil {
-		logrus.Error("post error ", err)
-		return nil, err
-	}
-	return ToResponse(res), nil
+	return res, err
 }
 
 // PostFile 上传文件，直接读取文件字节
 // Content-Type 根据内容检测
-func PostFile(url string, hook ReqHook, name string) (*Res, error) {
+func PostFile(url string, hook ReqHook, name string) (*resty.Response, error) {
 	bytes, err := os.ReadFile(name)
 	if err != nil {
 		logrus.Error("read file error ", err)
@@ -76,9 +65,5 @@ func PostFile(url string, hook ReqHook, name string) (*Res, error) {
 	}
 
 	res, err := req.Post(url)
-	if err != nil {
-		logrus.Error("post error ", err)
-		return nil, err
-	}
-	return ToResponse(res), nil
+	return res, err
 }

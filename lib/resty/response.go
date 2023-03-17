@@ -57,6 +57,7 @@ type Res struct {
 }
 
 // ToResponse 将 resty.Response 转为 Response
+// 这个函数是为了说明两个结构体的关系
 func ToResponse(src *resty.Response) *Res {
 	dst := new(Res)
 	dst.RestyRequest = src.Request
@@ -104,4 +105,9 @@ func ToResponse(src *resty.Response) *Res {
 // ToError 请求失败时，返回错误
 func (r *Res) ToError() error {
 	return fmt.Errorf("response fail: %s %s", r.Status, r.String)
+}
+
+// ToError 请求失败时，返回错误
+func ToError(r *resty.Response) error {
+	return fmt.Errorf("response fail: %s %s", r.Status(), r.String())
 }
