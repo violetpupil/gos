@@ -8,6 +8,6 @@ import (
 
 func TestWebsocket_ServeHTTP(t *testing.T) {
 	handler := new(Websocket)
-	err := http.ListenAndServe("", handler)
+	err := http.ListenAndServe(":8080", handler)
 	fmt.Println(err)
 }

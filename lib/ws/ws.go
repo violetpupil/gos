@@ -4,6 +4,8 @@
 package ws
 
 import (
+	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/gobwas/ws"
@@ -19,12 +21,16 @@ type Websocket struct{}
 // ServeHTTP 实现http.Handler
 func (s *Websocket) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// ws会构造响应
-	conn, _, _, err := ws.UpgradeHTTP(r, w)
+	conn, _, handshake, err := ws.UpgradeHTTP(r, w)
+	log := logrus.WithFields(logrus.Fields{
+		"ConnId":    net.ConnId(conn),
+		"Handshake": fmt.Sprintf("%+v", handshake),
+	})
 	if err != nil {
-		logrus.Error("upgrade websocket error ", err)
+		log.Error("upgrade websocket error ", err)
 		return
 	}
-	logrus.Info("upgrade websocket success ", net.ConnId(conn))
+	log.Info("upgrade websocket success")
 
 	go Echo(conn)
 }
@@ -32,17 +38,27 @@ func (s *Websocket) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 // Echo 回显消息
 func Echo(conn net.Conn) {
 	defer func() {
-		logrus.Info("conn close ", net.ConnId(conn))
-		conn.Close()
+		err := conn.Close()
+		logrus.WithFields(logrus.Fields{
+			"ConnId": net.ConnId(conn),
+			"Error":  err,
+		}).Info("conn close")
 	}()
 
 	for {
 		// 阻塞读取数据
 		msg, op, err := wsutil.ReadClientData(conn)
+		// 状态码1000代表正常关闭
+		var close wsutil.ClosedError
+		if errors.As(err, &close) {
+			logrus.WithField("ConnId", net.ConnId(conn)).Info("client disconnect ", close)
+			return
+		}
 		if err != nil {
 			logrus.Error("read client data error ", err)
 			continue
 		}
+
 		err = wsutil.WriteServerMessage(conn, op, msg)
 		logrus.WithFields(logrus.Fields{
 			"Message": string(msg),

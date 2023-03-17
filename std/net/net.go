@@ -49,6 +49,10 @@ func Private(ip net.IP) net.IP {
 
 // ConnId 连接id，网络名-本地主机端口-远程主机端口
 func ConnId(c net.Conn) string {
+	if c == nil {
+		return ""
+	}
+
 	l := c.LocalAddr()
 	r := c.RemoteAddr()
 	if l.Network() == r.Network() {
