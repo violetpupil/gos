@@ -48,6 +48,7 @@ func Echo(conn net.Conn) {
 	for {
 		// 阻塞读取数据
 		msg, op, err := wsutil.ReadClientData(conn)
+		// 客户端发送关闭帧
 		// 状态码1000代表正常关闭
 		var close wsutil.ClosedError
 		if errors.As(err, &close) {

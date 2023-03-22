@@ -8,8 +8,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// Conn 网络连接
-type Conn = net.Conn
+// 接口
+type (
+	// Conn 网络连接
+	Conn = net.Conn
+)
+
+// 结构体
+type (
+	// OpError 读写网络等操作时异常
+	OpError = net.OpError
+)
 
 // HostIp 获取主机ip
 // 8.8.8.8 和 8.8.4.4 是谷歌提供的dns服务器
