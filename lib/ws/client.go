@@ -1,7 +1,13 @@
 // https://github.com/gobwas/ws-examples/blob/feature/cli/src/chat/client/main.go
 package ws
 
-import "github.com/gobwas/ws"
+import (
+	"context"
+	"fmt"
+
+	"github.com/gobwas/ws"
+	"github.com/sirupsen/logrus"
+)
 
 // 结构体
 type (
@@ -23,4 +29,15 @@ var (
 )
 
 // Chat 和websocket服务通信
-func Chat(url string) {}
+func Chat(url string) {
+	ctx := context.Background()
+	_, br, hs, err := ws.Dial(ctx, url)
+	if err != nil {
+		logrus.Error("dial error ", err)
+		return
+	}
+	logrus.WithFields(logrus.Fields{
+		"Reader":    fmt.Sprintf("%+v", br),
+		"Handshake": fmt.Sprintf("%+v", hs),
+	}).Info("dial success")
+}
