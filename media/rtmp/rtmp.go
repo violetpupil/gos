@@ -4,6 +4,4 @@ package main
 func main() {}
 
 // RunServer 运行rtmp服务
-func RunServer() {
-	// TODO
-}
+func RunServer() {}
