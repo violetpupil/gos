@@ -1,6 +1,10 @@
 package logrus
 
-import "github.com/sirupsen/logrus"
+import (
+	"fmt"
+
+	"github.com/sirupsen/logrus"
+)
 
 var (
 	Info  = logrus.Info
@@ -23,4 +27,10 @@ func Init() {
 			DisableQuote: true,
 		},
 	)
+}
+
+// Type 打印接口实际类型
+func Type(value any) {
+	t := fmt.Sprintf("%T", value)
+	logrus.WithField("Type", t).Info("check type ", value)
 }
