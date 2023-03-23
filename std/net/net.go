@@ -20,6 +20,23 @@ type (
 	OpError = net.OpError
 )
 
+// LogOpError 打印net.OpError相关信息
+// 如果不是net.OpError，直接返回
+func LogOpError(err error) {
+	opErr := new(net.OpError)
+	if !errors.As(err, &opErr) {
+		return
+	}
+
+	errWrap := errors.Unwrap(opErr)
+	logrus.WithFields(logrus.Fields{
+		"Error":         opErr,
+		"Temporary":     opErr.Temporary(),
+		"Timeout":       opErr.Timeout(),
+		"ErrorWrapType": fmt.Sprintf("%T", errWrap),
+	}).Errorf("%+v", *opErr)
+}
+
 // HostIp 获取主机ip
 // 8.8.8.8 和 8.8.4.4 是谷歌提供的dns服务器
 func HostIp() (net.IP, error) {
