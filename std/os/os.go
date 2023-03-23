@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
+	"github.com/violetpupil/components/std/syscall"
 )
 
 // 函数
@@ -35,6 +36,8 @@ func LogSyscallError(err error) {
 		"Timeout":       scErr.Timeout(),
 		"ErrorWrapType": fmt.Sprintf("%T", errWrap),
 	}).Errorf("%+v", *scErr)
+
+	syscall.LogErrno(errWrap)
 }
 
 type FileInfo struct {

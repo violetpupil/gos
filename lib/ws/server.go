@@ -52,10 +52,12 @@ func Echo(conn net.Conn) {
 		// 状态码1000代表正常关闭
 		var close wsutil.ClosedError
 		if errors.As(err, &close) {
-			logrus.WithField("ConnId", net.ConnId(conn)).Info("client disconnect ", close)
+			logrus.WithField("ConnId", net.ConnId(conn)).Info("client disconnect frame ", close)
 			return
 		}
 		// 当发生异常时，有可能之后一直异常
+		// windows平台，客户端异常断开连接报错
+		// An existing connection was forcibly closed by the remote host.
 		if err != nil {
 			logrus.Error("read client data error ", err)
 			return
