@@ -6,6 +6,7 @@ import (
 	"net"
 
 	"github.com/sirupsen/logrus"
+	"github.com/violetpupil/components/std/os"
 )
 
 // 接口
@@ -35,6 +36,8 @@ func LogOpError(err error) {
 		"Timeout":       opErr.Timeout(),
 		"ErrorWrapType": fmt.Sprintf("%T", errWrap),
 	}).Errorf("%+v", *opErr)
+
+	os.LogSyscallError(errWrap)
 }
 
 // HostIp 获取主机ip
