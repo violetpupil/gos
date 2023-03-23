@@ -55,16 +55,20 @@ func Echo(conn net.Conn) {
 			logrus.WithField("ConnId", net.ConnId(conn)).Info("client disconnect ", close)
 			return
 		}
+		// 当发生异常时，有可能之后一直异常
 		if err != nil {
 			logrus.Error("read client data error ", err)
-			continue
+			return
 		}
 
 		err = wsutil.WriteServerMessage(conn, op, msg)
+		if err != nil {
+			logrus.Error("write server message error ", err)
+			return
+		}
 		logrus.WithFields(logrus.Fields{
 			"Message": string(msg),
 			"Opera":   op,
-			"Error":   err,
 		}).Info("write server message")
 	}
 }
