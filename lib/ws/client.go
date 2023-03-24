@@ -31,13 +31,12 @@ var (
 // Chat 和websocket服务通信
 func Chat(url string) {
 	ctx := context.Background()
-	_, br, hs, err := ws.Dial(ctx, url)
+	_, _, hs, err := ws.Dial(ctx, url)
 	if err != nil {
 		logrus.Error("dial error ", err)
 		return
 	}
 	logrus.WithFields(logrus.Fields{
-		"Reader":    fmt.Sprintf("%+v", br),
 		"Handshake": fmt.Sprintf("%+v", hs),
 	}).Info("dial success")
 }
