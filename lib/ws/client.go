@@ -39,4 +39,6 @@ func Chat(url string) {
 	logrus.WithFields(logrus.Fields{
 		"Handshake": fmt.Sprintf("%+v", hs),
 	}).Info("dial success")
+
+	// TODO ws好像没有合适的api关闭连接
 }
