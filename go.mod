@@ -16,6 +16,7 @@ require (
 	go.temporal.io/api v1.13.0
 	go.temporal.io/sdk v1.19.0
 	gorm.io/gorm v1.24.3
+	nhooyr.io/websocket v1.8.7
 )
 
 require (
@@ -41,6 +42,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/klauspost/compress v1.10.3 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.3 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-isatty v0.0.16 // indirect
