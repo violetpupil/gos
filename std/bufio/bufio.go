@@ -19,16 +19,23 @@ var (
 )
 
 // Scan 循环读取终端输入
-// 参数是处理函数
-// 处理每行文本及导致循环结束的错误，错误是nil时，文本才有效
-// 返回是否要结束循环
+// 参数是处理函数，调用有两种情况
+// 1 单行文本，nil
+// 2 ""，导致循环结束的错误
+// ctrl-c 会使标准输入结束，此时不会回调处理函数
+// 处理函数返回是否要结束循环
 func Scan(f func(string, error) bool) {
 	s := bufio.NewScanner(os.Stdin)
-	// ctrl-c 标准输入结束
 	for s.Scan() {
 		if f(s.Text(), nil) {
 			return
 		}
 	}
+
+	// 输入结束
+	if s.Err() == nil {
+		return
+	}
+	// 发生错误
 	f("", s.Err())
 }
