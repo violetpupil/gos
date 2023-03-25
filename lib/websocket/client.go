@@ -4,26 +4,57 @@ import (
 	"context"
 
 	"github.com/sirupsen/logrus"
+	"github.com/violetpupil/components/std/bufio"
 	"nhooyr.io/websocket"
-	"nhooyr.io/websocket/wsjson"
 )
 
 // Chat 和websocket服务通信
+// 输入q退出聊天
+type Chat struct {
+	ctx  context.Context
+	conn *websocket.Conn
+}
+
+// Chat 和websocket服务通信
 // URLs with http/https schemes will work and are interpreted as ws/wss.
-func Chat(url string) {
-	ctx := context.Background()
-	c, _, err := websocket.Dial(ctx, url, nil)
+func (c *Chat) Chat(url string) {
+	c.ctx = context.Background()
+	conn, _, err := websocket.Dial(c.ctx, url, nil)
 	if err != nil {
 		logrus.Fatal("dial error ", err)
 	}
+	c.conn = conn
 	// 如果已经关闭，则无操作
-	defer c.Close(websocket.StatusInternalError, "the sky is falling")
+	defer conn.Close(websocket.StatusInternalError, "the sky is falling")
 
-	err = wsjson.Write(ctx, c, "hi")
+	logrus.Info("welcome join chat!")
+	bufio.Scan(c.Stdin)
+
+	err = conn.Close(websocket.StatusNormalClosure, "")
+	logrus.WithField("Error", err).Info("close conn")
+}
+
+// Stdin 终端输入处理，返回是否退出bufio.Scan循环
+func (c *Chat) Stdin(s string, err error) bool {
 	if err != nil {
-		logrus.Fatal("write error ", err)
+		// 循环已经结束
+		logrus.Error("scan error ", err)
+		return true
 	}
 
-	err = c.Close(websocket.StatusNormalClosure, "")
-	logrus.WithField("Error", err).Info("close conn")
+	if s == "" {
+		logrus.Info("cannot send empty")
+		return false
+	}
+	// 用户退出聊天
+	if s == "q" {
+		logrus.Info("bye!")
+		return true
+	}
+	err = c.conn.Write(c.ctx, websocket.MessageText, []byte(s))
+	if err != nil {
+		logrus.Error("write error ", err)
+		return true
+	}
+	return false
 }
