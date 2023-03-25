@@ -10,6 +10,8 @@ import (
 
 // Chat 和websocket服务通信
 // 输入q退出聊天
+// TODO 改为用ctrl-c退出，现在ctrl-c后的执行有不确定性，不能保证正常关闭连接
+// TODO 接收消息
 type Chat struct {
 	ctx  context.Context
 	conn *websocket.Conn
@@ -28,6 +30,7 @@ func (c *Chat) Chat(url string) {
 	defer conn.Close(websocket.StatusInternalError, "the sky is falling")
 
 	logrus.Info("welcome join chat!")
+	// 循环发送消息
 	bufio.Scan(c.Stdin)
 
 	err = conn.Close(websocket.StatusNormalClosure, "")
