@@ -1,4 +1,3 @@
-// https://github.com/nhooyr/websocket/tree/master/examples
 package websocket
 
 import "testing"
