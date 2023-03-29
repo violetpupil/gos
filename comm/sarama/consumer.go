@@ -9,7 +9,10 @@ import (
 
 // ConsumerGroupHandler 处理单个分区
 // 实现sarama.ConsumerGroupHandler接口，方法会被并发调用
-type ConsumerGroupHandler struct{}
+type ConsumerGroupHandler struct {
+	// 消费单条消息
+	Consume func(*sarama.ConsumerMessage)
+}
 
 // Setup 处理之前初始化
 func (ConsumerGroupHandler) Setup(_ sarama.ConsumerGroupSession) error { return nil }
@@ -29,13 +32,14 @@ func (h ConsumerGroupHandler) ConsumeClaim(s sarama.ConsumerGroupSession, claim 
 			"Partition":      msg.Partition,
 			"Offset":         msg.Offset,
 		}).Infoln("consume message")
+		h.Consume(msg)
 		s.MarkMessage(msg, "")
 	}
 	return nil
 }
 
-// Consume 使用消费者组阻塞消费
-func Consume(addr, groupId, topic string) error {
+// Consume 使用消费者组消费，f为处理消息函数
+func Consume(addr, groupId, topic string, f func(*sarama.ConsumerMessage)) error {
 	config := sarama.NewConfig()
 	addrs := []string{addr}
 	group, err := sarama.NewConsumerGroup(addrs, groupId, config)
@@ -51,7 +55,7 @@ func Consume(addr, groupId, topic string) error {
 	for {
 		ctx := context.Background()
 		topics := []string{topic}
-		var handler ConsumerGroupHandler
+		handler := ConsumerGroupHandler{f}
 
 		// `Consume` should be called inside an infinite loop, when a
 		// server-side rebalance happens, the consumer session will need to be
