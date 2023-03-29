@@ -48,10 +48,11 @@ func Consume(addr, groupId, topic string) error {
 		logrus.WithField("Error", err).Infoln("close group")
 	}()
 
-	ctx := context.Background()
-	topics := []string{topic}
-	var handler ConsumerGroupHandler
 	for {
+		ctx := context.Background()
+		topics := []string{topic}
+		var handler ConsumerGroupHandler
+
 		// `Consume` should be called inside an infinite loop, when a
 		// server-side rebalance happens, the consumer session will need to be
 		// recreated to get the new claims
