@@ -7,11 +7,16 @@ import (
 )
 
 var (
+	// 两个操作数都不是字符串时，会添加空格
 	Info  = logrus.Info
 	Infof = logrus.Infof
-	Error = logrus.Error
+	// 总是在两个操作数之间添加空格
+	Infoln  = logrus.Infoln
+	Error   = logrus.Error
+	Errorln = logrus.Errorln
 	// Fatal 记录Fatal级别日志，然后退出程序
-	Fatal = logrus.Fatal
+	Fatal   = logrus.Fatal
+	Fatalln = logrus.Fatalln
 )
 
 func Init() {
