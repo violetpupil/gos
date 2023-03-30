@@ -10,7 +10,10 @@ import (
 
 var (
 	// 全局logger
-	L = zap.L
+	L        = zap.L
+	String   = zap.String
+	Int      = zap.Int
+	Duration = zap.Duration
 )
 
 // InitDevelopment 将zap全局logger设置为开发
@@ -33,4 +36,12 @@ func InitProduction() error {
 	}
 	zap.ReplaceGlobals(l)
 	return nil
+}
+
+// Sync 刷写全局logger缓存的日志，程序结束前调用
+func Sync() {
+	err := zap.L().Sync()
+	if err != nil {
+		log.Println("sync error", err)
+	}
 }
