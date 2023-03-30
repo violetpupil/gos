@@ -1,4 +1,5 @@
 // zap好像比logrus块
+// zap必须要初始化
 package zap
 
 import (
