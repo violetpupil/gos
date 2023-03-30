@@ -11,3 +11,9 @@ const (
 	ACLPublicReadWrite = oss.ACLPublicReadWrite // 公开读，公开写
 	ACLDefault         = oss.ACLDefault         // 适用于object，继承bucket权限，object默认
 )
+
+// SignURL 生成私有文件访问地址
+func SignURL(objectKey string, expiredInSec int64, options ...oss.Option) (string, error) {
+	s, err := Client.b.SignURL(objectKey, oss.HTTPGet, expiredInSec, options...)
+	return s, err
+}

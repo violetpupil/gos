@@ -44,17 +44,3 @@ func InitEnv() {
 		os.Getenv("OssBucket"),
 	)
 }
-
-// PutObjectFromFile 上传本地文件到oss
-// objectKey 不需要以斜杆开头
-func PutObjectFromFile(objectKey, filePath string, options ...oss.Option) error {
-	err := Client.b.PutObjectFromFile(objectKey, filePath, options...)
-	return err
-}
-
-// PutObjectFromFileACL 上传本地文件到oss，并修改acl权限
-func PutObjectFromFileACL(objectKey, filePath string, acl oss.ACLType) error {
-	o := oss.ObjectACL(acl)
-	err := PutObjectFromFile(objectKey, filePath, o)
-	return err
-}
