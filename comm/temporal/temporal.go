@@ -4,11 +4,14 @@ package temporal
 
 import (
 	"context"
+	"errors"
 
 	"github.com/sirupsen/logrus"
 	"go.temporal.io/api/enums/v1"
 	"go.temporal.io/sdk/client"
 )
+
+var ErrTemporalClientNil = errors.New("temporal client nil")
 
 var temporal client.Client
 
@@ -23,6 +26,7 @@ func Init(addr string) error {
 		logrus.Error("dial error ", err)
 		return err
 	}
+	logrus.Info("temporal init success")
 	temporal = c
 	return nil
 }
@@ -34,6 +38,10 @@ func ExecuteWorkflow(
 	workflow any,
 	args ...any,
 ) (client.WorkflowRun, error) {
+	if temporal == nil {
+		return nil, ErrTemporalClientNil
+	}
+
 	options := client.StartWorkflowOptions{
 		ID:        id,
 		TaskQueue: queue,
@@ -49,6 +57,10 @@ func ExecuteWorkflowSync(
 	workflow any,
 	args ...any,
 ) (client.WorkflowRun, error) {
+	if temporal == nil {
+		return nil, ErrTemporalClientNil
+	}
+
 	options := client.StartWorkflowOptions{
 		ID:                    id,
 		TaskQueue:             queue,
@@ -60,6 +72,10 @@ func ExecuteWorkflowSync(
 
 // CancelWorkflow 取消工作流
 func CancelWorkflow(ctx context.Context, workflowID string) error {
+	if temporal == nil {
+		return ErrTemporalClientNil
+	}
+
 	err := temporal.CancelWorkflow(ctx, workflowID, "")
 	return err
 }
