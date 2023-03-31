@@ -39,7 +39,7 @@ func (h ConsumerGroupHandler) ConsumeClaim(s sarama.ConsumerGroupSession, claim 
 }
 
 // Consume 使用消费者组消费，f为处理消息函数
-func Consume(addr, groupId, topic string, f func(*sarama.ConsumerMessage)) error {
+func Consume(addr, groupId string, topics []string, f func(*sarama.ConsumerMessage)) error {
 	config := sarama.NewConfig()
 	addrs := []string{addr}
 	group, err := sarama.NewConsumerGroup(addrs, groupId, config)
@@ -54,7 +54,6 @@ func Consume(addr, groupId, topic string, f func(*sarama.ConsumerMessage)) error
 
 	for {
 		ctx := context.Background()
-		topics := []string{topic}
 		handler := ConsumerGroupHandler{f}
 
 		// `Consume` should be called inside an infinite loop, when a
