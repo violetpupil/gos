@@ -10,7 +10,13 @@ import (
 var (
 	// json编码
 	Marshal = json.Marshal
-	// json解码
+	// 当json解码到any时，接口实际类型对应关系
+	// bool, for JSON booleans
+	// float64, for JSON numbers
+	// string, for JSON strings
+	// []interface{}, for JSON arrays
+	// map[string]interface{}, for JSON objects
+	// nil for JSON null
 	Unmarshal = json.Unmarshal
 )
 
