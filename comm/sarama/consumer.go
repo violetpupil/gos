@@ -52,6 +52,7 @@ func Consume(addr, groupId string, topics []string, f func(*sarama.ConsumerMessa
 		logrus.WithField("Error", err).Infoln("close group")
 	}()
 
+	logrus.Infoln("kafka consume start")
 	for {
 		ctx := context.Background()
 		handler := ConsumerGroupHandler{f}
