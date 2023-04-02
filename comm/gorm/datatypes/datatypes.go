@@ -1,8 +1,18 @@
 package datatypes
 
-import "gorm.io/datatypes"
+import (
+	"encoding/json"
 
-// ToJson 将json字符串转为datatypes.JSON
-func ToJson(s string) datatypes.JSON {
-	return datatypes.JSON([]byte(s))
+	"github.com/violetpupil/components/lib/logrus"
+	"gorm.io/datatypes"
+)
+
+// Marshal json编码
+func Marshal(v any) (datatypes.JSON, error) {
+	bs, err := json.Marshal(v)
+	if err != nil {
+		logrus.Errorln("json marshal error", err)
+		return nil, err
+	}
+	return datatypes.JSON(bs), nil
 }
