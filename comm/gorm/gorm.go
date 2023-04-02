@@ -16,6 +16,7 @@ func RecordNotFound(e error) bool {
 // crud 数据库操作
 // 必须先调用 Init 初始化
 type crud struct {
+	C *create
 	U *update
 }
 
@@ -23,5 +24,6 @@ var Crud *crud
 
 func Init(db *gorm.DB) {
 	Crud = new(crud)
+	Crud.C = &create{db}
 	Crud.U = &update{db}
 }
