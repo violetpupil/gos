@@ -26,7 +26,7 @@ func (h ConsumerGroupHandler) ConsumeClaim(s sarama.ConsumerGroupSession, claim 
 		logrus.WithFields(logrus.Fields{
 			"Timestamp":      msg.Timestamp,
 			"BlockTimestamp": msg.BlockTimestamp,
-			"Key":            string(msg.Key),
+			"Key":            string(msg.Key), // 分区key
 			"Value":          string(msg.Value),
 			"Topic":          msg.Topic,
 			"Partition":      msg.Partition,

@@ -10,7 +10,10 @@ import (
 
 var (
 	// 全局logger
-	L        = zap.L
+	L = zap.L
+
+	// 字段
+	Any      = zap.Any // any接口
 	String   = zap.String
 	Int      = zap.Int
 	Duration = zap.Duration

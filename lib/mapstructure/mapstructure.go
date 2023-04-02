@@ -1,4 +1,4 @@
-// 当json解码到any时，接口实际类型对应关系
+// 当json解码到any接口时，接口实际类型对应关系
 // []interface{}, for JSON arrays
 // map[string]interface{}, for JSON objects
 // https://pkg.go.dev/encoding/json#Unmarshal
