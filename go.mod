@@ -15,6 +15,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/sirupsen/logrus v1.6.0
 	github.com/sony/sonyflake v1.1.0
+	github.com/spf13/cast v1.5.0
 	github.com/zsais/go-gin-prometheus v0.1.0
 	go.temporal.io/api v1.13.0
 	go.temporal.io/sdk v1.19.0
