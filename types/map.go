@@ -15,3 +15,12 @@ func Join(m map[string]string, kvSep, lineSep string) string {
 	}
 	return strings.Join(s, lineSep)
 }
+
+// Swap 交换map键值，如果值有重复的，会被覆盖
+func Swap(s map[string]string) map[string]string {
+	d := make(map[string]string)
+	for k, v := range s {
+		d[v] = k
+	}
+	return d
+}
