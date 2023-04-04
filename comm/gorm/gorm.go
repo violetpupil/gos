@@ -10,6 +10,7 @@ type crud struct {
 	C *create
 	R *query
 	U *update
+	D *delete
 }
 
 var Crud *crud
@@ -19,4 +20,5 @@ func Init(db *gorm.DB) {
 	Crud.C = &create{db}
 	Crud.R = &query{db}
 	Crud.U = &update{db}
+	Crud.D = &delete{db}
 }
