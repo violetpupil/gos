@@ -416,13 +416,13 @@ func (a LfAsr) Srt(las []Lattice) (string, error) {
 				Id:    i + 1,
 				Start: bg,
 				End:   ed,
-				Line:  []string{line},
+				Lines: []string{line},
 			}
 			subs = append(subs, sub)
 		}
 	}
 
-	res := srt.Srt(subs)
+	res := srt.SrtString(subs)
 	return res, nil
 }
 

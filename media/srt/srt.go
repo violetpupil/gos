@@ -1,6 +1,6 @@
 // 读写srt字幕文件
 // https://docs.fileformat.com/zh/video/srt/
-// github.com/wargarblgarbl/libgosubs/srt
+// https://github.com/wargarblgarbl/libgosubs/tree/master/srt
 package srt
 
 import (
@@ -13,27 +13,32 @@ import (
 
 // Subtitle 单条字幕
 type Subtitle struct {
-	Id    int      // 字幕id，从1开始
-	Start string   // 开始时间 00:00:00,000
-	End   string   // 结束时间 00:00:00,000
-	Line  []string // 多行字幕
+	Id    int      `json:"ed"`    // 字幕id，从1开始
+	Start string   `json:"start"` // 开始时间 00:00:00,000
+	End   string   `json:"end"`   // 结束时间 00:00:00,000
+	Lines []string `json:"lines"` // 多行字幕
 }
 
 // String 字幕字符串
 func (sub Subtitle) String() string {
-	lines := strings.Join(sub.Line, "\n")
+	lines := strings.Join(sub.Lines, "\n")
 	sen := fmt.Sprintf("%d\n%s --> %s\n%s", sub.Id, sub.Start, sub.End, lines)
 	return sen
 }
 
-// Srt 返回srt字幕
-func Srt(subs []Subtitle) string {
+// SrtString 返回srt字幕
+func SrtString(subs []Subtitle) string {
 	var sens []string
 	for _, sub := range subs {
 		sens = append(sens, sub.String())
 	}
 	res := strings.Join(sens, "\n\n")
 	return res
+}
+
+// SrtSlice 返回字幕数组
+func SrtSlice(sub string) []Subtitle {
+	return nil
 }
 
 // WriteSrt 写srt字幕文件
@@ -45,7 +50,12 @@ func WriteSrt(subs []Subtitle, name string) error {
 		logrus.Error("create error ", err)
 		return err
 	}
-	s := Srt(subs)
+	s := SrtString(subs)
 	_, err = fmt.Fprint(f, s)
 	return err
+}
+
+// ParseSrt 读取srt字幕文件
+func ParseSrt() ([]Subtitle, error) {
+	return nil, nil
 }

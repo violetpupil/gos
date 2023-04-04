@@ -23,3 +23,5 @@ A Kubernetes cluster consists of a set of worker machines, called nodes, that ru
 kube-apiserver
 
 etcd 存储集群数据
+
+kube-scheduler 调度pods到node
