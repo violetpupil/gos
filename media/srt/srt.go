@@ -4,6 +4,7 @@
 package srt
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strings"
@@ -56,6 +57,21 @@ func WriteSrt(subs []Subtitle, name string) error {
 }
 
 // ParseSrt 读取srt字幕文件
-func ParseSrt() ([]Subtitle, error) {
+func ParseSrt(name string) ([]Subtitle, error) {
+	f, err := os.Open(name)
+	if err != nil {
+		logrus.Errorln("open error", err)
+		return nil, err
+	}
+
+	// 扫描每行
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		line := scanner.Text()
+		fmt.Println(line)
+	}
+	if scanner.Err() != nil {
+		logrus.Errorln("scanner stop error", err)
+	}
 	return nil, nil
 }

@@ -12,6 +12,8 @@ import (
 // main 运行http服务在端口8080，直到错误发生
 func main() {
 	e := gin.Default()
+	e.Use(gin.Recovery())
+
 	AdminGroup(e)
 	e.POST("/echo", Echo)
 	fmt.Print(e.Run())
