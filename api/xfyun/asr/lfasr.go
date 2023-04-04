@@ -380,7 +380,7 @@ func (a LfAsr) Sentence(las []Lattice) {
 
 // Srt srt字幕
 func (a LfAsr) Srt(las []Lattice) (string, error) {
-	subs := make([]srt.Subtitle, 0)
+	subs := make([]*srt.Subtitle, 0)
 	// 处理每句
 	for i, la := range las {
 		var line string
@@ -412,7 +412,7 @@ func (a LfAsr) Srt(las []Lattice) (string, error) {
 				logrus.Error("ed video time error ", err)
 				return "", err
 			}
-			sub := srt.Subtitle{
+			sub := &srt.Subtitle{
 				Id:    i + 1,
 				Start: bg,
 				End:   ed,

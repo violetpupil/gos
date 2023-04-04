@@ -4,12 +4,21 @@
 package srt
 
 import (
-	"bufio"
+	"errors"
 	"fmt"
+	"io"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/violetpupil/components/lib/logrus"
+)
+
+var (
+	// 单条字幕文本行数小于3
+	ErrSingleLinesShort = errors.New("single lines too short")
+	// 时间格式不对
+	ErrTimeFormat = errors.New("time format incorrect")
 )
 
 // Subtitle 单条字幕
@@ -20,15 +29,39 @@ type Subtitle struct {
 	Lines []string `json:"lines"` // 多行字幕
 }
 
-// String 字幕字符串
-func (sub Subtitle) String() string {
+// NewSubtitle 将单条字幕文本转为结构体
+func NewSubtitle(lines []string) (*Subtitle, error) {
+	if len(lines) < 3 {
+		return nil, ErrSingleLinesShort
+	}
+
+	s := new(Subtitle)
+	id, err := strconv.Atoi(lines[0])
+	if err != nil {
+		logrus.Errorln("parse id error", err)
+		return nil, err
+	}
+	s.Id = id
+
+	times := strings.Split(lines[1], " --> ")
+	if len(times) < 2 {
+		return nil, ErrTimeFormat
+	}
+	s.Start = times[0]
+	s.End = times[1]
+	s.Lines = lines[2:]
+	return s, nil
+}
+
+// String 单条字幕文本
+func (sub *Subtitle) String() string {
 	lines := strings.Join(sub.Lines, "\n")
 	sen := fmt.Sprintf("%d\n%s --> %s\n%s", sub.Id, sub.Start, sub.End, lines)
 	return sen
 }
 
-// SrtString 返回srt字幕
-func SrtString(subs []Subtitle) string {
+// SrtString 将字幕数组转为字幕文本
+func SrtString(subs []*Subtitle) string {
 	var sens []string
 	for _, sub := range subs {
 		sens = append(sens, sub.String())
@@ -37,18 +70,18 @@ func SrtString(subs []Subtitle) string {
 	return res
 }
 
-// SrtSlice 返回字幕数组
-func SrtSlice(sub string) []Subtitle {
-	return nil
+// SrtSlice 从r读取字幕文本，转为字幕数组
+func SrtSlice(r io.Reader) ([]*Subtitle, error) {
+	return nil, nil
 }
 
 // WriteSrt 写srt字幕文件
 // 文件不存在，创建文件，权限设置为可读可写
 // 文件存在，清空文件，权限不变
-func WriteSrt(subs []Subtitle, name string) error {
+func WriteSrt(subs []*Subtitle, name string) error {
 	f, err := os.Create(name)
 	if err != nil {
-		logrus.Error("create error ", err)
+		logrus.Errorln("create error", err)
 		return err
 	}
 	s := SrtString(subs)
@@ -56,22 +89,21 @@ func WriteSrt(subs []Subtitle, name string) error {
 	return err
 }
 
-// ParseSrt 读取srt字幕文件
-func ParseSrt(name string) ([]Subtitle, error) {
-	f, err := os.Open(name)
+// LoadSrt 读取srt字幕文件
+func LoadSrt(name string) ([]*Subtitle, error) {
+	bs, err := os.ReadFile(name)
 	if err != nil {
-		logrus.Errorln("open error", err)
+		logrus.Errorln("read file error", err)
 		return nil, err
 	}
 
-	// 扫描每行
-	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		line := scanner.Text()
-		fmt.Println(line)
-	}
-	if scanner.Err() != nil {
-		logrus.Errorln("scanner stop error", err)
-	}
-	return nil, nil
+	subs, err := ParseSrt(string(bs))
+	return subs, err
+}
+
+// ParseSrt 解析srt字幕文本
+func ParseSrt(s string) ([]*Subtitle, error) {
+	reader := strings.NewReader(s)
+	subs, err := SrtSlice(reader)
+	return subs, err
 }
