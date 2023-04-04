@@ -11,3 +11,9 @@
 虚拟机在虚拟硬件上，运行自己的操作系统
 
 容器共享宿主机的操作系统
+
+## Components
+
+A Kubernetes cluster consists of a set of worker machines, called nodes, that run containerized applications.
+
+![Components of Kubernetes](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
