@@ -15,3 +15,9 @@
 ## [Components](https://kubernetes.io/docs/concepts/overview/components/)
 
 ![Components of Kubernetes](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
+
+### Addons
+
+Because these are providing cluster-level features, namespaced resources for addons belong within the kube-system namespace.
+
+集群自带 DNS, Dashboard, Container Resource Monitoring, Cluster-level Logging 插件
