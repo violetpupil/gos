@@ -4,6 +4,7 @@
 package srt
 
 import (
+	"bufio"
 	"errors"
 	"fmt"
 	"io"
@@ -72,7 +73,32 @@ func SrtString(subs []*Subtitle) string {
 
 // SrtSlice 从r读取字幕文本，转为字幕数组
 func SrtSlice(r io.Reader) ([]*Subtitle, error) {
-	return nil, nil
+	subs := make([]*Subtitle, 0)
+	// 单条字幕文本
+	var seg []string
+	sc := bufio.NewScanner(r)
+	for sc.Scan() {
+		line := sc.Text()
+		// srt字幕以空行分段
+		if line != "" {
+			seg = append(seg, line)
+		} else {
+			sub, err := NewSubtitle(seg)
+			if err != nil {
+				logrus.Errorln("new subtitle error", err)
+				return nil, err
+			}
+			subs = append(subs, sub)
+			seg = nil
+		}
+	}
+
+	// 因为异常扫描终止
+	if err := sc.Err(); err != nil {
+		logrus.Errorln("scan stop error", err)
+		return nil, err
+	}
+	return subs, nil
 }
 
 // WriteSrt 写srt字幕文件
