@@ -1,0 +1,17 @@
+# [Kubernetes Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+
+Almost every Kubernetes object includes two nested object fields that govern the object's configuration: the object spec and the object status.
+
+spec - desired state
+
+status -  current state
+
+## [unique](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/)
+
+Every Kubernetes object also has a UID that is unique across your whole cluster.
+
+Kubernetes UIDs are universally unique identifiers (also known as UUIDs).
+
+## [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+
+有的对象是命名空间级的，有的是集群级的
