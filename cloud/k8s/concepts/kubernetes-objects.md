@@ -16,10 +16,22 @@ Kubernetes UIDs are universally unique identifiers (also known as UUIDs).
 
 用户定义数据
 
-Equality-based requirement
+Equality-based
 
-Set-based requirement
+Set-based
 
 ## [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 
 有的对象是命名空间级的，有的是集群级的
+
+Kubernetes starts with four initial namespaces:
+
+`default`
+
+`kube-node-lease`
+
+`kube-public`
+
+`kube-system`
+
+Avoid creating namespaces with the prefix kube-, since it is reserved for Kubernetes system namespaces.
