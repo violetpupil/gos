@@ -1,5 +1,7 @@
 # [kubectl](https://kubectl.docs.kubernetes.io/)
 
+[文档](https://kubectl.docs.kubernetes.io/references/kubectl/)
+
 ## [Kubernetes Object Management](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/)
 
 kubectl有三种管理k8s对象的方式
