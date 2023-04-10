@@ -8,9 +8,9 @@ package xfyun
 import (
 	"encoding/json"
 
+	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/api/xfyun/asr"
 	"github.com/violetpupil/components/api/xfyun/trans"
-	"github.com/violetpupil/components/lib/logrus"
 )
 
 type Client struct {

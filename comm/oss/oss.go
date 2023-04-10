@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 type client struct {

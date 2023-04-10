@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/gocarina/gocsv"
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // UnmarshalFile 读取csv文件

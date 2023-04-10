@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 var (

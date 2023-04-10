@@ -3,7 +3,7 @@ package datatypes
 import (
 	"encoding/json"
 
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 	"gorm.io/datatypes"
 )
 

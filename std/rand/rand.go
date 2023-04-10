@@ -3,7 +3,7 @@ package rand
 import (
 	"crypto/rand"
 
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // RandBytes 生成指定长度的随机字节

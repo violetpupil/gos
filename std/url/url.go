@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // Path 返回url的路径部分，无前缀斜杆

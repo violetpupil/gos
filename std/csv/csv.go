@@ -6,7 +6,7 @@ import (
 	"encoding/csv"
 	"os"
 
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // ReadAll 读取csv文件

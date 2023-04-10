@@ -3,7 +3,7 @@ package errors
 import (
 	"errors"
 
-	"github.com/violetpupil/components/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // Unwrap 获取底层错误并打印类型
