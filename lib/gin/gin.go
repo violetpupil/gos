@@ -1,4 +1,4 @@
-package main
+package gin
 
 import (
 	"fmt"
@@ -9,14 +9,14 @@ import (
 	ginprometheus "github.com/zsais/go-gin-prometheus"
 )
 
-// main 运行http服务在端口8080，直到错误发生
-func main() {
+// Run 运行http服务，直到错误发生，默认端口8080
+func Run(addr ...string) {
 	e := gin.Default()
 	e.Use(gin.Recovery())
 
 	AdminGroup(e)
 	e.POST("/echo", Echo)
-	fmt.Print(e.Run())
+	fmt.Print(e.Run(addr...))
 }
 
 // AdminGroup 管理页面
