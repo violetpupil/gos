@@ -5,6 +5,7 @@ package srt
 
 import (
 	"bufio"
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -130,6 +131,13 @@ func LoadSrt(name string) ([]*Subtitle, error) {
 // ParseSrt 解析srt字幕文本
 func ParseSrt(s string) ([]*Subtitle, error) {
 	reader := strings.NewReader(s)
+	subs, err := SrtSlice(reader)
+	return subs, err
+}
+
+// ParseSrtBytes 解析srt字幕字节串
+func ParseSrtBytes(s []byte) ([]*Subtitle, error) {
+	reader := bytes.NewReader(s)
 	subs, err := SrtSlice(reader)
 	return subs, err
 }
