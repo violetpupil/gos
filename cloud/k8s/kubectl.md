@@ -1,5 +1,9 @@
 # [kubectl](https://kubectl.docs.kubernetes.io/)
 
+## [install](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
+
+You must use a kubectl version that is within one minor version difference of your cluster.
+
 ## [Kubernetes Object Management](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/)
 
 kubectl有三种管理k8s对象的方式
@@ -20,4 +24,5 @@ get 查看k8s资源
 
 ```bash
 kubectl get namespace # 查看所有命名空间
+kubectl version --client --output=yaml # 查看kubectl版本
 ```
