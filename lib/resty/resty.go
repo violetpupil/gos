@@ -1,7 +1,10 @@
 package resty
 
 import (
+	"net/url"
+
 	"github.com/go-resty/resty/v2"
+	"github.com/sirupsen/logrus"
 )
 
 // Client http客户端
@@ -31,10 +34,32 @@ func RemoveProxy() {
 
 // SetProxy 配置客户端代理 http://user:password@proxyserver:8888
 // 默认会使用环境变量的代理，参考 http.ProxyFromEnvironment
-// 会自动初始化客户端
+// 会自动初始化客户端 支持socks5
 func SetProxy(proxyURL string) {
 	if Client == nil {
 		Init()
 	}
 	Client = Client.SetProxy(proxyURL)
+}
+
+// SetProxySct 配置客户端代理，使用url.URL结构体
+// 默认会使用环境变量的代理，参考 http.ProxyFromEnvironment
+// 会自动初始化客户端 支持socks5
+func SetProxySct(u *url.URL) {
+	proxyURL := u.String()
+	SetProxy(proxyURL)
+}
+
+// SetProxyPart 配置客户端代理 http://proxyserver:8888, user, password
+// 默认会使用环境变量的代理，参考 http.ProxyFromEnvironment
+// 会自动初始化客户端 支持socks5
+func SetProxyPart(uri, user, pass string) error {
+	u, err := url.Parse(uri)
+	if err != nil {
+		logrus.Errorln("parse url error", err)
+		return err
+	}
+	u.User = url.UserPassword(user, pass)
+	SetProxySct(u)
+	return nil
 }
