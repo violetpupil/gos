@@ -21,6 +21,7 @@ var ServiceName string
 // InitTracer 初始化全局 trace provider
 // exporter 将数据发送到 endpoint
 // 返回 exporter 的 Shutdown 方法，在程序结束时调用
+// endpoint 无法连接时，初始化正常，发送数据时报错
 func InitTracer(endpoint, service string) (func(context.Context) error, error) {
 	ServiceName = service
 
@@ -54,6 +55,7 @@ func InitTracer(endpoint, service string) (func(context.Context) error, error) {
 	return exporter.Shutdown, nil
 }
 
-func GinMiddleware(e *gin.Engine) {
-	e.Use(otelgin.Middleware(ServiceName))
+// GinMiddleware gin中间件，404时会发送数据
+func GinMiddleware() gin.HandlerFunc {
+	return otelgin.Middleware(ServiceName)
 }

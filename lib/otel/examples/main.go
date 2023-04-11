@@ -9,13 +9,13 @@ import (
 )
 
 func main() {
-	closeExporter, err := otel.InitTracer("", "")
+	closeExporter, err := otel.InitTracer("localhost:4317", "goGinApp")
 	if err != nil {
 		panic(err)
 	}
 	defer closeExporter(context.Background())
 
 	e := gin.Default()
-	otel.GinMiddleware(e)
-	fmt.Println(e.Run())
+	e.Use(otel.GinMiddleware())
+	fmt.Println(e.Run(":8081"))
 }
