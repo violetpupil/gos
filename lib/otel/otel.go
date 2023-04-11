@@ -5,7 +5,9 @@ package otel
 import (
 	"context"
 
+	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
+	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
@@ -14,12 +16,16 @@ import (
 	"go.opentelemetry.io/otel/sdk/trace"
 )
 
+var ServiceName string
+
 // InitTracer 初始化全局 trace provider
 // exporter 将数据发送到 endpoint
-// 返回 exporter 的 Shutdown 方法
+// 返回 exporter 的 Shutdown 方法，在程序结束时调用
 func InitTracer(endpoint, service string) (func(context.Context) error, error) {
+	ServiceName = service
+
 	ctx := context.Background()
-	name := attribute.String("service.name", service)
+	name := attribute.String("service.name", ServiceName)
 	lang := attribute.String("library.language", "go")
 	resOpt := resource.WithAttributes(name, lang)
 	resource, err := resource.New(ctx, resOpt)
@@ -46,4 +52,8 @@ func InitTracer(endpoint, service string) (func(context.Context) error, error) {
 	// 配置全局 trace provider
 	otel.SetTracerProvider(tp)
 	return exporter.Shutdown, nil
+}
+
+func GinMiddleware(e *gin.Engine) {
+	e.Use(otelgin.Middleware(ServiceName))
 }

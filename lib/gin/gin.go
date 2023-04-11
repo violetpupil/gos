@@ -12,11 +12,10 @@ import (
 // Run 运行http服务，直到错误发生，默认端口8080
 func Run(addr ...string) {
 	e := gin.Default()
-	e.Use(gin.Recovery())
 
 	AdminGroup(e)
 	e.POST("/echo", Echo)
-	fmt.Print(e.Run(addr...))
+	fmt.Println(e.Run(addr...))
 }
 
 // AdminGroup 管理页面
