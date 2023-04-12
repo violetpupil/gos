@@ -1,4 +1,4 @@
-# [kubectl](https://kubectl.docs.kubernetes.io/)
+# [kubectl](https://kubernetes.io/docs/reference/kubectl/)
 
 ## [install](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
 
@@ -16,16 +16,20 @@ kubectl有三种管理k8s对象的方式
 
 3. 声明式对象配置 在命令中指定对象配置文件，操作由kubectl自动检测
 
-## [子命令](https://kubectl.docs.kubernetes.io/references/kubectl/)
+## [commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands)
 
-delete 删除k8s资源
+`config` Modifies kubeconfig files.
 
-get 查看k8s资源
+`delete` 删除k8s资源
 
-## 常用命令
+`get` 查看k8s资源
+
+## [常用命令](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 ```bash
 kubectl cluster-info # 查看集群信息
 kubectl get namespace # 查看所有命名空间
+kubectl config view # Show Merged kubeconfig settings.
+kubectl config set-context --current --namespace=np # 设置当前上下文的命名空间
 kubectl version --client --output=yaml # 查看kubectl版本
 ```
