@@ -1,4 +1,3 @@
-// TODO
 // https://github.com/Shopify/sarama/tree/main/examples/sasl_scram_client
 package sarama
 

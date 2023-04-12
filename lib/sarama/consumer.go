@@ -7,6 +7,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+type ConsumerMessage = sarama.ConsumerMessage
+
 // ConsumerGroupHandler 处理单个分区
 // 实现sarama.ConsumerGroupHandler接口，方法会被并发调用
 type ConsumerGroupHandler struct {
