@@ -22,8 +22,6 @@ Set-based
 
 ## [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 
-有的对象是命名空间级的，有的是集群级的
-
 k8s有四个初始命名空间 `default` `kube-node-lease` `kube-public` `kube-system`
 
 Avoid creating namespaces with the prefix kube-, since it is reserved for Kubernetes system namespaces.

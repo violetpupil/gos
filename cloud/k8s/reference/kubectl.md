@@ -18,17 +18,23 @@ kubectl有三种管理k8s对象的方式
 
 ## [commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands)
 
-`config` Modifies kubeconfig files.
+`get` 查看k8s资源
 
 `delete` 删除k8s资源
 
-`get` 查看k8s资源
+### KUBECTL SETTINGS AND USAGE
+
+`api-resources` 打印集群支持的api资源
+
+`config` Modifies kubeconfig files.
 
 ## [常用命令](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 ```bash
 kubectl cluster-info # 查看集群信息
 kubectl get namespace # 查看所有命名空间
+kubectl api-resources # 打印命名空间级的资源
+kubectl api-resources --namespaced=false # 打印非命名空间级的资源
 kubectl config view # Show Merged kubeconfig settings.
 kubectl config set-context --current --namespace=np # 设置当前上下文的命名空间
 kubectl version --client --output=yaml # 查看kubectl版本
