@@ -2,9 +2,19 @@ package syscall
 
 import (
 	"errors"
+	"os"
+	"os/signal"
 	"syscall"
 
 	"github.com/sirupsen/logrus"
+)
+
+// 信号
+const (
+	// Pressing Ctrl+C on a keyboard sends a SIGINT signal to the process of the program in execution.
+	SIGINT = syscall.SIGINT
+	// kill 命令默认发送 SIGTERM 信号
+	SIGTERM = syscall.SIGTERM
 )
 
 type (
@@ -25,4 +35,11 @@ func LogErrno(err error) {
 		"Timeout":   no.Timeout(),
 		"Temporary": no.Temporary(),
 	}).Errorf("%d", no)
+}
+
+// GracefullyExit 阻塞等待 INT TERM 信号
+func GracefullyExit() {
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+	<-c
 }
