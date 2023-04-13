@@ -11,8 +11,11 @@ import (
 )
 
 // Produce 循环5s生产消息，topic会自动创建
-func Produce(addr, topic, msg string) error {
-	config := sarama.NewConfig()
+// config如果传nil，会自动创建配置
+func Produce(addr, topic, msg string, config *sarama.Config) error {
+	if config == nil {
+		config = sarama.NewConfig()
+	}
 	config.Producer.Return.Successes = true
 	addrs := []string{addr}
 	// 异步生产

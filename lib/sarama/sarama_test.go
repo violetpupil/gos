@@ -7,14 +7,15 @@ import (
 	"github.com/Shopify/sarama"
 )
 
-func TestConsume(t *testing.T) {
+func TestSASLConfig(t *testing.T) {
+	c := SASLConfig("", "")
 	topics := []string{"my-topic"}
 	err := Consume(
 		"localhost:9092", "my-group", topics,
 		func(cm *sarama.ConsumerMessage) {
 			fmt.Printf("process %+v\n", cm)
 		},
-		nil,
+		c,
 	)
 	fmt.Println(err)
 }

@@ -2,42 +2,36 @@
 package sarama
 
 import (
-	"crypto/sha256"
-	"crypto/sha512"
-
-	"github.com/Shopify/sarama"
+	"github.com/violetpupil/components/lib/logrus"
 	"github.com/xdg-go/scram"
 )
 
-func SCRAMClientGeneratorFunc() sarama.SCRAMClient {
-	return &SCRAMClient{HashGeneratorFcn: SHA256}
-}
-
-var (
-	SHA256 scram.HashGeneratorFcn = sha256.New
-	SHA512 scram.HashGeneratorFcn = sha512.New
-)
-
+// SCRAMClient sarama.SCRAMClient实现
 type SCRAMClient struct {
 	*scram.Client
 	*scram.ClientConversation
+	// 工厂函数，返回hash.Hash
 	scram.HashGeneratorFcn
 }
 
+// Begin 生成客户端
 func (x *SCRAMClient) Begin(userName, password, authzID string) (err error) {
 	x.Client, err = x.HashGeneratorFcn.NewClient(userName, password, authzID)
 	if err != nil {
+		logrus.Errorln("new client error", err)
 		return err
 	}
 	x.ClientConversation = x.Client.NewConversation()
 	return nil
 }
 
+// Step 执行scram交换
 func (x *SCRAMClient) Step(challenge string) (response string, err error) {
 	response, err = x.ClientConversation.Step(challenge)
 	return
 }
 
+// Done scram会话是否结束
 func (x *SCRAMClient) Done() bool {
 	return x.ClientConversation.Done()
 }

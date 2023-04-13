@@ -6,6 +6,6 @@ import (
 )
 
 func TestProduce(t *testing.T) {
-	err := Produce("localhost:9092", "my-topic", "hi")
+	err := Produce("localhost:9092", "my-topic", "hi", nil)
 	fmt.Println(err)
 }

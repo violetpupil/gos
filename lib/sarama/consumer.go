@@ -41,8 +41,13 @@ func (h ConsumerGroupHandler) ConsumeClaim(s sarama.ConsumerGroupSession, claim 
 }
 
 // Consume 使用消费者组消费，f为处理消息函数
-func Consume(addr, groupId string, topics []string, f func(*sarama.ConsumerMessage)) error {
-	config := sarama.NewConfig()
+// config如果传nil，会自动创建配置
+func Consume(
+	addr, groupId string,
+	topics []string,
+	f func(*sarama.ConsumerMessage),
+	config *sarama.Config,
+) error {
 	addrs := []string{addr}
 	group, err := sarama.NewConsumerGroup(addrs, groupId, config)
 	if err != nil {
