@@ -1,3 +1,4 @@
+// 必须先调用InitProducer初始化生产者
 package nsq
 
 import (
