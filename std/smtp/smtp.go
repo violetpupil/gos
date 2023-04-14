@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/smtp"
 
-	"github.com/violetpupil/components/types"
+	"github.com/violetpupil/components/spec/types"
 )
 
 // SendMail 发送邮件

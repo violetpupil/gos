@@ -4,8 +4,8 @@ import (
 	"encoding/hex"
 
 	"github.com/sirupsen/logrus"
+	"github.com/violetpupil/components/spec/types"
 	"github.com/violetpupil/components/std/binary"
-	"github.com/violetpupil/components/types"
 )
 
 // DecryptStr 解密字符串，密钥长度不固定，只有前16个字节有效
