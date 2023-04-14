@@ -14,4 +14,6 @@ nsqio/nsq /nsqd \
 --broadcast-address=<host> \
 --lookupd-tcp-address=<host>:4160 \
 --data-path=/data
+# 测试nsqlookupd
+curl http://localhost:4161/ping
 ```
