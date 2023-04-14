@@ -18,6 +18,7 @@ require (
 	github.com/sirupsen/logrus v1.6.0
 	github.com/sony/sonyflake v1.1.0
 	github.com/spf13/cast v1.5.0
+	github.com/valyala/fastjson v1.6.4
 	github.com/xdg-go/scram v1.1.2
 	github.com/zsais/go-gin-prometheus v0.1.0
 	go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin v0.40.0
