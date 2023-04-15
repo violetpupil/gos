@@ -21,6 +21,7 @@ kubectl describe node <node-name> # 查看节点信息
 ## Interacting with Nodes and cluster
 
 ```bash
+kubectl cordon <node-name> # Mark node as unschedulable.
 kubectl cluster-info # 查看集群信息
 kubectl api-resources # 打印命名空间级的资源
 kubectl api-resources --namespaced=false # 打印非命名空间级的资源

@@ -1,3 +1,3 @@
 # architecture
 
-## [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)
+[nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)
