@@ -1,6 +1,8 @@
 package gocsv
 
 import (
+	"encoding/csv"
+	"io"
 	"os"
 
 	"github.com/gocarina/gocsv"
@@ -19,4 +21,13 @@ func UnmarshalFile(name string, out any) error {
 
 	err = gocsv.UnmarshalFile(f, out)
 	return err
+}
+
+// SetCSVReader 改变全局reader的字段分隔符，默认是逗号,
+func SetCSVReader(comma rune) {
+	gocsv.SetCSVReader(func(in io.Reader) gocsv.CSVReader {
+		r := csv.NewReader(in)
+		r.Comma = comma
+		return r
+	})
 }

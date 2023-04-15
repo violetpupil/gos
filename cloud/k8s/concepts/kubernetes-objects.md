@@ -14,7 +14,9 @@ Kubernetes UIDs are universally unique identifiers (also known as UUIDs).
 
 ## [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 
-用户定义数据
+用户定义标识
+
+Valid label keys have two segments: an optional prefix and name, separated by a slash (/).
 
 Equality-based
 
@@ -25,3 +27,9 @@ Set-based
 k8s有四个初始命名空间 `default` `kube-node-lease` `kube-public` `kube-system`
 
 Avoid creating namespaces with the prefix kube-, since it is reserved for Kubernetes system namespaces.
+
+## [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+
+用户定义非标识数据
+
+Valid annotation keys have two segments: an optional prefix and name, separated by a slash (/).
