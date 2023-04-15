@@ -1,1 +1,1 @@
-# [reference]<https://kubernetes.io/docs/reference/>
+# [reference](https://kubernetes.io/docs/reference/)
