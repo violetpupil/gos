@@ -2,7 +2,9 @@
 // https://gorm.io/docs/delete.html
 package gorm
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type delete struct {
 	db *gorm.DB
@@ -20,7 +22,7 @@ type delete struct {
 // db.Delete(&User{}, "10") 小心sql注入
 // DELETE FROM users WHERE id IN (1,2,3);
 // db.Delete(&users, []int{1,2,3})
-func (d *delete) Delete(value interface{}, cond ...interface{}) error {
-	err := d.db.Delete(value, cond...).Error
-	return err
+func (d *delete) Delete(value interface{}, cond ...interface{}) (int64, error) {
+	db := d.db.Delete(value, cond...)
+	return db.RowsAffected, db.Error
 }
