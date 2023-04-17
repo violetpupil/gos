@@ -14,3 +14,5 @@
 
 In Kubernetes, controllers are control loops that watch the state of your cluster.
 Each controller tries to move the current cluster state closer to the desired state.
+
+A controller tracks at least one Kubernetes resource type.
