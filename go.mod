@@ -33,6 +33,7 @@ require (
 	go.uber.org/zap v1.24.0
 	google.golang.org/protobuf v1.28.1
 	gorm.io/datatypes v1.1.1
+	gorm.io/driver/mysql v1.4.7
 	gorm.io/gorm v1.24.6
 	nhooyr.io/websocket v1.8.7
 )
@@ -128,5 +129,4 @@ require (
 	google.golang.org/grpc v1.53.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/driver/mysql v1.4.7 // indirect
 )
