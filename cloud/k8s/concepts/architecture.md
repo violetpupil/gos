@@ -16,3 +16,9 @@ In Kubernetes, controllers are control loops that watch the state of your cluste
 Each controller tries to move the current cluster state closer to the desired state.
 
 A controller tracks at least one Kubernetes resource type.
+
+Kubernetes comes with a set of built-in controllers that run inside the kube-controller-manager.
+
+## [cloud-controller](https://kubernetes.io/docs/concepts/architecture/cloud-controller/)
+
+The cloud controller manager lets you link your cluster into your cloud provider's API, and separates out the components that interact with that cloud platform from components that only interact with your cluster.
