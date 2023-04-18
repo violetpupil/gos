@@ -4,6 +4,8 @@ package oss
 
 import (
 	"io"
+	"os"
+	"path"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/sirupsen/logrus"
@@ -36,6 +38,29 @@ func GetObjectStr(objectKey string, options ...oss.Option) (string, error) {
 		return "", err
 	}
 	return string(bs), nil
+}
+
+// Download 下载文件
+func Download(objectKey string, options ...oss.Option) error {
+	reader, err := Client.b.GetObject(objectKey, options...)
+	if err != nil {
+		logrus.Errorln("get object error", err)
+		return err
+	}
+	// 释放连接
+	defer reader.Close()
+
+	// 创建同名文件
+	filename := path.Base(objectKey)
+	fd, err := os.Create(filename)
+	if err != nil {
+		logrus.Errorln("create file error", err)
+		return err
+	}
+	defer fd.Close()
+
+	_, err = io.Copy(fd, reader)
+	return err
 }
 
 // Modify 修改文件，先读取文件字节，修改后上传

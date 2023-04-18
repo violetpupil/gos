@@ -11,6 +11,8 @@ import (
 var (
 	// ReadFile 读取文件字节
 	ReadFile = os.ReadFile
+	// Create 创建文件，如果文件存在，先清空
+	Create = os.Create
 )
 
 // Stat 获取文件信息
