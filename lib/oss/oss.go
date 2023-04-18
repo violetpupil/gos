@@ -31,16 +31,17 @@ func Init(endpoint, accessKeyID, accessKeySecret, bucketName string) error {
 		logrus.Error("get bucket error ", err)
 		return err
 	}
-	Client = &client{c, b}
+	Client = &client{c: c, b: b}
 	return err
 }
 
 // InitEnv 使用环境变量初始化oss客户端
-func InitEnv() {
-	Init(
+func InitEnv() error {
+	err := Init(
 		os.Getenv("OssEndpoint"),
 		os.Getenv("OssKeyId"),
 		os.Getenv("OssKeySecret"),
 		os.Getenv("OssBucket"),
 	)
+	return err
 }

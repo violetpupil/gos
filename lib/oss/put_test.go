@@ -9,12 +9,18 @@ import (
 
 func TestPutObjectFromFile(t *testing.T) {
 	godotenv.Load("../../.env")
-	InitEnv()
+	err := InitEnv()
+	if err != nil {
+		panic(err)
+	}
 	PutObjectFromFile("test/oss.go", "./oss.go")
 }
 
 func TestPutObjectFromFileACL(t *testing.T) {
 	godotenv.Load("../../.env")
-	InitEnv()
+	err := InitEnv()
+	if err != nil {
+		panic(err)
+	}
 	PutObjectFromFileACL("test/oss.go", "./oss.go", oss.ACLPublicRead)
 }
