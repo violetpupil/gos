@@ -5,6 +5,6 @@
 ## 常用命令
 
 ```bash
-# 创建孤儿分支
-git checkout --orphan <branch>
+# 从提交创建分支
+git checkout <commit-id> -b <branch>
 ```
