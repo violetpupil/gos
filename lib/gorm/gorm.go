@@ -12,11 +12,12 @@ import (
 // crud 数据库操作
 // 必须先调用 Init 初始化
 type crud struct {
-	db *gorm.DB
-	C  *create
-	R  *query
-	U  *update
-	D  *delete
+	db  *gorm.DB
+	C   *create
+	R   *query
+	U   *update
+	D   *delete
+	Raw *raw
 }
 
 var Crud *crud
@@ -28,6 +29,7 @@ func Init(db *gorm.DB) {
 	Crud.R = &query{db}
 	Crud.U = &update{db}
 	Crud.D = &delete{db}
+	Crud.Raw = &raw{db}
 }
 
 // InitMySQL 初始化mysql数据库操作
