@@ -1,6 +1,7 @@
 package resty
 
 import (
+	"fmt"
 	"net/url"
 
 	"github.com/go-resty/resty/v2"
@@ -62,4 +63,11 @@ func SetProxyPart(uri, user, pass string) error {
 	u.User = url.UserPassword(user, pass)
 	SetProxySct(u)
 	return nil
+}
+
+// SetProxyFive 配置客户端代理 scheme, host, port, user, password
+// 默认会使用环境变量的代理，参考 http.ProxyFromEnvironment
+// 会自动初始化客户端 支持socks5
+func SetProxyFive(scheme, host, port, user, pass string) {
+	SetProxy(fmt.Sprintf("%s://%s:%s@%s:%s", scheme, user, pass, host, port))
 }

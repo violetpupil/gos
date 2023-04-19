@@ -13,3 +13,14 @@ func TestProxyIpEcho(t *testing.T) {
 	)
 	fmt.Println(ip, err)
 }
+
+func TestProxyIpEchoFive(t *testing.T) {
+	ip, err := ProxyIpEchoFive(
+		"http",
+		"host",
+		"port",
+		"user",
+		"pass",
+	)
+	fmt.Println(ip, err)
+}
