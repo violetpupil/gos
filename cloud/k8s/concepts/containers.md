@@ -19,3 +19,11 @@ You should avoid using the :latest tag when deploying containers in production a
 `Never` 不拉取镜像，如果本地没有镜像，则启动失败
 
 镜像拉取策略在对象创建时设置，修改tag后，不会自动更新
+
+拉取镜像失败后，采用BackOff重试，最大重试间隔是5分钟
+
+### Serial and parallel image pulls
+
+The kubelet never pulls multiple images in parallel on behalf of one Pod.
+
+However, if you have two Pods that use different images, the kubelet pulls the images in parallel on behalf of the two different Pods, when parallel image pulls is enabled.
