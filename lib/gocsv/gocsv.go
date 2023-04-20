@@ -9,6 +9,12 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var (
+	// 生成csv
+	MarshalBytes  = gocsv.MarshalBytes
+	MarshalString = gocsv.MarshalString
+)
+
 // UnmarshalFile 读取csv文件
 // 可以使用结构体标签csv，与文件第一行对应
 func UnmarshalFile(name string, out any) error {
@@ -20,6 +26,19 @@ func UnmarshalFile(name string, out any) error {
 	defer f.Close()
 
 	err = gocsv.UnmarshalFile(f, out)
+	return err
+}
+
+// MarshalFile 写csv文件
+func MarshalFile(name string, in any) error {
+	f, err := os.Create(name)
+	if err != nil {
+		logrus.Error("open error ", err)
+		return err
+	}
+	defer f.Close()
+
+	err = gocsv.MarshalFile(in, f)
 	return err
 }
 

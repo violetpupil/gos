@@ -28,3 +28,12 @@ func TestSetCSVReader(t *testing.T) {
 	}
 	fmt.Printf("%+v\n", data)
 }
+
+func TestMarshalFile(t *testing.T) {
+	data := []Test{
+		{Name: "jay", Age: 18},
+		{Name: "john", Age: 19},
+	}
+	err := MarshalFile("tmp.csv", data)
+	fmt.Println(err)
+}
