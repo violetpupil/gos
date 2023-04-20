@@ -14,9 +14,10 @@ func TestInitMySQLEnv(t *testing.T) {
 }
 
 type Tmp struct {
-	Id   int
-	Age  int    `gorm:"uniqueIndex:idx_age_name"`
-	Name string `gorm:"uniqueIndex:idx_age_name;type:varchar(10)"`
+	Id     int
+	Age    int    `gorm:"uniqueIndex:idx_age_name"`
+	Name   string `gorm:"uniqueIndex:idx_age_name;type:varchar(10)"`
+	Beauty bool
 }
 
 func Test_crud_AutoMigrate(t *testing.T) {

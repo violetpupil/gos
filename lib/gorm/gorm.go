@@ -1,3 +1,5 @@
+// https://gorm.io/
+// https://gorm.io/docs/
 package gorm
 
 import (
