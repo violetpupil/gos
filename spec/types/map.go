@@ -1,5 +1,5 @@
 // map不初始化，只能读，不能写
-// 使用不存在的键取值，会返回默认值
+// v := m["不存在"] -> v是默认值
 //
 // The comparison operators == and != must be fully defined for operands of the key type
 // thus the key type must not be a function, map, or slice.
