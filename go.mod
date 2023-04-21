@@ -16,6 +16,7 @@ require (
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/joho/godotenv v1.5.1
 	github.com/nsqio/go-nsq v1.1.0
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/sirupsen/logrus v1.6.0
 	github.com/sony/sonyflake v1.1.0
 	github.com/spf13/cast v1.5.0
