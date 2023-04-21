@@ -30,6 +30,8 @@ However, if you have two Pods that use different images, the kubelet pulls the i
 
 ## [Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
 
-`PostStart` 容器创建时执行
+`PostStart` 容器创建后执行
 
-`PreStop` 容器停止时执行
+`PreStop` 容器停止前执行
+
+If either a PostStart or PreStop hook fails, it kills the Container.
