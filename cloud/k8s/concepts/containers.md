@@ -27,3 +27,9 @@ You should avoid using the :latest tag when deploying containers in production a
 The kubelet never pulls multiple images in parallel on behalf of one Pod.
 
 However, if you have two Pods that use different images, the kubelet pulls the images in parallel on behalf of the two different Pods, when parallel image pulls is enabled.
+
+## [Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
+
+`PostStart`
+
+`PreStop`
