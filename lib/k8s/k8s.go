@@ -1,4 +1,6 @@
-// k8s客户端，必须先调用NewForConfig初始化
+// k8s客户端，必须先初始化
+// NewForFile 集群外客户端初始化
+// NewInCluster 集群内客户端初始化
 // https://github.com/kubernetes/client-go/blob/master/INSTALL.md
 // https://github.com/kubernetes/client-go/tree/master/examples
 package k8s
@@ -36,6 +38,9 @@ func NewForFile() error {
 	return err
 }
 
+// NewInCluster 初始化客户端 集群内访问
+// 使用pod里的Service Account token
+// /var/run/secrets/kubernetes.io/serviceaccount
 func NewInCluster() error {
 	config, err := rest.InClusterConfig()
 	if err != nil {
