@@ -13,7 +13,7 @@ func TestHomeDir(t *testing.T) {
 }
 
 func TestPodsList(t *testing.T) {
-	err := NewForConfig()
+	err := NewForFile()
 	if err != nil {
 		panic(err)
 	}
@@ -26,7 +26,7 @@ func TestPodsList(t *testing.T) {
 }
 
 func TestPodsGet(t *testing.T) {
-	err := NewForConfig()
+	err := NewForFile()
 	if err != nil {
 		panic(err)
 	}
