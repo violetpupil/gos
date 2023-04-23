@@ -4,9 +4,12 @@
 package k8s
 
 import (
+	"context"
 	"path/filepath"
 
 	"github.com/sirupsen/logrus"
+	api "k8s.io/api/core/v1"
+	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/util/homedir"
@@ -25,4 +28,18 @@ func NewForConfig() error {
 	}
 	Client, err = kubernetes.NewForConfig(config)
 	return err
+}
+
+// PodsList 获取所有pod信息
+func PodsList(ctx context.Context) (*api.PodList, error) {
+	opts := meta.ListOptions{}
+	pods, err := Client.CoreV1().Pods("").List(ctx, opts)
+	return pods, err
+}
+
+// PodsGet 获取单个pod信息
+func PodsGet(ctx context.Context, namespace, name string) (*api.Pod, error) {
+	opts := meta.GetOptions{}
+	pod, err := Client.CoreV1().Pods(namespace).Get(ctx, name, opts)
+	return pod, err
 }
