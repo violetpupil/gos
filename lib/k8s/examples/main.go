@@ -1,9 +1,5 @@
 // 集群内客户端
 // https://github.com/kubernetes/client-go/tree/master/examples/in-cluster-client-configuration
-//
-// 编译
-// set GOOS=linux
-// go build -o ./app .
 package main
 
 import (
