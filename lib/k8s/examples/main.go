@@ -4,11 +4,6 @@
 // 编译
 // set GOOS=linux
 // go build -o ./app .
-//
-// Dockerfile
-// FROM debian
-// COPY app /app
-// ENTRYPOINT /app
 package main
 
 import (
