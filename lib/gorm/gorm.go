@@ -52,11 +52,11 @@ func InitMySQL(user, pass, host, port, d string) error {
 }
 
 const (
-	EnvHost     = "DBHost"
-	EnvPort     = "DBPort"
-	EnvUser     = "DBUser"
-	EnvPass     = "DBPass"
-	EnvDatabase = "DBDatabase"
+	EnvHost     = "MySQLHost"
+	EnvPort     = "MySQLPort"
+	EnvUser     = "MySQLUser"
+	EnvPass     = "MySQLPass"
+	EnvDatabase = "MySQLDatabase"
 )
 
 // InitMySQLEnv 使用环境变量初始化mysql数据库操作
