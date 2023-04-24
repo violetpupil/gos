@@ -2,3 +2,5 @@
 .env
 # 临时文件
 tmp*
+# 根目录下的Dockerfile用来测试
+/Dockerfile
