@@ -7,7 +7,7 @@
 //
 // Dockerfile
 // FROM debian
-// COPY ./app /app
+// COPY app /app
 // ENTRYPOINT /app
 package main
 
