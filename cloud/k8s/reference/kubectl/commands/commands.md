@@ -1,5 +1,7 @@
 # [commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands)
 
+`create` 创建资源
+
 `get` 查看k8s资源
 
 `run` 在pod中运行镜像
@@ -15,6 +17,8 @@
 ## WORKING WITH APPS
 
 `describe` 查看资源细节
+
+`logs` 打印容器日志
 
 ## KUBECTL SETTINGS AND USAGE
 

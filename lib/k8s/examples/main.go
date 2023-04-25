@@ -1,5 +1,12 @@
 // 集群内客户端
 // https://github.com/kubernetes/client-go/tree/master/examples/in-cluster-client-configuration
+//
+// create role binding which will grant the default service account view permissions
+// kubectl create clusterrolebinding default-view --clusterrole=view --serviceaccount=default:default
+// 在pod中运行镜像
+// kubectl run --rm -i demo --image=instafever/component
+// 删除pod
+// kubectl delete pod demo
 package main
 
 import (
