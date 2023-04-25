@@ -18,7 +18,7 @@ func main() {
 	}
 	ctx := context.Background()
 	for {
-		pods, err := k8s.PodsList(ctx)
+		pods, err := k8s.PodsList(ctx, "default")
 		if err != nil {
 			logrus.Errorln("pods list error", err)
 			time.Sleep(3 * time.Second)

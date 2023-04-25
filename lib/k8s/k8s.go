@@ -51,11 +51,10 @@ func NewInCluster() error {
 	return err
 }
 
-// PodsList 获取所有pod信息
-func PodsList(ctx context.Context) (*api.PodList, error) {
+// PodsList 获取命名空间所有pod信息，空字符串表示所有命名空间
+func PodsList(ctx context.Context, namespace string) (*api.PodList, error) {
 	opts := meta.ListOptions{}
-	// 所有命名空间
-	pods, err := Client.CoreV1().Pods("").List(ctx, opts)
+	pods, err := Client.CoreV1().Pods(namespace).List(ctx, opts)
 	return pods, err
 }
 

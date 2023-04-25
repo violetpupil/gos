@@ -18,7 +18,7 @@ func TestPodsList(t *testing.T) {
 		panic(err)
 	}
 	ctx := context.Background()
-	pods, err := PodsList(ctx)
+	pods, err := PodsList(ctx, "")
 	if err != nil {
 		panic(err)
 	}
