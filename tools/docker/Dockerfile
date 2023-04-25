@@ -1,4 +1,4 @@
-# docker build -t component .
+# docker build -t instafever/component .
 # https://docs.docker.com/engine/reference/builder/
 # 使用\分行
 # 用.dockerignore指定需要排除的文件，不发送给docker daemon
