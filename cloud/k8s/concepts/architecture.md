@@ -2,6 +2,12 @@
 
 ![Components of Kubernetes](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
 
+`etcd` 存储集群数据
+
+`kube-scheduler` watches for newly created Pods with no assigned node, and selects a node for them to run on
+
+`kubelet` 运行容器
+
 ## [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)
 
 节点会向集群发送心跳，有两种形式：
