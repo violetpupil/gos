@@ -40,42 +40,6 @@ func LogOpError(err error) {
 	os.LogSyscallError(errWrap)
 }
 
-// HostIp 获取主机ip
-// 8.8.8.8 和 8.8.4.4 是谷歌提供的dns服务器
-func HostIp() (net.IP, error) {
-	conn, err := net.Dial("ip:icmp", "8.8.8.8")
-	if err != nil {
-		logrus.Error("dial error ", err)
-		return nil, err
-	}
-	defer conn.Close()
-
-	addr, ok := conn.LocalAddr().(*net.IPAddr)
-	if !ok {
-		return nil, errors.New("not ip addr")
-	}
-	return addr.IP, nil
-}
-
-// Private 如果是私有ip，转为4字节表示返回，否则返回nil
-// 私有ip地址范围
-// 10.0.0.0 ~ 10.255.255.255
-// 172.16.0.0 ~ 172.31.255.255
-// 192.168.0.0 ~ 192.168.255.255
-func Private(ip net.IP) net.IP {
-	ip = ip.To4()
-	if ip == nil {
-		return nil
-	}
-
-	if ip[0] == 10 ||
-		ip[0] == 172 && ip[1] >= 16 && ip[1] < 32 ||
-		ip[0] == 192 && ip[1] == 168 {
-		return ip
-	}
-	return nil
-}
-
 // ConnId 连接id，网络名-本地主机端口-远程主机端口
 func ConnId(c net.Conn) string {
 	if c == nil {
@@ -88,5 +52,40 @@ func ConnId(c net.Conn) string {
 		return fmt.Sprintf("%s-%s-%s", l.Network(), l, r)
 	} else {
 		return fmt.Sprintf("%s-%s-%s-%s", l.Network(), l, r.Network(), r)
+	}
+}
+
+// Listen 监听请求，并在单独的goroutine中处理连接
+// The network must be "tcp", "tcp4", "tcp6", "unix" or "unixpacket".
+// For TCP networks, if the host in the address parameter is empty or a literal unspecified IP address,
+// Listen listens on all available unicast and anycast IP addresses of the local system.
+// tcp -> [::]
+// tcp4 -> 0.0.0.0
+//
+// If the port in the address parameter is empty or "0",
+// as in "127.0.0.1:" or "[::1]:0", a port number is automatically chosen.
+//
+// address取值
+// host:port
+// 空字符串
+// host:
+// :port
+func Listen(network, address string, f func(net.Conn)) error {
+	ln, err := net.Listen(network, address)
+	if err != nil {
+		logrus.Errorln("listen error", err)
+		return err
+	}
+	logrus.Infoln("listener on", ln.Addr())
+
+	for {
+		// 阻塞等待连接
+		conn, err := ln.Accept()
+		if err != nil {
+			logrus.WithField("ConnId", ConnId(conn)).Errorln("accept error", err)
+			continue
+		}
+		logrus.WithField("ConnId", ConnId(conn)).Infoln("accept conn")
+		go f(conn)
 	}
 }
