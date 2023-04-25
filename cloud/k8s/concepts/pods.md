@@ -6,4 +6,8 @@ pod是类似物理机或虚拟机的逻辑主机，是一组相对耦合的容�
 
 The "one-container-per-Pod" model is the most common Kubernetes use case
 
+## Pod templates
+
 Controllers for workload resources create Pods from a pod template and manage those Pods on your behalf.
+
+Each workload resource implements its own rules for handling changes to the Pod template.
