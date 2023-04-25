@@ -9,6 +9,8 @@
 ```bash
 # 上传镜像到公共镜像库
 docker push instafever/component
+# 使用当前目录Dockerfile构建镜像
+docker build -t instafever/component .
 ```
 
 ## [build](https://docs.docker.com/engine/reference/commandline/build/)
