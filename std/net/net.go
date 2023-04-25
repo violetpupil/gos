@@ -65,11 +65,7 @@ func ConnId(c net.Conn) string {
 // If the port in the address parameter is empty or "0",
 // as in "127.0.0.1:" or "[::1]:0", a port number is automatically chosen.
 //
-// address取值
-// host:port
-// 空字符串
-// host:
-// :port
+// address 取值 host:port 空字符串 host: :port
 func Listen(network, address string, f func(net.Conn)) error {
 	ln, err := net.Listen(network, address)
 	if err != nil {
