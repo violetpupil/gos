@@ -13,3 +13,11 @@ Controllers for workload resources create Pods from a pod template and manage th
 模板更新后，需要创建新的pod替换旧的
 
 ## Pod networking
+
+Each Pod is assigned a unique IP address for each address family.
+
+Inside a Pod (and only then), the containers that belong to the Pod can communicate with one another using localhost.
+
+The containers in a Pod can also communicate with each other using standard inter-process communications like SystemV semaphores or POSIX shared memory.
+
+Containers within the Pod see the system hostname as being the same as the configured name for the Pod.
