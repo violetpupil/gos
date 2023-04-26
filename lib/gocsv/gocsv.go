@@ -33,7 +33,7 @@ func UnmarshalFile(name string, out any) error {
 func MarshalFile(name string, in any) error {
 	f, err := os.Create(name)
 	if err != nil {
-		logrus.Error("open error ", err)
+		logrus.Error("create file error ", err)
 		return err
 	}
 	defer f.Close()
