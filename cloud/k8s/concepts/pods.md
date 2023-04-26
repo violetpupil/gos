@@ -32,8 +32,8 @@ Pods are only scheduled once in their lifetime.
 
 `Running`
 
-`Succeeded`
+`Succeeded` All containers in the Pod have terminated in success, and will not be restarted.
 
-`Failed`
+`Failed` 所有容器停止
 
-`Unknown`
+`Unknown` 与节点通信有问题，无法获取pod状态
