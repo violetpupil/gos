@@ -9,6 +9,7 @@ require (
 	github.com/caarlos0/env/v7 v7.1.0
 	github.com/gin-contrib/pprof v1.4.0
 	github.com/gin-gonic/gin v1.8.2
+	github.com/go-echarts/go-echarts/v2 v2.2.6
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/go-the-way/exl v1.2.2
