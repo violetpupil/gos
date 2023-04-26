@@ -28,12 +28,12 @@ Pods are only scheduled once in their lifetime.
 
 ### Pod phase
 
-`Pending`
+`Pending` pod还没有调度到node上，或者容器镜像还在下载
 
-`Running`
+`Running` pod被调度到node上，所有容器被创建，至少一个容器处于启动或运行中
 
 `Succeeded` All containers in the Pod have terminated in success, and will not be restarted.
 
-`Failed` 所有容器停止
+`Failed` All containers in the Pod have terminated, and at least one container has terminated in failure.
 
 `Unknown` 与节点通信有问题，无法获取pod状态
