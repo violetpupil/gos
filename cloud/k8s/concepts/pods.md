@@ -24,6 +24,16 @@ Containers within the Pod see the system hostname as being the same as the confi
 
 ## [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
 
-Pending -> Running -> Succeeded or Failed
-
 Pods are only scheduled once in their lifetime.
+
+### Pod phase
+
+`Pending`
+
+`Running`
+
+`Succeeded`
+
+`Failed`
+
+`Unknown`
