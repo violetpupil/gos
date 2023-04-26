@@ -21,3 +21,9 @@ Inside a Pod (and only then), the containers that belong to the Pod can communic
 The containers in a Pod can also communicate with each other using standard inter-process communications like SystemV semaphores or POSIX shared memory.
 
 Containers within the Pod see the system hostname as being the same as the configured name for the Pod.
+
+## [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
+
+Pending -> Running -> Succeeded or Failed
+
+Pods are only scheduled once in their lifetime.
