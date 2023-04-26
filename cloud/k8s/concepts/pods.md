@@ -28,7 +28,7 @@ Pods are only scheduled once in their lifetime.
 
 ### Pod phase
 
-`Pending` pod还没有调度到node上，或者容器镜像还在下载
+`Pending` pod还没有调度到node上，或者容器还在准备
 
 `Running` pod被调度到node上，所有容器被创建，至少一个容器处于启动或运行中
 
@@ -37,3 +37,11 @@ Pods are only scheduled once in their lifetime.
 `Failed` All containers in the Pod have terminated, and at least one container has terminated in failure.
 
 `Unknown` 与节点通信有问题，无法获取pod状态
+
+### Container restart policy
+
+The spec of a Pod has a restartPolicy field with possible values Always, OnFailure, and Never.
+The default value is Always.
+
+容器退出后，kubelet采用指数回退重启，最多五分钟。
+容器正常运行10分钟后，重置回退计时器

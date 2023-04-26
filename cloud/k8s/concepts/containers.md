@@ -35,3 +35,11 @@ However, if you have two Pods that use different images, the kubelet pulls the i
 `PreStop` 容器停止前执行
 
 If either a PostStart or PreStop hook fails, it kills the Container.
+
+## [Container states](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-states)
+
+`Waiting` 准备状态，拉取镜像
+
+`Running` 运行中，PostStart钩子已执行
+
+`Terminated` 已停止
