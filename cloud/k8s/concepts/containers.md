@@ -66,3 +66,15 @@ If either a PostStart or PreStop hook fails, it kills the Container.
 The kubelet performs garbage collection on unused images every five minutes and on unused containers every minute.
 
 当磁盘用量达到 HighThresholdPercent 时，会删除最久未使用的镜像，直到磁盘用量降到 LowThresholdPercent
+
+## [Container probes](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes)
+
+A probe is a diagnostic performed periodically by the kubelet on a container.
+
+`exec` Executes a specified command inside the container. The diagnostic is considered successful if the command exits with a status code of 0.
+
+`grpc` The target should implement gRPC health checks. The diagnostic is considered successful if the status of the response is SERVING.
+
+`httpGet` Performs an HTTP GET request against the Pod's IP address on a specified port and path. 200 <= status code < 400
+
+`tcpSocket` Performs a TCP check against the Pod's IP address on a specified port. 连接上之后可以立即关闭
