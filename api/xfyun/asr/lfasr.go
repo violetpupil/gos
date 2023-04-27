@@ -134,11 +134,10 @@ func (a LfAsr) Upload(name string) (*UploadRes, error) {
 		logrus.Error("read file error ", err)
 		return nil, err
 	}
-	res, err := resty.Post(UrlUpload, func(r *resty.Request) *resty.Request {
+	res, err := resty.Post(UrlUpload, func(r *resty.Request) {
 		r.SetHeader("Content-Type", "application/json")
 		r.SetQueryParams(qs)
 		r.SetBody(bytes)
-		return r
 	})
 	if err != nil {
 		logrus.Error("post error ", err)
@@ -325,10 +324,9 @@ func (a LfAsr) GetResult(orderId string) (*GetResultRes, error) {
 	// 查询字符串参数
 	qs := a.SignA(a.LfAsrSecret)
 	qs["orderId"] = orderId
-	res, err := resty.Post(UrlGetResult, func(r *resty.Request) *resty.Request {
+	res, err := resty.Post(UrlGetResult, func(r *resty.Request) {
 		r.SetHeader("Content-Type", "application/json")
 		r.SetQueryParams(qs)
-		return r
 	})
 	if err != nil {
 		logrus.Error("post error ", err)

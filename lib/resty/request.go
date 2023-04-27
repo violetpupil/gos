@@ -44,4 +44,4 @@ type Request = resty.Request
 // SetError 指定响应体结构，响应码>399，与Response.Error配合使用
 //
 // EnableTrace 是否追踪请求信息
-type ReqHook = func(*resty.Request) *resty.Request
+type ReqHook = func(*resty.Request)

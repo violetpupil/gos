@@ -114,10 +114,9 @@ func (a NiuTrans) Translate(text, src, dst string) (string, error) {
 	headers := a.Sign(SignHost, SignLine, body)
 	headers["Content-Type"] = "application/json"
 	headers["Accept"] = "application/json,version=1.0"
-	res, err := resty.Post(UrlTrans, func(r *resty.Request) *resty.Request {
+	res, err := resty.Post(UrlTrans, func(r *resty.Request) {
 		r.SetHeaders(headers)
 		r.SetBody(body)
-		return r
 	})
 	if err != nil {
 		logrus.Error("post error ", err)

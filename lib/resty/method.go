@@ -15,7 +15,7 @@ func Execute(method, url string, hook ReqHook) (*resty.Response, error) {
 	}
 	req := Client.R()
 	if hook != nil {
-		req = hook(req)
+		hook(req)
 	}
 
 	res, err := req.Execute(method, url)
@@ -28,7 +28,7 @@ func Get(url string, hook ReqHook) (*resty.Response, error) {
 	}
 	req := Client.R()
 	if hook != nil {
-		req = hook(req)
+		hook(req)
 	}
 
 	res, err := req.Get(url)
@@ -41,7 +41,7 @@ func Post(url string, hook ReqHook) (*resty.Response, error) {
 	}
 	req := Client.R()
 	if hook != nil {
-		req = hook(req)
+		hook(req)
 	}
 
 	res, err := req.Post(url)
@@ -61,7 +61,7 @@ func PostFile(url string, hook ReqHook, name string) (*resty.Response, error) {
 	}
 	req := Client.R().SetBody(bytes)
 	if hook != nil {
-		req = hook(req)
+		hook(req)
 	}
 
 	res, err := req.Post(url)
