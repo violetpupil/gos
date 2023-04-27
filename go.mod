@@ -7,6 +7,7 @@ require (
 	github.com/aliyun/aliyun-oss-go-sdk v2.2.7+incompatible
 	github.com/brianvoe/gofakeit/v6 v6.20.2
 	github.com/caarlos0/env/v7 v7.1.0
+	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-contrib/pprof v1.4.0
 	github.com/gin-gonic/gin v1.8.2
 	github.com/go-echarts/go-echarts/v2 v2.2.6
