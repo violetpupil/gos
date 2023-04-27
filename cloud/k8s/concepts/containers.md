@@ -71,10 +71,20 @@ The kubelet performs garbage collection on unused images every five minutes and 
 
 A probe is a diagnostic performed periodically by the kubelet on a container.
 
-`exec` Executes a specified command inside the container. The diagnostic is considered successful if the command exits with a status code of 0.
+`exec` 在容器中执行命令，退出码为0时成功
 
-`grpc` The target should implement gRPC health checks. The diagnostic is considered successful if the status of the response is SERVING.
+`grpc` grpc健康检查，响应status=SERVING时成功
 
-`httpGet` Performs an HTTP GET request against the Pod's IP address on a specified port and path. 200 <= status code < 400
+`httpGet` http get请求，响应码在200~399时成功
 
-`tcpSocket` Performs a TCP check against the Pod's IP address on a specified port. 连接上之后可以立即关闭
+`tcpSocket` tcp连接上就成功，可以立即关闭连接
+
+### Types of probe
+
+`livenessProbe` 容器是否在运行，失败会重启
+
+`readinessProbe` 容器是否能处理请求，失败会把pod从服务端点中移除
+
+`startupProbe` 容器内应用是否在运行，失败会重启
+
+All other probes are disabled if a startup probe is provided, until it succeeds.
