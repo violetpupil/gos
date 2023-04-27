@@ -23,9 +23,9 @@ func Send(token string, body any) error {
 		return err
 	}
 
-	logrus.WithFields(logrus.Fields{
-		"Status": res.Status(),
-		"Body":   res.String(),
-	}).Info("send response")
-	return nil
+	if res.StatusCode() != 200 {
+		err = resty.ToError(res)
+		logrus.Errorln("send error", err)
+	}
+	return err
 }
