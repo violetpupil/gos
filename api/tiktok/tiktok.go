@@ -1,4 +1,3 @@
-// tiktok
 // https://developers.tiktok.com
 package tiktok
 
