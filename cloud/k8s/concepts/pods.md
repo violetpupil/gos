@@ -58,6 +58,4 @@ The default value is Always.
 
 `Ready` pod是否已可以处理请求
 
-#### Pod readiness
-
 可以注入额外的状况，如果在pod状况列表中找不到该状况，则该状况状态默认为False

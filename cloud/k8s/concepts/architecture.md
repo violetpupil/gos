@@ -23,18 +23,8 @@ Each controller tries to move the current cluster state closer to the desired st
 
 A controller tracks at least one Kubernetes resource type.
 
-## [garbage-collection](https://kubernetes.io/docs/concepts/architecture/garbage-collection/)
+## [Addons](https://kubernetes.io/docs/concepts/overview/components/)
 
-### Cascading deletion
+Because these are providing cluster-level features, namespaced resources for addons belong within the kube-system namespace.
 
-主对象删除后，k8s默认会删除从对象
-
-默认使用后台删除，先删除主对象，再删除从对象
-
-可以指定前台删除，先删除从对象，再删除主对象
-
-### Garbage collection of unused containers and images
-
-The kubelet performs garbage collection on unused images every five minutes and on unused containers every minute.
-
-当磁盘用量达到 HighThresholdPercent 时，会删除最久未使用的镜像，直到磁盘用量降到 LowThresholdPercent
+集群自带 DNS, Dashboard, Container Resource Monitoring, Cluster-level Logging 插件

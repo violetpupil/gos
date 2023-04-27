@@ -11,9 +11,3 @@
 虚拟机在虚拟硬件上，运行自己的操作系统
 
 容器共享宿主机的操作系统
-
-## [Addons](https://kubernetes.io/docs/concepts/overview/components/)
-
-Because these are providing cluster-level features, namespaced resources for addons belong within the kube-system namespace.
-
-集群自带 DNS, Dashboard, Container Resource Monitoring, Cluster-level Logging 插件

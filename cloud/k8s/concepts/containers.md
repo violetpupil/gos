@@ -1,5 +1,22 @@
 # [containers](https://kubernetes.io/docs/concepts/containers/)
 
+## [container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
+
+You need to install a container runtime into each node in the cluster so that Pods can run there.
+
+The Kubernetes [Container Runtime Interface (CRI)](https://kubernetes.io/docs/concepts/architecture/cri/) defines the main gRPC protocol for the communication between the cluster components kubelet and container runtime.
+
+### linux control groups
+
+It's critical that the kubelet and the container runtime uses the same cgroup driver and are configured the same.
+
+```bash
+# 查看操作系统使用的cgroup版本
+# v2 -> cgroup2fs
+# v1 -> tmpfs
+stat -fc %T /sys/fs/cgroup/
+```
+
 ## [images](https://kubernetes.io/docs/concepts/containers/images/)
 
 ### Image names
@@ -43,3 +60,9 @@ If either a PostStart or PreStop hook fails, it kills the Container.
 `Running` 运行中，PostStart钩子已执行
 
 `Terminated` 已停止
+
+## [Garbage collection of unused containers and images](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#containers-images)
+
+The kubelet performs garbage collection on unused images every five minutes and on unused containers every minute.
+
+当磁盘用量达到 HighThresholdPercent 时，会删除最久未使用的镜像，直到磁盘用量降到 LowThresholdPercent

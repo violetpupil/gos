@@ -38,3 +38,11 @@ These owned objects are dependents of their owner.
 Cluster-scoped dependents can only specify cluster-scoped owners.
 
 命名空间级的从对象能指定集群级或同一命名空间的主对象
+
+## [Cascading deletion](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#cascading-deletion)
+
+主对象删除后，k8s默认会删除从对象
+
+默认使用后台删除，先删除主对象，再删除从对象
+
+可以指定前台删除，先删除从对象，再删除主对象
