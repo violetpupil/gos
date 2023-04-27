@@ -45,3 +45,19 @@ The default value is Always.
 
 容器退出后，kubelet采用指数回退重启，最多五分钟。
 容器正常运行10分钟后，重置回退计时器
+
+### Pod conditions
+
+`PodScheduled` pod是否已被调度到节点上
+
+`PodHasNetwork` pod网络是否已配置
+
+`ContainersReady` 是否所有容器已就绪
+
+`Initialized` 是否所有初始容器已成功完成
+
+`Ready` pod是否已可以处理请求
+
+#### Pod readiness
+
+可以注入额外的状况，如果在pod状况列表中找不到该状况，则该状况状态默认为False

@@ -26,6 +26,8 @@ annotations 用户定义非标识数据
 
 label和annotation键名可以包含前缀，用/分隔
 
+The kubernetes.io/ and k8s.io/ prefixes are reserved for Kubernetes core components.
+
 [Shared labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/) and annotations share a common prefix: app.kubernetes.io.
 
 ## [owners](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/)
