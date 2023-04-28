@@ -16,3 +16,7 @@ docker build -t instafever/component .
 ## [build](https://docs.docker.com/engine/reference/commandline/build/)
 
 `-t` Name and optionally a tag in the name:tag format
+
+## [run](https://docs.docker.com/engine/reference/commandline/run/)
+
+`--rm` Automatically remove the container when it exits

@@ -8,7 +8,7 @@
 
 `-p` 指定项目名，默认当前目录名
 
-## [命令](https://docs.docker.com/compose/reference/)
+## [命令]
 
 ```bash
 docker-compose up -d
