@@ -85,6 +85,6 @@ A probe is a diagnostic performed periodically by the kubelet on a container.
 
 `readinessProbe` 容器是否能处理请求，失败会把pod从服务端点中移除
 
-`startupProbe` 容器内应用是否在运行，失败会重启
+`startupProbe` 容器是否已启动，失败会重启
 
 All other probes are disabled if a startup probe is provided, until it succeeds.

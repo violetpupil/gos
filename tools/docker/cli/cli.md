@@ -20,3 +20,7 @@ docker build -t instafever/component .
 ## [run](https://docs.docker.com/engine/reference/commandline/run/)
 
 `--rm` Automatically remove the container when it exits
+
+## [stop](https://docs.docker.com/engine/reference/commandline/stop/)
+
+The main process inside the container will receive SIGTERM, and after a grace period, SIGKILL.
