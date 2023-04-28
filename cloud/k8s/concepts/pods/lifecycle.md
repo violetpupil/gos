@@ -35,3 +35,7 @@ The default value is Always.
 `Ready` pod是否已可以处理请求
 
 可以注入额外的状况，如果在pod状况列表中找不到该状况，则该状况状态默认为False
+
+## Garbage collection of Pods
+
+当pod数量超过配置值时，pod垃圾回收控制器(PodGC)会清理终结的pod
