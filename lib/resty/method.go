@@ -45,7 +45,12 @@ func Post(url string, hook ReqHook) (*resty.Response, error) {
 	}
 
 	res, err := req.Post(url)
-	return res, err
+	if err != nil {
+		logrus.Errorln("post error", err)
+		return nil, err
+	}
+	logrus.Infoln("post response status", res.Status())
+	return res, nil
 }
 
 // PostFile 上传文件，直接读取文件字节

@@ -22,10 +22,7 @@ func Send(token string, body any) error {
 		logrus.Errorln("post error", err)
 		return err
 	}
+	logrus.Infoln("send ding response body", res.String())
 
-	if res.StatusCode() != 200 {
-		err = resty.ToError(res)
-		logrus.Errorln("send error", err)
-	}
-	return err
+	return nil
 }

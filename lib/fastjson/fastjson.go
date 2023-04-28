@@ -7,7 +7,7 @@ package fastjson
 import "github.com/valyala/fastjson"
 
 var (
-	// 获取int字段值，解析失败时，返回0
+	// 解析字段类型number，解析失败时，返回0
 	GetInt    = fastjson.GetInt
 	GetString = fastjson.GetString
 )

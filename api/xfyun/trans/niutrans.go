@@ -123,7 +123,7 @@ func (a NiuTrans) Translate(text, src, dst string) (string, error) {
 		return "", err
 	}
 	// 打印所有字段
-	logrus.Info("translate response body ", res.String)
+	logrus.Info("translate response body ", res.String())
 
 	var resBody TranslateRes
 	err = json.Unmarshal(res.Body(), &resBody)

@@ -144,7 +144,7 @@ func (a LfAsr) Upload(name string) (*UploadRes, error) {
 		return nil, err
 	}
 	// 打印所有字段
-	logrus.Info("upload response body ", res.String)
+	logrus.Info("upload response body ", res.String())
 
 	var body UploadRes
 	err = Unmarshal(res, &body)
@@ -333,7 +333,7 @@ func (a LfAsr) GetResult(orderId string) (*GetResultRes, error) {
 		return nil, err
 	}
 	// 打印所有字段
-	logrus.Info("get result response ", res.String)
+	logrus.Info("get result response ", res.String())
 
 	var body GetResultRes
 	err = Unmarshal(res, &body)
