@@ -26,11 +26,3 @@ The Pod's effective request/limit for a resource is the higher of:
 - the effective init request/limit for a resource
 
 The highest of any particular resource request or limit defined on all init containers is the effective init request/limit.
-
-## [Disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/)
-
-主动执行的操作导致pod中断称为voluntary disruptions
-
-A PDB limits the number of Pods of a replicated application that are down simultaneously from voluntary disruptions.
-
-Cluster managers and hosting providers should use tools which respect PodDisruptionBudgets by calling the Eviction API instead of directly deleting pods or deployments.

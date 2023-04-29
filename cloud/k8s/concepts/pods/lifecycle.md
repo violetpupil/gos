@@ -40,6 +40,8 @@ The default value is Always.
 
 当pod数量超过配置值时，pod垃圾回收控制器(PodGC)会清理终结的pod
 
+当节点不再存在，orphan pods会被回收
+
 ## [Pod restart reasons](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/#pod-restart-reasons)
 
 A Pod can restart, causing re-execution of init containers:
