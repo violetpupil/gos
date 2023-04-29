@@ -16,3 +16,7 @@ specialized containers that run before app containers in a Pod.
 Each init container must complete successfully before the next one starts.
 
 Consequently, they can be given access to Secrets that app containers cannot access.
+
+## [Ephemeral Containers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
+
+一般容器必须在pod创建时指定，临时容器可以运行在现有的pod上
