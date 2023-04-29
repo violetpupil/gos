@@ -14,6 +14,8 @@ cloud 云原生文档
 
 crypto 密码学
 
+lang 辅助语言
+
 lib 第三方库
 
 linux linux文档
