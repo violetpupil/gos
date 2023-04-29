@@ -12,3 +12,7 @@ Kubernetes uses pause containers to allow for worker containers crashing or rest
 ## [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
 
 specialized containers that run before app containers in a Pod.
+
+Each init container must complete successfully before the next one starts.
+
+Consequently, they can be given access to Secrets that app containers cannot access.

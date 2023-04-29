@@ -14,11 +14,15 @@
 
 `-A` 所有命名空间
 
+## APP MANAGEMENT
+
+`apply` 应用json或yaml配置
+
 ## WORKING WITH APPS
 
 `describe` 查看资源细节
 
-`logs` 打印容器日志
+`logs` Print the logs for a container in a pod or specified resource.
 
 ## KUBECTL SETTINGS AND USAGE
 
