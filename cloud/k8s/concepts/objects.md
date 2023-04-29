@@ -8,6 +8,8 @@ status -  current state
 
 ## [unique](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/)
 
+相同资源类型对象名在命名空间或集群唯一
+
 Every Kubernetes object also has a UID that is unique across your whole cluster.
 
 Kubernetes UIDs are universally unique identifiers (also known as UUIDs).

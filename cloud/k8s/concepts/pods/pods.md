@@ -21,3 +21,12 @@ Inside a Pod (and only then), the containers that belong to the Pod can communic
 The containers in a Pod can also communicate with each other using standard inter-process communications like SystemV semaphores or POSIX shared memory.
 
 Containers within the Pod see the system hostname as being the same as the configured name for the Pod.
+
+## [Resources](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/#resources)
+
+The Pod's effective request/limit for a resource is the higher of:
+
+- the sum of all app containers request/limit for a resource
+- the effective init request/limit for a resource
+
+The highest of any particular resource request or limit defined on all init containers is the effective init request/limit.
