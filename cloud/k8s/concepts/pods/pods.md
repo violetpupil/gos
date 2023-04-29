@@ -6,11 +6,7 @@ pod是类似物理机或虚拟机的逻辑主机，是一组相对耦合的容�
 
 The "one-container-per-Pod" model is the most common Kubernetes use case
 
-## Pod templates
-
 Controllers for workload resources create Pods from a pod template and manage those Pods on your behalf.
-
-模板更新后，需要创建新的pod替换旧的
 
 ## Pod networking
 
@@ -30,3 +26,11 @@ The Pod's effective request/limit for a resource is the higher of:
 - the effective init request/limit for a resource
 
 The highest of any particular resource request or limit defined on all init containers is the effective init request/limit.
+
+## [Disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/)
+
+主动执行的操作导致pod中断称为voluntary disruptions
+
+A PDB limits the number of Pods of a replicated application that are down simultaneously from voluntary disruptions.
+
+Cluster managers and hosting providers should use tools which respect PodDisruptionBudgets by calling the Eviction API instead of directly deleting pods or deployments.
