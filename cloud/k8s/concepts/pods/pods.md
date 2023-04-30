@@ -18,6 +18,10 @@ The containers in a Pod can also communicate with each other using standard inte
 
 Containers within the Pod see the system hostname as being the same as the configured name for the Pod.
 
+## Static Pods
+
+静态pod直接被kubelet管理，API server只能看到静态pod，但不能控制
+
 ## [Resources](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/#resources)
 
 The Pod's effective request/limit for a resource is the higher of:

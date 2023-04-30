@@ -20,3 +20,7 @@ Consequently, they can be given access to Secrets that app containers cannot acc
 ## [Ephemeral Containers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 
 一般容器必须在pod创建时指定，临时容器可以运行在现有的pod上
+
+Like regular containers, you may not change or remove an ephemeral container after you have added it to a Pod.
+
+When using ephemeral containers, it's helpful to enable process namespace sharing so you can view processes in other containers.

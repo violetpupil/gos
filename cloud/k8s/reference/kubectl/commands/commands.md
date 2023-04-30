@@ -22,6 +22,8 @@
 
 `describe` 查看资源细节
 
+`exec` Execute a command in a container.
+
 `logs` Print the logs for a container in a pod or specified resource.
 
 ## KUBECTL SETTINGS AND USAGE
