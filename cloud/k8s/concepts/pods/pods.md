@@ -30,3 +30,9 @@ The Pod's effective request/limit for a resource is the higher of:
 - the effective init request/limit for a resource
 
 The highest of any particular resource request or limit defined on all init containers is the effective init request/limit.
+
+## [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/)
+
+k8s根据容器资源请求和限制，将pod分为不同的quality of service (QoS) class
+
+When a Node runs out of resources, Kubernetes will first evict BestEffort Pods running on that Node, followed by Burstable and finally Guaranteed Pods.
