@@ -18,6 +18,8 @@ Kubernetes UIDs are universally unique identifiers (also known as UUIDs).
 
 k8s有四个初始命名空间 `default` `kube-node-lease` `kube-public` `kube-system`
 
+`kube-public` This namespace is readable by all clients (including those not authenticated).
+
 Avoid creating namespaces with the prefix kube-, since it is reserved for Kubernetes system namespaces.
 
 ## [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)&[annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
