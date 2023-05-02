@@ -18,6 +18,8 @@
 
 `apply` 应用json或yaml配置
 
+`rollout` Manage the rollout of a resource.
+
 ## WORKING WITH APPS
 
 `describe` 查看资源细节
