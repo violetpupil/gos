@@ -4,7 +4,7 @@
 
 `namespace` 对象所属命名空间
 
-`labels` 对象标识
+`labels` 自定义对象标识
 
 `annotations` 自定义对象数据
 
