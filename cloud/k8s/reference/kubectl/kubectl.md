@@ -1,10 +1,20 @@
 # [kubectl](https://kubernetes.io/docs/reference/kubectl/)
 
+For configuration, kubectl looks for a file named config in the $HOME/.kube directory.
+
+## Syntax
+
+`kubectl [command] [TYPE] [NAME] [flags]`
+
+Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms.
+
+## Resource types
+
+replicasets rs
+
 ## [install](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
 
 You must use a kubectl version that is within one minor version difference of your cluster.
-
-配置文件 ~/.kube/config
 
 ## [Kubernetes Object Management](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/)
 
