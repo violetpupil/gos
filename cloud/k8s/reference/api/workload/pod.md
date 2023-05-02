@@ -12,7 +12,7 @@ status:
 
 ### Containers
 
-`containers` required 容器列表
+`containers` 容器列表 required
 
 ### Lifecycle
 
@@ -20,7 +20,7 @@ status:
 
 ## Container
 
-`name` required 容器名，pod内唯一
+`name` 容器名，pod内唯一 required
 
 ### Image
 
@@ -30,4 +30,11 @@ status:
 
 `ports` 公开端口列表
 
-- `containerPort` required pod公开端口号
+- `containerPort` Number of port to expose on the pod's IP address. required
+
+### Resources
+
+`resources` 计算资源
+
+- `limits` Limits describes the maximum amount of compute resources allowed.
+- `requests` Requests describes the minimum amount of compute resources required.

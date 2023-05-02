@@ -10,8 +10,8 @@ status:
 
 ## DeploymentSpec
 
-`selector` required 和pod模板标签一致的pod标签选择器
+`selector` 和pod模板标签一致的pod标签选择器 required
 
-`template` required pod模板
+`template` pod模板 required
 
 `replicas` pod数，默认1
