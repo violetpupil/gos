@@ -15,3 +15,11 @@ status:
 `template` pod模板 required
 
 `replicas` pod数，默认1
+
+## DeploymentStatus
+
+`conditions` deployment状况
+
+- `status` Status of the condition, one of True, False, Unknown.
+- `type` 状况类型
+- `reason` The reason for the condition's last transition.
