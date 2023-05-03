@@ -30,4 +30,6 @@ nodes no
 
 pods po
 
+deployments deploy
+
 replicasets rs

@@ -18,6 +18,10 @@
 
 `apply` 应用json或yaml配置
 
+`annotate` Update the annotations on one or more resources.
+
+`edit` Edit a resource from the default editor.
+
 `rollout` Manage the rollout of a resource.
 
 `set` Configure application resources.
