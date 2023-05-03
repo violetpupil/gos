@@ -2,6 +2,10 @@
 
 `history` View previous rollout revisions and configurations.
 
+`pause` 暂停rollout
+
+`resume` 继续rollout
+
 `status` Show the status of the rollout.
 
 `undo` Roll back to a previous rollout.
