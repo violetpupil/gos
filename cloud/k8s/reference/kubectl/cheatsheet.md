@@ -18,6 +18,12 @@ kubectl config set-context --current --namespace=<namespace-name> # 设置当前
 kubectl describe node <node-name> # 查看节点信息
 ```
 
+## Updating resources
+
+```bash
+kubectl set image deployment/frontend www=image:v2 # 更新deployment的www镜像
+```
+
 ## Interacting with Nodes and cluster
 
 ```bash

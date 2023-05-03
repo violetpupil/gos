@@ -20,6 +20,8 @@
 
 `rollout` Manage the rollout of a resource.
 
+`set` Configure application resources.
+
 ## WORKING WITH APPS
 
 `describe` 查看资源细节
