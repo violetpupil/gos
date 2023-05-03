@@ -33,3 +33,5 @@ pods po
 deployments deploy
 
 replicasets rs
+
+horizontalpodautoscalers hpa
