@@ -16,6 +16,8 @@ status:
 
 `replicas` pod数，默认1
 
+`revisionHistoryLimit` The number of old ReplicaSets to retain to allow rollback. 默认10
+
 ## DeploymentStatus
 
 `conditions` deployment状况

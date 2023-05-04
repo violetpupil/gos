@@ -33,7 +33,3 @@ Deployment controller将`pod-template-hash`标签添加到 ReplicaSet 和 Pod �
 A Deployment's rollout is triggered if and only if the Deployment's Pod template (that is, .spec.template) is changed
 
 滚动更新确保75%~125%的pod运行，先创建部分pod，再杀掉部分pod
-
-## Rolling Back a Deployment
-
-By default, all of the Deployment's rollout history is kept in the system so that you can rollback anytime you want.
