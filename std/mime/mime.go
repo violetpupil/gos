@@ -2,5 +2,7 @@
 package mime
 
 const (
-	Json = "application/json"
+	Json     = "application/json"
+	FormUrl  = "application/x-www-form-urlencoded"
+	FormData = "multipart/form-data"
 )

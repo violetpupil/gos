@@ -1,5 +1,5 @@
-// https://gin-gonic.com/docs/examples/
 // https://github.com/gin-gonic/gin/blob/master/docs/doc.md
+// https://gin-gonic.com/docs/examples/
 // https://github.com/gin-gonic/examples
 package gin
 
