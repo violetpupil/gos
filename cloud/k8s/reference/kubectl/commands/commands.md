@@ -24,6 +24,8 @@
 
 `edit` Edit a resource from the default editor.
 
+`patch` Update fields of a resource using strategic merge patch
+
 `rollout` Manage the rollout of a resource.
 
 `scale` Set a new size for a deployment, replica set, replication controller, or stateful set.
