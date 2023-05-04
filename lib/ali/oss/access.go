@@ -1,5 +1,5 @@
 // 权限控制
-// https://help.aliyun.com/document_detail/31833.html
+// https://help.aliyun.com/document_detail/609913.html
 package oss
 
 import "github.com/aliyun/aliyun-oss-go-sdk/oss"
@@ -11,6 +11,11 @@ const (
 	ACLPublicReadWrite = oss.ACLPublicReadWrite // 公开读，公开写
 	ACLDefault         = oss.ACLDefault         // 适用于object，继承bucket权限，object默认
 )
+
+/*
+授权访问
+https://help.aliyun.com/document_detail/59670.html
+*/
 
 // SignURL 生成私有文件访问地址
 func SignURL(objectKey string, expiredInSec int64, options ...oss.Option) (string, error) {
