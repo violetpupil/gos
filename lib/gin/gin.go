@@ -8,6 +8,7 @@ import (
 
 // Run 运行http服务，直到错误发生，默认端口8080
 func Run(addr ...string) {
+	// Logger and Recovery middleware already attached
 	e := gin.Default()
 	AdminGroup(e)
 
