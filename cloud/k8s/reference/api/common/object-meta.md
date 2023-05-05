@@ -8,6 +8,10 @@
 
 `annotations` 自定义对象数据
 
+## System
+
+`ownerReferences` 主对象
+
 ## Read-only
 
 `uid` 对象唯一id
