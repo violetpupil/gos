@@ -17,6 +17,6 @@ func Run(addr ...string) {
 
 	// 业务组
 	g := e.Group("", LogContext)
-	g.GET("echo", func(c *gin.Context) {})
+	g.Any("echo", func(c *gin.Context) {})
 	fmt.Println(e.Run(addr...))
 }

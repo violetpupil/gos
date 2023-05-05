@@ -15,6 +15,10 @@ type (
 	// 结构体标签都是form，表单优先级高
 	// 结构体标签 binding:"required" 校验字段不能为空
 	//
+	// Abort() 放弃剩下的处理器
+	// AbortWithStatus() 指定状态码
+	// AbortWithStatusJSON() 指定状态码并响应json
+	//
 	// JSON() 生成json响应体，并设置Content-Type
 	Context = gin.Context
 	// Engine 服务引擎
@@ -22,6 +26,7 @@ type (
 	Engine = gin.Engine
 	// RouterGroup 路由组
 	// Handle() 注册请求处理，路径可不以/开头
+	// Any() 所有请求方法
 	// GET() get处理
 	// POST() post处理
 	//

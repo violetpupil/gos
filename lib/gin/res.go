@@ -37,3 +37,11 @@ func ResInternalServerError(c *gin.Context) {
 	res.Msg = "internal server error"
 	c.JSON(http.StatusOK, res)
 }
+
+// AbortBadRequest 请求参数无效，放弃剩下的处理器
+func AbortBadRequest(c *gin.Context) {
+	var res Res
+	res.Code = 1
+	res.Msg = "parameter check failure"
+	c.AbortWithStatusJSON(http.StatusOK, res)
+}
