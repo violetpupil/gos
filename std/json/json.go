@@ -10,6 +10,7 @@ import (
 
 var (
 	// json编码
+	// omitempty选项 当字段为空时，不编码
 	Marshal = json.Marshal
 	// 当json解码到any时，接口实际类型对应关系
 	// bool, for JSON booleans
