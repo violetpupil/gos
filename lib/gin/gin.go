@@ -13,14 +13,10 @@ import (
 func Run(addr ...string) {
 	// Logger and Recovery middleware already attached
 	e := gin.Default()
-	AdminGroup(e)
+	Admin(e)
 
-	e.POST("/echo", Echo)
+	// 业务组
+	g := e.Group("", LogContext)
+	g.GET("echo", func(c *gin.Context) {})
 	fmt.Println(e.Run(addr...))
-}
-
-// Echo 打印请求信息
-func Echo(c *gin.Context) {
-	fmt.Println("echo request header")
-	fmt.Println(c.Request.Header)
 }

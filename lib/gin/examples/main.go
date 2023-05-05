@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	gin.Run()
+	gin.Run(":8082")
 }
