@@ -40,6 +40,8 @@
 
 `logs` Print the logs for a container in a pod or specified resource.
 
+`proxy` 本地开启 API server 的代理服务
+
 ## KUBECTL SETTINGS AND USAGE
 
 `api-resources` 打印集群支持的api资源

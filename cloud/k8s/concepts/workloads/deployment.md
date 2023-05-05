@@ -30,6 +30,8 @@ Deployment controller将`pod-template-hash`标签添加到 ReplicaSet 和 Pod �
 
 A Deployment's revision history is stored in the ReplicaSets it controls.
 
+Deployment --是主对象--> ReplicaSet --是主对象--> Pod
+
 ## Updating a Deployment
 
 A Deployment's rollout is triggered if and only if the Deployment's Pod template (that is, .spec.template) is changed
