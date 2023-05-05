@@ -16,7 +16,13 @@ status:
 
 `replicas` pod数，默认1
 
+`strategy` 部署更新策略
+
+- `type` 策略类型，默认为RollingUpdate
+
 `revisionHistoryLimit` The number of old ReplicaSets to retain to allow rollback. 默认10
+
+`progressDeadlineSeconds` 单次部署最大秒数，默认600
 
 ## DeploymentStatus
 
