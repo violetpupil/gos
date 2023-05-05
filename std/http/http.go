@@ -13,8 +13,9 @@ const (
 // HTTP status codes as registered with IANA.
 // See: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 const (
-	StatusOK         = http.StatusOK
-	StatusBadRequest = http.StatusBadRequest
+	StatusOK                  = http.StatusOK
+	StatusBadRequest          = http.StatusBadRequest
+	StatusInternalServerError = http.StatusInternalServerError
 )
 
 var (

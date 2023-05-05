@@ -29,3 +29,11 @@ func ResBadRequest(c *gin.Context) {
 	res.Msg = "parameter check failure"
 	c.JSON(http.StatusOK, res)
 }
+
+// ResInternalServerError 服务错误
+func ResInternalServerError(c *gin.Context) {
+	var res Res
+	res.Code = 2
+	res.Msg = "internal server error"
+	c.JSON(http.StatusOK, res)
+}
