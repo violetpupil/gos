@@ -30,7 +30,4 @@ func LogContext(c *gin.Context) {
 
 	// 嵌套执行下一个处理器
 	c.Next()
-	logrus.WithFields(logrus.Fields{
-		"Header": c.Writer.Header(),
-	}).Infoln("response info")
 }
