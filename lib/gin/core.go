@@ -18,10 +18,14 @@ type (
 	// JSON() 生成json响应体，并设置Content-Type
 	Context = gin.Context
 	// Engine 服务引擎
+	// Use() 配置全局中间件
 	Engine = gin.Engine
-	// RouterGroup 路由配置
+	// RouterGroup 路由组
 	// Handle() 注册请求处理，路径可不以/开头
 	// GET() get处理
 	// POST() post处理
+	//
+	// Group() 创建子路由组，路径可不以/结尾
+	// Use() 配置中间件
 	RouterGroup = gin.RouterGroup
 )
