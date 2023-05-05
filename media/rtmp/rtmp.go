@@ -1,7 +1,4 @@
-// rtmp服务 接收obs推流，转发到平台
-package main
-
-func main() {}
-
-// RunServer 运行rtmp服务
-func RunServer() {}
+// rtmp服务
+// https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol
+// https://web.archive.org/web/20140821210116/https://wwwimages2.adobe.com/content/dam/Adobe/en/devnet/rtmp/pdf/rtmp_specification_1.0.pdf
+package rtmp
