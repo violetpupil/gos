@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/violetpupil/components/lib/gin/middle"
 )
 
 // Run 运行http服务，直到错误发生，默认端口8080
@@ -16,7 +17,7 @@ func Run(addr ...string) {
 	Admin(e)
 
 	// 业务组
-	g := e.Group("", LogContext)
+	g := e.Group("", middle.LogContext)
 	g.Any("echo", func(c *gin.Context) {})
 	fmt.Println(e.Run(addr...))
 }
