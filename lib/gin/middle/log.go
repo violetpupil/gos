@@ -5,9 +5,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-
 	"github.com/violetpupil/components/lib/gin/common"
 )
+
+type responseWriter struct{}
 
 // LogContext 记录请求响应信息中间件
 func LogContext(c *gin.Context) {

@@ -3,7 +3,12 @@ package gin
 import "github.com/gin-gonic/gin"
 
 type (
+	// ResponseWriter 响应构造器
+	ResponseWriter = gin.ResponseWriter
 	// Context 请求上下文
+	// Request http请求
+	// Writer 响应构造器
+	//
 	// MustBindWith() 解析参数，解析失败会返回错误并响应400
 	// ShouldBindWith() 解析参数，解析失败只返回错误
 	// BindHeader() 解析请求头，结构体标签header
