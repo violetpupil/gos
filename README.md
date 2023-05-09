@@ -14,15 +14,15 @@ cloud 云原生文档
 
 crypto 密码学
 
-lang 辅助语言
-
 lib 第三方库
-
-linux linux文档
 
 media 多媒体处理
 
-protocol 协议文档
+misc 杂项
+
+- lang 辅助语言
+- linux linux文档
+- protocol 协议文档
 
 spec go语言文档及util代码
 
