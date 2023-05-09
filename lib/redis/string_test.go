@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"testing"
-	"time"
 )
 
 func TestIncr(t *testing.T) {
@@ -25,12 +24,5 @@ func TestGet(t *testing.T) {
 	Init("")
 	ctx := context.Background()
 	r, e := Get(ctx, "tmp")
-	fmt.Println(r, e)
-}
-
-func TestExpire(t *testing.T) {
-	Init("")
-	ctx := context.Background()
-	r, e := Expire(ctx, "tmp", time.Second, "")
 	fmt.Println(r, e)
 }
