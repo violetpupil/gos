@@ -27,6 +27,6 @@ func Test_crud_AutoMigrate(t *testing.T) {
 		panic(err)
 	}
 
-	err = Crud.AutoMigrate(&Tmp{})
+	err = Crud.AutoMigrate("", &Tmp{})
 	fmt.Println(err)
 }

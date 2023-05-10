@@ -13,7 +13,7 @@ func Test_create_Create(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Crud.AutoMigrate(&Tmp{})
+	err = Crud.AutoMigrate("", &Tmp{})
 	if err != nil {
 		panic(err)
 	}
@@ -29,7 +29,7 @@ func Test_create_CreateDoNothing(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Crud.AutoMigrate(&Tmp{})
+	err = Crud.AutoMigrate("", &Tmp{})
 	if err != nil {
 		panic(err)
 	}

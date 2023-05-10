@@ -13,7 +13,7 @@ func Test_delete_Delete(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Crud.AutoMigrate(&Tmp{})
+	err = Crud.AutoMigrate("", &Tmp{})
 	if err != nil {
 		panic(err)
 	}

@@ -85,9 +85,13 @@ func InitMySQLEnv() error {
 
 // AutoMigrate 自动迁移模型，不会删除列
 // https://gorm.io/docs/migration.html
+// opt是创建表选项 COMMENT='表注释'
 // dst是数据模型指针
 // 默认创建数据库外键约束
-func (c *crud) AutoMigrate(dst ...any) error {
-	err := c.db.AutoMigrate(dst...)
-	return err
+func (c *crud) AutoMigrate(opt string, dst ...any) error {
+	if opt != "" {
+		return c.db.Set("gorm:table_options", opt).AutoMigrate(dst...)
+	} else {
+		return c.db.AutoMigrate(dst...)
+	}
 }
