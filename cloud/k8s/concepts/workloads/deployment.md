@@ -2,6 +2,10 @@
 
 ## Creating a Deployment
 
+```bash
+kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+```
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
