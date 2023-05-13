@@ -5,3 +5,5 @@
 [中文](https://kubernetes.io/zh-cn/docs/home/)
 
 [稳定版本号](https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+
+[示例](https://github.com/kubernetes/examples)
