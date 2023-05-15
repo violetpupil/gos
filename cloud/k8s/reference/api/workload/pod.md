@@ -31,6 +31,14 @@ status:
 `ports` 公开端口列表
 
 - `containerPort` Number of port to expose on the pod's IP address. required
+- `name` 端口名，pod内唯一
+
+### Volumes
+
+`volumeMounts` 挂载到容器的卷
+
+- `mountPath` 挂载路径 required
+- `name` 卷名 required
 
 ### Resources
 

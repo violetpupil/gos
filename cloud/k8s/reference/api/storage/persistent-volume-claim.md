@@ -7,3 +7,10 @@ metadata:
 spec:
 status:
 ```
+
+## PersistentVolumeClaimSpec
+
+- `accessModes` 存取模式
+- `resources` 资源用量
+  - `requests` describes the minimum amount of compute resources required
+- `storageClassName` StorageClass名
