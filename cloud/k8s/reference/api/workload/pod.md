@@ -10,39 +10,20 @@ status:
 
 ## PodSpec
 
-### Containers
-
-`containers` 容器列表 required
-
-### Lifecycle
-
-`restartPolicy` 容器重启策略
+- `containers` 容器列表 required
+- `tolerations`
+- `restartPolicy` 容器重启策略
 
 ## Container
 
-`name` 容器名，pod内唯一 required
-
-### Image
-
-`image` 镜像名
-
-### Ports
-
-`ports` 公开端口列表
-
-- `containerPort` Number of port to expose on the pod's IP address. required
-- `name` 端口名，pod内唯一
-
-### Volumes
-
-`volumeMounts` 挂载到容器的卷
-
-- `mountPath` 挂载路径 required
-- `name` 卷名 required
-
-### Resources
-
-`resources` 计算资源
-
-- `limits` Limits describes the maximum amount of compute resources allowed.
-- `requests` Requests describes the minimum amount of compute resources required.
+- `name` 容器名，pod内唯一 required
+- `image` 镜像名
+- `ports` 公开端口列表
+  - `containerPort` Number of port to expose on the pod's IP address. required
+  - `name` 端口名，pod内唯一
+- `volumeMounts` 挂载到容器的卷
+  - `mountPath` 挂载路径 required
+  - `name` 卷名 required
+- `resources` 计算资源
+  - `limits` Limits describes the maximum amount of compute resources allowed.
+  - `requests` Requests describes the minimum amount of compute resources required.
