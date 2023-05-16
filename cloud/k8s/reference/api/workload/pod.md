@@ -13,6 +13,7 @@ status:
 - `containers` 容器列表 required
 - `tolerations`
 - `restartPolicy` 容器重启策略
+- `terminationGracePeriodSeconds` term和kill信号间隔时间，默认30s
 
 ## Container
 
