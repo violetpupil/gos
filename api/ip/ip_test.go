@@ -24,3 +24,23 @@ func TestProxyIpEchoFive(t *testing.T) {
 	)
 	fmt.Println(ip, err)
 }
+
+func TestProxyIpLum(t *testing.T) {
+	ip, err := ProxyIpLum(
+		"http://proxyserver:8888",
+		"user",
+		"pass",
+	)
+	fmt.Println(ip, err)
+}
+
+func TestProxyIpLumFive(t *testing.T) {
+	ip, err := ProxyIpLumFive(
+		"http",
+		"host",
+		"port",
+		"user",
+		"pass",
+	)
+	fmt.Println(ip, err)
+}
