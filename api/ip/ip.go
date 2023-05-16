@@ -30,6 +30,7 @@ func ProxyIpEcho(uri, user, pass string) (string, error) {
 }
 
 // ProxyIpEchoFive 使用代理访问 ip echo
+// scheme http socks5
 func ProxyIpEchoFive(scheme, host, port, user, pass string) (string, error) {
 	resty.SetProxyFive(scheme, host, port, user, pass)
 	res, err := resty.Get(IpEcho, nil)
