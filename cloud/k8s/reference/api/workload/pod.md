@@ -11,7 +11,12 @@ status:
 ## PodSpec
 
 - `containers` 容器列表 required
-- `tolerations`
+- `volumes` Volume列表
+- `tolerations` 可容忍的taints
+  - `key` taint key
+  - `operator` 默认Equal判断值相等，设为Exists判断键存在
+  - `value` taint value
+  - `effect` taint effect
 - `restartPolicy` 容器重启策略
 - `terminationGracePeriodSeconds` term和kill信号间隔时间，默认30s
 
