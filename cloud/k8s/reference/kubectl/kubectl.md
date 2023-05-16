@@ -28,6 +28,8 @@ namespaces ns
 
 nodes no
 
+persistentvolumeclaims pvc
+
 pods po
 
 deployments deploy
