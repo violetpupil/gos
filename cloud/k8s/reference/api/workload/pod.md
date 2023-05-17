@@ -12,11 +12,16 @@ status:
 
 - `containers` 容器列表 required
 - `volumes` Volume列表
+- `nodeSelector` node标签选择器
+- `nodeName` is a request to schedule this pod onto a specific node.
+- `affinity` affinity scheduling rules
+  - `nodeAffinity` node affinity scheduling rules
 - `tolerations` 可容忍的taints
   - `key` taint key
   - `operator` 默认Equal判断值相等，设为Exists判断键存在
   - `value` taint value
   - `effect` taint effect
+- `schedulerName` 指定调度器
 - `restartPolicy` 容器重启策略
 - `terminationGracePeriodSeconds` term和kill信号间隔时间，默认30s
 
