@@ -8,14 +8,6 @@
 
 `kubelet` 运行容器
 
-## [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)
-
-节点会向集群发送心跳，有两种形式：
-
-1. 更新节点的status字段
-
-2. Each Node has an associated Lease object.
-
 ## [controller](https://kubernetes.io/docs/concepts/architecture/controller/)
 
 In Kubernetes, controllers are control loops that watch the state of your cluster.
