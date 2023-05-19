@@ -14,6 +14,10 @@ func TestInitMySQLEnv(t *testing.T) {
 	fmt.Println(err)
 }
 
+type Extend struct {
+	Addr string
+}
+
 type Tmp struct {
 	Id     int
 	Age    int    `gorm:"uniqueIndex:idx_age_name"`

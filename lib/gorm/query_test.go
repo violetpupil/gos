@@ -1,6 +1,7 @@
 package gorm
 
 import (
+	"encoding/json"
 	"fmt"
 	"testing"
 
@@ -24,4 +25,11 @@ func Test_query_First(t *testing.T) {
 		panic(err)
 	}
 	fmt.Printf("%+v\n", tmp)
+
+	var extend Extend
+	err = json.Unmarshal(tmp.Extend, &extend)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", extend)
 }

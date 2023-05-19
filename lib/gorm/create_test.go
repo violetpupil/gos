@@ -1,6 +1,7 @@
 package gorm
 
 import (
+	"encoding/json"
 	"fmt"
 	"testing"
 
@@ -18,7 +19,12 @@ func Test_create_Create(t *testing.T) {
 		panic(err)
 	}
 
-	tmp := Tmp{Id: 1, Age: 1}
+	extend := Extend{Addr: "China"}
+	bs, err := json.Marshal(extend)
+	if err != nil {
+		panic(err)
+	}
+	tmp := Tmp{Id: 1, Age: 1, Extend: bs}
 	c, e := Crud.C.Create(&tmp)
 	fmt.Println(c, e)
 }
