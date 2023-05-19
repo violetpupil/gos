@@ -4,4 +4,6 @@
 
 `--show-labels` 显示labels
 
+`-l` 标签选择器
+
 `-w` After listing/getting the requested object, watch for changes.
