@@ -15,3 +15,5 @@ status:
 - `completions` 运行成功的pod数，默认1
 - `completionMode` pod运行模式
 - `backoffLimit` 重试次数，默认6
+- `activeDeadlineSeconds` job持续活动最大秒数
+- `ttlSecondsAfterFinished` 完成的job保留时间
