@@ -6,6 +6,6 @@ import (
 )
 
 func TestServe(t *testing.T) {
-	err := Serve("9090")
+	err := Serve("9090", nil)
 	fmt.Println(err)
 }
