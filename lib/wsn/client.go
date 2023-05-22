@@ -1,5 +1,5 @@
 // https://github.com/nhooyr/websocket/tree/master/examples
-package websocket
+package wsn
 
 import (
 	"context"

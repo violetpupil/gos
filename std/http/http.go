@@ -14,7 +14,9 @@ const (
 // See: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 const (
 	StatusOK                  = http.StatusOK
-	StatusBadRequest          = http.StatusBadRequest
+	StatusBadRequest          = http.StatusBadRequest       // 400
+	StatusForbidden           = http.StatusForbidden        // 403
+	StatusMethodNotAllowed    = http.StatusMethodNotAllowed // 405
 	StatusInternalServerError = http.StatusInternalServerError
 )
 

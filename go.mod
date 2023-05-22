@@ -17,6 +17,7 @@ require (
 	github.com/gobwas/ws v1.1.0
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/golang/glog v1.0.0
+	github.com/gorilla/websocket v1.4.1
 	github.com/joho/godotenv v1.5.1
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/robfig/cron/v3 v3.0.1
