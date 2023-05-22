@@ -2,8 +2,6 @@ package syscall
 
 import (
 	"errors"
-	"os"
-	"os/signal"
 	"syscall"
 
 	"github.com/sirupsen/logrus"
@@ -35,11 +33,4 @@ func LogErrno(err error) {
 		"Timeout":   no.Timeout(),
 		"Temporary": no.Temporary(),
 	}).Errorf("%d", no)
-}
-
-// GracefullyExit 阻塞等待 INT TERM 信号
-func GracefullyExit() {
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
-	<-c
 }
