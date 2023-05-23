@@ -85,6 +85,8 @@ func NewConn(conn *websocket.Conn, key string, f func(int, []byte)) {
 			"Type":    t,
 			"Message": string(p),
 		}).Infoln("read message")
-		f(t, p)
+		if f != nil {
+			f(t, p)
+		}
 	}
 }
