@@ -1,0 +1,19 @@
+// https://protobuf.dev/programming-guides/proto3/
+syntax = "proto3";
+
+// protobuf包
+package user;
+
+// golang包路径
+option go_package = "./user";
+
+// IdRequest id请求
+message IdRequest { string id = 1; }
+
+// Response 基本响应
+message Response {
+  int32 code = 1;
+  string message = 2;
+};
+
+service User { rpc getUser(IdRequest) returns (Response); }
