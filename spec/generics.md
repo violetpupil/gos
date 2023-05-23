@@ -17,3 +17,7 @@ type Number interface {
     int64 | float64
 }
 ```
+
+## comparable
+
+booleans, numbers, strings, pointers, channels, arrays of comparable types, structs whose fields are all comparable types

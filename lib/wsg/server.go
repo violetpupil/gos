@@ -12,6 +12,7 @@ var Upgrader = websocket.Upgrader{}
 
 // Upgrade 升级协议，实现http.HandlerFunc函数类型
 func Upgrade(w http.ResponseWriter, r *http.Request) {
+	// If the upgrade fails, then Upgrade replies to the client with an HTTP error response.
 	conn, err := Upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		logrus.Errorln("upgrade websocket error", err)
@@ -19,6 +20,11 @@ func Upgrade(w http.ResponseWriter, r *http.Request) {
 	}
 	defer conn.Close()
 
+	Echo(conn)
+}
+
+// Echo 回显消息
+func Echo(conn *websocket.Conn) {
 	for {
 		t, p, e := conn.ReadMessage()
 		if websocket.IsCloseError(e, websocket.CloseNormalClosure) {
