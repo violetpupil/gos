@@ -14,7 +14,7 @@ message IdRequest { string id = 1; }
 message Response {
   int32 code = 1;
   string message = 2;
-};
+}
 
 enum UserGender {
   UNKNOWN = 0;
