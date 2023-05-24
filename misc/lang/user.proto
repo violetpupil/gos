@@ -16,4 +16,10 @@ message Response {
   string message = 2;
 };
 
+enum UserGender {
+  UNKNOWN = 0;
+  MALE = 1;
+  FEMALE = 2;
+}
+
 service User { rpc getUser(IdRequest) returns (Response); }
