@@ -1,4 +1,9 @@
 // https://protobuf.dev/programming-guides/proto3/
+// protoc user.proto --go_out=. --go-grpc_out=.
+//
+// message字段
+// optional 可选，字段是指针
+// repeated 数组
 syntax = "proto3";
 
 // protobuf包
