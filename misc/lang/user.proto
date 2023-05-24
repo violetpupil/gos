@@ -1,6 +1,9 @@
 // https://protobuf.dev/programming-guides/proto3/
 // protoc user.proto --go_out=. --go-grpc_out=.
 //
+// Scalar Value Types
+// bool 布尔
+//
 // message字段
 // optional 可选，字段是指针
 // repeated 数组
