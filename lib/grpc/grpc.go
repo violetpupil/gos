@@ -12,6 +12,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 )
@@ -38,4 +39,15 @@ func Serve(port string, f func(grpc.ServiceRegistrar)) error {
 	// Serve will return a non-nil error unless Stop or GracefulStop is called.
 	err = s.Serve(lis)
 	return err
+}
+
+// Dial creates a client connection to the given target.
+// 目标 localhost:9090
+// 连接用完调用grpc.ClientConn.Close()关闭
+func Dial(target string) (*grpc.ClientConn, error) {
+	// 禁用TLS/SSL
+	creds := insecure.NewCredentials()
+	opt := grpc.WithTransportCredentials(creds)
+	conn, err := grpc.Dial(target, opt)
+	return conn, err
 }
