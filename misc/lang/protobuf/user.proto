@@ -4,14 +4,22 @@
 // Scalar Value Types
 // bool 布尔
 //
-// message字段
+// message
+// 字段
 // optional 可选，字段是指针
 // repeated 数组
-//
-// message方法
+// 方法
 // Reset() 初始化结构体
 // String() 结构体字符串
 // 每个字段有一个Get开头的方法
+//
+// enum是int32
+// allows multiple enum symbols to have the same numeric value.
+// 生成一个map[int32]string Enum_name
+// 生成一个map[string]int32 Enum_value
+// 方法
+// String() 枚举字符串
+// Number() 枚举值
 syntax = "proto3";
 
 // protobuf包
@@ -28,6 +36,8 @@ message IdRequest { string id = 1; }
 
 // ResponseCode 响应码
 enum ResponseCode {
+  // 枚举必须从0开始
+  // 两个枚举都定义UNKNOWN会报错
   RESPONSE_CODE_UNKNOWN = 0; // 未知
   SUCCESS = 1;               // 处理成功
   BAD_REQUEST = 2;           // 请求参数错误
