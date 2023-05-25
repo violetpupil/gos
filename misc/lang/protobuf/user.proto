@@ -15,19 +15,23 @@ package user;
 // golang包路径
 option go_package = "./user";
 
+// google.protobuf.Any 任意类型
+import "google/protobuf/any.proto";
+
 // IdRequest id请求
 message IdRequest { string id = 1; }
 
-// Response 基本响应
-message Response {
-  int32 code = 1;
-  string message = 2;
+// ResponseCode 响应码
+enum ResponseCode {
+  SUCCESS = 0;     // 处理成功
+  BAD_REQUEST = 1; // 请求参数错误
 }
 
-enum UserGender {
-  UNKNOWN = 0;
-  MALE = 1;
-  FEMALE = 2;
+// Response 基本响应
+message Response {
+  ResponseCode code = 1;          // 响应码及信息
+  google.protobuf.Any data = 2;   // 响应数据
+  map<string, string> errors = 3; // 错误信息
 }
 
 service User { rpc getUser(IdRequest) returns (Response); }
