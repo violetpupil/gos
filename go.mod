@@ -17,6 +17,7 @@ require (
 	github.com/gobwas/ws v1.1.0
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/golang/glog v1.0.0
+	github.com/google/uuid v1.3.0
 	github.com/gorilla/websocket v1.4.1
 	github.com/joho/godotenv v1.5.1
 	github.com/nsqio/go-nsq v1.1.0
@@ -95,7 +96,6 @@ require (
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/pprof v0.0.0-20211214055906-6f57359322fd // indirect
-	github.com/google/uuid v1.3.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
