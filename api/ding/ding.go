@@ -10,6 +10,17 @@ import (
 
 const SendURL = "https://oapi.dingtalk.com/robot/send"
 
+// TextBody text类型请求体
+type TextBody struct {
+	At struct {
+		AtMobiles []string `json:"atMobiles"` // 被@人的手机号
+		AtUserIds []string `json:"atUserIds"` // 被@人的用户user id
+	} `json:"at"`
+	Text struct {
+		Content string `json:"content"` // 消息内容
+	} `json:"text"`
+}
+
 // Send 发送群消息
 // 每个机器人每分钟最多发送20条消息到群里，如果超过20条，会限流10分钟。
 // https://open.dingtalk.com/document/orgapp/custom-robots-send-group-messages
