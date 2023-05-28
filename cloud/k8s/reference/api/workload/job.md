@@ -17,3 +17,4 @@ status:
 - `backoffLimit` 重试次数，默认6
 - `activeDeadlineSeconds` job持续活动最大秒数
 - `ttlSecondsAfterFinished` 完成的job保留时间
+- `suspend` specifies whether the Job controller should create Pods or not.
