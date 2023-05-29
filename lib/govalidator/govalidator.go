@@ -3,5 +3,6 @@ package govalidator
 import "github.com/asaskevich/govalidator"
 
 var (
-	IsURL = govalidator.IsURL
+	IsDNSName = govalidator.IsDNSName
+	IsURL     = govalidator.IsURL
 )

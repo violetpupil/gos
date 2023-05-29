@@ -2,6 +2,12 @@
 
 `Shift+Alt+O` 自动导入，优化导入
 
+## 自定义
+
+`Ctrl+Shift+Alt+U` editor.action.transformToUppercase
+
+`Ctrl+Shift+Alt+S` editor.action.transformToSnakecase
+
 ## Rich Languages Editing
 
 `F12` 定义和引用相互跳转

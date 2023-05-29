@@ -1,5 +1,4 @@
 // https://protobuf.dev/programming-guides/proto3/
-// protoc user.proto --go_out=. --go-grpc_out=.
 //
 // Scalar Value Types
 // bool 布尔
@@ -18,6 +17,7 @@
 // 生成一个map[int32]string Enum_name
 // 生成一个map[string]int32 Enum_value
 // 方法
+// Enum() 枚举类型指针
 // String() 枚举字符串
 // Number() 枚举值
 syntax = "proto3";
@@ -41,6 +41,7 @@ enum ResponseCode {
   RESPONSE_CODE_UNKNOWN = 0; // 未知
   SUCCESS = 1;               // 处理成功
   BAD_REQUEST = 2;           // 请求参数错误
+  INTERNAL_SERVER_ERROR = 3; // 处理失败
 }
 
 // Response 基本响应
