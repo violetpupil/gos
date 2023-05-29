@@ -10,6 +10,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"gorm.io/gorm/schema"
 )
 
 // crud 数据库操作
@@ -42,10 +43,13 @@ type Config struct {
 	User     string `env:"MySQLUser"`
 	Pass     string `env:"MySQLPass"`
 	Database string `env:"MySQLDatabase"`
+
 	// gorm.Config
 	Logger logger.Interface
 	// 迁移模型时，不创建外键约束
 	DisableForeignKeyConstraintWhenMigrating bool
+	// table name prefix
+	TablePrefix string
 }
 
 // InitMySQL 初始化mysql数据库操作
@@ -61,6 +65,10 @@ func InitMySQL(c Config) error {
 	opt := &gorm.Config{
 		Logger:                                   c.Logger,
 		DisableForeignKeyConstraintWhenMigrating: c.DisableForeignKeyConstraintWhenMigrating,
+		// tables, columns naming strategy
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix: c.TablePrefix,
+		},
 	}
 	db, err := gorm.Open(dialector, opt)
 	if err != nil {
@@ -87,7 +95,6 @@ func InitMySQLEnv() error {
 // https://gorm.io/docs/migration.html
 // opt是创建表选项 COMMENT='表注释'
 // dst是数据模型指针
-// 默认创建数据库外键约束
 func (c *crud) AutoMigrate(opt string, dst ...any) error {
 	if opt != "" {
 		return c.db.Set("gorm:table_options", opt).AutoMigrate(dst...)
