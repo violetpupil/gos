@@ -13,6 +13,10 @@ import (
 	"gorm.io/gorm/schema"
 )
 
+type (
+	DB = gorm.DB
+)
+
 // crud 数据库操作
 // 必须先调用 Init 初始化
 type crud struct {
