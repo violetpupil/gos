@@ -11,12 +11,18 @@ var Nil = redis.Nil
 
 var client *redis.Client
 
+// Config redis连接配置
+type Config struct {
+	Addr     string // 传空的话，默认连接localhost:6379
+	Password string // 密码
+}
+
 // Init 初始化客户端
 // 初始化时不会连接 redis
-// addr 传空的话，默认连接 localhost:6379
-func Init(addr string) {
+func Init(c Config) {
 	opt := &redis.Options{
-		Addr: addr,
+		Addr:     c.Addr,
+		Password: c.Password,
 	}
 	client = redis.NewClient(opt)
 }

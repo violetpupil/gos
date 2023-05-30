@@ -8,7 +8,7 @@ import (
 )
 
 func TestExpire(t *testing.T) {
-	Init("")
+	Init(Config{})
 	ctx := context.Background()
 	r, e := Expire(ctx, "tmp", time.Second, "")
 	fmt.Println(r, e)
