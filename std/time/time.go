@@ -25,10 +25,16 @@ var (
 	Now   = time.Now
 	Since = time.Since
 	Sleep = time.Sleep
+	// AfterFunc waits for the duration to elapse and then calls f in its own goroutine.
+	AfterFunc = time.AfterFunc
 )
 
 type (
 	Duration = time.Duration
+	// A Ticker holds a channel that delivers “ticks” of a clock at intervals.
+	Ticker = time.Ticker
+	// 单次计时器
+	Timer = time.Timer
 )
 
 // Cost 标准日志库记录函数耗时，在函数顶部调用 defer Cost()()
