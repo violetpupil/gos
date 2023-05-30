@@ -1,3 +1,5 @@
+// The order of elements is from the lowest to the highest score.
+// Elements with the same score are ordered lexicographically.
 package redis
 
 import (
@@ -6,9 +8,10 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
-// ZRange 获取有序集合元素
+// ZRange 获取有序集合元素 根据索引
 // start stop 前后包含
 // zrange key 0 -1 获取全部元素
+// Out of range indexes do not produce an error.
 // https://redis.io/commands/zrange/
 func ZRange(ctx context.Context, key string, start, stop int64) ([]string, error) {
 	return client.ZRange(ctx, key, start, stop).Result()
@@ -25,4 +28,11 @@ func ZRangeWithScores(ctx context.Context, key string, start, stop int64) ([]red
 func ZRangeByScore(ctx context.Context, key string, start, stop string) ([]string, error) {
 	by := &redis.ZRangeBy{Min: start, Max: stop}
 	return client.ZRangeByScore(ctx, key, by).Result()
+}
+
+// ZRem 移除元素值
+// https://redis.io/commands/zrem/
+func ZRem(ctx context.Context, key string, members ...interface{}) error {
+	err := client.ZRem(ctx, key, members...).Err()
+	return err
 }
