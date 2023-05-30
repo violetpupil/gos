@@ -43,6 +43,13 @@ func ZAdd(d time.Duration, id string) error {
 	return err
 }
 
+// ZRem 移除任务检测
+func ZRem(ids []string) error {
+	ctx := context.Background()
+	err := client.ZRem(ctx, zName, ids).Err()
+	return err
+}
+
 // zRange 到期任务检测
 func zRange() ([]string, error) {
 	ctx := context.Background()
@@ -50,13 +57,6 @@ func zRange() ([]string, error) {
 	by := &redis.ZRangeBy{Min: "-inf", Max: fmt.Sprintf("%d", ts)}
 	ids, err := client.ZRangeByScore(ctx, zName, by).Result()
 	return ids, err
-}
-
-// zRem 清理有序集合
-func zRem(ids []string) error {
-	ctx := context.Background()
-	err := client.ZRem(ctx, zName, ids).Err()
-	return err
 }
 
 // rPush 将任务id放到到期队列
@@ -99,7 +99,7 @@ func move() {
 		logrus.Errorln("push expire error", err)
 		return
 	}
-	err = zRem(ids)
+	err = ZRem(ids)
 	if err != nil {
 		logrus.Errorln("rem expire error", err)
 	}
