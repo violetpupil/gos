@@ -21,9 +21,9 @@ const (
 
 var client *redis.Client
 
-// Init 初始化客户端
-// 初始化时不会连接 redis
-func Init(addr, pass string) {
+// Init 初始化redis客户端
+// 启动goroutine，使用f处理到期的任务，参数为任务id数组
+func Init(addr, pass string, f func([]string)) {
 	opt := &redis.Options{
 		Addr:     addr,
 		Password: pass,
@@ -31,6 +31,7 @@ func Init(addr, pass string) {
 	client = redis.NewClient(opt)
 	// 每秒查询一次是否到期
 	time.AfterFunc(time.Second, move)
+	go bLPop(f)
 }
 
 // ZAdd 设置任务延迟，id为任务标识
@@ -66,9 +67,9 @@ func rPush(ids []string) error {
 	return err
 }
 
-// BLPop 处理到期的任务，f参数为任务id数组
+// bLPop 处理到期的任务，f参数为任务id数组
 // 该函数会阻塞
-func BLPop(f func([]string)) {
+func bLPop(f func([]string)) {
 	for {
 		ctx := context.Background()
 		ids, err := client.BLPop(ctx, 0, lName).Result()
