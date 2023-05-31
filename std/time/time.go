@@ -21,11 +21,13 @@ const (
 	Second = time.Second
 )
 
+// 函数
 var (
 	Now   = time.Now
 	Since = time.Since
 	Sleep = time.Sleep
 	// AfterFunc waits for the duration to elapse and then calls f in its own goroutine.
+	// 调用后会立即调用f一次
 	AfterFunc = time.AfterFunc
 )
 
