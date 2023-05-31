@@ -8,6 +8,10 @@
 
 `Ctrl+Shift+Alt+S` editor.action.transformToSnakecase
 
+`Ctrl+Shift+Alt+T` editor.action.transformToTitlecase
+
+`Ctrl+Shift+Alt+C` editor.action.transformToCamelcase
+
 ## Rich Languages Editing
 
 `F12` 定义和引用相互跳转
