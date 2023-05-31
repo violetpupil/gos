@@ -12,6 +12,7 @@ require (
 	github.com/gin-contrib/pprof v1.4.0
 	github.com/gin-gonic/gin v1.9.0
 	github.com/go-echarts/go-echarts/v2 v2.2.6
+	github.com/go-redsync/redsync/v4 v4.8.1
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/go-the-way/exl v1.2.2
 	github.com/gobwas/ws v1.1.0
