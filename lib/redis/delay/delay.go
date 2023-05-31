@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/go-redis/redis/v8"
+	"github.com/redis/go-redis/v9"
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/spec/types"
 )
@@ -38,7 +38,7 @@ func Init(addr, pass string, f func([]string)) {
 func ZAdd(d time.Duration, id string) error {
 	ctx := context.Background()
 	ts := time.Now().Add(d).Unix()
-	z := &redis.Z{Score: float64(ts), Member: id}
+	z := redis.Z{Score: float64(ts), Member: id}
 	err := client.ZAdd(ctx, zName, z).Err()
 	return err
 }

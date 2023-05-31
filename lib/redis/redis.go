@@ -1,9 +1,10 @@
+// https://redis.uptrace.dev/
 // 封装 redis 客户端，基于命令封装第三方库
 // 必须先调用 Init 进行初始化
 package redis
 
 import (
-	"github.com/go-redis/redis/v8"
+	"github.com/redis/go-redis/v9"
 )
 
 // Nil 当键不存在时，有的命令会返回 Nil 错误
