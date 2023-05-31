@@ -8,6 +8,10 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+type (
+	Redsync = redsync.Redsync
+)
+
 // m redis分布式锁管理
 // 必须先调用Init初始化
 var m *redsync.Redsync
