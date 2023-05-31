@@ -7,6 +7,7 @@
 // 模型tag `gorm:""`
 // 键值用:连接，字段用;连接
 // column 列名
+// index 索引
 // comment 注释
 package gorm
 
