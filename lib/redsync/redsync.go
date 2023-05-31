@@ -3,6 +3,8 @@
 package redsync
 
 import (
+	"time"
+
 	"github.com/go-redsync/redsync/v4"
 	"github.com/go-redsync/redsync/v4/redis/goredis/v9"
 	"github.com/redis/go-redis/v9"
@@ -10,6 +12,10 @@ import (
 
 type (
 	Redsync = redsync.Redsync
+)
+
+var (
+	WithExpiry = redsync.WithExpiry
 )
 
 // m redis分布式锁管理
@@ -31,6 +37,6 @@ func New(client *redis.Client) *redsync.Redsync {
 
 // NewMutex returns a new distributed mutex with given name.
 // 使用redsync.Mutex.Lock()和redsync.Mutex.Unlock()加解锁
-func NewMutex(name string) *redsync.Mutex {
-	return m.NewMutex(name)
+func NewMutex(name string, expiry time.Duration) *redsync.Mutex {
+	return m.NewMutex(name, redsync.WithExpiry(expiry))
 }
