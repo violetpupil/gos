@@ -9,6 +9,7 @@
 // column 列名
 // type column data type
 // serializer 序列器 json/gob/unixtime
+// primaryKey 主键
 // index 索引
 // comment 注释
 //
