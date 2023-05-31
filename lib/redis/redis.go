@@ -27,3 +27,13 @@ func Init(c Config) {
 	}
 	client = redis.NewClient(opt)
 }
+
+// NewClient 创建redis客户端
+func NewClient(addr, pass string) *redis.Client {
+	opt := &redis.Options{
+		Addr:     addr,
+		Password: pass,
+	}
+	client := redis.NewClient(opt)
+	return client
+}
