@@ -7,17 +7,23 @@
 // 模型tag `gorm:""`
 // 键值用:连接，字段用;连接
 // column 列名
+// type column data type
 // index 索引
 // comment 注释
+//
+// 默认字段类型
+// int bigint
+// uint bigint
+// string longtext
+// bool tinyint
+// datatypes.JSON json
+// time.Time datetime
+// gorm.DeletedAt datetime
 package gorm
 
 import "gorm.io/gorm"
 
 type (
 	// 基础模型
-	// id bigint
-	// created_at datetime
-	// updated_at datetime
-	// deleted_at datetime
 	Model = gorm.Model
 )
