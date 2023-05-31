@@ -1,0 +1,10 @@
+MySQL:
+  Host: ${MYSQL_HOST}
+  Port: ${MYSQL_PORT}
+  User: ${MYSQL_USER}
+  Pass: ${MYSQL_PASS}
+  Database: ${MYSQL_DATABASE}
+RedisC:
+  Host: ${REDIS_HOST}
+  Port: ${REDIS_PORT}
+  Pass: ${REDIS_PASS}
