@@ -65,9 +65,9 @@ func Ipv4(i net.Interface) ([]net.IP, error) {
 
 	ips := make([]net.IP, 0)
 	for _, a := range addrs {
-		ipnet, ok := a.(*net.IPNet)
+		ipNet, ok := a.(*net.IPNet)
 		if ok {
-			ip := ipnet.IP.To4()
+			ip := ipNet.IP.To4()
 			if ip != nil {
 				ips = append(ips, ip)
 			}

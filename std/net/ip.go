@@ -24,6 +24,20 @@ func HostIp() (net.IP, error) {
 	return addr.IP, nil
 }
 
+// Lower16BitPrivateIP 第一个内网ip的低16位
+func Lower16BitPrivateIP() (uint16, error) {
+	ips, err := InterfacesIpv4()
+	if err != nil {
+		logrus.Errorln("interfaces ipv4 error", err)
+		return 0, err
+	}
+	if len(ips) == 0 {
+		return 0, errors.New("interfaces ipv4 empty")
+	}
+
+	return uint16(ips[0][2])<<8 + uint16(ips[0][3]), nil
+}
+
 // Private 如果是私有ip，转为4字节表示返回，否则返回nil
 // 私有ip地址范围
 // 10.0.0.0 ~ 10.255.255.255
