@@ -32,7 +32,7 @@ func InterfacePhysical(i net.Interface) bool {
 	if InterfaceLoopback(i) {
 		return false
 	}
-	if i.Name == "vEthernet (WSL)" {
+	if i.Name == "vEthernet (WSL)" || i.Name == "vEthernet (Default Switch)" {
 		return false
 	}
 	return true
@@ -76,8 +76,8 @@ func Ipv4(i net.Interface) ([]net.IP, error) {
 	return ips, nil
 }
 
-// InterfacesIpv4 启用的物理网卡ipv4地址，使用4字节表示
-func InterfacesIpv4() ([]net.IP, error) {
+// InterfacesIpv4Physical 启用的物理网卡ipv4地址，使用4字节表示
+func InterfacesIpv4Physical() ([]net.IP, error) {
 	ifs, err := net.Interfaces()
 	if err != nil {
 		logrus.Error("net interfaces error ", err)

@@ -13,6 +13,6 @@ func TestInterfaces(t *testing.T) {
 	fmt.Printf("%+v\n", ifc)
 }
 
-func TestInterfacesIpv4(t *testing.T) {
-	fmt.Println(InterfacesIpv4())
+func TestInterfacesIpv4Physical(t *testing.T) {
+	fmt.Println(InterfacesIpv4Physical())
 }
