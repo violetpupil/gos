@@ -54,17 +54,18 @@ type Config struct {
 	DisableForeignKeyConstraintWhenMigrating bool
 	// table name prefix
 	TablePrefix string
+
+	// mysql.Config
+	// 设置为0，string类型默认longtext
+	// 否则，string类型默认varchar(DefaultStringSize)
+	DefaultStringSize uint
 }
 
 // InitMySQL 初始化mysql数据库操作
 // https://gorm.io/docs/connecting_to_the_database.html
 // https://github.com/go-sql-driver/mysql
 func InitMySQL(c Config) error {
-	dsn := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		c.User, c.Pass, c.Host, c.Port, c.Database,
-	)
-	dialector := mysql.Open(dsn)
+	dialector := NewMysqlDialector(c)
 
 	opt := &gorm.Config{
 		Logger:                                   c.Logger,
@@ -81,6 +82,20 @@ func InitMySQL(c Config) error {
 	}
 	Init(db)
 	return nil
+}
+
+// NewMysqlDialector 创建mysql dialector
+func NewMysqlDialector(c Config) gorm.Dialector {
+	dsn := fmt.Sprintf(
+		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		c.User, c.Pass, c.Host, c.Port, c.Database,
+	)
+	config := mysql.Config{
+		DSN:               dsn,
+		DefaultStringSize: c.DefaultStringSize,
+	}
+	dialector := mysql.New(config)
+	return dialector
 }
 
 // InitMySQLEnv 使用环境变量初始化mysql数据库操作
