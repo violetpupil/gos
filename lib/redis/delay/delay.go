@@ -83,6 +83,7 @@ func bLPop(f func([]string)) {
 }
 
 // move 将到期的任务id转移到list
+// 多进程运行，list中的任务id可能有重复
 func move() {
 	ids, err := zRange()
 	if err != nil {

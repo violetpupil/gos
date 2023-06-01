@@ -1,4 +1,4 @@
-// https://redis.uptrace.dev/
+// https://redis.uptrace.dev/guide/
 // 封装 redis 客户端，基于命令封装第三方库
 // 必须先调用 Init 进行初始化
 package redis
