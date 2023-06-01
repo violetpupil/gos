@@ -14,6 +14,13 @@ func BLPop(ctx context.Context, timeout time.Duration, keys ...string) ([]string
 	return client.BLPop(ctx, timeout, keys...).Result()
 }
 
+// LPop left pop
+// key不存在时，返回redis.Nil错误
+// https://redis.io/commands/lpop/
+func LPop(ctx context.Context, key string) (string, error) {
+	return client.LPop(ctx, key).Result()
+}
+
 // RPush right push
 // Return the length of the list after the push operation.
 // https://redis.io/commands/rpush/
