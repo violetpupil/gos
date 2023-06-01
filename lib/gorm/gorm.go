@@ -84,6 +84,22 @@ func InitMySQL(c Config) error {
 	return nil
 }
 
+// NewMysqlDB 创建mysql db
+func NewMysqlDB(c Config) (*gorm.DB, error) {
+	dialector := NewMysqlDialector(c)
+
+	opt := &gorm.Config{
+		Logger:                                   c.Logger,
+		DisableForeignKeyConstraintWhenMigrating: c.DisableForeignKeyConstraintWhenMigrating,
+		// tables, columns naming strategy
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix: c.TablePrefix,
+		},
+	}
+	db, err := gorm.Open(dialector, opt)
+	return db, err
+}
+
 // NewMysqlDialector 创建mysql dialector
 func NewMysqlDialector(c Config) gorm.Dialector {
 	dsn := fmt.Sprintf(
