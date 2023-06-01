@@ -22,7 +22,8 @@ type Delay struct {
 }
 
 // NewDelay 创建Delay实例
-// 启动goroutine，使用f处理到期的任务，参数为任务id数组
+// 启动goroutine，使用f处理到期的任务
+// f参数第一个元素是list名，第二个元素是值
 //
 // name用于组成redis键名
 // list 存放到期的任务id，键名为dq_queue:name
@@ -74,18 +75,19 @@ func (d *Delay) zRange() ([]string, error) {
 	return ids, err
 }
 
-// bLPop 处理到期的任务，f参数为任务id数组
+// bLPop 处理到期的任务
+// f参数第一个元素是list名，第二个元素是值
 // 该函数会阻塞
 func (d *Delay) bLPop(f func([]string)) {
 	for {
 		ctx := context.Background()
-		ids, err := d.client.BLPop(ctx, 0, d.lName).Result()
+		id, err := d.client.BLPop(ctx, 0, d.lName).Result()
 		if err != nil {
 			logrus.Errorln("block left pop error", err)
 			time.Sleep(10 * time.Second)
 			continue
 		}
-		f(ids)
+		f(id)
 	}
 }
 
