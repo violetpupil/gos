@@ -98,3 +98,26 @@ func InterfacesIpv4Physical() ([]net.IP, error) {
 	}
 	return ips, nil
 }
+
+// InterfacesIpv4NL 启用的非回环网卡ipv4地址，使用4字节表示
+func InterfacesIpv4NL() ([]net.IP, error) {
+	ifs, err := net.Interfaces()
+	if err != nil {
+		logrus.Error("net interfaces error ", err)
+		return nil, err
+	}
+
+	ips := make([]net.IP, 0)
+	for _, i := range ifs {
+		// 启用的非回环网卡
+		if !InterfaceLoopback(i) && InterfaceUp(i) {
+			ipsIf, err := Ipv4(i)
+			if err != nil {
+				logrus.Error("interface ipv4 error ", err)
+				continue
+			}
+			ips = append(ips, ipsIf...)
+		}
+	}
+	return ips, nil
+}

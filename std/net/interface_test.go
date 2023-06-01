@@ -16,3 +16,7 @@ func TestInterfaces(t *testing.T) {
 func TestInterfacesIpv4Physical(t *testing.T) {
 	fmt.Println(InterfacesIpv4Physical())
 }
+
+func TestInterfacesIpv4NL(t *testing.T) {
+	fmt.Println(InterfacesIpv4NL())
+}

@@ -26,13 +26,13 @@ func HostIp() (net.IP, error) {
 
 // Lower16BitPrivateIP 第一个内网ip的低16位
 func Lower16BitPrivateIP() (uint16, error) {
-	ips, err := InterfacesIpv4()
+	ips, err := InterfacesIpv4NL()
 	if err != nil {
-		logrus.Errorln("interfaces ipv4 error", err)
+		logrus.Errorln("interfaces ipv4 nl error", err)
 		return 0, err
 	}
 	if len(ips) == 0 {
-		return 0, errors.New("interfaces ipv4 empty")
+		return 0, errors.New("interfaces ipv4 nl empty")
 	}
 
 	return uint16(ips[0][2])<<8 + uint16(ips[0][3]), nil
