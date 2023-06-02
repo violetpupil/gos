@@ -83,7 +83,7 @@ func (d *Delay) bLPop(f func([]string)) {
 		ctx := context.Background()
 		id, err := d.client.BLPop(ctx, 0, d.lName).Result()
 		if err != nil {
-			logrus.Errorln("block left pop error", err)
+			logrus.Errorln("block pop error", err)
 			time.Sleep(10 * time.Second)
 			continue
 		}
