@@ -28,3 +28,13 @@ func LPop(ctx context.Context, key string) (string, error) {
 func RPush(ctx context.Context, key string, values ...interface{}) (int64, error) {
 	return client.RPush(ctx, key, values...).Result()
 }
+
+// LRem 移除元素
+// Return the number of removed elements.
+// count > 0: Remove elements equal to element moving from head to tail.
+// count < 0: Remove elements equal to element moving from tail to head.
+// count = 0: Remove all elements equal to element.
+// https://redis.io/commands/lrem/
+func LRem(ctx context.Context, key string, count int64, value interface{}) (int64, error) {
+	return client.LRem(ctx, key, count, value).Result()
+}
