@@ -21,11 +21,13 @@ type Delay struct {
 	zName string
 	// 上一次，从有序集合删除到期任务时，导致失败的错误
 	lastErr error
+	lastIds []string
 }
 
 // NewDelay 创建Delay实例
 // 启动goroutine，使用f处理到期的任务
 // f参数第一个元素是list名，第二个元素是值
+// 重启程序时，list中的任务可能会重复
 //
 // name用于组成redis键名
 // list 存放到期的任务id，键名为dq_queue:name
@@ -126,8 +128,11 @@ func (d *Delay) move() {
 			logrus.Errorln("push expire error", err)
 			return
 		}
+	} else {
+		ids = d.lastIds
 	}
 
+	// 此时重启程序，任务会重复
 	err = d.ZRem(ids)
 	if err != nil {
 		logrus.Errorln("rem expire error", err)
