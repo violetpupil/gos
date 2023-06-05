@@ -8,6 +8,15 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+// websocket消息类型
+const (
+	TextMessage   = websocket.TextMessage   // UTF-8 encoded text data
+	BinaryMessage = websocket.BinaryMessage // binary data message
+	CloseMessage  = websocket.CloseMessage  // close control message
+	PingMessage   = websocket.PingMessage   // ping control message
+	PongMessage   = websocket.TextMessage   // pong control message
+)
+
 // Message websocket消息
 type Message struct {
 	Type int
@@ -18,6 +27,7 @@ type Message struct {
 var Hub sync.Map
 
 // WriteMessage 从Hub中获取websocket连接，写消息到channel
+// t是websocket消息类型
 func WriteMessage(key string, t int, data []byte) error {
 	i, ok := Hub.Load(key)
 	if !ok {
