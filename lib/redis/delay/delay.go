@@ -19,6 +19,8 @@ type Delay struct {
 	lName string
 	// redis sorted set 存放未到期的任务id
 	zName string
+	// 上一次，从有序集合删除到期任务时，导致失败的错误
+	lastErr error
 }
 
 // NewDelay 创建Delay实例
@@ -37,7 +39,12 @@ func NewDelay(r *redis.Client, name string, f func([]string)) *Delay {
 		zName:  "dq_bucket:" + name,
 	}
 	// 每秒查询一次是否到期
-	time.AfterFunc(time.Second, d.move)
+	go func() {
+		for {
+			d.move()
+			time.Sleep(time.Second)
+		}
+	}()
 	go d.bLPop(f)
 	return d
 }
@@ -100,23 +107,30 @@ func (d *Delay) bLPop(f func([]string)) {
 
 // move 将到期的任务id转移到list
 func (d *Delay) move() {
-	ids, err := d.zRange()
-	if err != nil {
-		logrus.Errorln("zrange expire error", err)
-		return
-	}
-	if len(ids) == 0 {
-		logrus.Infoln("expire empty")
-		return
+	var ids []string
+	var err error
+	// 如果上一次删除到期任务失败，这次重试
+	if d.lastErr == nil {
+		ids, err = d.zRange()
+		if err != nil {
+			logrus.Errorln("zrange expire error", err)
+			return
+		}
+		if len(ids) == 0 {
+			logrus.Infoln("expire empty")
+			return
+		}
+
+		err = d.RPush(ids)
+		if err != nil {
+			logrus.Errorln("push expire error", err)
+			return
+		}
 	}
 
-	err = d.RPush(ids)
-	if err != nil {
-		logrus.Errorln("push expire error", err)
-		return
-	}
 	err = d.ZRem(ids)
 	if err != nil {
 		logrus.Errorln("rem expire error", err)
+		d.lastErr = err
 	}
 }

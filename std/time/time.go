@@ -27,7 +27,6 @@ var (
 	Since = time.Since
 	Sleep = time.Sleep
 	// AfterFunc waits for the duration to elapse and then calls f in its own goroutine.
-	// 调用后会立即调用f一次
 	AfterFunc = time.AfterFunc
 )
 
@@ -66,4 +65,14 @@ func Ts() string {
 // Video 将毫秒数转为视频时间字符串
 func Video(msec int64) string {
 	return time.UnixMilli(msec).UTC().Format(VideoTime)
+}
+
+// NewLoop 启动goroutine，一直执行f，并间隔一段时间
+func NewLoop(d time.Duration, f func()) {
+	go func() {
+		for {
+			f()
+			time.Sleep(d)
+		}
+	}()
 }
