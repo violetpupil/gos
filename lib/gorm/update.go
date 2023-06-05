@@ -18,6 +18,7 @@ func (u *update) Save(value any) (bool, error) {
 
 // Update 更新数据表的一个字段，返回更新记录条数
 // model 为数据模型指针
+// value为nil，表示更新为null
 //
 // 必须指定查询条件
 // 1. 如果设置了 model 中的主键，将作为查询条件，此时 query 可以为 nil

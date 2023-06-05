@@ -49,7 +49,10 @@ type Config struct {
 	Database string `env:"MySQLDatabase"`
 
 	// gorm.Config
+	// 自定义logger
 	Logger logger.Interface
+	// 使用默认logger时，指定log level
+	LogLevel logger.LogLevel
 	// 迁移模型时，不创建外键约束
 	DisableForeignKeyConstraintWhenMigrating bool
 	// table name prefix
@@ -65,17 +68,7 @@ type Config struct {
 // https://gorm.io/docs/connecting_to_the_database.html
 // https://github.com/go-sql-driver/mysql
 func InitMySQL(c Config) error {
-	dialector := NewMysqlDialector(c)
-
-	opt := &gorm.Config{
-		Logger:                                   c.Logger,
-		DisableForeignKeyConstraintWhenMigrating: c.DisableForeignKeyConstraintWhenMigrating,
-		// tables, columns naming strategy
-		NamingStrategy: schema.NamingStrategy{
-			TablePrefix: c.TablePrefix,
-		},
-	}
-	db, err := gorm.Open(dialector, opt)
+	db, err := NewMysqlDB(c)
 	if err != nil {
 		logrus.Errorln("open mysql error", err)
 		return err
@@ -89,7 +82,7 @@ func NewMysqlDB(c Config) (*gorm.DB, error) {
 	dialector := NewMysqlDialector(c)
 
 	opt := &gorm.Config{
-		Logger:                                   c.Logger,
+		Logger:                                   NewLogger(c),
 		DisableForeignKeyConstraintWhenMigrating: c.DisableForeignKeyConstraintWhenMigrating,
 		// tables, columns naming strategy
 		NamingStrategy: schema.NamingStrategy{
@@ -98,6 +91,24 @@ func NewMysqlDB(c Config) (*gorm.DB, error) {
 	}
 	db, err := gorm.Open(dialector, opt)
 	return db, err
+}
+
+// NewLogger 创建logger
+func NewLogger(c Config) logger.Interface {
+	var l logger.Interface
+	if c.Logger != nil {
+		l = c.Logger
+	} else {
+		// 使用默认logger，log level为warn
+		if c.LogLevel != 0 {
+			// 外部设置log level
+			l = logger.Default.LogMode(c.LogLevel)
+		} else {
+			// 默认log level为info
+			l = logger.Default.LogMode(logger.Info)
+		}
+	}
+	return l
 }
 
 // NewMysqlDialector 创建mysql dialector
