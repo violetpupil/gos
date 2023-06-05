@@ -66,6 +66,13 @@ func (d *Delay) RPush(ids []string) error {
 	return err
 }
 
+// LMove 指定源队列及位置left/right，放到到期队列头
+func (d *Delay) LMove(src, pos string) error {
+	ctx := context.Background()
+	err := d.client.LMove(ctx, src, d.lName, pos, "left").Err()
+	return err
+}
+
 // zRange 到期任务检测
 func (d *Delay) zRange() ([]string, error) {
 	ctx := context.Background()

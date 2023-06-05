@@ -29,6 +29,13 @@ func RPush(ctx context.Context, key string, values ...interface{}) (int64, error
 	return client.RPush(ctx, key, values...).Result()
 }
 
+// LMove 移动元素
+// pos为left或right
+// https://redis.io/commands/lmove/
+func LMove(ctx context.Context, source, destination, srcPos, destPos string) (string, error) {
+	return client.LMove(ctx, source, destination, srcPos, destPos).Result()
+}
+
 // LRem 移除元素
 // Return the number of removed elements.
 // count > 0: Remove elements equal to element moving from head to tail.
