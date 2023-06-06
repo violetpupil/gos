@@ -9,7 +9,7 @@ var (
 	// This function is only intended for human consumption and ignores errors.
 	Format = protojson.Format
 	// Marshal json编码
-	Marshal = protojson.Format
+	Marshal = protojson.Marshal
 	// Unmarshal json解码
-	Unmarshal = protojson.Format
+	Unmarshal = protojson.Unmarshal
 )
