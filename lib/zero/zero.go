@@ -19,8 +19,7 @@ type Config struct {
 	// zrpc.RpcServerConf.Redis字段必须设置Key
 	// 所以另外定义字段，且字段名不能和Redis重名
 	RedisC struct {
-		Host string
-		Port int
+		Addr string
 		Pass string
 	}
 }
