@@ -22,10 +22,6 @@ type Delay struct {
 	// 上一次，从有序集合删除到期任务时，导致失败的错误
 	lastErr error
 	lastIds []string
-	// redis list 存放运行的任务id
-	rName string
-	// 任务运行最大时长
-	ttr time.Duration
 }
 
 // NewDelay 创建Delay实例
@@ -35,20 +31,13 @@ type Delay struct {
 // name用于组成redis键名
 // list 存放到期的任务id，键名为dq_queue:name
 // sorted set 存放未到期的任务id，键名为dq_bucket:name
-// list 存放运行的任务id，键名为dq_run:name
 // 每次创建Delay实例时，有序集合键名应该在redis库空间中唯一
 // 否则，可能导致list中的任务id重复
-//
-// ttr time to run 任务运行最大时长
-// ttr<=0时，为弹出模式
-// 任务直接从到期队列弹出，不会存在运行队列
-func NewDelay(r *redis.Client, name string, f func(string), ttr time.Duration) *Delay {
+func NewDelay(r *redis.Client, name string, f func(string)) *Delay {
 	d := &Delay{
 		client: r,
 		lName:  "dq_queue:" + name,
 		zName:  "dq_bucket:" + name,
-		rName:  "dq_run:" + name,
-		ttr:    ttr,
 	}
 	// 每秒查询一次是否到期
 	go func() {
