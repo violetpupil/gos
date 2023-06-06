@@ -6,5 +6,5 @@ MySQL:
   Pass: "${MYSQL_PASS}"
   Database: "${MYSQL_DATABASE}"
 RedisC:
-  Host: ${REDIS_ADDR}
+  Addr: ${REDIS_ADDR}
   Pass: "${REDIS_PASS}"
