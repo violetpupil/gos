@@ -15,3 +15,10 @@ func SAdd(ctx context.Context, key string, members ...interface{}) (int64, error
 func SRem(ctx context.Context, key string, members ...interface{}) (int64, error) {
 	return client.SRem(ctx, key, members...).Result()
 }
+
+// SPop set pop
+// 当key不存在时，返回redis.Nil错误
+// https://redis.io/commands/spop/
+func SPop(ctx context.Context, key string) (string, error) {
+	return client.SPop(ctx, key).Result()
+}
