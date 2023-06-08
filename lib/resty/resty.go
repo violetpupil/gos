@@ -21,6 +21,16 @@ func Init() {
 	Client = resty.New()
 }
 
+// SetDebug Client logs details of every request and response.
+func SetDebug(d bool) {
+	Client.SetDebug(d)
+}
+
+// SetDebugBodyLimit log请求/响应体最大长度
+func SetDebugBodyLimit(sl int64) {
+	Client.SetDebugBodyLimit(sl)
+}
+
 // IsProxySet 客户端是否设置了代理
 // 默认会使用环境变量的代理，参考 http.ProxyFromEnvironment
 func IsProxySet() bool {
