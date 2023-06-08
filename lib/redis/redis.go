@@ -16,24 +16,22 @@ var client *redis.Client
 type Config struct {
 	Addr     string // 传空的话，默认连接localhost:6379
 	Password string // 密码
+	DB       int    // 数据库号
 }
 
 // Init 初始化客户端
 // 初始化时不会连接 redis
 func Init(c Config) {
-	opt := &redis.Options{
-		Addr:     c.Addr,
-		Password: c.Password,
-	}
-	client = redis.NewClient(opt)
+	client = NewClient(c)
 }
 
 // NewClient 创建redis客户端
-func NewClient(addr, pass string) *redis.Client {
+func NewClient(cfg Config) *redis.Client {
 	opt := &redis.Options{
-		Addr:     addr,
-		Password: pass,
+		Addr:     cfg.Addr,
+		Password: cfg.Password,
+		DB:       cfg.DB,
 	}
-	client := redis.NewClient(opt)
-	return client
+	c := redis.NewClient(opt)
+	return c
 }
