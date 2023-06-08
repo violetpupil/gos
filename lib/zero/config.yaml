@@ -8,3 +8,4 @@ MySQL:
 RedisC:
   Addr: ${REDIS_ADDR}
   Pass: "${REDIS_PASS}"
+  DB: ${REDIS_DB}

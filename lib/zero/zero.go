@@ -21,5 +21,6 @@ type Config struct {
 	RedisC struct {
 		Addr string
 		Pass string
+		DB   int
 	}
 }
