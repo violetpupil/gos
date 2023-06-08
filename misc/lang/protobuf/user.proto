@@ -39,9 +39,9 @@ enum ResponseCode {
   // 枚举必须从0开始
   // 两个枚举都定义UNKNOWN会报错
   RESPONSE_CODE_UNKNOWN = 0; // 未知
-  SUCCESS = 1;               // 处理成功
-  BAD_REQUEST = 2;           // 请求参数错误
-  INTERNAL_SERVER_ERROR = 3; // 处理失败
+  SUCCESS = 1;               // 处理成功，可能携带数据
+  BAD_REQUEST = 2;           // 请求参数错误，可能携带错误
+  INTERNAL_SERVER_ERROR = 3; // 处理失败，可能携带错误
 }
 
 // Response 基本响应
