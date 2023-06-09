@@ -20,6 +20,8 @@ var (
 	// []interface{}, for JSON arrays
 	// map[string]interface{}, for JSON objects
 	// nil for JSON null
+	//
+	// 结构体使用指针字段，可以区分不存在还是赋了默认值
 	Unmarshal = json.Unmarshal
 )
 
