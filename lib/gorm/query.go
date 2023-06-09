@@ -85,3 +85,9 @@ func (q *query) Find(dest interface{}, cond ...interface{}) (int64, error) {
 	db := q.db.Find(dest, cond...)
 	return db.RowsAffected, db.Error
 }
+
+// FirstOrCreate
+func (q *query) FirstOrCreate(dest interface{}, cond ...interface{}) error {
+	err := q.db.FirstOrCreate(dest, cond...).Error
+	return err
+}
