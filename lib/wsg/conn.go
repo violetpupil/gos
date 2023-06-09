@@ -53,7 +53,7 @@ type Conn struct {
 // NewConn 保存连接到Hub
 // 读取消息直到异常，f为消息处理函数，参数为消息类型和内容
 // 创建goroutine，将Conn.Write中的消息写到连接
-func NewConn(conn *websocket.Conn, key string, f func(int, []byte)) {
+func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) {
 	// 读消息异常后，会使写消息goroutine退出
 	// 先从Hub去掉，再关闭channel，防止panic
 	c := &Conn{
@@ -96,7 +96,7 @@ func NewConn(conn *websocket.Conn, key string, f func(int, []byte)) {
 			"Message": string(p),
 		}).Infoln("read message")
 		if f != nil {
-			f(t, p)
+			f(key, t, p)
 		}
 	}
 }
