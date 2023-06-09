@@ -40,8 +40,12 @@ type Request = resty.Request
 // SetBasicAuth basic认证 "Basic <base64-encoded-value>"
 //
 // 响应体自动解码，当类型为json或xml时
-// SetResult 指定响应体结构，响应码200~299，与Response.Result配合使用
-// SetError 指定响应体结构，响应码>399，与Response.Error配合使用
+// SetResult 指定响应体结构，响应码200~299
+// 当指定结构非指针时，与Response.Result配合使用
+// 当指定结构为指针时，与Response.Result配合使用，或直接使用传入的指针
+// SetError 指定响应体结构，响应码>399
+// 当指定结构非指针时，与Response.Error配合使用
+// 当指定结构为指针时，与Response.Error配合使用，或直接使用传入的指针
 //
 // EnableTrace 是否追踪请求信息
 // SetOutput 指定下载路径
