@@ -20,7 +20,7 @@ require (
 	github.com/goccy/go-json v0.10.2
 	github.com/golang/glog v1.0.0
 	github.com/google/uuid v1.3.0
-	github.com/gorilla/websocket v1.4.1
+	github.com/gorilla/websocket v1.5.0
 	github.com/joho/godotenv v1.5.1
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/redis/go-redis/v9 v9.0.5
