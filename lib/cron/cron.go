@@ -55,7 +55,7 @@ func AddFunc(spec string, cmd func()) error {
 		return err
 	}
 	entry := c.Entry(id)
-	logrus.Infoln("add func entry %+v", entry)
+	logrus.Infof("add func entry %+v", entry)
 	return nil
 }
 
