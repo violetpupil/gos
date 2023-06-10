@@ -86,8 +86,16 @@ func (q *query) Find(dest interface{}, cond ...interface{}) (int64, error) {
 	return db.RowsAffected, db.Error
 }
 
-// FirstOrCreate
-func (q *query) FirstOrCreate(dest interface{}, cond ...interface{}) error {
-	err := q.db.FirstOrCreate(dest, cond...).Error
-	return err
+// FirstOrCreate 查询第一条匹配记录，查不到则创建并赋值
+// query为查询条件，attrs为创建时的附加字段
+// assign为附加字段，查到则更新，查不到则创建时使用
+// query、attrs、assign必须是数据模型或map
+// dest是数据模型指针，返回插入或更新的记录数
+//
+// db.FirstOrCreate(&user, User{Name: "non_existing"})
+// db.Where(User{Name: "non_existing"}).FirstOrCreate(&user)
+// INSERT INTO "users" (name) VALUES ("non_existing");
+func (q *query) FirstOrCreate(dest, query, attrs, assign any) (int64, error) {
+	db := q.db.Where(query).Attrs(attrs).Assign(assign).FirstOrCreate(dest)
+	return db.RowsAffected, db.Error
 }
