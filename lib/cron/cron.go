@@ -58,15 +58,3 @@ func AddFunc(spec string, cmd func()) error {
 	logrus.Infof("add func entry %+v", entry)
 	return nil
 }
-
-// AddFuncs 添加多个调度函数
-func AddFuncs(specs map[string]func()) error {
-	for k, v := range specs {
-		err := AddFunc(k, v)
-		if err != nil {
-			logrus.Errorln("add funcs error", err)
-			return err
-		}
-	}
-	return nil
-}
