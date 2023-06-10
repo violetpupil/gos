@@ -89,8 +89,10 @@ func (q *query) Find(dest interface{}, cond ...interface{}) (int64, error) {
 // FirstOrCreate 查询第一条匹配记录，查不到则创建并赋值
 // query为查询条件，attrs为创建时的附加字段
 // assign为附加字段，查到则更新，查不到则创建时使用
+// 不指定query的话，查找根据主键排序的第一条数据，无主键则根据第一个字段排序
 // attrs和assign字段重复时，创建时使用assign的值
 // query、attrs、assign必须是数据模型或map
+// 数据模型的话，只使用非默认值字段
 // dest是数据模型指针，返回插入或更新的记录数
 //
 // db.FirstOrCreate(&user, User{Name: "non_existing"})
