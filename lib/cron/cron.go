@@ -22,6 +22,12 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+const (
+	// cron表达式
+	// 每分钟
+	Minutely = "* * * * *"
+)
+
 // 调度器，必须先调用Start启动
 // Start() 在goroutine启动
 // Run() 阻塞启动
