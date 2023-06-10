@@ -10,6 +10,8 @@
 
 `FROM_UNIXTIME()` 将秒级时间戳转为时间字符串
 
+`UNIX_TIMESTAMP()` 返回秒级时间戳
+
 ## format
 
 `%Y` 四位年
