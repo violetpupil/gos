@@ -23,9 +23,10 @@ misc 杂项
 - lang 辅助语言
 - linux linux文档
 - protocol 协议文档
+- windows windows文档
 
 spec go语言文档及util代码
 
-std go标准库
+[std](https://pkg.go.dev/std) go标准库
 
 tools 工具文档
