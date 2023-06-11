@@ -28,6 +28,9 @@ var (
 	Sleep = time.Sleep
 	// AfterFunc waits for the duration to elapse and then calls f in its own goroutine.
 	AfterFunc = time.AfterFunc
+	// ParseDuration parses a duration string.
+	// 1ms -1s 1h0.5m
+	ParseDuration = time.ParseDuration
 )
 
 type (

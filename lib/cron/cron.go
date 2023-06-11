@@ -8,15 +8,13 @@
 // │ │ │ │ │
 // * * * * * <command to execute>
 //
-// @monthly @weekly @daily @hourly
-// @every <duration> 指定间隔时间执行
-//
 // 用,指定多个时间，用*/指定间隔时间执行
 // */5 1,2,3 * * * echo hello world
 package cron
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/robfig/cron/v3"
 	"github.com/sirupsen/logrus"
@@ -24,9 +22,18 @@ import (
 
 const (
 	// cron表达式
-	// 每分钟
-	Minutely = "* * * * *"
+	Minutely = "* * * * *" // 每分钟
+	Hourly   = "@hourly"   // 每小时
+	Daily    = "@daily"    // 每天
+	Weekly   = "@weekly"   // 每周
+	Monthly  = "@monthly"  // 每月
 )
+
+// Every 指定间隔时间 1ms -1s 1h0.5m
+// 参考time.ParseDuration函数
+func Every(duration string) string {
+	return fmt.Sprintf("@every %s", duration)
+}
 
 // 调度器，必须先调用Start启动
 // Start() 在goroutine启动
@@ -48,6 +55,7 @@ func Stop() context.Context {
 
 // AddFunc adds a func to the Cron to be run on the given schedule.
 // Cron will run them in their own goroutines.
+// 不会立即运行
 func AddFunc(spec string, cmd func()) error {
 	id, err := c.AddFunc(spec, cmd)
 	if err != nil {
@@ -56,5 +64,21 @@ func AddFunc(spec string, cmd func()) error {
 	}
 	entry := c.Entry(id)
 	logrus.Infof("add func entry %+v", entry)
+	return nil
+}
+
+// AddFuncNow adds a func to the Cron to be run on the given schedule.
+// Cron will run them in their own goroutines.
+// 会立即运行一次
+func AddFuncNow(spec string, cmd func()) error {
+	id, err := c.AddFunc(spec, cmd)
+	if err != nil {
+		logrus.Errorln("add func error", err)
+		return err
+	}
+	entry := c.Entry(id)
+	logrus.Infof("add func entry %+v", entry)
+
+	cmd()
 	return nil
 }
