@@ -79,6 +79,6 @@ func AddFuncNow(spec string, cmd func()) error {
 	entry := c.Entry(id)
 	logrus.Infof("add func entry %+v", entry)
 
-	cmd()
+	go cmd()
 	return nil
 }
