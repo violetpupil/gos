@@ -1,6 +1,4 @@
-// https://go-zero.dev/cn/
-// https://go-zero.dev/cn/docs/introduction
-// https://go-zero.dev/cn/docs/blog/blog
+// https://go-zero.dev/
 // https://github.com/zeromicro/zero-examples
 package zero
 
