@@ -28,3 +28,12 @@ func (c *create) CreateDoNothing(value any) (int64, error) {
 	db := c.db.Clauses(clause.OnConflict{DoNothing: true}).Create(value)
 	return db.RowsAffected, db.Error
 }
+
+// CreateUpdateAll 插入数据，返回插入记录数
+// value为数据模型指针或指针切片
+// 如果主键是插入时生成的，会自动更新
+// 数据被唯一性约束时，更新所有字段
+func (c *create) CreateUpdateAll(value any) (int64, error) {
+	db := c.db.Clauses(clause.OnConflict{UpdateAll: true}).Create(value)
+	return db.RowsAffected, db.Error
+}
