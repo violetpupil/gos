@@ -4,6 +4,7 @@ package gorm
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/caarlos0/env/v7"
 	"github.com/sirupsen/logrus"
@@ -92,6 +93,25 @@ func NewMysqlDB(c Config) (*gorm.DB, error) {
 		},
 	}
 	db, err := gorm.Open(dialector, opt)
+	return db, err
+}
+
+// NewMysqlDBLife 创建mysql db
+// sets the maximum amount of time a connection may be reused.
+// If t <= 0, connections are not closed due to a connection's age.
+func NewMysqlDBLife(c Config, t time.Duration) (*gorm.DB, error) {
+	db, err := NewMysqlDB(c)
+	if err != nil {
+		logrus.Errorln("new mysql db error", err)
+		return nil, err
+	}
+
+	d, err := db.DB()
+	if err != nil {
+		logrus.Errorln("get sql db error", err)
+		return nil, err
+	}
+	d.SetConnMaxLifetime(t)
 	return db, err
 }
 
