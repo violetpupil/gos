@@ -12,6 +12,10 @@
 
 `Ctrl+Shift+Alt+C` editor.action.transformToCamelcase
 
+## Basic Editing
+
+`Ctrl+Shift+L` Select all occurrences of current selection
+
 ## Rich Languages Editing
 
 `F12` 定义和引用相互跳转
