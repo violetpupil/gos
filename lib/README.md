@@ -3,11 +3,13 @@
 ## 基础能力
 
 - cast 类型转换
-- godotenv 加载环境变量
 - mapstructure 将map解码为结构体
 - cron 定时执行
 - sonyflake id生成器
 - uuid id生成器
+- godotenv 从文件加载环境变量
+- env 将环境变量加载到结构体
+- viper 配置管理
 - glog 日志
 - logrus 日志
 - zap 日志
