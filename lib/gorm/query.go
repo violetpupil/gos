@@ -102,3 +102,15 @@ func (q *query) FirstOrCreate(dest, query, attrs, assign any) (int64, error) {
 	db := q.db.Where(query).Attrs(attrs).Assign(assign).FirstOrCreate(dest)
 	return db.RowsAffected, db.Error
 }
+
+// Count 查询记录条数
+// model是数据模型指针，query是where查询条件
+func (q *query) Count(model any, query any, args ...any) (int64, error) {
+	var count int64
+	db := q.db.Model(model)
+	if query != nil {
+		db = db.Where(query, args...)
+	}
+	err := db.Count(&count).Error
+	return count, err
+}
