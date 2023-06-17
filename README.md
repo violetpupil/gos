@@ -29,4 +29,6 @@ spec go语言文档及util代码
 
 [std](https://pkg.go.dev/std) go标准库
 
+[sub](https://pkg.go.dev/golang.org/x) go sub库
+
 tools 工具文档
