@@ -10,3 +10,12 @@ func Encode(src []byte) string {
 func Decode(s string) ([]byte, error) {
 	return base64.StdEncoding.DecodeString(s)
 }
+
+// URLEncode 可直接用在url中的base64编码字符串
+func URLEncode(src []byte) string {
+	return base64.URLEncoding.EncodeToString(src)
+}
+
+func URLDecode(s string) ([]byte, error) {
+	return base64.URLEncoding.DecodeString(s)
+}
