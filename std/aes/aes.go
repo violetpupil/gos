@@ -2,6 +2,7 @@
 package aes
 
 import (
+	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/base64"
@@ -17,9 +18,10 @@ func Encrypt(key, iv, plain []byte) ([]byte, error) {
 		return nil, err
 	}
 
-	var c []byte
+	pad := PKCS5Padding(plain, block.BlockSize())
+	c := make([]byte, len(pad))
 	cbc := cipher.NewCBCEncrypter(block, iv)
-	cbc.CryptBlocks(c, plain)
+	cbc.CryptBlocks(c, pad)
 	return c, nil
 }
 
@@ -32,4 +34,11 @@ func EncryptS(key, iv []byte, plain string) (string, error) {
 	}
 	c := base64.URLEncoding.EncodeToString(cipher)
 	return c, nil
+}
+
+// PKCS5 PKCS5填充明文
+func PKCS5Padding(plain []byte, blockSize int) []byte {
+	count := blockSize - len(plain)%blockSize
+	pad := bytes.Repeat([]byte{byte(count)}, count)
+	return append(plain, pad...)
 }
