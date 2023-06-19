@@ -26,8 +26,8 @@ func Encrypt(key, iv, plain []byte) ([]byte, error) {
 }
 
 // EncryptS aes加密字符串，返回base64 url编码的密文
-func EncryptS(key, iv []byte, plain string) (string, error) {
-	cipher, err := Encrypt(key, iv, []byte(plain))
+func EncryptS(key, iv, plain string) (string, error) {
+	cipher, err := Encrypt([]byte(key), []byte(iv), []byte(plain))
 	if err != nil {
 		logrus.Errorln("encrypt error", err)
 		return "", err
