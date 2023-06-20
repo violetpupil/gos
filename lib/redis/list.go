@@ -32,6 +32,7 @@ func RPush(ctx context.Context, key string, values ...interface{}) (int64, error
 // LMove 移动元素
 // pos为left或right
 // https://redis.io/commands/lmove/
+// Available since: 6.2.0
 func LMove(ctx context.Context, source, destination, srcPos, destPos string) (string, error) {
 	return client.LMove(ctx, source, destination, srcPos, destPos).Result()
 }
