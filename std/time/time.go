@@ -36,6 +36,8 @@ var (
 type (
 	Duration = time.Duration
 	// A Ticker holds a channel that delivers “ticks” of a clock at intervals.
+	// The ticker will adjust the time interval or drop ticks to make up for slow receivers.
+	// Stop the ticker to release associated resources.
 	Ticker = time.Ticker
 	// 单次计时器
 	Timer = time.Timer
