@@ -12,12 +12,19 @@ func TestContains(t *testing.T) {
 	fmt.Println(r)
 }
 
+func TestSort(t *testing.T) {
+	r := []int{2, 1, 3}
+	// 升序
+	slices.Sort[int](r)
+	fmt.Println(r)
+}
+
 func TestSortStableFunc(t *testing.T) {
 	r := []int{2, 1, 3}
-	// 正序
+	// 降序
 	slices.SortStableFunc[int](r, func(a, b int) bool { return a > b })
 	fmt.Println(r)
-	// 反序
+	// 升序
 	slices.SortStableFunc[int](r, func(a, b int) bool { return a < b })
 	fmt.Println(r)
 }
