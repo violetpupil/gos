@@ -15,6 +15,11 @@ type (
 	SyscallError = os.SyscallError
 )
 
+var (
+	// 将${var}或$var替换为环境变量或者空字符串
+	ExpandEnv = os.ExpandEnv
+)
+
 // LogSyscallError 打印os.SyscallError相关信息
 // 如果不是os.SyscallError，直接返回
 func LogSyscallError(err error) {
