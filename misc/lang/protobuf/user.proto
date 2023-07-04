@@ -42,6 +42,8 @@ enum ResponseCode {
   SUCCESS = 1;               // 处理成功，可能携带数据
   BAD_REQUEST = 2;           // 请求参数错误，可能携带错误
   INTERNAL_SERVER_ERROR = 3; // 处理失败，可能携带错误
+  RESOURCE_OCCUPIED = 4;     // 资源使用中，可能携带错误
+  RESOURCE_REPEAT = 5;       // 资源重复，可能携带错误
 }
 
 // Response 基本响应
