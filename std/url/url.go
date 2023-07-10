@@ -13,6 +13,13 @@ type (
 	URL = url.URL
 )
 
+var (
+	// 查询字符串编码
+	QueryEscape = url.QueryEscape
+	// 查询字符串解码
+	QueryUnescape = url.QueryUnescape
+)
+
 // Path 返回url的路径部分，无前缀斜杆
 func Path(rawURL string) (string, error) {
 	u, err := url.Parse(rawURL)
