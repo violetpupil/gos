@@ -10,6 +10,7 @@ type (
 	// RpcServerConf is a rpc server config.
 	// ListenOn 监听地址
 	// Etcd etcd related configuration
+	// Timeout 接口最大响应时间
 	RpcServerConf = zrpc.RpcServerConf
 	// RpcClientConf is a rpc client config.
 	// Etcd etcd related configuration
