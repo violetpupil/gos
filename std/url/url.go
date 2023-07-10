@@ -7,6 +7,12 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+type (
+	// URL url信息
+	// RawQuery encoded query values, without '?'
+	URL = url.URL
+)
+
 // Path 返回url的路径部分，无前缀斜杆
 func Path(rawURL string) (string, error) {
 	u, err := url.Parse(rawURL)
