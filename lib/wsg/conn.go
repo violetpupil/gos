@@ -26,6 +26,12 @@ type Message struct {
 // Hub 连接中心
 var Hub sync.Map
 
+// CheckConn 检查是否建立了websocket连接
+func CheckConn(key string) bool {
+	_, ok := Hub.Load(key)
+	return ok
+}
+
 // WriteMessage 从Hub中获取websocket连接，写消息到channel
 // t是websocket消息类型
 func WriteMessage(key string, t int, data []byte) error {
