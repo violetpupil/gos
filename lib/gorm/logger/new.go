@@ -39,12 +39,12 @@ func OneLine() gLog.Interface {
 		Colorful:                  true,
 	}
 
-	infoStr := Color(G, "%s") + Color(G, "[info] ")
-	warnStr := Color(BB, "%s") + Color(M, "[warn] ")
-	errStr := Color(M, "%s") + Color(R, "[error] ")
-	traceStr := Color(G, "%s") + Y + "[%.3fms] " + Color(BB, "[rows:%v]") + " %s"
-	traceWarnStr := G + "%s " + Color(Y, "%s") + RB + "[%.3fms] " + Y + "[rows:%v]" + Color(M, " %s")
-	traceErrStr := RB + "%s " + Color(MB, "%s") + Y + "[%.3fms] " + Color(BB, "[rows:%v]") + " %s"
+	infoStr := Color(G, "%s ") + Color(G, "[info] ")
+	warnStr := Color(BB, "%s ") + Color(M, "[warn] ")
+	errStr := Color(M, "%s ") + Color(R, "[error] ")
+	traceStr := Color(G, "%s ") + Y + "[%.3fms] " + Color(BB, "[rows:%v]") + " %s"
+	traceWarnStr := G + "%s " + Color(Y, "%s ") + RB + "[%.3fms] " + Y + "[rows:%v]" + Color(M, " %s")
+	traceErrStr := RB + "%s " + Color(MB, "%s ") + Y + "[%.3fms] " + Color(BB, "[rows:%v]") + " %s"
 
 	return &Logger{
 		Writer:       writer,
