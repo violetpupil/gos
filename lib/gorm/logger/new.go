@@ -29,8 +29,8 @@ func Color(c string, s string) string {
 	return c + s + Reset
 }
 
-// New 单行日志logger
-func New() gLog.Interface {
+// OneLine 单行日志logger
+func OneLine() gLog.Interface {
 	writer := log.New(os.Stdout, "\r\n", log.LstdFlags)
 	config := gLog.Config{
 		SlowThreshold:             200 * time.Millisecond,
