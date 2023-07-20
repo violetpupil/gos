@@ -3,16 +3,19 @@
 ## Creating a Deployment
 
 ```bash
+# 用文件创建nginx deployment
 kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+# 用命令创建nginx deployment
+kubectl create deployment nginx --image=nginx
 ```
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
   labels:
     app: nginx
+  name: nginx
 spec:
   replicas: 3
   selector:
