@@ -2,6 +2,7 @@
 
 ```bash
 kubectl get namespace # 查看所有命名空间
+kubectl get all # 查看所有资源
 kubectl version --client --output=yaml # 查看kubectl版本
 ```
 
@@ -9,7 +10,14 @@ kubectl version --client --output=yaml # 查看kubectl版本
 
 ```bash
 kubectl config view # Show Merged kubeconfig settings.
-kubectl config set-context --current --namespace=<namespace-name> # 设置当前上下文的命名空间
+kubectl config set-context --current --namespace=<namespace-name> # 永久设置命名空间
+kubectl config view --minify | grep namespace: # 验证设置的命名空间
+```
+
+## Creating objects
+
+```bash
+kubectl create deployment nginx --image=nginx # start a single instance of nginx
 ```
 
 ## Viewing and finding resources

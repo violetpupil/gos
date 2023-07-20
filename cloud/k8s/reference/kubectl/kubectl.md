@@ -24,6 +24,8 @@ kubectl有三种管理k8s对象的方式
 
 ## Resource types
 
+events ev
+
 namespaces ns
 
 nodes no
