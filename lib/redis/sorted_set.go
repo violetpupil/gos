@@ -1,5 +1,6 @@
 // The order of elements is from the lowest to the highest score.
 // Elements with the same score are ordered lexicographically.
+// https://redis.io/commands/?group=sorted-set
 package redis
 
 import (
