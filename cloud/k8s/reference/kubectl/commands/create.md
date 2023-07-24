@@ -4,4 +4,4 @@
 
 `kubectl create deployment NAME --image=image -- [COMMAND] [args...]`
 
-- image 镜像，docker hub的镜像不写地址
+`--image` 镜像，docker hub的镜像不写地址

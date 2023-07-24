@@ -4,7 +4,9 @@
 
 `get` 查看k8s资源
 
-`run` 在pod中运行镜像
+`run` 运行pod
+
+`expose` Expose a resource as a new Kubernetes service.
 
 `delete` 删除k8s资源
 

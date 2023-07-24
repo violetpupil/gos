@@ -34,6 +34,8 @@ persistentvolumeclaims pvc
 
 pods po
 
+services svc
+
 deployments deploy
 
 replicasets rs
