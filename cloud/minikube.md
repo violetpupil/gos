@@ -9,4 +9,14 @@ minikube start
 minikube dashboard
 # 打开浏览器访问nginx service
 minikube service nginx
+# List the currently supported addons
+minikube addons list
+# 启用插件
+minikube addons enable metrics-server
+# 禁用插件
+minikube addons disable metrics-server
+# 停止集群
+minikube stop
+# 删除集群
+minikube delete
 ```
