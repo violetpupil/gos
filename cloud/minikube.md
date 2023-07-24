@@ -7,4 +7,6 @@
 minikube start
 # 启动web ui
 minikube dashboard
+# 打开浏览器访问nginx service
+minikube service nginx
 ```
