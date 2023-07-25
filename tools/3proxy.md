@@ -1,6 +1,10 @@
 # [3proxy](https://github.com/3proxy/3proxy)
 
-[download](https://github.com/3proxy/3proxy/releases/download/0.9.4/3proxy-0.9.4-x64.zip)
+[windows](https://github.com/3proxy/3proxy/releases/download/0.9.4/3proxy-0.9.4-x64.zip)
+
+```bash
+wget https://github.com/3proxy/3proxy/releases/download/0.9.4/3proxy-0.9.4.aarch64.rpm
+```
 
 1. 在bin64目录配置文件3proxy.cfg
 2. 在bin64目录直接运行3proxy.exe
