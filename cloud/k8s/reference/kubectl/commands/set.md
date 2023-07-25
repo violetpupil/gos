@@ -1,5 +1,7 @@
 # [set](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#set)
 
+Configure application resources.
+
 `image` Update existing container image(s) of resources.
 
 `resources` 设置计算资源

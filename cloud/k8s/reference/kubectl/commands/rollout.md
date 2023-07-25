@@ -1,5 +1,7 @@
 # [rollout](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rollout)
 
+Manage the rollout of a resource.
+
 `history` View previous rollout revisions and configurations.
 
 `pause` 暂停rollout

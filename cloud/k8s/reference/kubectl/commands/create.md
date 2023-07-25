@@ -1,5 +1,7 @@
 # [create](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#create)
 
+创建资源
+
 ## deployment
 
 `kubectl create deployment NAME --image=image -- [COMMAND] [args...]`
