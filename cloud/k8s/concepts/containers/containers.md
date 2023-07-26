@@ -25,6 +25,10 @@ stat -fc %T /sys/fs/cgroup/
 
 `<image-name>@<digest>`
 
+If you don't specify a registry hostname, Kubernetes assumes that you mean the Docker public registry.
+
+If you don't specify a tag, Kubernetes assumes you mean the tag latest.
+
 You should avoid using the :latest tag when deploying containers in production as it is harder to track which version of the image is running and more difficult to roll back properly.
 
 ### imagePullPolicy

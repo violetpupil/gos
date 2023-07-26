@@ -2,7 +2,7 @@
 
 查看k8s资源
 
-`-o` 输出格式 json|yaml
+`-o` 输出格式 json|yaml|wide
 
 `--show-labels` 显示labels
 
