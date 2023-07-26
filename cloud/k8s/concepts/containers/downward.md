@@ -2,6 +2,9 @@
 
 The downward API allows containers to consume information about themselves or the cluster without using the Kubernetes client or API server.
 
+- as environment variables
+- as files in a downwardAPI volume
+
 ## Pod-level fields
 
 `metadata.name` the pod's name
