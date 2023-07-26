@@ -12,7 +12,7 @@
 
 ## [通用选项]
 
-`--namespace` 指定命名空间
+`-n --namespace` 指定命名空间
 
 `-A` 所有命名空间
 
@@ -25,6 +25,8 @@
 `autoscale` 创建autoscaler，自动调整pod数
 
 `edit` Edit a resource from the default editor.
+
+`label` Update the labels on a resource.
 
 `patch` Update fields of a resource using strategic merge patch
 
