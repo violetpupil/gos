@@ -10,9 +10,9 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-resty/resty/v2"
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/crypto/sign"
-	"github.com/violetpupil/components/lib/resty"
 	"github.com/violetpupil/components/media/srt"
 	"github.com/violetpupil/components/std/os"
 	"github.com/violetpupil/components/std/strconv"
@@ -134,17 +134,18 @@ func (a LfAsr) Upload(name string) (*UploadRes, error) {
 		logrus.Error("read file error ", err)
 		return nil, err
 	}
-	res, err := resty.Post(UrlUpload, func(r *resty.Request) {
-		r.SetHeader("Content-Type", "application/json")
-		r.SetQueryParams(qs)
-		r.SetBody(bytes)
-	})
+
+	req := resty.New().R()
+	req.SetHeader("Content-Type", "application/json")
+	req.SetQueryParams(qs)
+	req.SetBody(bytes)
+	res, err := req.Post(UrlUpload)
 	if err != nil {
 		logrus.Error("post error ", err)
 		return nil, err
 	}
 	// 打印所有字段
-	logrus.Info("upload response body ", res.String())
+	logrus.WithField("status", res.Status()).Info("upload response body ", res.String())
 
 	var body UploadRes
 	err = Unmarshal(res, &body)
@@ -324,16 +325,17 @@ func (a LfAsr) GetResult(orderId string) (*GetResultRes, error) {
 	// 查询字符串参数
 	qs := a.SignA(a.LfAsrSecret)
 	qs["orderId"] = orderId
-	res, err := resty.Post(UrlGetResult, func(r *resty.Request) {
-		r.SetHeader("Content-Type", "application/json")
-		r.SetQueryParams(qs)
-	})
+
+	req := resty.New().R()
+	req.SetHeader("Content-Type", "application/json")
+	req.SetQueryParams(qs)
+	res, err := req.Post(UrlGetResult)
 	if err != nil {
 		logrus.Error("post error ", err)
 		return nil, err
 	}
 	// 打印所有字段
-	logrus.Info("get result response ", res.String())
+	logrus.WithField("status", res.Status()).Info("get result response ", res.String())
 
 	var body GetResultRes
 	err = Unmarshal(res, &body)

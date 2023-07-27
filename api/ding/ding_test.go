@@ -2,8 +2,8 @@ package ding
 
 import "testing"
 
-func TestSendClientText(t *testing.T) {
-	SendClientText(
+func TestSendText(t *testing.T) {
+	SendText(
 		"",
 		"",
 		[]string{""},

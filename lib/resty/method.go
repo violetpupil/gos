@@ -49,7 +49,6 @@ func Post(url string, hook ReqHook) (*resty.Response, error) {
 		logrus.Errorln("post error", err)
 		return nil, err
 	}
-	logrus.Infoln("post response status", res.Status())
 	return res, nil
 }
 

@@ -110,20 +110,21 @@ func (a NiuTrans) Translate(text, src, dst string) (string, error) {
 		logrus.Error("json marshal error ", err)
 		return "", err
 	}
-
+	// 请求头
 	headers := a.Sign(SignHost, SignLine, body)
 	headers["Content-Type"] = "application/json"
 	headers["Accept"] = "application/json,version=1.0"
-	res, err := resty.Post(UrlTrans, func(r *resty.Request) {
-		r.SetHeaders(headers)
-		r.SetBody(body)
-	})
+
+	req := resty.New().R()
+	req.SetHeaders(headers)
+	req.SetBody(body)
+	res, err := req.Post(UrlTrans)
 	if err != nil {
 		logrus.Error("post error ", err)
 		return "", err
 	}
 	// 打印所有字段
-	logrus.Info("translate response body ", res.String())
+	logrus.WithField("status", res.Status()).Info("translate response body ", res.String())
 
 	var resBody TranslateRes
 	err = json.Unmarshal(res.Body(), &resBody)
