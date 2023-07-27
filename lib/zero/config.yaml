@@ -1,4 +1,4 @@
-Mode: pro
+Mode: ${RUN_MODE}
 ListenOn: :9090
 MySQL:
   Host: ${MYSQL_HOST}
