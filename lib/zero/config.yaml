@@ -1,3 +1,5 @@
+Mode: pro
+ListenOn: :9090
 MySQL:
   Host: ${MYSQL_HOST}
   Port: ${MYSQL_PORT}
