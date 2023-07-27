@@ -44,3 +44,8 @@ func TestProxyIpLumFive(t *testing.T) {
 	)
 	fmt.Println(ip, err)
 }
+
+func TestProxyIpEchoStr(t *testing.T) {
+	ip, err := ProxyIpEchoStr("")
+	fmt.Println(ip, err)
+}
