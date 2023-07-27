@@ -40,4 +40,6 @@ deployments deploy
 
 replicasets rs
 
+statefulsets sts
+
 horizontalpodautoscalers hpa
