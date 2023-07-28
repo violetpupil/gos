@@ -21,6 +21,7 @@
 - govalidator 数据验证
 - gocsv csv处理
 - protobuf protobuf处理
+- yaml yaml处理
 - excelize excel处理
 - exl excel处理
 - fastjson json处理
