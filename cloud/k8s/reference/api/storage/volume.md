@@ -1,9 +1,9 @@
 # [Volume](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/volume/)
 
 - `name` 卷名，pod内唯一 required
-- `configMap` 填充卷的ConfigMap
+- `configMap` 填充卷的ConfigMap，data键是文件，data值是内容
   - `name` ConfigMap名
-  - `items` 投影对象键对应文件相对路径
+  - `items` data键不是文件时指定文件
 - `emptyDir` 空卷
 - `hostPath` 主机路径
   - `path` 路径
