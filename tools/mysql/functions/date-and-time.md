@@ -6,11 +6,18 @@
 
 `DATE()` Extract the date part of a date or datetime expression
 
-`TIME()` Extract the time portion of the expression passed
-
 `FROM_UNIXTIME()` 将秒级时间戳转为时间字符串
 
+`NOW()` Return the current date and time
+
+`TIME()` Extract the time portion of the expression passed
+
 `UNIX_TIMESTAMP()` 返回秒级时间戳
+
+```sql
+# 当前时间戳
+SELECT UNIX_TIMESTAMP(NOW())
+```
 
 ## format
 
