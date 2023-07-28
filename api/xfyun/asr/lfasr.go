@@ -20,8 +20,8 @@ import (
 )
 
 type LfAsr struct {
-	Appid       string `json:"appid" env:"XfyunAppid"`
-	LfAsrSecret string `json:"lfAsrSecret" env:"XfyunLfAsrSecret"` // 语音转写密钥
+	Appid       string `json:"appid" env:"XFYUN_APP_ID"`
+	LfAsrSecret string `json:"lfAsrSecret" env:"XFYUN_LF_ASR_SECRET"` // 语音转写密钥
 }
 
 const (

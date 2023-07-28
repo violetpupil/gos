@@ -24,9 +24,9 @@ const (
 )
 
 type NiuTrans struct {
-	Appid     string `json:"appid" env:"XfyunAppid"`
-	ApiSecret string `json:"apiSecret" env:"XfyunApiSecret"` // api密钥值
-	ApiKey    string `json:"apiKey" env:"XfyunApiKey"`       // api密钥键
+	Appid     string `json:"appid" env:"XFYUN_APP_ID"`
+	ApiSecret string `json:"apiSecret" env:"XFYUN_API_SECRET"` // api密钥值
+	ApiKey    string `json:"apiKey" env:"XFYUN_API_KEY"`       // api密钥键
 }
 
 // NewNiuTrans 创建科大讯飞机器翻译客户端，cfg是配置json字符串

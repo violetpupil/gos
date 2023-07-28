@@ -45,11 +45,11 @@ func Init(db *gorm.DB) {
 
 // Config mysql配置
 type Config struct {
-	Host     string `env:"MySQLHost"`
-	Port     string `env:"MySQLPort"`
-	User     string `env:"MySQLUser"`
-	Pass     string `env:"MySQLPass"`
-	Database string `env:"MySQLDatabase"`
+	Host     string `env:"MYSQL_HOST"`
+	Port     string `env:"MYSQL_PORT"`
+	User     string `env:"MYSQL_USER"`
+	Pass     string `env:"MYSQL_PASS"`
+	Database string `env:"MYSQL_DATABASE"`
 
 	// gorm.Config
 	// 自定义logger

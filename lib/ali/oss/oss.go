@@ -38,10 +38,10 @@ func Init(endpoint, accessKeyID, accessKeySecret, bucketName string) error {
 // InitEnv 使用环境变量初始化oss客户端
 func InitEnv() error {
 	err := Init(
-		os.Getenv("OssEndpoint"),
-		os.Getenv("OssKeyId"),
-		os.Getenv("OssKeySecret"),
-		os.Getenv("OssBucket"),
+		os.Getenv("OSS_ENDPOINT"),
+		os.Getenv("OSS_KEY_ID"),
+		os.Getenv("OSS_KEY_SECRET"),
+		os.Getenv("OSS_BUCKET"),
 	)
 	return err
 }

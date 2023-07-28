@@ -33,6 +33,9 @@ status:
 - `ports` 公开端口列表 显式说明用
   - `containerPort` Number of port to expose on the pod's IP address. required
   - `name` 端口名，pod内唯一
+- `env` List of environment variables to set in the container.
+  - `name` 环境变量名
+  - `value` 环境变量值
 - `volumeMounts` 挂载到容器的卷
   - `mountPath` 挂载路径 required
   - `name` 卷名 required
