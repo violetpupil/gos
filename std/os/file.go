@@ -2,6 +2,7 @@ package os
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/components/std/fs"
@@ -37,4 +38,23 @@ func Stat(name string) (*fs.FileInfoS, error) {
 // 文件存在，先清空文件后写入，权限不变
 func WriteFile(name string, data []byte) error {
 	return os.WriteFile(name, data, 0666)
+}
+
+// Rename 将文件夹所有文件重命名
+func Rename(dir string, fn func(string) string) error {
+	files, err := os.ReadDir(dir)
+	if err != nil {
+		logrus.Errorln("read dir error", err)
+		return err
+	}
+	for _, f := range files {
+		old := filepath.Join(dir, f.Name())
+		new := filepath.Join(dir, fn(f.Name()))
+		err := os.Rename(old, new)
+		if err != nil {
+			logrus.Errorln("rename error", err)
+			return err
+		}
+	}
+	return nil
 }
