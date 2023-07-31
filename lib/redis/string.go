@@ -37,3 +37,10 @@ func Set(ctx context.Context, key string, value interface{}, e time.Duration) er
 func SetNx(ctx context.Context, key string, value interface{}, e time.Duration) error {
 	return client.SetEx(ctx, key, value, e).Err()
 }
+
+// GetDel 获取字符串键值，然后删除
+// 键不存在的话，返回 redis.Nil 错误
+// https://redis.io/commands/getdel/
+func GetDel(ctx context.Context, key string) (string, error) {
+	return client.GetDel(ctx, key).Result()
+}
