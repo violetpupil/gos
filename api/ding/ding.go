@@ -4,6 +4,8 @@
 package ding
 
 import (
+	"strings"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/sirupsen/logrus"
 )
@@ -30,6 +32,7 @@ func Send(token string, body any) error {
 // 每个机器人每分钟最多发送20条消息到群里，如果超过20条，会限流10分钟。
 // https://open.dingtalk.com/document/orgapp/custom-robots-send-group-messages
 func SendText(token string, content string, atMobiles []string) error {
+	content = strings.TrimSpace(content)
 	var body TextBody
 	body.MsgType = "text"
 	body.At.AtMobiles = atMobiles
