@@ -26,13 +26,13 @@ func Get(ctx context.Context, key string) (string, error) {
 	return client.Get(ctx, key).Result()
 }
 
-// Set 设置字符串
+// Set 设置字符串，0代表不过期
 // https://redis.io/commands/set/
 func Set(ctx context.Context, key string, value interface{}, e time.Duration) error {
 	return client.Set(ctx, key, value, e).Err()
 }
 
-// SetNx 设置字符串 如果不存在
+// SetNx 设置字符串 如果不存在 0代表不过期
 // 字符串存在返回redis.Nil
 func SetNx(ctx context.Context, key string, value interface{}, e time.Duration) error {
 	return client.SetNX(ctx, key, value, e).Err()
