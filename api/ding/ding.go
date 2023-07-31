@@ -13,25 +13,27 @@ const SendURL = "https://oapi.dingtalk.com/robot/send"
 // Send 发送群消息，新创建resty客户端
 // 每个机器人每分钟最多发送20条消息到群里，如果超过20条，会限流10分钟。
 // https://open.dingtalk.com/document/orgapp/custom-robots-send-group-messages
-func Send(token string, body any) {
+func Send(token string, body any) error {
 	req := resty.New().R()
 	req.SetQueryParam("access_token", token)
 	req.SetBody(body)
 	res, err := req.Post(SendURL)
 	if err != nil {
 		logrus.Errorln("send ding error", err)
-	} else {
-		logrus.WithField("status", res.Status()).Infoln("send ding response", res.String())
+		return err
 	}
+	logrus.WithField("status", res.Status()).Infoln("send ding response", res.String())
+	return nil
 }
 
 // SendText 发送text类型群消息，新创建resty客户端
 // 每个机器人每分钟最多发送20条消息到群里，如果超过20条，会限流10分钟。
 // https://open.dingtalk.com/document/orgapp/custom-robots-send-group-messages
-func SendText(token string, content string, atMobiles []string) {
+func SendText(token string, content string, atMobiles []string) error {
 	var body TextBody
 	body.MsgType = "text"
 	body.At.AtMobiles = atMobiles
 	body.Text.Content = content
-	Send(token, body)
+	err := Send(token, body)
+	return err
 }
