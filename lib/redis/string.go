@@ -35,7 +35,7 @@ func Set(ctx context.Context, key string, value interface{}, e time.Duration) er
 // SetNx 设置字符串 如果不存在
 // 字符串存在返回redis.Nil
 func SetNx(ctx context.Context, key string, value interface{}, e time.Duration) error {
-	return client.SetEx(ctx, key, value, e).Err()
+	return client.SetNX(ctx, key, value, e).Err()
 }
 
 // GetDel 获取字符串键值，然后删除
