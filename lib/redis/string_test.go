@@ -26,3 +26,10 @@ func TestGet(t *testing.T) {
 	r, e := Get(ctx, "tmp")
 	fmt.Println(r, e)
 }
+
+func TestSetNX(t *testing.T) {
+	Init(Config{})
+	ctx := context.Background()
+	r, e := SetNX(ctx, "tmp", 1, 0)
+	fmt.Println(r, e)
+}

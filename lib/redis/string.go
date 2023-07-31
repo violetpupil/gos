@@ -32,10 +32,10 @@ func Set(ctx context.Context, key string, value interface{}, e time.Duration) er
 	return client.Set(ctx, key, value, e).Err()
 }
 
-// SetNx 设置字符串 如果不存在 0代表不过期
-// 字符串存在返回redis.Nil
-func SetNx(ctx context.Context, key string, value interface{}, e time.Duration) error {
-	return client.SetNX(ctx, key, value, e).Err()
+// SetNX 设置字符串 如果不存在 0代表不过期
+// 返回bool表示是否设置成功
+func SetNX(ctx context.Context, key string, value interface{}, e time.Duration) (bool, error) {
+	return client.SetNX(ctx, key, value, e).Result()
 }
 
 // GetDel 获取字符串键值，然后删除
