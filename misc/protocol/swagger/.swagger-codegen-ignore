@@ -1,5 +1,7 @@
-# Swagger Codegen Ignore
-
+# 只生成模型
 **
 !api/*
 !model*
+
+# 只忽略文档
+docs/*
