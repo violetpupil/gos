@@ -48,6 +48,10 @@
 
 `proxy` 本地开启 API server 的代理服务
 
+## CLUSTER MANAGEMENT
+
+`cluster-info` 查看集群地址
+
 ## KUBECTL SETTINGS AND USAGE
 
 `api-resources` 打印集群支持的api资源
