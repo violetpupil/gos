@@ -52,4 +52,4 @@
 
 `api-resources` 打印集群支持的api资源
 
-`config` Modifies kubeconfig files.
+`config` 查看或修改kubectl配置
