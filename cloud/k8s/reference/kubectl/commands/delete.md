@@ -5,3 +5,5 @@
 `--cascade` Selects the deletion cascading strategy for the dependents
 
 - orphan 不删除从对象
+
+`-l` 标签选择器
