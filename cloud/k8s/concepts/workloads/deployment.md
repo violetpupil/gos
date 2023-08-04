@@ -8,7 +8,7 @@ kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
 # 用命令创建nginx deployment
 kubectl create deployment nginx --image=nginx:1.14.2
 # 创建service，暴露nginx deployment
-kubectl expose deployment nginx --type=LoadBalancer --port=80
+kubectl expose deployment nginx --port=80
 # 本地端口映射
 kubectl port-forward service/nginx 8080:80
 # 查看日志
