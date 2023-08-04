@@ -10,7 +10,7 @@ status:
 
 ## DeploymentSpec
 
-- `selector` 和pod模板标签一致的pod标签选择器 required
+- `selector` pod标签选择器 required
 - `template` pod模板 required
 - `replicas` pod数，默认1
 - `strategy` 部署更新策略

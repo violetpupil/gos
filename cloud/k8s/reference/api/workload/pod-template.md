@@ -9,6 +9,5 @@ template:
 
 ## PodTemplateSpec
 
-`metadata` 元数据
-
-`spec` pod式样
+- `metadata` 元数据
+- `spec` pod式样
