@@ -39,6 +39,6 @@ status:
 - `volumeMounts` 挂载到容器的卷
   - `mountPath` 挂载路径 required
   - `name` 卷名 required
-- `resources` 计算资源
+- `resources` 计算资源 cpu memory
   - `limits` Limits describes the maximum amount of compute resources allowed.
   - `requests` Requests describes the minimum amount of compute resources required.
