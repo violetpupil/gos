@@ -16,4 +16,5 @@ status:
   - `targetPort` pod端口，默认和port相等
   - `protocol` The IP protocol for this port. Default is TCP.
   - `name` All ports within a ServiceSpec must have unique names.
+- `type` 服务类型，默认为ClusterIP
 - `clusterIP` clusterIP is the IP address of the service and is usually assigned randomly.
