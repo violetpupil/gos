@@ -30,7 +30,7 @@ status:
 - `name` 容器名，pod内唯一 required
 - `image` 镜像名
 - `command` 容器入口命令
-- `ports` 公开端口列表 显式说明用
+- `ports` 公开端口列表
   - `containerPort` Number of port to expose on the pod's IP address. required
   - `name` 端口名，pod内唯一
 - `env` List of environment variables to set in the container.
