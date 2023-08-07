@@ -6,6 +6,8 @@
 
 `--restart` The restart policy for this Pod.
 
-`-i` 输出容器终端内容
+`--rm` 对于分配终端的pod，退出终端后删除pod
 
-`--tty, -t` Allocated a TTY for each container in the pod.
+`-i` Keep stdin open on the container(s) in the pod, even if nothing is attached.
+
+`--tty,-t` Allocated a TTY for each container in the pod.
