@@ -16,5 +16,8 @@ status:
 - `replicas` pod数，默认1
 - `updateStrategy` pod更新策略
   - `type` 策略类型 Default is RollingUpdate.
+  - `rollingUpdate` 滚动更新配置
+    - `partition` pod序号小于该值不更新，大于等于该值更新，默认0
+- `podManagementPolicy` 串行还是并行scale，默认串行
 - `volumeClaimTemplates` PersistentVolumeClaim列表
 - `minReadySeconds` pod启动并稳定运行几秒后，滚动更新下一个pod

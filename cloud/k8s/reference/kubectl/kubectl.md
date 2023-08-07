@@ -32,6 +32,8 @@ nodes no
 
 persistentvolumeclaims pvc
 
+persistentvolumes pv
+
 pods po
 
 services svc
