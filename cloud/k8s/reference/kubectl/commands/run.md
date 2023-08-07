@@ -4,4 +4,8 @@
 
 `kubectl run NAME --image=image`
 
+`--restart` The restart policy for this Pod.
+
 `-i` 输出容器终端内容
+
+`--tty, -t` Allocated a TTY for each container in the pod.

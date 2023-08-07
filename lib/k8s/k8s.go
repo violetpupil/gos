@@ -19,6 +19,10 @@ import (
 	"k8s.io/client-go/util/homedir"
 )
 
+const (
+	NamespaceDefault = "default"
+)
+
 var Client *kubernetes.Clientset
 
 // NewForFile 初始化客户端，使用用户家目录下的.kube/config配置

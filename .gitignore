@@ -3,5 +3,6 @@
 !.env.exp
 # 临时文件
 tmp*
-# 根目录下的Dockerfile用来测试
-/Dockerfile
+# 编译文件
+app
+!app/
