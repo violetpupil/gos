@@ -5,8 +5,8 @@ import (
 	"encoding/hex"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/std/binary"
-	"github.com/violetpupil/components/std/rand"
+	"github.com/violetpupil/gos/std/binary"
+	"github.com/violetpupil/gos/std/rand"
 )
 
 // EncryptStr 加密字符串，密钥长度不固定，只有前16个字节有效

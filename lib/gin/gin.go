@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/violetpupil/components/lib/gin/middle"
+	"github.com/violetpupil/gos/lib/gin/middle"
 )
 
 // Run 运行http服务，直到错误发生，默认端口8080

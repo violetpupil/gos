@@ -6,7 +6,7 @@ import (
 
 	"github.com/caarlos0/env/v7"
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/lib/godotenv"
+	"github.com/violetpupil/gos/lib/godotenv"
 )
 
 func Test_niuTrans_Translate(t *testing.T) {

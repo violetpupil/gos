@@ -12,11 +12,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-resty/resty/v2"
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/crypto/sign"
-	"github.com/violetpupil/components/media/srt"
-	"github.com/violetpupil/components/std/os"
-	"github.com/violetpupil/components/std/strconv"
-	"github.com/violetpupil/components/std/time"
+	"github.com/violetpupil/gos/crypto/sign"
+	"github.com/violetpupil/gos/media/srt"
+	"github.com/violetpupil/gos/std/os"
+	"github.com/violetpupil/gos/std/strconv"
+	"github.com/violetpupil/gos/std/time"
 )
 
 type LfAsr struct {

@@ -3,7 +3,7 @@ package ip
 
 import (
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/lib/resty"
+	"github.com/violetpupil/gos/lib/resty"
 )
 
 const (

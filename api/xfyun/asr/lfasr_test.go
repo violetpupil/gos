@@ -7,8 +7,8 @@ import (
 
 	"github.com/caarlos0/env/v7"
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/lib/godotenv"
-	"github.com/violetpupil/components/std/json"
+	"github.com/violetpupil/gos/lib/godotenv"
+	"github.com/violetpupil/gos/std/json"
 )
 
 func Test_xfyun_Upload(t *testing.T) {

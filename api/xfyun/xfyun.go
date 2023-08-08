@@ -9,8 +9,8 @@ import (
 	"encoding/json"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/api/xfyun/asr"
-	"github.com/violetpupil/components/api/xfyun/trans"
+	"github.com/violetpupil/gos/api/xfyun/asr"
+	"github.com/violetpupil/gos/api/xfyun/trans"
 )
 
 type Client struct {

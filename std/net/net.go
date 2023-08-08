@@ -6,7 +6,7 @@ import (
 	"net"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/std/os"
+	"github.com/violetpupil/gos/std/os"
 )
 
 // 接口

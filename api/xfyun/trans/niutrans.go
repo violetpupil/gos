@@ -11,9 +11,9 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/lib/resty"
-	"github.com/violetpupil/components/std/hmac"
-	"github.com/violetpupil/components/std/sha256"
+	"github.com/violetpupil/gos/lib/resty"
+	"github.com/violetpupil/gos/std/hmac"
+	"github.com/violetpupil/gos/std/sha256"
 )
 
 // 语种

@@ -3,7 +3,7 @@ package gin
 import (
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
-	"github.com/violetpupil/components/lib/swag"
+	"github.com/violetpupil/gos/lib/swag"
 	ginprometheus "github.com/zsais/go-gin-prometheus"
 )
 

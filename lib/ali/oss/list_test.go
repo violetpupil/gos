@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/violetpupil/components/lib/godotenv"
+	"github.com/violetpupil/gos/lib/godotenv"
 )
 
 func TestManage_ListObjects(t *testing.T) {

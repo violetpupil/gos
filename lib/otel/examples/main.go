@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/violetpupil/components/lib/otel"
+	"github.com/violetpupil/gos/lib/otel"
 )
 
 func main() {

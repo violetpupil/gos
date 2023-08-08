@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/lib/gin/common"
+	"github.com/violetpupil/gos/lib/gin/common"
 )
 
 type responseWriter struct{}

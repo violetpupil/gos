@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/std/syscall"
+	"github.com/violetpupil/gos/std/syscall"
 )
 
 // 结构体

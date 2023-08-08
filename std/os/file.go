@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/std/fs"
+	"github.com/violetpupil/gos/std/fs"
 )
 
 // 函数

@@ -15,7 +15,7 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/lib/k8s"
+	"github.com/violetpupil/gos/lib/k8s"
 )
 
 func main() {

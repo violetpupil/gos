@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/violetpupil/components/lib/godotenv"
+	"github.com/violetpupil/gos/lib/godotenv"
 	"gorm.io/datatypes"
 )
 

@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/violetpupil/components/lib/grpc"
+	"github.com/violetpupil/gos/lib/grpc"
 )
 
 func Test_userClient_GetUser(t *testing.T) {

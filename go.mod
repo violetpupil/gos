@@ -1,4 +1,4 @@
-module github.com/violetpupil/components
+module github.com/violetpupil/gos
 
 go 1.19
 

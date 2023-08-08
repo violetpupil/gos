@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/violetpupil/components/lib/logrus"
-	"github.com/violetpupil/components/lib/ws"
+	"github.com/violetpupil/gos/lib/logrus"
+	"github.com/violetpupil/gos/lib/ws"
 )
 
 func main() {

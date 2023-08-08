@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/lib/resty"
+	"github.com/violetpupil/gos/lib/resty"
 )
 
 // 响应成功时，才能获取到响应内容

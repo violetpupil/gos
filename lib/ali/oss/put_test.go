@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
-	"github.com/violetpupil/components/lib/godotenv"
+	"github.com/violetpupil/gos/lib/godotenv"
 )
 
 func TestPutObjectFromFile(t *testing.T) {

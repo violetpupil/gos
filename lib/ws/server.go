@@ -11,7 +11,7 @@ import (
 	"github.com/gobwas/ws"
 	"github.com/gobwas/ws/wsutil"
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/components/std/net"
+	"github.com/violetpupil/gos/std/net"
 )
 
 // Websocket http处理器，访问任何地址都升级到websocket
