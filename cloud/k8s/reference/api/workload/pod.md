@@ -38,6 +38,7 @@ status:
   - `name` 环境变量名
   - `value` 环境变量值
   - `valueFrom` Source for the environment variable's value.
+    - `fieldRef` Selects a field of the pod
     - `secretKeyRef` 使用secret的一个键值
       - `key` secret中的键名
       - `name` secret名
