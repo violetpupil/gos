@@ -29,6 +29,7 @@ status:
 
 - `name` 容器名，pod内唯一 required
 - `image` 镜像
+- `imagePullPolicy` Image pull policy.
 - `command` 容器入口命令
 - `ports` 公开端口列表
   - `containerPort` Number of port to expose on the pod's IP address. required
@@ -46,3 +47,12 @@ status:
 - `resources` 计算资源 cpu memory
   - `limits` Limits describes the maximum amount of compute resources allowed.
   - `requests` Requests describes the minimum amount of compute resources required.
+- `lifecycle` 容器生命周期钩子 LifecycleHandler
+  - `postStart` 容器创建后执行
+  - `preStop` 容器正常停止前执行
+- `securityContext` 安全选项
+
+## LifecycleHandler
+
+- `exec` 执行的命令
+  - `command` 单条命令，相对于/目录执行

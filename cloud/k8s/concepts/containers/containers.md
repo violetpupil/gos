@@ -53,7 +53,7 @@ However, if you have two Pods that use different images, the kubelet pulls the i
 
 `PostStart` 容器创建后执行
 
-`PreStop` 容器停止前执行
+`PreStop` 容器正常停止前执行
 
 If either a PostStart or PreStop hook fails, it kills the Container.
 
