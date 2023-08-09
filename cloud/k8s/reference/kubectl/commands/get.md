@@ -2,6 +2,11 @@
 
 查看k8s资源
 
+```bash
+# 列出所有工作负载和服务资源
+kubectl get all
+```
+
 `-o` 输出格式 json|yaml|wide
 
 `--show-labels` 显示labels

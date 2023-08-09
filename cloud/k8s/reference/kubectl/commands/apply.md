@@ -3,3 +3,5 @@
 应用json或yaml配置
 
 `-f` 配置文件
+
+`-k` Process a kustomization directory.

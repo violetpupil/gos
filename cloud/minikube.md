@@ -9,6 +9,8 @@ minikube start
 minikube dashboard
 # 打开浏览器访问nginx service
 minikube service nginx
+# 获取nginx service访问地址
+minikube service nginx --url
 # List the currently supported addons
 minikube addons list
 # 启用插件

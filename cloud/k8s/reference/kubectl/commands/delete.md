@@ -4,6 +4,6 @@
 
 `--cascade` Selects the deletion cascading strategy for the dependents
 
-- orphan 不删除从对象
+`-k` Process a kustomization directory.
 
 `-l` 标签选择器
