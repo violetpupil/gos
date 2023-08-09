@@ -26,6 +26,8 @@
 
 `edit` Edit a resource from the default editor.
 
+`kustomize` Build a set of KRM resources using a 'kustomization.yaml' file.
+
 `label` Update the labels on a resource.
 
 `patch` Update fields of a resource using strategic merge patch

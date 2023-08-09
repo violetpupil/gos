@@ -1,6 +1,8 @@
 # [Volume](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/volume/)
 
 - `name` 卷名，pod内唯一 required
+- `persistentVolumeClaim` pvc参考
+  - `claimName` pvc名
 - `configMap` 填充卷的ConfigMap，data键是文件，data值是内容
   - `name` ConfigMap名
   - `items` data键不是文件时指定文件

@@ -28,7 +28,7 @@ status:
 ## Container
 
 - `name` 容器名，pod内唯一 required
-- `image` 镜像名
+- `image` 镜像
 - `command` 容器入口命令
 - `ports` 公开端口列表
   - `containerPort` Number of port to expose on the pod's IP address. required
@@ -36,6 +36,10 @@ status:
 - `env` List of environment variables to set in the container.
   - `name` 环境变量名
   - `value` 环境变量值
+  - `valueFrom` Source for the environment variable's value.
+    - `secretKeyRef` 使用secret的一个键值
+      - `key` secret中的键名
+      - `name` secret名
 - `volumeMounts` 挂载到容器的卷
   - `mountPath` 挂载路径 required
   - `name` 卷名 required
