@@ -51,9 +51,17 @@ status:
 - `lifecycle` 容器生命周期钩子 LifecycleHandler
   - `postStart` 容器创建后执行
   - `preStop` 容器正常停止前执行
+- `readinessProbe` Periodic probe of container service readiness.
 - `securityContext` 安全选项
 
 ## LifecycleHandler
 
 - `exec` 执行的命令
   - `command` 单条命令，相对于/目录执行
+
+## Probe
+
+- `exec` 执行的命令
+  - `command` 单条命令，相对于/目录执行
+- `initialDelaySeconds` 容器启动到liveness探针启动间隔
+- `timeoutSeconds` 探针超时秒数
