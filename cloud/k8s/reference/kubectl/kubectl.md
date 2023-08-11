@@ -45,3 +45,5 @@ replicasets rs
 statefulsets sts
 
 horizontalpodautoscalers hpa
+
+endpointslices
