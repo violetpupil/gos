@@ -4,5 +4,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+# 键一般是文件名，值是文件内容
 data:
 ```
