@@ -1,7 +1,7 @@
 # [常用命令](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 ```bash
-kubectl get namespace # 查看所有命名空间
+kubectl get services kube-dns --namespace=kube-system # 查看dns地址
 kubectl get all # 查看所有资源
 kubectl version --client --output=yaml # 查看kubectl版本
 ```
