@@ -1,5 +1,12 @@
 package types
 
+import (
+	"fmt"
+	"os"
+
+	"github.com/violetpupil/gos/lib/logrus"
+)
+
 // Colors
 const (
 	Reset       = "\033[0m"    // 重置
@@ -19,4 +26,19 @@ const (
 // Color 将文本上色，然后重置
 func Color(c string, s string) string {
 	return c + s + Reset
+}
+
+// Gen 生成连续数字字符串
+func Gen(src string, max int) error {
+	f, err := os.Create("tmp.txt")
+	if err != nil {
+		logrus.Errorln("create file error", err)
+		return err
+	}
+	defer f.Close()
+
+	for i := 1; i < max+1; i++ {
+		fmt.Fprintf(f, src, i, i)
+	}
+	return nil
 }
