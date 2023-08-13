@@ -38,7 +38,7 @@ func Gen(src string, max int) error {
 	defer f.Close()
 
 	for i := 1; i < max+1; i++ {
-		fmt.Fprintf(f, src, i, i)
+		fmt.Fprintf(f, src+"\n", i, i)
 	}
 	return nil
 }
