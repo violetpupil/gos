@@ -25,6 +25,9 @@ systemctl enable --now 3proxy
 # 创建pid文件
 mkdir -p /var/run/3proxy
 touch /var/run/3proxy/3proxy.pid
+# 生成14位用户名、密码
+yum install -y expect
+mkpasswd -l 14
 # 创建配置
 cd /usr/local/3proxy/conf
 mv 3proxy.cfg 3proxy.cfg.bk
@@ -45,6 +48,6 @@ log /logs/3proxy-%y%m%d.log D
 users M3aHRm2U0HteJJdJ:CL:AG97Rzi6yKXE
 # 验证用户
 auth strong
-# socks端口
-socks -p1080
+# socks配置 -i入口ip -e出口ip -p服务端口
+socks -i144.168.124.158 -e144.168.124.158 -p5288
 ```
