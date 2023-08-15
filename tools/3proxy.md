@@ -36,7 +36,7 @@ vi 3proxy.cfg
 mkdir /usr/local/3proxy/logs
 chmod -R 777 /usr/local/3proxy/logs
 # 测试代理
-curl -x socks5://M3aHRm2U0HteJJdJ:AG97Rzi6yKXE@localhost:1080 http://ipecho.net/plain
+curl -x socks5://M3aHRm2U0HteJJdJ:AG97Rzi6yKXE@127.0.0.1:5288 http://ipecho.net/plain
 ```
 
 ## 配置
@@ -49,5 +49,5 @@ users M3aHRm2U0HteJJdJ:CL:AG97Rzi6yKXE
 # 验证用户
 auth strong
 # socks配置 -i入口ip -e出口ip -p服务端口
-socks -i144.168.124.158 -e144.168.124.158 -p5288
+socks -i127.0.0.1 -e127.0.0.1 -p5288
 ```
