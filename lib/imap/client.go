@@ -13,8 +13,14 @@ func Login(addr, username, password string) error {
 		logrus.Errorln("dial tls error", err)
 		return err
 	}
+
 	err = conn.Login(username, password)
-	return err
+	if err != nil {
+		logrus.Errorln("login error", err)
+		return err
+	}
+	defer conn.Logout()
+	return nil
 }
 
 // LoginSocks5 用socks5代理登录邮箱
@@ -34,5 +40,10 @@ func LoginSocks5(addr, username, password, addrP, usernameP, passwordP string) e
 		return err
 	}
 	err = conn.Login(username, password)
-	return err
+	if err != nil {
+		logrus.Errorln("login error", err)
+		return err
+	}
+	defer conn.Logout()
+	return nil
 }
