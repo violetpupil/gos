@@ -8,18 +8,18 @@ import (
 
 // Login 登录邮箱
 func Login(addr, username, password string) error {
-	conn, err := client.DialTLS(addr, nil)
+	c, err := client.DialTLS(addr, nil)
 	if err != nil {
 		logrus.Errorln("dial tls error", err)
 		return err
 	}
 
-	err = conn.Login(username, password)
+	err = c.Login(username, password)
 	if err != nil {
 		logrus.Errorln("login error", err)
 		return err
 	}
-	defer conn.Logout()
+	defer c.Logout()
 	return nil
 }
 
@@ -34,16 +34,16 @@ func LoginSocks5(addr, username, password, addrP, usernameP, passwordP string) e
 		return err
 	}
 
-	conn, err := client.DialWithDialerTLS(dialer, addr, nil)
+	c, err := client.DialWithDialerTLS(dialer, addr, nil)
 	if err != nil {
 		logrus.Errorln("dial tls error", err)
 		return err
 	}
-	err = conn.Login(username, password)
+	err = c.Login(username, password)
 	if err != nil {
 		logrus.Errorln("login error", err)
 		return err
 	}
-	defer conn.Logout()
+	defer c.Logout()
 	return nil
 }
