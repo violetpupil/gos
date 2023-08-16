@@ -2,7 +2,7 @@ package imap
 
 import (
 	"github.com/emersion/go-imap/client"
-	"github.com/violetpupil/gos/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 func Login(addr, username, password string) error {

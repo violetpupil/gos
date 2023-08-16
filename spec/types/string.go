@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/violetpupil/gos/lib/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // Colors
