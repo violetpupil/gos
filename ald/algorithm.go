@@ -1,2 +1,12 @@
-// LRU Least Recently Used 最近最少使用
 package ald
+
+import (
+	"container/list"
+	"sync"
+)
+
+// LRUList Least Recently Used列表
+type LRUList struct {
+	list.List
+	sync.Mutex
+}

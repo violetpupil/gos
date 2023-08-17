@@ -14,4 +14,9 @@ type (
 	// Store() 存储或更新条目
 	// Swap() 交换值
 	Map = sync.Map
+
+	// Mutex 互斥锁
+	// Lock() 阻塞加锁
+	// Unlock() 解锁
+	Mutex = sync.Mutex
 )
