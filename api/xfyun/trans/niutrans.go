@@ -12,8 +12,8 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/gos/lib/resty"
-	"github.com/violetpupil/gos/std/hmac"
-	"github.com/violetpupil/gos/std/sha256"
+	"github.com/violetpupil/gos/std/crypto/hmac"
+	"github.com/violetpupil/gos/std/crypto/sha256"
 )
 
 // 语种

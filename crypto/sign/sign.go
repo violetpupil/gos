@@ -3,8 +3,8 @@
 package sign
 
 import (
-	"github.com/violetpupil/gos/std/hmac"
-	"github.com/violetpupil/gos/std/md5"
+	"github.com/violetpupil/gos/std/crypto/hmac"
+	"github.com/violetpupil/gos/std/crypto/md5"
 )
 
 // Sign 计算签名 HmacSha1(secret, md5(appid + ts))

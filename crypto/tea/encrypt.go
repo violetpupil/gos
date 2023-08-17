@@ -6,7 +6,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/violetpupil/gos/std/binary"
-	"github.com/violetpupil/gos/std/rand"
+	"github.com/violetpupil/gos/std/crypto/rand"
 )
 
 // EncryptStr 加密字符串，密钥长度不固定，只有前16个字节有效
