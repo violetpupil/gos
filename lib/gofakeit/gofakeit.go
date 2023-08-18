@@ -7,4 +7,5 @@ var (
 	Name        = gofakeit.Name     // 姓名
 	IntRange    = gofakeit.IntRange // 生成随机数，前后都包含
 	IPv4Address = gofakeit.IPv4Address
+	UserAgent   = gofakeit.UserAgent
 )

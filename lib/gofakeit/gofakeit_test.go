@@ -14,3 +14,7 @@ func TestName(t *testing.T) {
 func TestIntRange(t *testing.T) {
 	fmt.Println(gofakeit.IntRange(0, 10))
 }
+
+func TestUserAgent(t *testing.T) {
+	fmt.Println(gofakeit.UserAgent())
+}
