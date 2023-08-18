@@ -14,38 +14,20 @@ var (
 )
 
 // Client http客户端
+// SetDebug() Client logs details of every request and response.
+// SetDebugBodyLimit() log请求/响应体最大长度
+//
+// RemoveProxy() 移除代理配置
+// IsProxySet() 客户端是否设置了代理
+// 默认会使用环境变量的代理，参考 http.ProxyFromEnvironment
+//
+// SetRetryCount() 启动重试并设置次数
+// SetTimeout() 设置超时时间
 var Client *resty.Client
 
 // Init 初始化客户端
 func Init() {
 	Client = resty.New()
-}
-
-// SetDebug Client logs details of every request and response.
-func SetDebug(d bool) {
-	Client.SetDebug(d)
-}
-
-// SetDebugBodyLimit log请求/响应体最大长度
-func SetDebugBodyLimit(sl int64) {
-	Client.SetDebugBodyLimit(sl)
-}
-
-// IsProxySet 客户端是否设置了代理
-// 默认会使用环境变量的代理，参考 http.ProxyFromEnvironment
-func IsProxySet() bool {
-	if Client == nil {
-		return false
-	}
-	return Client.IsProxySet()
-}
-
-// RemoveProxy 移除代理配置
-func RemoveProxy() {
-	if Client == nil {
-		return
-	}
-	Client = Client.RemoveProxy()
 }
 
 // SetProxy 配置客户端代理 http://user:password@proxyserver:8888
