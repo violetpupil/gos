@@ -13,10 +13,11 @@ var (
 	L = zap.L
 
 	// 字段
-	Any      = zap.Any // any接口
-	String   = zap.String
-	Int      = zap.Int
-	Duration = zap.Duration
+	Any      = zap.Any      // any接口
+	String   = zap.String   // 字符串
+	Int      = zap.Int      // 整型
+	Duration = zap.Duration // 持续时间
+	Error    = zap.Error    // 错误，键名error
 )
 
 // InitDevelopment 将zap全局logger设置为开发
