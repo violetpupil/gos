@@ -17,6 +17,9 @@ var (
 type (
 	// json值
 	// Get() 获取json值，不存在返回nil
+	// GetArray() 获取json值切片，不存在返回nil
+	// GetBool() 获取bool
+	// GetInt() 获取int
 	// GetStringBytes() 获取bytes，不存在返回nil
 	// Type() 值类型
 	Value = fastjson.Value
