@@ -3,6 +3,7 @@ module github.com/violetpupil/gos
 go 1.19
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/Shopify/sarama v1.38.1
 	github.com/aliyun/aliyun-oss-go-sdk v2.2.7+incompatible
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
@@ -63,6 +64,7 @@ require (
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/cenkalti/backoff/v4 v4.2.0 // indirect
