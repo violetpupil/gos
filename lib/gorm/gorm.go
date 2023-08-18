@@ -54,7 +54,7 @@ type Config struct {
 	// gorm.Config
 	// 自定义logger
 	Logger logger.Interface
-	// 使用默认logger时，指定log level
+	// 使用默认logger时，指定log level，默认为info
 	LogLevel logger.LogLevel
 	// 迁移模型时，不创建外键约束
 	DisableForeignKeyConstraintWhenMigrating bool
