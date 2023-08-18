@@ -11,6 +11,7 @@
 // serializer 序列器 json/gob/unixtime
 // primaryKey 主键
 // index 索引
+// uniqueIndex 唯一索引
 // comment 注释
 //
 // 默认字段类型
