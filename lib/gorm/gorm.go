@@ -80,6 +80,18 @@ func InitMySQL(c Config) error {
 	return nil
 }
 
+// InitMySQLEnv 使用环境变量初始化mysql数据库操作
+func InitMySQLEnv() error {
+	var c Config
+	err := env.Parse(&c)
+	if err != nil {
+		logrus.Errorln("env parse error", err)
+		return err
+	}
+	err = InitMySQL(c)
+	return err
+}
+
 // NewMysqlDB 创建mysql db
 func NewMysqlDB(c Config) (*gorm.DB, error) {
 	dialector := NewMysqlDialector(c)
@@ -145,18 +157,6 @@ func NewMysqlDialector(c Config) gorm.Dialector {
 	}
 	dialector := mysql.New(config)
 	return dialector
-}
-
-// InitMySQLEnv 使用环境变量初始化mysql数据库操作
-func InitMySQLEnv() error {
-	var c Config
-	err := env.Parse(&c)
-	if err != nil {
-		logrus.Errorln("env parse error", err)
-		return err
-	}
-	err = InitMySQL(c)
-	return err
 }
 
 // AutoMigrate 自动迁移模型，不会删除列
