@@ -35,3 +35,11 @@
 [DBeaver](https://dbeaver.io/download/)
 
 [迅雷](https://www.xunlei.com/)
+
+[迅雷x](https://www.mediafire.com/file/fe2iwswdv9wv04l)
+
+[百度网盘](https://pan.baidu.com/download)
+
+[qBittorrent](https://www.qbittorrent.org/download)
+
+[Cheat Engine](https://www.cheatengine.org/)
