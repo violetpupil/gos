@@ -17,6 +17,8 @@
 ```sql
 # 当前时间戳
 SELECT UNIX_TIMESTAMP(NOW())
+# 一天前时间戳
+SELECT UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 DAY));
 ```
 
 ## format
