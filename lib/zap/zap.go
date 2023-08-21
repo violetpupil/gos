@@ -20,6 +20,12 @@ var (
 	Error    = zap.Error    // 错误，键名error
 )
 
+type (
+	// 日志器
+	// With() 添加字段
+	Logger = zap.Logger
+)
+
 // InitDevelopment 将zap全局logger设置为开发
 func InitDevelopment() error {
 	l, err := zap.NewDevelopment()
