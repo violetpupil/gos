@@ -16,6 +16,10 @@
 
 `Ctrl+Shift+L` Select all occurrences of current selection
 
+`Ctrl+Alt+Up` Insert Cursor Above
+
+`Shift+Alt+Left Click` Insert Cursor
+
 ## Rich Languages Editing
 
 `F12` 定义和引用相互跳转
