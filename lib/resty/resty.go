@@ -21,7 +21,7 @@ var (
 // IsProxySet() 客户端是否设置了代理
 // 默认会使用环境变量的代理，参考 http.ProxyFromEnvironment
 //
-// SetRetryCount() 启动重试并设置次数
+// SetRetryCount() 启用重试并设置次数
 // SetTimeout() 设置超时时间
 var Client *resty.Client
 

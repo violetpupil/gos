@@ -19,4 +19,10 @@ type (
 	// Lock() 阻塞加锁
 	// Unlock() 解锁
 	Mutex = sync.Mutex
+
+	// A WaitGroup waits for a collection of goroutines to finish.
+	// Add() 增加计数
+	// Done() decrements the WaitGroup counter by one.
+	// Wait() blocks until the WaitGroup counter is zero.
+	WaitGroup = sync.WaitGroup
 )
