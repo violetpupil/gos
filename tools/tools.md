@@ -1,14 +1,8 @@
 # tools
 
-## windows应用
+## 应用
 
-[SpaceSniffer](http://www.uderzo.it/main_products/space_sniffer/download.html)
-
-[python](https://www.python.org/)
-
-[Ditto](https://ditto-cp.sourceforge.io/)
-
-[Snipaste](https://www.snipaste.com/)
+### 日常
 
 [网易云音乐](https://music.163.com/#/download)
 
@@ -16,23 +10,17 @@
 
 [有道翻译](https://fanyi.youdao.com/download-Windows/)
 
-[微信](https://pc.weixin.qq.com/?lang=zh_CN)
-
-[钉钉](https://page.dingtalk.com/wow/z/dingtalk/simple/ddhomedownload#/)
-
-[向日葵](https://sunlogin.oray.com/download?categ=personal)
-
-[slack](https://slack.com/intl/zh-hk/downloads/windows)
+[Chrome](https://www.google.com/chrome/)
 
 [PotPlayer](https://potplayer.daum.net/)
 
-[Chrome](https://www.google.com/chrome/)
-
-[PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
-
 [Bandizip](https://www.bandisoft.com/)
 
-[DBeaver](https://dbeaver.io/download/)
+[slack](https://slack.com/intl/zh-hk/downloads/windows)
+
+[微信](https://pc.weixin.qq.com/?lang=zh_CN)
+
+[钉钉](https://page.dingtalk.com/wow/z/dingtalk/simple/ddhomedownload#/)
 
 [迅雷](https://www.xunlei.com/)
 
@@ -42,4 +30,22 @@
 
 [qBittorrent](https://www.qbittorrent.org/download)
 
+### 技术
+
+[向日葵](https://sunlogin.oray.com/download?categ=personal)
+
+[PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+
+[DBeaver](https://dbeaver.io/download/)
+
+[SpaceSniffer](http://www.uderzo.it/main_products/space_sniffer/download.html)
+
+[Ditto](https://ditto-cp.sourceforge.io/)
+
+[Snipaste](https://www.snipaste.com/)
+
 [Cheat Engine](https://www.cheatengine.org/)
+
+## 网页工具
+
+[transform](https://transform.tools/) 数据格式转换
