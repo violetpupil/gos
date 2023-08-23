@@ -16,6 +16,12 @@ var (
 	Create = os.Create
 )
 
+type (
+	// File represents an open file descriptor.
+	// Close() 关闭文件
+	File = os.File
+)
+
 // Stat 获取文件信息
 func Stat(name string) (*fs.FileInfoS, error) {
 	info, err := os.Stat(name)
