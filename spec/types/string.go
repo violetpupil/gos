@@ -1,3 +1,5 @@
+// 截取中文字符串
+// string([]rune("你好")[:2])
 package types
 
 import (
