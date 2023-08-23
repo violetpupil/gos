@@ -22,6 +22,8 @@
 
 ## Rich Languages Editing
 
+`Shift+Alt+F` Format Document
+
 `F12` 定义和引用相互跳转
 
 `Ctrl+F12` 接口和实现相互跳转
