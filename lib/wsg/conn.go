@@ -69,18 +69,19 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) {
 	defer close(c.Write)
 	Hub.Store(key, c)
 	defer Hub.Delete(key)
+	logger := logrus.WithField("key", key)
 
 	// 写消息
 	go func() {
 		for msg := range c.Write {
 			err := conn.WriteMessage(msg.Type, msg.Data)
 			if err != nil {
-				logrus.Errorln("write message error", err)
+				logger.Errorln("write message error", err)
 				continue
 			}
-			logrus.WithFields(logrus.Fields{
-				"Type":    msg.Type,
-				"Message": string(msg.Data),
+			logger.WithFields(logrus.Fields{
+				"type":    msg.Type,
+				"message": string(msg.Data),
 			}).Infoln("write message")
 		}
 	}()
@@ -89,17 +90,17 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) {
 	for {
 		t, p, e := conn.ReadMessage()
 		if websocket.IsCloseError(e, websocket.CloseNormalClosure) {
-			logrus.Infoln("client normal close")
+			logger.Infoln("client normal close")
 			break
 		}
 		if e != nil {
-			logrus.Errorln("read message error", e)
+			logger.Errorln("read message error", e)
 			break
 		}
 
-		logrus.WithFields(logrus.Fields{
-			"Type":    t,
-			"Message": string(p),
+		logger.WithFields(logrus.Fields{
+			"type":    t,
+			"message": string(p),
 		}).Infoln("read message")
 		if f != nil {
 			f(key, t, p)
