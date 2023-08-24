@@ -18,6 +18,10 @@ type Request = resty.Request
 // SetHeaderMultiValues 多个参数，参数可能有多个值
 // SetHeaders 多个参数，同一个键会覆盖
 //
+// cookie
+// SetCookie 单个cookie
+// SetCookies 多个cookie
+//
 // 请求体 SetBody
 // 支持类型`string`, `[]byte`, `struct`, `map`, `slice`, `io.Reader`，支持指针
 // struct、map、slice类型自动json编码，并设置 Content-Type 为 application/json
