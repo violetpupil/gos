@@ -14,7 +14,7 @@ const (
 	BinaryMessage = websocket.BinaryMessage // binary data message
 	CloseMessage  = websocket.CloseMessage  // close control message
 	PingMessage   = websocket.PingMessage   // ping control message
-	PongMessage   = websocket.TextMessage   // pong control message
+	PongMessage   = websocket.PongMessage   // pong control message
 )
 
 // Message websocket消息
