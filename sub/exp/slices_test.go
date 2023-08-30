@@ -28,3 +28,7 @@ func TestSortStableFunc(t *testing.T) {
 	slices.SortStableFunc[int](r, func(a, b int) bool { return a < b })
 	fmt.Println(r)
 }
+
+func TestUnique(t *testing.T) {
+	fmt.Println(Unique([]string{"a", "a"}))
+}
