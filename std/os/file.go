@@ -42,6 +42,7 @@ func Stat(name string) (*fs.FileInfoS, error) {
 // WriteFile 写文件
 // 文件不存在，创建文件，权限设置为可读可写
 // 文件存在，先清空文件后写入，权限不变
+// 不会自动创建文件夹
 func WriteFile(name string, data []byte) error {
 	return os.WriteFile(name, data, 0666)
 }
