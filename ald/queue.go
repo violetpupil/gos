@@ -27,3 +27,11 @@ func (q *Queue[T]) Pop() (T, error) {
 	q.Slice = q.Slice[1:]
 	return e, nil
 }
+
+// Append 添加元素
+func (q *Queue[T]) Append(e T) {
+	q.Lock.Lock()
+	defer q.Lock.Unlock()
+
+	q.Slice = append(q.Slice, e)
+}
