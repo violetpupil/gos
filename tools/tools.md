@@ -49,3 +49,5 @@
 ## 网页工具
 
 [transform](https://transform.tools/) 数据格式转换
+
+[文心一言](https://yiyan.baidu.com/)
