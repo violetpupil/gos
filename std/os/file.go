@@ -41,6 +41,20 @@ func Stat(name string) (*fs.FileInfoS, error) {
 	return fi, nil
 }
 
+// Exist returns true if a file or directory exists.
+func Exist(name string) (bool, error) {
+	_, err := os.Stat(name)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	} else {
+		logrus.Error("stat error ", err)
+		return false, err
+	}
+}
+
 // WriteFile 写文件
 // 文件不存在，创建文件，权限设置为可读可写
 // 文件存在，先清空文件后写入，权限不变
