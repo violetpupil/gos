@@ -9,14 +9,9 @@ import (
 )
 
 // Unmarshal 加载配置文件到结构体
-// name是文件名，可以不包含后缀
-// t是文件类型 yaml
-// path是文件所在目录
 // s是结构体指针，标签用mapstructure
-func Unmarshal(name, t, path string, s any) error {
-	viper.SetConfigName(name)
-	viper.SetConfigType(t)
-	viper.AddConfigPath(path)
+func Unmarshal(in string, s any) error {
+	viper.SetConfigFile(in)
 	// 加载配置文件
 	err := viper.ReadInConfig()
 	if err != nil {
