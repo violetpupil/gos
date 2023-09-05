@@ -14,6 +14,8 @@ var (
 	ReadFile = os.ReadFile
 	// Create 创建文件，如果文件存在，先清空
 	Create = os.Create
+	// IsNotExist 是否错误为不存在
+	IsNotExist = os.IsNotExist
 )
 
 type (
