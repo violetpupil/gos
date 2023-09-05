@@ -12,7 +12,9 @@ type Fruit struct {
 	Name string `excel:"Name"`
 }
 
-func (*Fruit) Configure(*exl.ReadConfig) {}
+func (*Fruit) ReadConfigure(*exl.ReadConfig) {}
+
+func (*Fruit) WriteConfigure(*exl.WriteConfig) {}
 
 func TestReadFile(t *testing.T) {
 	fruits, err := exl.ReadFile[*Fruit]("./test_data/fruits.xlsx")
@@ -22,4 +24,7 @@ func TestReadFile(t *testing.T) {
 	for _, f := range fruits {
 		fmt.Printf("%+v\n", f)
 	}
+
+	err = exl.Write[*Fruit]("tmp.xlsx", fruits)
+	fmt.Println(err)
 }

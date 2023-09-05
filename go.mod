@@ -17,7 +17,7 @@ require (
 	github.com/go-redsync/redsync/v4 v4.8.1
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/go-sql-driver/mysql v1.7.0
-	github.com/go-the-way/exl v1.2.2
+	github.com/go-the-way/exl v1.2.3
 	github.com/gobwas/ws v1.1.0
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/goccy/go-json v0.10.2
