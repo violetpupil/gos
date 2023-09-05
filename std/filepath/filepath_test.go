@@ -1,7 +1,16 @@
 package filepath
 
-import "testing"
+import (
+	"fmt"
+	"path/filepath"
+	"testing"
+)
+
+func TestJoin(t *testing.T) {
+	fmt.Println(filepath.Join("a", "b"))
+}
 
 func TestWalk(t *testing.T) {
-	Walk("D:/test/avatar")
+	err := Walk("D:/test/avatar")
+	fmt.Println(err)
 }
