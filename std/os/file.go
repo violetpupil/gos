@@ -41,6 +41,16 @@ func Stat(name string) (*fs.FileInfoS, error) {
 	return fi, nil
 }
 
+// Size 获取文件大小
+func Size(name string) (int64, error) {
+	info, err := os.Stat(name)
+	if err != nil {
+		logrus.Error("stat error ", err)
+		return 0, err
+	}
+	return info.Size(), nil
+}
+
 // Exist returns true if a file or directory exists.
 func Exist(name string) (bool, error) {
 	_, err := os.Stat(name)
