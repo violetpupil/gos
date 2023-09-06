@@ -55,7 +55,7 @@ func Exist(name string) (bool, error) {
 	}
 }
 
-// HasContent 文件是否有内容
+// HasContent 文件是否存在，并且有内容
 func HasContent(name string) (bool, error) {
 	info, err := os.Stat(name)
 	if err == nil {
