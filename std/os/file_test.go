@@ -16,3 +16,8 @@ func TestWriteFile(t *testing.T) {
 	err := WriteFile("tmp.txt", nil)
 	fmt.Println(err)
 }
+
+func TestExist(t *testing.T) {
+	r, err := Exist(".")
+	fmt.Println(r, err)
+}

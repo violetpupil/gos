@@ -55,6 +55,20 @@ func Exist(name string) (bool, error) {
 	}
 }
 
+// HasContent 文件是否有内容
+func HasContent(name string) (bool, error) {
+	info, err := os.Stat(name)
+	if err == nil {
+		return info.Size() > 0, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	} else {
+		logrus.Error("stat error ", err)
+		return false, err
+	}
+}
+
 // WriteFile 写文件
 // 文件不存在，创建文件，权限设置为可读可写
 // 文件存在，先清空文件后写入，权限不变
