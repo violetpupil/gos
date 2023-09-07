@@ -4,7 +4,9 @@
 package oss
 
 import (
+	"errors"
 	"os"
+	"time"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/sirupsen/logrus"
@@ -47,6 +49,11 @@ func InitToken(token string) error {
 		logrus.Errorln("parse auth token error", err)
 		return err
 	}
+	if t.ExpireTs != 0 && time.Now().Unix() > t.ExpireTs {
+		logrus.Infoln("auth token expired")
+		return errors.New("auth token expired")
+	}
+
 	err = Init(
 		t.EpTpl, t.ID, t.Secret, t.Bucket,
 		oss.SecurityToken(t.SToken),
