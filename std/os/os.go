@@ -37,3 +37,10 @@ func LogSyscallError(err error) {
 
 	syscall.LogErrno(errWrap)
 }
+
+// Environ 打印所有环境变量 key=value
+func Environ() {
+	for _, env := range os.Environ() {
+		fmt.Println(env)
+	}
+}
