@@ -9,7 +9,7 @@ import (
 )
 
 func TestPutObjectFromFile(t *testing.T) {
-	godotenv.Load("../../.env")
+	godotenv.Load("../../../.env")
 	err := InitEnv()
 	if err != nil {
 		panic(err)
@@ -19,7 +19,7 @@ func TestPutObjectFromFile(t *testing.T) {
 }
 
 func TestPutObjectFromFileACL(t *testing.T) {
-	godotenv.Load("../../.env")
+	godotenv.Load("../../../.env")
 	err := InitEnv()
 	if err != nil {
 		panic(err)

@@ -8,7 +8,8 @@ import (
 )
 
 // ListObjects 获取对象列表，prefix不能以斜杆开头
-func ListObjects(prefix string) ([]oss.ObjectProperties, error) {
+// first表示是否只获取第一页
+func ListObjects(prefix string, first bool) ([]oss.ObjectProperties, error) {
 	objects := make([]oss.ObjectProperties, 0)
 	pre := oss.Prefix(prefix)
 	token := ""
@@ -22,7 +23,7 @@ func ListObjects(prefix string) ([]oss.ObjectProperties, error) {
 		objects = append(objects, res.Objects...)
 
 		// 默认一次返回100条记录
-		if res.IsTruncated {
+		if !first && res.IsTruncated {
 			token = res.NextContinuationToken
 		} else {
 			break

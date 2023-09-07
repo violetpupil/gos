@@ -7,13 +7,13 @@ import (
 	"github.com/violetpupil/gos/lib/godotenv"
 )
 
-func TestManage_ListObjects(t *testing.T) {
-	godotenv.Load("../../.env")
+func TestListObjects(t *testing.T) {
+	godotenv.Load("../../../.env")
 	err := InitEnv()
 	if err != nil {
 		panic(err)
 	}
-	os, err := ListObjects("tools")
+	os, err := ListObjects("tools", true)
 	if err != nil {
 		panic(err)
 	}

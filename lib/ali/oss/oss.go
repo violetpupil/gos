@@ -41,24 +41,26 @@ func Init(
 }
 
 // InitToken 初始化oss客户端，使用oss browser auth token
+// 返回token可访问的路径前缀 path/
 // https://github.com/aliyun/oss-browser/blob/develop/docs/authToken.md
 // https://help.aliyun.com/zh/oss/developer-reference/go-configure-access-credentials
-func InitToken(token string) error {
+func InitToken(token string) (string, error) {
 	t, err := ParseAuthToken(token)
 	if err != nil {
 		logrus.Errorln("parse auth token error", err)
-		return err
+		return "", err
 	}
 	if t.ExpireTs != 0 && time.Now().Unix() > t.ExpireTs {
 		logrus.Infoln("auth token expired")
-		return errors.New("auth token expired")
+		return "", errors.New("auth token expired")
 	}
 
-	err = Init(
-		t.EpTpl, t.ID, t.Secret, t.Bucket,
-		oss.SecurityToken(t.SToken),
-	)
-	return err
+	err = Init(t.EpTpl, t.ID, t.Secret, t.Bucket, oss.SecurityToken(t.SToken))
+	if err != nil {
+		logrus.Infoln("init error", err)
+		return "", err
+	}
+	return t.PathPrefix, nil
 }
 
 // InitEnv 使用环境变量初始化oss客户端
