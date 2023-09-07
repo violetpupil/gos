@@ -41,13 +41,15 @@ func Init(
 // InitToken 初始化oss客户端，使用oss browser auth token
 // https://github.com/aliyun/oss-browser/blob/develop/docs/authToken.md
 // https://help.aliyun.com/zh/oss/developer-reference/go-configure-access-credentials
-func InitToken(
-	endpoint, accessKeyID, accessKeySecret, bucketName string,
-	token string,
-) error {
-	err := Init(
-		endpoint, accessKeyID, accessKeySecret, bucketName,
-		oss.SecurityToken(token),
+func InitToken(token string) error {
+	t, err := ParseAuthToken(token)
+	if err != nil {
+		logrus.Errorln("parse auth token error", err)
+		return err
+	}
+	err = Init(
+		t.EpTpl, t.ID, t.Secret, t.Bucket,
+		oss.SecurityToken(t.SToken),
 	)
 	return err
 }
