@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"net/url"
 	"strings"
+	"time"
 
 	"github.com/sirupsen/logrus"
 )
@@ -24,6 +25,7 @@ type AuthToken struct {
 	// 从json字段里解析
 	Bucket     string `json:"bucket"`     // 桶
 	PathPrefix string `json:"pathPrefix"` // oss路径path部分 path/
+	ExpireTs   int64  `json:"expireTs"`   // 过期时间戳
 }
 
 // ParseAuthToken 解析授权码
@@ -39,10 +41,20 @@ func ParseAuthToken(token string) (*AuthToken, error) {
 		logrus.Errorln("json unmarshal error", err)
 		return nil, err
 	}
+
+	if t.Expiration != "" {
+		expire, err := time.Parse(time.RFC3339, t.Expiration)
+		if err != nil {
+			logrus.Errorln("time parse error", err)
+			return nil, err
+		}
+		t.ExpireTs = expire.Unix()
+	}
+
+	// 解析路径
 	if t.OssPath == "" {
 		return &t, nil
 	}
-
 	u, err := url.Parse(t.OssPath)
 	if err != nil {
 		logrus.Errorln("url parse error", err)
