@@ -1,9 +1,6 @@
 // oss客户端，必须先调用 Init 初始化
 // https://help.aliyun.com/zh/oss/
 // https://help.aliyun.com/zh/oss/developer-reference/introduction-3
-//
-// oss browser https://github.com/aliyun/oss-browser
-// 授权码 https://github.com/aliyun/oss-browser/blob/develop/docs/authToken.md
 package oss
 
 import (
@@ -41,7 +38,9 @@ func Init(
 	return err
 }
 
-// InitToken 初始化oss客户端，使用sts临时安全token
+// InitToken 初始化oss客户端，使用oss browser auth token
+// https://github.com/aliyun/oss-browser/blob/develop/docs/authToken.md
+// https://help.aliyun.com/zh/oss/developer-reference/go-configure-access-credentials
 func InitToken(
 	endpoint, accessKeyID, accessKeySecret, bucketName string,
 	token string,
@@ -54,6 +53,7 @@ func InitToken(
 }
 
 // InitEnv 使用环境变量初始化oss客户端
+// https://help.aliyun.com/zh/oss/developer-reference/go-configure-access-credentials
 func InitEnv() error {
 	var options []oss.ClientOption
 	token := os.Getenv("OSS_SESSION_TOKEN")
