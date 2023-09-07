@@ -26,7 +26,7 @@ type Location struct {
 
 // OCR 通用文字识别
 // https://ai.baidu.com/ai-doc/OCR/vk3h7y58v
-func (b *Baidu) OCR(image string) (*OCRResult, error) {
+func OCR(image string) (*OCRResult, error) {
 	var result OCRResult
 	res, err := resty.New().R().
 		SetQueryParam("access_token", "").
