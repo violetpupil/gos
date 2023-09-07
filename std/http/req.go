@@ -15,6 +15,7 @@ type Request = http.Request
 
 // Handle 服务处理函数
 func Handle(w http.ResponseWriter, r *http.Request) {
+	// 读请求体
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		logrus.Errorln("read request body error", err)
