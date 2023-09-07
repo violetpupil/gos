@@ -40,7 +40,9 @@ func LogSyscallError(err error) {
 
 // Environ 打印所有环境变量 key=value
 func Environ() {
+	fmt.Println("all env var")
 	for _, env := range os.Environ() {
 		fmt.Println(env)
 	}
+	fmt.Println("")
 }
