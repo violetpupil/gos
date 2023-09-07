@@ -1,6 +1,7 @@
 package oss
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
@@ -13,7 +14,8 @@ func TestPutObjectFromFile(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	PutObjectFromFile("test/oss.go", "./oss.go")
+	err = PutObjectFromFile("test/oss.go", "./oss.go")
+	fmt.Println(err)
 }
 
 func TestPutObjectFromFileACL(t *testing.T) {
@@ -22,5 +24,6 @@ func TestPutObjectFromFileACL(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	PutObjectFromFileACL("test/oss.go", "./oss.go", oss.ACLPublicRead)
+	err = PutObjectFromFileACL("test/oss.go", "./oss.go", oss.ACLPublicRead)
+	fmt.Println(err)
 }
