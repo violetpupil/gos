@@ -1,8 +1,10 @@
 package baidu
 
 import (
+	"encoding/base64"
 	"fmt"
 	"log"
+	"os"
 	"testing"
 
 	"github.com/joho/godotenv"
@@ -18,7 +20,13 @@ func Test_baidu_OCR(t *testing.T) {
 		panic(err)
 	}
 
-	r, err := Baidu.OCR("")
+	bs, err := os.ReadFile("./test_data/test.jpg")
+	if err != nil {
+		panic(err)
+	}
+	str := base64.StdEncoding.EncodeToString(bs)
+
+	r, err := Baidu.OCR(str)
 	if err != nil {
 		log.Fatalln(err)
 	}
