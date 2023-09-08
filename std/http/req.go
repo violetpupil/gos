@@ -1,6 +1,7 @@
 package http
 
 import (
+	"encoding/json"
 	"io"
 	"net/http"
 
@@ -15,12 +16,32 @@ type Request = http.Request
 
 // Handle 服务处理函数
 func Handle(w http.ResponseWriter, r *http.Request) {
+	res := map[string]any{
+		"code": CodeSuccess,
+		"msg":  "success",
+		"data": "",
+	}
+
 	// 读请求体
-	body, err := io.ReadAll(r.Body)
+	var body string
+	bs, err := io.ReadAll(r.Body)
 	if err != nil {
 		logrus.Errorln("read request body error", err)
-		w.WriteHeader(http.StatusBadRequest)
+		res["code"] = CodeArgumentError
+		res["msg"] = "read request body error"
+		goto Fin
+	}
+	body = string(bs)
+	logrus.Infoln("read request body result", body)
+
+Fin:
+	bs, err = json.Marshal(res)
+	if err != nil {
+		logrus.Errorln("marshal response error", err)
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	logrus.Infoln("request body", string(body))
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(bs)
 }

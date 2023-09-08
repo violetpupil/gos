@@ -2,6 +2,12 @@ package http
 
 import "net/http"
 
+// 响应体code
+const (
+	CodeSuccess       = 0 // 成功
+	CodeArgumentError = 1 // 请求参数错误
+)
+
 // ResponseWriter http响应构造器
 // WriteHeader() 写响应行和响应头
 // Write() 写响应体
