@@ -7,7 +7,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func TestGenAccessToken(t *testing.T) {
+func Test_baidu_GetAccessToken(t *testing.T) {
 	err := godotenv.Load("../../.env")
 	if err != nil {
 		panic(err)
@@ -17,6 +17,6 @@ func TestGenAccessToken(t *testing.T) {
 		panic(err)
 	}
 
-	err = GenAccessToken()
-	fmt.Println(err)
+	r, err := Baidu.GetAccessToken()
+	fmt.Println(r, err)
 }
