@@ -12,7 +12,7 @@ func Test_baidu_GetAccessToken(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Init()
+	err = InitEnv()
 	if err != nil {
 		panic(err)
 	}

@@ -18,11 +18,17 @@ type baidu struct {
 	AccessTokenExpire int64 // access token过期时间戳
 }
 
-// 百度客户端，必须先调用Init初始化
+// 百度客户端，必须先调用Init或InitEnv初始化
 var Baidu = new(baidu)
 
 // Init 初始化百度客户端
-func Init() error {
+func Init(api, secret string) {
+	Baidu.APIKey = api
+	Baidu.SecretKey = secret
+}
+
+// InitEnv 初始化百度客户端 使用环境变量
+func InitEnv() error {
 	err := env.Parse(Baidu)
 	return err
 }
