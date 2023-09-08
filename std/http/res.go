@@ -6,6 +6,7 @@ import "net/http"
 const (
 	CodeSuccess       = 0 // 成功
 	CodeArgumentError = 1 // 请求参数错误
+	CodeUnknownError  = 2 // 未知错误
 )
 
 // ResponseWriter http响应构造器
