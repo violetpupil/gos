@@ -22,10 +22,11 @@ type Client struct {
 var Baidu *Client
 
 // Init 初始化百度客户端
-func Init(api, secret string) {
+func Init(api, secret string) *Client {
 	Baidu = new(Client)
 	Baidu.APIKey = api
 	Baidu.SecretKey = secret
+	return Baidu
 }
 
 // InitEnv 初始化百度客户端 使用环境变量
