@@ -32,7 +32,7 @@ type Location struct {
 
 // OCR 通用文字识别
 // https://ai.baidu.com/ai-doc/OCR/vk3h7y58v
-func (b *baidu) OCR(image string) (*OCRResult, error) {
+func (b *client) OCR(image string) (*OCRResult, error) {
 	token, err := b.GetAccessToken()
 	if err != nil {
 		logrus.Errorln("get access token error", err)
