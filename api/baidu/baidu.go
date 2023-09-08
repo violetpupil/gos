@@ -11,7 +11,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type client struct {
+type Client struct {
 	APIKey            string `env:"BAIDU_API_KEY"`
 	SecretKey         string `env:"BAIDU_SECRET_KEY"`
 	AccessToken       string
@@ -19,18 +19,18 @@ type client struct {
 }
 
 // 百度客户端，必须先调用Init或InitEnv初始化
-var Baidu *client
+var Baidu *Client
 
 // Init 初始化百度客户端
 func Init(api, secret string) {
-	Baidu = new(client)
+	Baidu = new(Client)
 	Baidu.APIKey = api
 	Baidu.SecretKey = secret
 }
 
 // InitEnv 初始化百度客户端 使用环境变量
 func InitEnv() error {
-	Baidu = new(client)
+	Baidu = new(Client)
 	err := env.Parse(Baidu)
 	return err
 }
@@ -49,7 +49,7 @@ type TokenError struct {
 
 // GetAccessToken 获取access token
 // https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjhhu
-func (b *client) GetAccessToken() (string, error) {
+func (b *Client) GetAccessToken() (string, error) {
 	// 检查是否过期
 	if b.AccessToken != "" && time.Now().Unix() < b.AccessTokenExpire {
 		logrus.Infoln("access token valid")
