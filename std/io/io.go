@@ -11,3 +11,8 @@ var (
 	// EOF occurs unexpectedly
 	ErrUnexpectedEOF = io.ErrUnexpectedEOF
 )
+
+var (
+	// 向writer里写字符串
+	WriteString = io.WriteString
+)
