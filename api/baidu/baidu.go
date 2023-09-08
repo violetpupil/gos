@@ -19,16 +19,18 @@ type baidu struct {
 }
 
 // 百度客户端，必须先调用Init或InitEnv初始化
-var Baidu = new(baidu)
+var Baidu *baidu
 
 // Init 初始化百度客户端
 func Init(api, secret string) {
+	Baidu = new(baidu)
 	Baidu.APIKey = api
 	Baidu.SecretKey = secret
 }
 
 // InitEnv 初始化百度客户端 使用环境变量
 func InitEnv() error {
+	Baidu = new(baidu)
 	err := env.Parse(Baidu)
 	return err
 }
