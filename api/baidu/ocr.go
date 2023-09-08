@@ -2,6 +2,10 @@
 package baidu
 
 import (
+	"errors"
+	"fmt"
+	"net/http"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/sirupsen/logrus"
 )
@@ -10,6 +14,8 @@ type OCRResult struct {
 	LogID          uint64        `json:"log_id"`
 	WordsResultNum uint32        `json:"words_result_num"`
 	WordsResult    []WordsResult `json:"words_result"`
+	ErrorCode      int           `json:"error_code"` // 错误码
+	ErrorMsg       string        `json:"error_msg"`  // 错误描述
 }
 
 type WordsResult struct {
@@ -26,10 +32,16 @@ type Location struct {
 
 // OCR 通用文字识别
 // https://ai.baidu.com/ai-doc/OCR/vk3h7y58v
-func OCR(image string) (*OCRResult, error) {
+func (b *baidu) OCR(image string) (*OCRResult, error) {
+	token, err := b.GetAccessToken()
+	if err != nil {
+		logrus.Errorln("get access token error", err)
+		return nil, err
+	}
+
 	var result OCRResult
 	res, err := resty.New().R().
-		SetQueryParam("access_token", "").
+		SetQueryParam("access_token", token).
 		SetFormData(map[string]string{"image": image}).
 		SetResult(&result).
 		Post("https://aip.baidubce.com/rest/2.0/ocr/v1/general")
@@ -37,10 +49,22 @@ func OCR(image string) (*OCRResult, error) {
 		logrus.Errorln("post ocr error", err)
 		return nil, err
 	}
-
 	logrus.WithFields(logrus.Fields{
 		"status": res.Status(),
 		"body":   res.String(),
 	}).Infoln("post ocr response")
-	return &result, nil
+
+	if res.StatusCode() != http.StatusOK {
+		logrus.Errorln("post ocr status fail", res.Status())
+		return nil, errors.New(res.Status())
+	}
+	// 错误的响应码也是200
+	if result.ErrorCode == 0 {
+		logrus.Infof("post ocr success %+v", result)
+		return &result, nil
+	} else {
+		err = fmt.Errorf("%d: %s", result.ErrorCode, result.ErrorMsg)
+		logrus.Errorln("post ocr fail", err)
+		return nil, err
+	}
 }

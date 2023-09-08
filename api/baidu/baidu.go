@@ -3,7 +3,7 @@
 package baidu
 
 import (
-	"errors"
+	"fmt"
 	"time"
 
 	"github.com/caarlos0/env/v7"
@@ -71,8 +71,11 @@ func (b *baidu) GetAccessToken() (string, error) {
 	if res.IsSuccess() {
 		b.AccessToken = suss.AccessToken
 		b.AccessTokenExpire = time.Now().Unix() + suss.ExpiresIn
+		logrus.Infoln("post token success", suss.AccessToken)
 		return b.AccessToken, nil
 	} else {
-		return "", errors.New(fail.ErrorDescription)
+		err = fmt.Errorf("%s: %s", fail.Error, fail.ErrorDescription)
+		logrus.Errorln("post token fail", err)
+		return "", err
 	}
 }
