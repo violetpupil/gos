@@ -25,3 +25,8 @@ var (
 	// 默认地址 0.0.0.0:80
 	ListenAndServe = http.ListenAndServe
 )
+
+type (
+	// 处理器函数类型，并实现Handler接口
+	HandlerFunc = http.HandlerFunc
+)
