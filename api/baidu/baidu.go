@@ -3,6 +3,7 @@
 package baidu
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -22,18 +23,29 @@ type Client struct {
 var Baidu *Client
 
 // Init 初始化百度客户端
-func Init(api, secret string) *Client {
+func Init(api, secret string) (*Client, error) {
+	if api == "" || secret == "" {
+		return nil, errors.New("key is empty")
+	}
 	Baidu = new(Client)
 	Baidu.APIKey = api
 	Baidu.SecretKey = secret
-	return Baidu
+	return Baidu, nil
 }
 
 // InitEnv 初始化百度客户端 使用环境变量
 func InitEnv() (*Client, error) {
 	Baidu = new(Client)
 	err := env.Parse(Baidu)
-	return Baidu, err
+	if err != nil{
+		logrus.Errorln("env parse error", err)
+		return nil, err
+	}
+
+	if Baidu.APIKey == "" || Baidu.SecretKey == "" {
+		return nil, errors.New("key is empty")
+	}
+	return Baidu, nil
 }
 
 // TokenResult 获取access token成功响应
