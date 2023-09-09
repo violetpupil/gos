@@ -17,3 +17,7 @@ func TestTicker(t *testing.T) {
 		fmt.Println("hi")
 	}
 }
+
+func TestNowStr(t *testing.T) {
+	fmt.Println(NowStr())
+}
