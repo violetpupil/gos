@@ -30,10 +30,10 @@ func Init(api, secret string) *Client {
 }
 
 // InitEnv 初始化百度客户端 使用环境变量
-func InitEnv() error {
+func InitEnv() (*Client, error) {
 	Baidu = new(Client)
 	err := env.Parse(Baidu)
-	return err
+	return Baidu, err
 }
 
 // TokenResult 获取access token成功响应
