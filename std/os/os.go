@@ -20,6 +20,11 @@ var (
 	ExpandEnv = os.ExpandEnv
 )
 
+var (
+	// Args hold the command-line arguments, starting with the program name.
+	Args = os.Args
+)
+
 // LogSyscallError 打印os.SyscallError相关信息
 // 如果不是os.SyscallError，直接返回
 func LogSyscallError(err error) {
