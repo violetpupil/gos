@@ -12,11 +12,11 @@ type (
 	// Key 对象名 目录以斜杆结尾
 	ObjectProperties = oss.ObjectProperties
 	// oss.Bucket.ListObjectsV2()结果
-	// 指定oss.Delimiter("/")后
 	// Objects 对象列表
-	// 所有后代目录及文件 -> 指定目录下文件
+	// 指定oss.Delimiter("/")后, 所有后代目录及文件 -> 指定目录下文件
+	// 使用InitToken()初始化时，第一个对象一定是指定目录对象
 	// CommonPrefixes 以delimiter结尾的路径
-	// 空切片 -> 指定目录下目录路径
+	// 指定oss.Delimiter("/")后, 空切片 -> 指定目录下目录路径
 	ListObjectsResultV2 = oss.ListObjectsResultV2
 )
 
