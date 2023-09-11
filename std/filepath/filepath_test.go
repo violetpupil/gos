@@ -14,3 +14,8 @@ func TestWalk(t *testing.T) {
 	err := Walk("D:/test/avatar")
 	fmt.Println(err)
 }
+
+func TestGlob(t *testing.T) {
+	r, err := Glob("video/*")
+	fmt.Println(r, err)
+}
