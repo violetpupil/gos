@@ -8,6 +8,7 @@ import (
 )
 
 type Fruit struct {
+	// 没有excel标签的不处理
 	ID   int    `excel:"ID"`
 	Name string `excel:"Name"`
 }
