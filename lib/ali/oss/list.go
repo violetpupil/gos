@@ -63,3 +63,8 @@ func ListObjects(prefix string, max int) ([]oss.ObjectProperties, error) {
 	}
 	return res.Objects, nil
 }
+
+// IsObjectExist 检查对象是否存在
+func IsObjectExist(key string) (bool, error) {
+	return Client.b.IsObjectExist(key)
+}
