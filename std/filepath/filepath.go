@@ -7,6 +7,8 @@ import (
 )
 
 var (
+	// Base returns the last element of path.
+	Base = filepath.Base
 	// 拼接文件路径，使用os特定分隔符
 	Join = filepath.Join
 )
