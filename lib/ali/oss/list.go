@@ -7,61 +7,42 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// ListObjects 获取对象列表
-// prefix不能以斜杆开头
-// 包括目录，目录以斜杆结尾
-// first表示是否只获取第一页
-func ListObjects(prefix string, first bool) ([]oss.ObjectProperties, error) {
-	objects := make([]oss.ObjectProperties, 0)
-	pre := oss.Prefix(prefix)
-	token := ""
+type (
+	// oss对象
+	// Key 对象名 目录以斜杆结尾
+	ObjectProperties = oss.ObjectProperties
+	// oss.Bucket.ListObjectsV2()结果
+	// 指定oss.Delimiter("/")后
+	// Objects 对象列表
+	// 所有后代目录及文件 -> 指定目录下文件
+	// CommonPrefixes 以delimiter结尾的路径
+	// 空切片 -> 指定目录下目录路径
+	ListObjectsResultV2 = oss.ListObjectsResultV2
+)
+
+// ListObjectsAll 获取所有对象
+// root设置为true，只获取指定目录下目录和文件，分别位于结果的Objects和CommonPrefixes字段
+// root设置为false，获取所有后代目录及文件，位于结果的Objects字段
+func ListObjectsAll(prefix string, root bool) (*oss.ListObjectsResultV2, error) {
+	var out oss.ListObjectsResultV2
+	// 翻页
+	var token string
+	options := make([]oss.Option, 0)
+	if root {
+		options = append(options, Root(prefix)...)
+	} else {
+		options = append(options, Prefix(prefix))
+	}
 	for {
 		con := oss.ContinuationToken(token)
-		res, err := Client.b.ListObjectsV2(con, pre)
+		options = append(options, con)
+		res, err := Client.b.ListObjectsV2(options...)
 		if err != nil {
 			logrus.Errorln("list objects error", err)
 			return nil, err
 		}
-		objects = append(objects, res.Objects...)
-
-		// 默认一次返回100条记录
-		if !first && res.IsTruncated {
-			token = res.NextContinuationToken
-		} else {
-			break
-		}
-	}
-	return objects, nil
-}
-
-// ListObjectsMaxKeys 获取对象列表 指定个数
-// prefix不能以斜杆开头
-// 包括目录，目录以斜杆结尾
-func ListObjectsMaxKeys(prefix string, max int) ([]oss.ObjectProperties, error) {
-	res, err := Client.b.ListObjectsV2(oss.Prefix(prefix), oss.MaxKeys(max))
-	if err != nil {
-		logrus.Errorln("list objects error", err)
-		return nil, err
-	}
-	return res.Objects, nil
-}
-
-// ListObjectsDir 获取子目录列表
-// prefix不能以斜杆开头，应该以斜杆结尾
-func ListObjectsDir(prefix string) ([]string, error) {
-	dirs := make([]string, 0)
-	pre := oss.Prefix(prefix)
-	token := ""
-	for {
-		con := oss.ContinuationToken(token)
-		// 设置了oss.Delimiter("/")
-		// res.Objects只有当前目录下文件，没有子目录及子目录下文件
-		res, err := Client.b.ListObjectsV2(con, pre, oss.Delimiter("/"))
-		if err != nil {
-			logrus.Errorln("list objects error", err)
-			return nil, err
-		}
-		dirs = append(dirs, res.CommonPrefixes...)
+		out.Objects = append(out.Objects, res.Objects...)
+		out.CommonPrefixes = append(out.CommonPrefixes, res.CommonPrefixes...)
 
 		if res.IsTruncated {
 			token = res.NextContinuationToken
@@ -69,5 +50,17 @@ func ListObjectsDir(prefix string) ([]string, error) {
 			break
 		}
 	}
-	return dirs, nil
+	return &out, nil
+}
+
+// ListObjects 获取指定目录下文件，max为数量
+func ListObjects(prefix string, max int) ([]oss.ObjectProperties, error) {
+	options := Root(prefix)
+	options = append(options, oss.MaxKeys(max))
+	res, err := Client.b.ListObjectsV2(options...)
+	if err != nil {
+		logrus.Errorln("list objects error", err)
+		return nil, err
+	}
+	return res.Objects, nil
 }

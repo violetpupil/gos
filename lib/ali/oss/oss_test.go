@@ -11,9 +11,11 @@ func TestInitToken(t *testing.T) {
 		panic(err)
 	}
 
-	os, err := ListObjects(path, true)
+	os, err := ListObjects(path, 1)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%+v\n", os)
+	for _, o := range os {
+		fmt.Printf("%+v\n", o)
+	}
 }
