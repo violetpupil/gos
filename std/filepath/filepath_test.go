@@ -15,7 +15,7 @@ func TestWalk(t *testing.T) {
 	fmt.Println(err)
 }
 
-func TestGlob(t *testing.T) {
-	r, err := Glob("video/*")
+func TestFilenames(t *testing.T) {
+	r, err := Filenames("video")
 	fmt.Println(r, err)
 }
