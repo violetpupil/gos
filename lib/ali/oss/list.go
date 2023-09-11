@@ -8,7 +8,8 @@ import (
 )
 
 // ListObjects 获取对象列表
-// 包括目录，prefix不能以斜杆开头
+// prefix不能以斜杆开头
+// 包括目录，目录以斜杆结尾
 // first表示是否只获取第一页
 func ListObjects(prefix string, first bool) ([]oss.ObjectProperties, error) {
 	objects := make([]oss.ObjectProperties, 0)
@@ -34,7 +35,8 @@ func ListObjects(prefix string, first bool) ([]oss.ObjectProperties, error) {
 }
 
 // ListObjectsMaxKeys 获取对象列表 指定个数
-// 包括目录，prefix不能以斜杆开头
+// prefix不能以斜杆开头
+// 包括目录，目录以斜杆结尾
 func ListObjectsMaxKeys(prefix string, max int) ([]oss.ObjectProperties, error) {
 	res, err := Client.b.ListObjectsV2(oss.Prefix(prefix), oss.MaxKeys(max))
 	if err != nil {
