@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path"
+	"path/filepath"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/sirupsen/logrus"
@@ -40,8 +41,8 @@ func GetObjectStr(objectKey string, options ...oss.Option) (string, error) {
 	return string(bs), nil
 }
 
-// Download 下载文件
-func Download(objectKey string, options ...oss.Option) error {
+// Download 下载文件 p指定目录
+func Download(objectKey, p string, options ...oss.Option) error {
 	reader, err := Client.b.GetObject(objectKey, options...)
 	if err != nil {
 		logrus.Errorln("get object error", err)
@@ -52,7 +53,8 @@ func Download(objectKey string, options ...oss.Option) error {
 
 	// 创建同名文件
 	filename := path.Base(objectKey)
-	fd, err := os.Create(filename)
+	file := filepath.Join(p, filename)
+	fd, err := os.Create(file)
 	if err != nil {
 		logrus.Errorln("create file error", err)
 		return err
