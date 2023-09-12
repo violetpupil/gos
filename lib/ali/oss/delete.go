@@ -61,6 +61,7 @@ func DeleteAll(prefix string, f func(oss.ObjectProperties) bool, test bool) erro
 				logrus.Errorln("delete objects error", err)
 				return err
 			}
+			logrus.Infoln("delete objects success")
 		}
 
 		if res.IsTruncated {
