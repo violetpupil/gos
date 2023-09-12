@@ -33,6 +33,11 @@ func TestMkdirAll(t *testing.T) {
 	fmt.Println(err)
 }
 
+func TestRemove(t *testing.T) {
+	err := os.Remove("tmp.txt")
+	fmt.Println(err)
+}
+
 func TestRemoveAll(t *testing.T) {
 	err := os.RemoveAll("tmp.txt")
 	fmt.Println(err)
