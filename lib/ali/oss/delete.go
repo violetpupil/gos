@@ -55,7 +55,7 @@ func DeleteAll(prefix string, f func(oss.ObjectProperties) bool, test bool) erro
 				logrus.Infoln("skip object", o.Key)
 			}
 		}
-		if !test {
+		if !test && len(keys) > 0 {
 			_, err = Client.b.DeleteObjects(keys, oss.DeleteObjectsQuiet(true))
 			if err != nil {
 				logrus.Errorln("delete objects error", err)
