@@ -2,6 +2,7 @@ package os
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"testing"
 )
@@ -29,5 +30,10 @@ func TestMkdir(t *testing.T) {
 
 func TestMkdirAll(t *testing.T) {
 	err := MkdirAll("tmp/1/2")
+	fmt.Println(err)
+}
+
+func TestRemoveAll(t *testing.T) {
+	err := os.RemoveAll("tmp.txt")
 	fmt.Println(err)
 }

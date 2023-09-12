@@ -14,6 +14,8 @@ var (
 	ReadFile = os.ReadFile
 	// Create 创建文件，如果文件存在，先清空
 	Create = os.Create
+	// RemoveAll 删除文件或整个文件夹，路径不存在则忽略
+	RemoveAll = os.RemoveAll
 	// IsNotExist 是否错误为不存在
 	IsNotExist = os.IsNotExist
 )
