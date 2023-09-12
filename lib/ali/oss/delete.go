@@ -21,7 +21,7 @@ func DeleteObjects(keys ...string) error {
 	return err
 }
 
-// DeleteAll 删除所有指定前缀对象，f忽略函数
+// DeleteAll 删除所有指定前缀对象，f返回true表示忽略
 func DeleteAll(prefix string, f func(oss.ObjectProperties) bool) error {
 	// 禁止清空桶
 	if prefix == "" {
@@ -35,13 +35,15 @@ func DeleteAll(prefix string, f func(oss.ObjectProperties) bool) error {
 			logrus.Errorln("list objects error", err)
 			return err
 		}
+		if len(res.Objects) == 0 {
+			break
+		}
 
 		var keys []string
 		for _, o := range res.Objects {
-			keys = append(keys, o.Key)
-		}
-		if len(keys) == 0 {
-			break
+			if !f(o) {
+				keys = append(keys, o.Key)
+			}
 		}
 		_, err = Client.b.DeleteObjects(keys, oss.DeleteObjectsQuiet(true))
 		if err != nil {
