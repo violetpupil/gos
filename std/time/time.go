@@ -84,3 +84,8 @@ func NowStr() string {
 	s = strings.ReplaceAll(s, ".", "")
 	return s
 }
+
+// ElapseMonth 指定时间是否过了一个月 24*30小时
+func ElapseMonth(t time.Time) bool {
+	return time.Since(t) > 24*30*time.Hour
+}
