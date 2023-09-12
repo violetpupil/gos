@@ -3,6 +3,8 @@
 package oss
 
 import (
+	"strings"
+
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/sirupsen/logrus"
 )
@@ -18,6 +20,11 @@ type (
 	// 指定oss.Delimiter("/")后, 空切片 -> 指定目录下目录路径
 	ListObjectsResultV2 = oss.ListObjectsResultV2
 )
+
+// IsDir 判断oss对象是否为目录
+func IsDir(o oss.ObjectProperties) bool {
+	return strings.HasSuffix(o.Key, "/")
+}
 
 // ListObjectsAll 获取所有对象
 // root设置为true，只获取指定目录下目录和文件，分别位于结果的CommonPrefixes和Objects字段
