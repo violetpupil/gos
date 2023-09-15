@@ -37,4 +37,12 @@ authentication:
   - "user1:pass1"
 # 允许局域网连接
 allow-lan: true
+# 代理配置
+proxies:
+  - name: us
+    type: socks5
+    server: 127.0.0.1
+    port: 443
+    username: username
+    password: password
 ```
