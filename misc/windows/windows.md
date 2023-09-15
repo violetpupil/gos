@@ -4,6 +4,8 @@
 
 ## 环境变量
 
+windows环境变量键不区分大小写
+
 - HOMEPATH 用户家目录
 - USERPROFILE 用户家目录
 - APPDATA=%USERPROFILE%\AppData\Roaming

@@ -10,6 +10,7 @@ javascript代码检查
 
 ```json
 {
+  // 默认使用prettier插件格式化
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
