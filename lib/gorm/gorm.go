@@ -15,6 +15,13 @@ import (
 )
 
 type (
+	// 数据库对象
+	// Select() 指定字段
+	// 查询
+	// Select("name, age")
+	// Select("name", "age")
+	// Select([]string{"name", "age"})
+	// 如果两个字段名相同，使用后面的一个
 	DB = gorm.DB
 )
 
