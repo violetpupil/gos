@@ -1,6 +1,11 @@
 // https://github.com/gin-gonic/gin/blob/master/docs/doc.md
 // https://gin-gonic.com/docs/examples/
 // https://github.com/gin-gonic/examples
+//
+// 项目结构示例
+// handler 处理器函数
+// - req 请求对象
+// - res 响应对象
 package gin
 
 import (
