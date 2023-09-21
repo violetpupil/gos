@@ -18,6 +18,8 @@ type (
 var (
 	// 将${var}或$var替换为环境变量或者空字符串
 	ExpandEnv = os.ExpandEnv
+	// 设置环境变量
+	Setenv = os.Setenv
 )
 
 var (
