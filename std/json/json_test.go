@@ -22,3 +22,13 @@ func TestMarshal(t *testing.T) {
 	}
 	fmt.Println(string(bs))
 }
+
+func TestUnmarshal(t *testing.T) {
+	s := `{"A": "true"}`
+	var tmp Tmp
+	err := json.Unmarshal([]byte(s), &tmp)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(tmp)
+}
