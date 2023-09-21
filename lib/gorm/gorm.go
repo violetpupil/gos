@@ -37,9 +37,13 @@ type crud struct {
 	Raw *raw
 }
 
-var Crud *crud
+var (
+	Crud *crud
+	D    *gorm.DB
+)
 
 func Init(db *gorm.DB) {
+	D = db
 	Crud = new(crud)
 	Crud.db = db
 	Crud.C = &create{db}
