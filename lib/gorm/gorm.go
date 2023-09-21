@@ -26,7 +26,6 @@ type (
 )
 
 // crud 数据库操作
-// 必须先调用 Init 初始化
 type crud struct {
 	db  *gorm.DB
 	C   *create
@@ -38,10 +37,14 @@ type crud struct {
 }
 
 var (
+	// 必须先调用 Init 初始化
+	// 数据库对象
+	D *gorm.DB
+	// 数据库操作
 	Crud *crud
-	D    *gorm.DB
 )
 
+// Init 初始化数据库实例
 func Init(db *gorm.DB) {
 	D = db
 	Crud = new(crud)
