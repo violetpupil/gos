@@ -38,4 +38,6 @@ type (
 	// Group() 创建子路由组，路径可不以/结尾
 	// Use() 配置中间件
 	RouterGroup = gin.RouterGroup
+	// HandlerFunc 处理器函数
+	HandlerFunc = gin.HandlerFunc
 )
