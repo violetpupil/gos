@@ -18,8 +18,6 @@ type (
 var (
 	// 将${var}或$var替换为环境变量或者空字符串
 	ExpandEnv = os.ExpandEnv
-	// 设置环境变量
-	Setenv = os.Setenv
 )
 
 var (
@@ -52,4 +50,15 @@ func Environ() {
 		fmt.Println(env)
 	}
 	fmt.Println("")
+}
+
+// Setenv 批量设置环境变量
+func Setenv(kv map[string]string) error {
+	for k, v := range kv {
+		err := os.Setenv(k, v)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
