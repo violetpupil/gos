@@ -15,6 +15,9 @@ var (
 	Base = path.Base
 	// Ext 返回文件扩展名 .txt
 	Ext = path.Ext
+	// Join 拼接路径，用/
+	// 去掉结尾的/，开头的/如果有会保留
+	Join = path.Join
 )
 
 // Filename 获取路径中的文件名 /a.txt -> a

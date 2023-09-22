@@ -15,11 +15,17 @@ import (
 )
 
 type (
+	// 数据库对象
+	// Select() 指定字段
+	// 查询
+	// Select("name, age")
+	// Select("name", "age")
+	// Select([]string{"name", "age"})
+	// 如果两个字段名相同，使用后面的一个
 	DB = gorm.DB
 )
 
 // crud 数据库操作
-// 必须先调用 Init 初始化
 type crud struct {
 	db  *gorm.DB
 	C   *create
@@ -30,9 +36,17 @@ type crud struct {
 	Raw *raw
 }
 
-var Crud *crud
+var (
+	// 必须先调用 Init 初始化
+	// 数据库对象
+	D *gorm.DB
+	// 数据库操作
+	Crud *crud
+)
 
+// Init 初始化数据库实例
 func Init(db *gorm.DB) {
+	D = db
 	Crud = new(crud)
 	Crud.db = db
 	Crud.C = &create{db}

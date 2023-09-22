@@ -11,6 +11,8 @@ type (
 	// URL url信息
 	// RawQuery encoded query values, without '?'
 	URL = url.URL
+	// Values 查询字符串或表单，键大小写敏感
+	Values = url.Values
 )
 
 var (

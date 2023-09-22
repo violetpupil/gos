@@ -33,6 +33,7 @@ func CheckConn(key string) bool {
 }
 
 // WriteMessage 从Hub中获取websocket连接，写消息到channel
+// 返回nil不代表向连接写消息成功
 // t是websocket消息类型
 func WriteMessage(key string, t int, data []byte) error {
 	i, ok := Hub.Load(key)
@@ -82,7 +83,7 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) {
 			logger.WithFields(logrus.Fields{
 				"type":    msg.Type,
 				"message": string(msg.Data),
-			}).Infoln("write message")
+			}).Infoln("write message success")
 		}
 	}()
 
@@ -101,7 +102,7 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) {
 		logger.WithFields(logrus.Fields{
 			"type":    t,
 			"message": string(p),
-		}).Infoln("read message")
+		}).Infoln("read message success")
 		if f != nil {
 			f(key, t, p)
 		}

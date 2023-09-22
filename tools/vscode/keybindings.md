@@ -6,6 +6,8 @@
 
 `Ctrl+Shift+Alt+U` editor.action.transformToUppercase
 
+`Ctrl+Shift+Alt+L` editor.action.transformToLowercase
+
 `Ctrl+Shift+Alt+S` editor.action.transformToSnakecase
 
 `Ctrl+Shift+Alt+T` editor.action.transformToTitlecase

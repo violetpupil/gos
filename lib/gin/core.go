@@ -12,8 +12,8 @@ type (
 	// MustBindWith() 解析参数，解析失败会返回错误并响应400
 	// ShouldBindWith() 解析参数，解析失败只返回错误
 	// BindHeader() 解析请求头，结构体标签header
-	// BindJSON() 解析json请求体
-	// BindQuery() 解析查询字符串
+	// BindJSON() ShouldBindJSON() 解析json请求体
+	// BindQuery() 只解析查询字符串，结构体标签form
 	// BindUri() 解析路径参数，结构体标签uri
 	// Bind() 自动选择参数类型
 	// Bind()可以同时解析查询字符串和url编码表单
@@ -38,4 +38,6 @@ type (
 	// Group() 创建子路由组，路径可不以/结尾
 	// Use() 配置中间件
 	RouterGroup = gin.RouterGroup
+	// HandlerFunc 处理器函数
+	HandlerFunc = gin.HandlerFunc
 )

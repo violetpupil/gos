@@ -14,3 +14,8 @@ func TestWalk(t *testing.T) {
 	err := Walk("D:/test/avatar")
 	fmt.Println(err)
 }
+
+func TestFilenames(t *testing.T) {
+	r, err := Filenames("video")
+	fmt.Println(r, err)
+}

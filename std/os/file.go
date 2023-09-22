@@ -14,6 +14,10 @@ var (
 	ReadFile = os.ReadFile
 	// Create 创建文件，如果文件存在，先清空
 	Create = os.Create
+	// Remove 删除文件或空文件夹，路径不存在则报错
+	Remove = os.Remove
+	// RemoveAll 删除文件或整个文件夹，路径不存在则忽略
+	RemoveAll = os.RemoveAll
 	// IsNotExist 是否错误为不存在
 	IsNotExist = os.IsNotExist
 )
@@ -104,4 +108,21 @@ func Rename(dir string, fn func(string) string) error {
 		}
 	}
 	return nil
+}
+
+// Mkdir 创建单级文件夹，存在返回nil
+func Mkdir(name string) error {
+	err := os.Mkdir(name, 0666)
+	if err == nil || os.IsExist(err) {
+		return nil
+	} else {
+		logrus.Errorln("mkdir error", err)
+		return err
+	}
+}
+
+// Mkdir 创建多级文件夹，存在返回nil
+func MkdirAll(path string) error {
+	err := os.MkdirAll(path, 0666)
+	return err
 }

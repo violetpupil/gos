@@ -12,6 +12,9 @@ var (
 	// json编码
 	// 结构体标签 `json:","`
 	// omitempty选项 当字段为默认值时，不编码
+	// string选项
+	// 将数字、布尔编码成字符串 "true"
+	// 将字符串解码成数字、布尔
 	Marshal = json.Marshal
 	// json解码
 	// 字段名大小写不敏感

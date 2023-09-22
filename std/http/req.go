@@ -12,6 +12,7 @@ import (
 // Header 请求头
 // Body 请求体
 // Form 包含查询字符串和请求体中的表单数据，必须先调用ParseForm()
+// FormValue() 获取表单值，请求体优先于查询字符串
 type Request = http.Request
 
 // Handle 服务处理函数

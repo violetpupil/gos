@@ -4,15 +4,11 @@ package time
 import (
 	"log"
 	"strconv"
+	"strings"
 	"time"
 )
 
 const (
-	// 最新go版本中已支持这三个常量
-	DateTime = "2006-01-02 15:04:05"
-	DateOnly = "2006-01-02"
-	TimeOnly = "15:04:05"
-
 	// 视频时间
 	VideoTime = "15:04:05,000"
 )
@@ -80,4 +76,16 @@ func NewLoop(d time.Duration, f func()) {
 			time.Sleep(d)
 		}
 	}()
+}
+
+// NowStr 当前时间字符串 20230909191209572
+func NowStr() string {
+	s := time.Now().Format("20060102150405.000")
+	s = strings.ReplaceAll(s, ".", "")
+	return s
+}
+
+// ElapseMonth 指定时间是否过了一个月 24*30小时
+func ElapseMonth(t time.Time) bool {
+	return time.Since(t) > 24*30*time.Hour
 }

@@ -1,7 +1,12 @@
 package strconv
 
 import (
+	"fmt"
+	"math"
 	"strconv"
+	"strings"
+
+	"github.com/violetpupil/gos/spec/types"
 )
 
 var ParseInt = strconv.ParseInt
@@ -40,4 +45,21 @@ func ToString(i any) string {
 	default:
 		return ""
 	}
+}
+
+// UnitInt 将数字用千位表示 K M B
+// 19000 -> 19K
+// 19500 -> 19.5K
+func UnitInt(n int) string {
+	var s string
+	if n < int(math.Pow10(3)) {
+		s = strconv.Itoa(n)
+	} else if n < int(math.Pow10(6)) {
+		s = fmt.Sprintf("%d.%dK", n/int(math.Pow10(3)), types.Hundred(n))
+	} else if n < int(math.Pow10(9)) {
+		s = fmt.Sprintf("%d.%dM", n/int(math.Pow10(6)), types.HundredThousand(n))
+	} else {
+		s = fmt.Sprintf("%d.%dB", n/int(math.Pow10(9)), types.HundredMillion(n))
+	}
+	return strings.ReplaceAll(s, ".0", "")
 }
