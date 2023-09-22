@@ -9,4 +9,6 @@ var (
 	Int = flag.Int
 	// 传入指针
 	IntVar = flag.IntVar
+	// 解析命令行参数，-h帮助选项会自动添加
+	Parse = flag.Parse
 )
