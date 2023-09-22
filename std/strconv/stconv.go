@@ -47,10 +47,10 @@ func ToString(i any) string {
 	}
 }
 
-// FormatInt 将数字用千位表示 K M B
+// UnitInt 将数字用千位表示 K M B
 // 19000 -> 19K
 // 19500 -> 19.5K
-func FormatInt(n int) string {
+func UnitInt(n int) string {
 	var s string
 	if n < int(math.Pow10(3)) {
 		s = strconv.Itoa(n)

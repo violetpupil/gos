@@ -5,6 +5,6 @@ import (
 	"testing"
 )
 
-func TestFormatInt(t *testing.T) {
-	fmt.Println(FormatInt(19000))
+func TestUnitInt(t *testing.T) {
+	fmt.Println(UnitInt(19000))
 }
