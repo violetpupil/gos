@@ -19,6 +19,7 @@ var (
 	Fatalln = logrus.Fatalln
 )
 
+// Init 最佳选项设置
 func Init() {
 	// 包含调用信息
 	logrus.SetReportCaller(true)
