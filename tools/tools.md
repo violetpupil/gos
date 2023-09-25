@@ -26,9 +26,11 @@
 
 [迅雷x](https://www.mediafire.com/file/fe2iwswdv9wv04l)
 
+[qBittorrent](https://www.qbittorrent.org/download)
+
 [百度网盘](https://pan.baidu.com/download)
 
-[qBittorrent](https://www.qbittorrent.org/download)
+[115网盘](https://pc.115.com/browser.html)
 
 ### 技术
 
