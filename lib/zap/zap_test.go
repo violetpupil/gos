@@ -13,3 +13,11 @@ func TestInfo(t *testing.T) {
 	}
 	zap.L().Info("test")
 }
+
+func TestNewDevelopmentFile(t *testing.T) {
+	logger, err := NewDevelopmentFile("tmp.log")
+	if err != nil {
+		panic(err)
+	}
+	logger.Info("hi")
+}
