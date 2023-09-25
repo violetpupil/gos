@@ -14,6 +14,7 @@ var (
 	// "/" -> /
 	Base = path.Base
 	// Ext 返回文件扩展名 .txt
+	// 没有扩展名返回""
 	Ext = path.Ext
 	// Join 拼接路径，用/
 	// 去掉结尾的/，开头的/如果有会保留
@@ -26,4 +27,9 @@ func Filename(p string) string {
 	ext := path.Ext(p)
 	r := strings.TrimSuffix(base, ext)
 	return r
+}
+
+// HasExt 路径是否有文件扩展名
+func HasExt(p string) bool {
+	return path.Ext(p) != ""
 }

@@ -2,6 +2,7 @@ package url
 
 import (
 	"net/url"
+	"path"
 	"strings"
 
 	"github.com/sirupsen/logrus"
@@ -33,4 +34,14 @@ func Path(rawURL string) (string, error) {
 	// 其它情况 u.Path 会以斜杆开头
 	path := strings.TrimPrefix(u.Path, "/")
 	return path, nil
+}
+
+// HasExt 路径中是否有文件扩展名
+func HasExt(rawURL string) (bool, error) {
+	p, err := Path(rawURL)
+	if err != nil {
+		logrus.Errorln("parse path error", err)
+		return false, err
+	}
+	return path.Ext(p) != "", nil
 }
