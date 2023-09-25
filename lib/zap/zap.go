@@ -57,9 +57,14 @@ func Sync() {
 }
 
 // NewDevelopmentFile 使用预设开发配置创建logger，日志写到文件
+// file指定文件，设置为空则使用zap.log
 // stderr是否写到标准错误
 // 可以使用os操作文件
 func NewDevelopmentFile(file string, stderr bool, options ...zap.Option) (*zap.Logger, error) {
+	if file == "" {
+		file = "zap.log"
+	}
+
 	c := zap.NewDevelopmentConfig()
 	if stderr {
 		c.OutputPaths = append(c.OutputPaths, file)
