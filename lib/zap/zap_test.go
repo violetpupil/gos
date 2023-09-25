@@ -15,7 +15,7 @@ func TestInfo(t *testing.T) {
 }
 
 func TestNewDevelopmentFile(t *testing.T) {
-	logger, err := NewDevelopmentFile("tmp.log")
+	logger, err := NewDevelopmentFile("tmp.log", true)
 	if err != nil {
 		panic(err)
 	}

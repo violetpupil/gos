@@ -56,12 +56,17 @@ func Sync() {
 	}
 }
 
-// NewDevelopmentFile 使用预设开发配置创建logger
-// 日志写到文件及标准错误
+// NewDevelopmentFile 使用预设开发配置创建logger，日志写到文件
+// stderr是否写到标准错误
 // 可以使用os操作文件
-func NewDevelopmentFile(file string, options ...zap.Option) (*zap.Logger, error) {
+func NewDevelopmentFile(file string, stderr bool, options ...zap.Option) (*zap.Logger, error) {
 	c := zap.NewDevelopmentConfig()
-	c.OutputPaths = append(c.OutputPaths, file)
-	c.ErrorOutputPaths = append(c.OutputPaths, file)
+	if stderr {
+		c.OutputPaths = append(c.OutputPaths, file)
+		c.ErrorOutputPaths = append(c.OutputPaths, file)
+	} else {
+		c.OutputPaths = []string{file}
+		c.ErrorOutputPaths = []string{file}
+	}
 	return c.Build(options...)
 }
