@@ -27,3 +27,13 @@ func TestPutObjectFromFileACL(t *testing.T) {
 	err = PutObjectFromFileACL("test/oss.go", "./oss.go", oss.ACLPublicRead)
 	fmt.Println(err)
 }
+
+func TestPutObjectURL(t *testing.T) {
+	godotenv.Load("../../../.env")
+	err := InitEnv()
+	if err != nil {
+		panic(err)
+	}
+	err = PutObjectURL("tmp.jpg", "")
+	fmt.Println(err)
+}

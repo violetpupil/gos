@@ -10,8 +10,6 @@ import (
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/go-resty/resty/v2"
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/gos/std/mime"
-	"github.com/violetpupil/gos/std/url"
 )
 
 /*
@@ -58,18 +56,5 @@ func PutObjectURL(objectKey string, u string, options ...oss.Option) error {
 		logrus.Errorln("get file error", err)
 		return err
 	}
-
-	if ok, err := url.HasExt(u); err != nil {
-		logrus.Errorln("has ext error", err)
-		return err
-	} else if ok {
-		return PutObjectBytes(objectKey, res.Body(), options...)
-	}
-
-	if ext, err := mime.ExtensionByType(res.Header().Get("content-type")); err != nil {
-		logrus.Errorln("extension by type error", err)
-		return err
-	} else {
-		return PutObjectBytes(objectKey+ext, res.Body(), options...)
-	}
+	return PutObjectBytes(objectKey, res.Body(), options...)
 }
