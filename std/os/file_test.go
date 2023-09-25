@@ -42,3 +42,13 @@ func TestRemoveAll(t *testing.T) {
 	err := os.RemoveAll("tmp.txt")
 	fmt.Println(err)
 }
+
+func TestTruncate(t *testing.T) {
+	err := os.Truncate("tmp.txt", 0)
+	fmt.Println(err)
+}
+
+func TestSize(t *testing.T) {
+	r, err := Size("tmp.txt")
+	fmt.Println(r, err)
+}

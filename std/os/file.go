@@ -45,7 +45,7 @@ func Stat(name string) (*fs.FileInfoS, error) {
 	return fi, nil
 }
 
-// Size 获取文件大小
+// Size 获取文件大小字节数
 func Size(name string) (int64, error) {
 	info, err := os.Stat(name)
 	if err != nil {
@@ -125,4 +125,9 @@ func Mkdir(name string) error {
 func MkdirAll(path string) error {
 	err := os.MkdirAll(path, 0666)
 	return err
+}
+
+// Clear 清空文件
+func Clear(name string) error {
+	return os.Truncate(name, 0)
 }
