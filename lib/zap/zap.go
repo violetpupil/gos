@@ -66,6 +66,8 @@ func NewDevelopmentFile(file string, stderr bool, options ...zap.Option) (*zap.L
 	}
 
 	c := zap.NewDevelopmentConfig()
+	// 不输出调用栈
+	c.DisableStacktrace = true
 	if stderr {
 		c.OutputPaths = append(c.OutputPaths, file)
 		c.ErrorOutputPaths = append(c.OutputPaths, file)
