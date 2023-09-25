@@ -34,3 +34,5 @@ ps -ef | grep ./server | grep -v grep | awk '{print $2}' | xargs kill
 ## 常用文件
 
 `/etc/sysconfig/network-script/ifcfg-eth0` 网卡配置
+
+`/proc/$PID/status` 进程状态
