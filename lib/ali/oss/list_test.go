@@ -27,3 +27,17 @@ func TestListObjectsAll(t *testing.T) {
 		fmt.Println(p)
 	}
 }
+
+func TestListObject(t *testing.T) {
+	godotenv.Load("../../../.env")
+	err := InitEnv()
+	if err != nil {
+		panic(err)
+	}
+
+	obj, err := ListObject("tmp")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", obj)
+}

@@ -11,6 +11,8 @@ import (
 type (
 	// oss对象
 	// Key 对象名 目录以斜杆结尾
+	// Size 对象字节数
+	// LastModified last modified time
 	ObjectProperties = oss.ObjectProperties
 )
 

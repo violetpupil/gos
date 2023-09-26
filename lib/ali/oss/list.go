@@ -3,6 +3,8 @@
 package oss
 
 import (
+	"fmt"
+
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/sirupsen/logrus"
 )
@@ -59,4 +61,18 @@ func ListObjects(prefix string, max int) ([]oss.ObjectProperties, error) {
 		return nil, err
 	}
 	return res.Objects, nil
+}
+
+// ListObject 获取单个对象
+func ListObject(key string) (*oss.ObjectProperties, error) {
+	res, err := Client.b.ListObjectsV2(Prefix(key))
+	if err != nil {
+		logrus.Errorln("list objects error", err)
+		return nil, err
+	}
+	if len(res.Objects) != 1 {
+		logrus.Errorf("list objects length %d", len(res.Objects))
+		return nil, fmt.Errorf("list objects length %d", len(res.Objects))
+	}
+	return &res.Objects[0], nil
 }
