@@ -4,7 +4,6 @@ package oss
 
 import (
 	"io"
-	"os"
 	"path"
 	"path/filepath"
 
@@ -41,27 +40,11 @@ func GetObjectStr(objectKey string, options ...oss.Option) (string, error) {
 	return string(bs), nil
 }
 
-// Download 下载文件 p指定目录 返回目录+文件名
-func Download(objectKey, p string, options ...oss.Option) (string, error) {
-	reader, err := Client.b.GetObject(objectKey, options...)
-	if err != nil {
-		logrus.Errorln("get object error", err)
-		return "", err
-	}
-	// 释放连接
-	defer reader.Close()
-
-	// 创建同名文件
+// GetObjectToFile 下载文件 p指定目录 返回目录+文件名
+func GetObjectToFile(objectKey, p string, options ...oss.Option) (string, error) {
 	filename := path.Base(objectKey)
 	file := filepath.Join(p, filename)
-	fd, err := os.Create(file)
-	if err != nil {
-		logrus.Errorln("create file error", err)
-		return "", err
-	}
-	defer fd.Close()
-
-	_, err = io.Copy(fd, reader)
+	err := Client.b.GetObjectToFile(objectKey, file, options...)
 	return file, err
 }
 
