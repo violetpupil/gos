@@ -4,6 +4,7 @@ package oss
 
 import (
 	"bytes"
+	"errors"
 	"io"
 	"strings"
 	"time"
@@ -56,6 +57,10 @@ func PutObjectURL(objectKey string, u string, options ...oss.Option) error {
 	if err != nil {
 		logrus.Errorln("get file error", err)
 		return err
+	}
+	if len(res.Body()) == 0 {
+		logrus.Errorln("get file empty")
+		return errors.New("get file empty")
 	}
 	return PutObjectBytes(objectKey, res.Body(), options...)
 }

@@ -13,7 +13,7 @@ type create struct {
 
 // Create 插入数据，返回插入记录数
 // value为数据模型指针或指针切片
-// 如果主键是插入时生成的，会自动更新
+// 如果主键是插入时生成的，会自动更新value
 // 数据被唯一性约束时，会报错
 func (c *create) Create(value any) (int64, error) {
 	db := c.db.Create(value)
@@ -22,18 +22,18 @@ func (c *create) Create(value any) (int64, error) {
 
 // CreateDoNothing 插入数据，返回插入记录数
 // value为数据模型指针或指针切片
-// 如果主键是插入时生成的，会自动更新
+// 如果主键是插入时生成的，会自动更新value
 // 数据被唯一性约束时，忽略该数据
 func (c *create) CreateDoNothing(value any) (int64, error) {
 	db := c.db.Clauses(clause.OnConflict{DoNothing: true}).Create(value)
 	return db.RowsAffected, db.Error
 }
 
-// CreateUpdateAll 插入数据，返回插入记录数
+// CreateUpdateAll 插入数据
 // value为数据模型指针或指针切片
-// 如果主键是插入时生成的，会自动更新
+// 如果主键是插入时生成的，会自动更新value
 // 数据被唯一性约束时，更新所有字段
-func (c *create) CreateUpdateAll(value any) (int64, error) {
+func (c *create) CreateUpdateAll(value any) error {
 	db := c.db.Clauses(clause.OnConflict{UpdateAll: true}).Create(value)
-	return db.RowsAffected, db.Error
+	return db.Error
 }

@@ -57,6 +57,6 @@ func Test_create_CreateUpdateAll(t *testing.T) {
 	}
 
 	tmp := Tmp{Id: 1, Age: 1, Name: "1"}
-	c, e := Crud.C.CreateUpdateAll(&tmp)
-	fmt.Println(c, e)
+	e := Crud.C.CreateUpdateAll(&tmp)
+	fmt.Println(e)
 }
