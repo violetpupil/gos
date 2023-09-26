@@ -3,6 +3,3 @@
 !.env.exp
 # 临时文件
 tmp*
-# 编译文件
-app
-!app/
