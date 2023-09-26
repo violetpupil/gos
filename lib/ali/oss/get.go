@@ -1,9 +1,10 @@
 // 下载文件
-// https://help.aliyun.com/document_detail/32148.html
+// https://help.aliyun.com/zh/oss/developer-reference/overview-27
 package oss
 
 import (
 	"io"
+	"os"
 	"path"
 	"path/filepath"
 
@@ -13,7 +14,7 @@ import (
 
 /*
 流式下载
-https://help.aliyun.com/document_detail/88617.htm
+https://help.aliyun.com/zh/oss/developer-reference/streaming-download-5
 */
 
 // GetObject 读取文件字节
@@ -41,10 +42,17 @@ func GetObjectStr(objectKey string, options ...oss.Option) (string, error) {
 }
 
 // GetObjectToFile 下载文件 p指定目录 返回目录+文件名
+// 自动创建目录
 func GetObjectToFile(objectKey, p string, options ...oss.Option) (string, error) {
+	err := os.MkdirAll(p, 0666)
+	if err != nil {
+		logrus.Errorln("mkdir all error", err)
+		return "", err
+	}
+
 	filename := path.Base(objectKey)
 	file := filepath.Join(p, filename)
-	err := Client.b.GetObjectToFile(objectKey, file, options...)
+	err = Client.b.GetObjectToFile(objectKey, file, options...)
 	return file, err
 }
 
