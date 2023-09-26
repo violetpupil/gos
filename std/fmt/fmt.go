@@ -1,7 +1,7 @@
 // 实现 error 或 fmt.Stringer 接口
 // 打印时优先调用error.Error()
 // 然后调用fmt.Stringer.String()
-// 会使 %+v 失效
+// 会使格式动词失效
 package fmt
 
 import (
