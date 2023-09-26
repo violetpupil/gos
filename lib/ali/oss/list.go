@@ -3,16 +3,11 @@
 package oss
 
 import (
-	"strings"
-
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/sirupsen/logrus"
 )
 
 type (
-	// oss对象
-	// Key 对象名 目录以斜杆结尾
-	ObjectProperties = oss.ObjectProperties
 	// oss.Bucket.ListObjectsV2()结果
 	// Objects 对象列表，有时包含指定目录对象
 	// 指定oss.Delimiter("/")后, 所有后代目录及文件 -> 指定目录下文件
@@ -20,11 +15,6 @@ type (
 	// 指定oss.Delimiter("/")后, 空切片 -> 指定目录下目录路径
 	ListObjectsResultV2 = oss.ListObjectsResultV2
 )
-
-// IsDir 判断oss对象是否为目录
-func IsDir(o oss.ObjectProperties) bool {
-	return strings.HasSuffix(o.Key, "/")
-}
 
 // ListObjectsAll 获取所有对象
 // root设置为true，只获取指定目录下目录和文件，分别位于结果的CommonPrefixes和Objects字段
@@ -69,9 +59,4 @@ func ListObjects(prefix string, max int) ([]oss.ObjectProperties, error) {
 		return nil, err
 	}
 	return res.Objects, nil
-}
-
-// IsObjectExist 检查对象是否存在
-func IsObjectExist(key string) (bool, error) {
-	return Client.b.IsObjectExist(key)
 }
