@@ -45,3 +45,18 @@ func HasExt(rawURL string) (bool, error) {
 	}
 	return path.Ext(p) != "", nil
 }
+
+// Query 获取查询字符串字段单个值，不存在返回空
+func Query(rawURL, key string) (string, error) {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		logrus.Errorln("url parse error", err)
+		return "", err
+	}
+	values, err := url.ParseQuery(u.RawQuery)
+	if err != nil {
+		logrus.Errorln("parse query error", err)
+		return "", err
+	}
+	return values.Get(key), nil
+}
