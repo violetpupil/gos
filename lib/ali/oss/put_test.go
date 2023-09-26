@@ -28,6 +28,16 @@ func TestPutObjectFromFileACL(t *testing.T) {
 	fmt.Println(err)
 }
 
+func TestPutObjectString(t *testing.T) {
+	godotenv.Load("../../../.env")
+	err := InitEnv()
+	if err != nil {
+		panic(err)
+	}
+	err = PutObjectString("tmp.txt", "hi")
+	fmt.Println(err)
+}
+
 func TestPutObjectURL(t *testing.T) {
 	godotenv.Load("../../../.env")
 	err := InitEnv()
