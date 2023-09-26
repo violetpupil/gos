@@ -7,7 +7,8 @@ const (
 )
 
 const (
-	HeaderContentType = "Content-Type"
+	HeaderContentType   = "Content-Type"
+	HeaderContentLength = "Content-Length"
 )
 
 // HTTP status codes as registered with IANA.
