@@ -7,14 +7,14 @@ import (
 	"github.com/violetpupil/gos/lib/godotenv"
 )
 
-func TestListObjectsAll(t *testing.T) {
+func TestListObjects(t *testing.T) {
 	godotenv.Load("../../../.env")
 	err := InitEnv()
 	if err != nil {
 		panic(err)
 	}
 
-	r, err := ListObjectsAll("tools", false)
+	r, err := ListObjects(Prefix("tools"))
 	if err != nil {
 		panic(err)
 	}
@@ -26,18 +26,4 @@ func TestListObjectsAll(t *testing.T) {
 	for _, p := range r.CommonPrefixes {
 		fmt.Println(p)
 	}
-}
-
-func TestListObject(t *testing.T) {
-	godotenv.Load("../../../.env")
-	err := InitEnv()
-	if err != nil {
-		panic(err)
-	}
-
-	obj, err := ListObject("tmp")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%+v\n", obj)
 }

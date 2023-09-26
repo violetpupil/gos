@@ -11,61 +11,13 @@ import (
 
 type (
 	// oss.Bucket.ListObjectsV2()结果
-	// Objects 对象列表，有时包含指定目录对象
-	// 指定oss.Delimiter("/")后, 所有后代目录及文件 -> 指定目录下文件
-	// CommonPrefixes 以delimiter结尾的路径
-	// 指定oss.Delimiter("/")后, 空切片 -> 指定目录下目录路径
+	// Objects 对象列表
 	ListObjectsResultV2 = oss.ListObjectsResultV2
 )
 
-// ListObjectsAll 获取所有对象
-// root设置为true，只获取指定目录下目录和文件，分别位于结果的CommonPrefixes和Objects字段
-// root设置为false，获取所有后代目录及文件，位于结果的Objects字段
-func ListObjectsAll(prefix string, root bool) (*oss.ListObjectsResultV2, error) {
-	var out oss.ListObjectsResultV2
-	// 翻页
-	var token string
-	options := make([]oss.Option, 0)
-	if root {
-		options = append(options, Root(prefix)...)
-	} else {
-		options = append(options, Prefix(prefix))
-	}
-	for {
-		con := oss.ContinuationToken(token)
-		options = append(options, con)
-		res, err := Client.b.ListObjectsV2(options...)
-		if err != nil {
-			logrus.Errorln("list objects error", err)
-			return nil, err
-		}
-		out.Objects = append(out.Objects, res.Objects...)
-		out.CommonPrefixes = append(out.CommonPrefixes, res.CommonPrefixes...)
-
-		if res.IsTruncated {
-			token = res.NextContinuationToken
-		} else {
-			break
-		}
-	}
-	return &out, nil
-}
-
-// ListObjects 获取指定目录下文件，max为数量
-func ListObjects(prefix string, max int) ([]oss.ObjectProperties, error) {
-	options := Root(prefix)
-	options = append(options, oss.MaxKeys(max))
-	res, err := Client.b.ListObjectsV2(options...)
-	if err != nil {
-		logrus.Errorln("list objects error", err)
-		return nil, err
-	}
-	return res.Objects, nil
-}
-
-// ListObject 获取单个对象
-func ListObject(key string) (*oss.ObjectProperties, error) {
-	res, err := Client.b.ListObjectsV2(Prefix(key))
+// First 获取指定前缀的第一个对象
+func First(prefix string) (*oss.ObjectProperties, error) {
+	res, err := Client.b.ListObjectsV2(Prefix(prefix), oss.MaxKeys(1))
 	if err != nil {
 		logrus.Errorln("list objects error", err)
 		return nil, err
@@ -75,4 +27,35 @@ func ListObject(key string) (*oss.ObjectProperties, error) {
 		return nil, fmt.Errorf("list objects length %d", len(res.Objects))
 	}
 	return &res.Objects[0], nil
+}
+
+// ListObjects 获取多个对象
+func ListObjects(options ...oss.Option) (*oss.ListObjectsResultV2, error) {
+	result := new(oss.ListObjectsResultV2)
+	var contToken string
+	for {
+		var os []oss.Option
+		os = append(os, options...)
+		os = append(os, oss.ContinuationToken(contToken))
+		res, err := Client.b.ListObjectsV2(os...)
+		if err != nil {
+			logrus.Errorln("list objects error", err)
+			return nil, err
+		}
+		result.Objects = append(result.Objects, res.Objects...)
+		result.CommonPrefixes = append(result.CommonPrefixes, res.CommonPrefixes...)
+
+		if res.IsTruncated {
+			contToken = res.NextContinuationToken
+		} else {
+			break
+		}
+	}
+	return result, nil
+}
+
+// ListObjectsPrefix 获取多个对象 指定前缀
+// 自动去掉前缀开头的/
+func ListObjectsPrefix(prefix string) (*oss.ListObjectsResultV2, error) {
+	return ListObjects(Prefix(prefix))
 }
