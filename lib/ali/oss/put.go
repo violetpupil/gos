@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"io"
 	"strings"
+	"time"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/go-resty/resty/v2"
@@ -51,7 +52,7 @@ func PutObjectBytes(objectKey string, bs []byte, options ...oss.Option) error {
 
 // PutObjectURL 将url中的文件放到oss
 func PutObjectURL(objectKey string, u string, options ...oss.Option) error {
-	res, err := resty.New().R().Get(u)
+	res, err := resty.New().SetTimeout(10 * time.Second).R().Get(u)
 	if err != nil {
 		logrus.Errorln("get file error", err)
 		return err
