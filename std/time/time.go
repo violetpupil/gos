@@ -68,6 +68,11 @@ func Video(msec int64) string {
 	return time.UnixMilli(msec).UTC().Format(VideoTime)
 }
 
+// DateTime 将秒级时间戳转为2006-01-02 15:04:05
+func DateTime(ts int64) string {
+	return time.Unix(ts, 0).Format(time.DateTime)
+}
+
 // NewLoop 启动goroutine，一直执行f，并间隔一段时间
 func NewLoop(d time.Duration, f func()) {
 	go func() {
