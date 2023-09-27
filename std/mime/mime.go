@@ -12,6 +12,7 @@ const (
 	FormUrl  = "application/x-www-form-urlencoded"
 	FormData = "multipart/form-data"
 	JPEG     = "image/jpeg"
+	Excel    = "application/vnd.ms-excel"
 )
 
 // ExtensionByType 根据mime类型返回文件扩展名

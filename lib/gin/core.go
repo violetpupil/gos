@@ -24,7 +24,9 @@ type (
 	// AbortWithStatus() 指定状态码
 	// AbortWithStatusJSON() 指定状态码并响应json
 	//
+	// Header() 设置响应头，如果值为""，移除响应头
 	// JSON() 生成json响应体，并设置Content-Type
+	// Status() sets the HTTP response code.
 	Context = gin.Context
 	// Engine 服务引擎
 	// Use() 配置全局中间件
