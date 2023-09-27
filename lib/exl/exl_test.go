@@ -2,6 +2,7 @@ package exl
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/go-the-way/exl"
@@ -30,5 +31,17 @@ func TestReadFile(t *testing.T) {
 func TestWrite(t *testing.T) {
 	fruits := []*Fruit{{ID: 1, Name: "apple"}}
 	err := exl.Write[*Fruit]("tmp.xlsx", fruits)
+	fmt.Println(err)
+}
+
+func TestWriteTo(t *testing.T) {
+	file, err := os.Create("tmp.xlsx")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	fruits := []*Fruit{{ID: 1, Name: "pear"}}
+	err = exl.WriteTo[*Fruit](file, fruits)
 	fmt.Println(err)
 }
