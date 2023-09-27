@@ -9,6 +9,8 @@ import (
 var (
 	// 指定最大对象数
 	MaxKeys = oss.MaxKeys
+	// 指定分隔符 oss.Delimiter("/")
+	Delimiter = oss.Delimiter
 )
 
 // Prefix 指定路径前缀

@@ -12,6 +12,7 @@ import (
 type (
 	// oss.Bucket.ListObjectsV2()结果
 	// Objects 对象列表
+	// CommonPrefixes 被oss.Delimiter("/")分隔的目录路径
 	ListObjectsResultV2 = oss.ListObjectsResultV2
 )
 
