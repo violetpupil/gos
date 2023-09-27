@@ -25,7 +25,10 @@ func TestReadFile(t *testing.T) {
 	for _, f := range fruits {
 		fmt.Printf("%+v\n", f)
 	}
+}
 
-	err = exl.Write[*Fruit]("tmp.xlsx", fruits)
+func TestWrite(t *testing.T) {
+	fruits := []*Fruit{{ID: 1, Name: "apple"}}
+	err := exl.Write[*Fruit]("tmp.xlsx", fruits)
 	fmt.Println(err)
 }
