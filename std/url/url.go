@@ -50,12 +50,12 @@ func HasExt(rawURL string) (bool, error) {
 func Query(rawURL, key string) (string, error) {
 	u, err := url.Parse(rawURL)
 	if err != nil {
-		logrus.Errorln("url parse error", err)
+		logrus.WithField("url", rawURL).Errorln("url parse error", err)
 		return "", err
 	}
 	values, err := url.ParseQuery(u.RawQuery)
 	if err != nil {
-		logrus.Errorln("parse query error", err)
+		logrus.WithField("url", rawURL).Errorln("parse query error", err)
 		return "", err
 	}
 	return values.Get(key), nil
