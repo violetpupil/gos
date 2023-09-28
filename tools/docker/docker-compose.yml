@@ -1,2 +1,12 @@
 # https://docs.docker.com/compose/
 # https://docs.docker.com/compose/compose-file/
+services:
+  backend:
+    image: backend:v1.0.0
+  frontend:
+    image: nginx
+    volumes:
+      - D:/docker-volume/nginx/html:/usr/share/nginx/html:ro
+      - D:/docker-volume/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 80:80
