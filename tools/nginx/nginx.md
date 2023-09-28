@@ -6,8 +6,10 @@
 # 安装nginx
 yum install -y nginx
 # 运行nginx容器
+# 必须先创建nginx.conf，否则会自动创建成文件夹
 docker run -dp 80:80 ^
--v D:/docker-volume/nginx:/usr/share/nginx/html:ro ^
+-v D:/docker-volume/nginx/html:/usr/share/nginx/html:ro ^
+-v D:/docker-volume/nginx/nginx.conf:/etc/nginx/nginx.conf:ro ^
 --name nginx ^
 nginx
 ```
