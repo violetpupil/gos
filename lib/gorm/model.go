@@ -14,6 +14,8 @@
 // index 索引
 // comment 注释
 //
+// type
+// 指定int type:int(32)
 // 默认字段类型
 // int bigint
 // uint bigint

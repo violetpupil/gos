@@ -1,4 +1,4 @@
-// https://www.iana.org/assignments/media-types/media-types.xhtml
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
 package mime
 
 import (
@@ -12,6 +12,7 @@ const (
 	FormUrl  = "application/x-www-form-urlencoded"
 	FormData = "multipart/form-data"
 	JPEG     = "image/jpeg"
+	Excel    = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
 
 // ExtensionByType 根据mime类型返回文件扩展名

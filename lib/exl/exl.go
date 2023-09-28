@@ -7,5 +7,8 @@ import (
 
 var (
 	ReadFile = exl.ReadFile[exl.ReadConfigurator]
-	Write    = exl.Write[exl.WriteConfigurator]
+	// 写到指定文件
+	Write = exl.Write[exl.WriteConfigurator]
+	// 写到io.Writer
+	WriteTo = exl.WriteTo[exl.WriteConfigurator]
 )

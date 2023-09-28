@@ -3,6 +3,8 @@
 // https://github.com/gin-gonic/examples
 //
 // 项目结构示例
+// global 全局对象及初始化
+// - init.go 初始化
 // dao 数据库操作
 // dto 数据传输对象
 // - req 请求对象 前端处理64位整型会越界，改用字符串
@@ -14,6 +16,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/violetpupil/gos/lib/gin/handler"
 	"github.com/violetpupil/gos/lib/gin/middle"
 )
 
@@ -28,8 +31,9 @@ func Run(addr ...string) {
 	e := gin.Default()
 	Admin(e)
 
-	// 业务组
-	g := e.Group("", middle.LogContext)
-	g.Any("echo", func(c *gin.Context) {})
+	e.GET("excel", handler.Excel)
+	// 业务组 - 记录请求响应
+	gLog := e.Group("", middle.LogContext)
+	gLog.Any("echo", func(c *gin.Context) {})
 	fmt.Println(e.Run(addr...))
 }

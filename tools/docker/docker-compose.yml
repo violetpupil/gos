@@ -1,0 +1,17 @@
+# https://docs.docker.com/compose/
+# https://docs.docker.com/compose/compose-file/
+# 自动创建网络，服务之间可以通过名字访问 backend:8080
+services:
+  backend:
+    image: backend:v1.0.0
+    ports:
+      - 8080:8080
+  frontend:
+    image: nginx
+    # 挂载卷，可以使用相对路径./
+    volumes:
+      - D:/docker-volume/nginx/html:/usr/share/nginx/html:ro
+      - D:/docker-volume/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    # 暴露端口
+    ports:
+      - 80:80
