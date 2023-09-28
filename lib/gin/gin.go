@@ -3,6 +3,8 @@
 // https://github.com/gin-gonic/examples
 //
 // 项目结构示例
+// global 全局对象及初始化
+// - init.go 初始化
 // dao 数据库操作
 // dto 数据传输对象
 // - req 请求对象 前端处理64位整型会越界，改用字符串
