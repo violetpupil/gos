@@ -53,5 +53,5 @@ func TestSortStableFunc(t *testing.T) {
 }
 
 func TestUnique(t *testing.T) {
-	fmt.Println(Unique([]string{"a", "a"}))
+	fmt.Println(len(Unique([]string{"a", "a"})))
 }
