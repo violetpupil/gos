@@ -7,7 +7,7 @@
 yum install -y nginx
 # 运行nginx容器
 docker run -d ^
--v D:/docker-volume/nginx:/usr/share/nginx/html:ro
+-v D:/docker-volume/nginx:/usr/share/nginx/html:ro ^
 --name nginx ^
 nginx
 ```
