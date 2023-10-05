@@ -37,6 +37,7 @@ require (
 	github.com/swaggo/files v1.0.1
 	github.com/swaggo/gin-swagger v1.6.0
 	github.com/swaggo/swag v1.16.1
+	github.com/teris-io/shortid v0.0.0-20220617161101-71ec9f2aa569
 	github.com/valyala/fastjson v1.6.4
 	github.com/xdg-go/scram v1.1.2
 	github.com/xuri/excelize/v2 v2.7.1

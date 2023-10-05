@@ -5,6 +5,7 @@
 - cast 类型转换
 - mapstructure 将map解码为结构体
 - cron 定时执行
+- shortid id生成器
 - sonyflake id生成器
 - uuid id生成器
 - godotenv 从文件加载环境变量
