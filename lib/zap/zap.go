@@ -28,7 +28,10 @@ type (
 
 // InitDevelopment 将zap全局logger设置为开发
 func InitDevelopment() error {
-	l, err := zap.NewDevelopment()
+	c := zap.NewDevelopmentConfig()
+	// 不输出调用栈
+	c.DisableStacktrace = true
+	l, err := c.Build()
 	if err != nil {
 		log.Println("new development error", err)
 		return err
