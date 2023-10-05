@@ -1,3 +1,5 @@
+// 定时调度器，必须先调用Init()初始化
+//
 // ┌───────────── minute (0 - 59)
 // │ ┌───────────── hour (0 - 23)
 // │ │ ┌───────────── day of the month (1 - 31)
@@ -24,7 +26,6 @@ const (
 	// cron表达式
 	Minutely = "* * * * *" // 每分钟
 	Hourly   = "@hourly"   // 每小时
-	Daily    = "@daily"    // 每天
 	Weekly   = "@weekly"   // 每周
 	Monthly  = "@monthly"  // 每月
 )
@@ -35,13 +36,21 @@ func Every(duration string) string {
 	return fmt.Sprintf("@every %s", duration)
 }
 
-// 调度器，必须先调用Start启动
-// Start() 在goroutine启动
+// Daily 每天几点
+// @daily 不准，可能一天执行两次
+// 有时候在00:00:00执行
+// 有时候在23:59:59执行
+func Daily(hour int) string {
+	return fmt.Sprintf("0 %d * * *", hour)
+}
+
+// 调度器
+// Start() 在单独的goroutine启动，已经启动则无动作
 // Run() 阻塞启动
 var c *cron.Cron
 
-// Start the cron scheduler in its own goroutine, or no-op if already started.
-func Start() {
+// Init 初始化调度器
+func Init() {
 	c = cron.New()
 	c.Start()
 }

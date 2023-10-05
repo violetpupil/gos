@@ -6,7 +6,7 @@ import (
 )
 
 func TestAddFunc(t *testing.T) {
-	Start()
+	Init()
 	AddFunc(Every("10s"), func() {
 		fmt.Println("hi")
 	})
