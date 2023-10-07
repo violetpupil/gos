@@ -11,6 +11,8 @@
 docker push instafever/component
 # 使用当前目录Dockerfile构建镜像
 docker build -t instafever/component .
+# Remove all dangling images.
+docker image prune -f
 ```
 
 ## [build](https://docs.docker.com/engine/reference/commandline/build/)
