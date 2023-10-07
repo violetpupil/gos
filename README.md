@@ -24,10 +24,8 @@ misc 杂项
 
 - job 工作
 - lang 辅助语言
-- linux linux文档
 - protocol 协议文档
 - skill 生活技能
-- windows windows文档
 
 spec go语言文档及util代码
 
