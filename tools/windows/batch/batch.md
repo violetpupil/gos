@@ -1,1 +1,5 @@
 # batch
+
+```batch
+: comment
+```
