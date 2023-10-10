@@ -3,13 +3,16 @@
 // https://github.com/gin-gonic/examples
 //
 // 项目结构示例
+// handler -> service -> dao
+//
 // global 全局对象及初始化
 // - init.go 初始化
 // dao 数据库操作
 // dto 数据传输对象
 // - req 请求对象 前端处理64位整型会越界，改用字符串
 // - res 响应对象
-// handler 处理器函数
+// handler 处理器函数 接口逻辑
+// service 数据处理
 package gin
 
 import (
