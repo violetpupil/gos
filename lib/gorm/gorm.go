@@ -161,6 +161,9 @@ func NewLogger(c Config) logger.Interface {
 
 // NewMysqlDialector 创建mysql dialector
 func NewMysqlDialector(c Config) gorm.Dialector {
+	// 当 SELECT 字段中有 DATE() 函数返回值时
+	// parseTime=True 2023-10-10T00:00:00+08:00
+	// parseTime=False 2023-10-10
 	dsn := fmt.Sprintf(
 		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		c.User, c.Pass, c.Host, c.Port, c.Database,
