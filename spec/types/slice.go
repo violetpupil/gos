@@ -19,3 +19,10 @@ func Div[T any](src []T, size int) [][]T {
 	}
 	return dst
 }
+
+// DeepCopy 深拷贝切片
+func DeepCopy[Type any](src []Type) []Type {
+	dst := make([]Type, len(src))
+	copy(dst, src)
+	return dst
+}
