@@ -16,6 +16,7 @@
 //
 // type
 // 指定int type:int(32)
+// 指定bigint type:bigint
 // 默认字段类型
 // int bigint
 // uint bigint

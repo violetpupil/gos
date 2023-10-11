@@ -19,11 +19,13 @@ type Extend struct {
 }
 
 type Tmp struct {
-	Id     int
-	Age    int    `gorm:"uniqueIndex:idx_age_name"`
-	Name   string `gorm:"uniqueIndex:idx_age_name;type:varchar(10)"`
-	Beauty bool
-	Extend datatypes.JSON
+	Id   int
+	Age  int    `gorm:"uniqueIndex:idx_age_name"`
+	Name string `gorm:"uniqueIndex:idx_age_name;type:varchar(10)"`
+	// 用字符串操作，用数字存储
+	CompanyID string `gorm:"type:bigint"`
+	Beauty    bool
+	Extend    datatypes.JSON
 }
 
 func Test_crud_AutoMigrate(t *testing.T) {
