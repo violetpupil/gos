@@ -55,3 +55,8 @@ func TestSortStableFunc(t *testing.T) {
 func TestUnique(t *testing.T) {
 	fmt.Println(len(Unique([]string{"a", "a"})))
 }
+
+func TestIndex(t *testing.T) {
+	// 返回第一个索引，没有返回-1
+	fmt.Println(slices.Index([]int{0, 1}, 1))
+}
