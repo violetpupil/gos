@@ -2,6 +2,10 @@
 // 打印时优先调用error.Error()
 // 然后调用fmt.Stringer.String()
 // 会使格式动词失效
+//
+// 格式动词
+// Integer
+// %c the character represented by the corresponding Unicode code point
 package fmt
 
 import (

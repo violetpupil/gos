@@ -1,6 +1,9 @@
 package excelize
 
 import (
+	"errors"
+	"fmt"
+
 	"github.com/sirupsen/logrus"
 	"github.com/xuri/excelize/v2"
 )
@@ -24,4 +27,23 @@ func Close(f *excelize.File) {
 	if err != nil {
 		logrus.Errorln("close file error", err)
 	}
+}
+
+// NewFile 创建excel文件 file是文件路径 文件名不带后缀
+// 最多写26列
+func NewFile(rows [][]any, file string) error {
+	f := excelize.NewFile()
+	defer Close(f)
+
+	for i, row := range rows {
+		if len(row) > 26 {
+			return errors.New("max 26 column")
+		}
+		for j, cell := range row {
+			// A的unicode码点是65
+			f.SetCellValue("Sheet1", fmt.Sprintf("%c%d", 65+j, i+1), cell)
+		}
+	}
+	err := f.SaveAs(file + ".xlsx")
+	return err
 }
