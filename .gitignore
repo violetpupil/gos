@@ -6,3 +6,5 @@ tmp*
 # go build 编译文件
 app
 !app/
+# windows可执行文件
+*.exe
