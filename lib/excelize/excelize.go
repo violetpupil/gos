@@ -3,6 +3,7 @@ package excelize
 import (
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/sirupsen/logrus"
 	"github.com/xuri/excelize/v2"
@@ -29,7 +30,7 @@ func Close(f *excelize.File) {
 	}
 }
 
-// NewFile 创建excel文件 file是文件路径 文件名不带后缀
+// NewFile 创建excel文件 file是文件路径 文件名不带后缀或带.xlsx
 // 最多写26列
 func NewFile(rows [][]any, file string) error {
 	f := excelize.NewFile()
@@ -44,6 +45,9 @@ func NewFile(rows [][]any, file string) error {
 			f.SetCellValue("Sheet1", fmt.Sprintf("%c%d", 65+j, i+1), cell)
 		}
 	}
-	err := f.SaveAs(file + ".xlsx")
+	if !strings.HasSuffix(file, ".xlsx") {
+		file += ".xlsx"
+	}
+	err := f.SaveAs(file)
 	return err
 }
