@@ -4,6 +4,8 @@
 // 会使格式动词失效
 //
 // 格式动词
+// %v the value in a default format
+// %+v 结构体打印字段名，其它类型按 %v 处理
 // Integer
 // %c the character represented by the corresponding Unicode code point
 package fmt

@@ -2,6 +2,7 @@
 package resty
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/go-resty/resty/v2"
@@ -46,6 +47,30 @@ func Post(url string, hook ReqHook) (*resty.Response, error) {
 
 	res, err := req.Post(url)
 	return res, err
+}
+
+// PostLog post请求并记录日志
+// 请求前 路径 请求体 自定义日志
+// 请求后 路径 请求体 自定义日志 响应码+描述 响应体 耗时
+func PostLog(req *resty.Request, url string, info map[string]any) (*resty.Response, error) {
+	logger := logrus.WithFields(logrus.Fields{
+		"url":     url,
+		"request": fmt.Sprintf("%+v", req.Body),
+		"info":    info,
+	})
+
+	logger.Infoln("post request")
+	res, err := req.Post(url)
+	if err != nil {
+		logger.Errorln("post error", err)
+		return nil, err
+	}
+	logger.WithFields(logrus.Fields{
+		"status":   res.Status(),
+		"response": res.String(),
+		"elapse":   res.Time(),
+	}).Infoln("post response")
+	return res, nil
 }
 
 // PostFile 上传文件，直接读取文件字节
