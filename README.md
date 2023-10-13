@@ -6,7 +6,7 @@ test_data是测试数据
 
 环境变量使用全大写蛇形命名
 
-## 一级目录
+## 目录
 
 ald 算法和数据结构
 
@@ -26,6 +26,8 @@ misc 杂项
 - lang 辅助语言
 - protocol 协议文档
 - skill 生活技能
+
+os 操作系统文档
 
 spec go语言文档及util代码
 
