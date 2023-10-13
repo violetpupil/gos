@@ -17,4 +17,6 @@ git config core.ignorecase false
 git clone -b <branch> <url> <folder>
 # 从提交创建分支
 git checkout <commit-id> -b <branch>
+# 创建孤儿分支
+git checkout --orphan <branch>
 ```
