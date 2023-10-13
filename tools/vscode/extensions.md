@@ -28,3 +28,15 @@ javascript代码检查
   }
 }
 ```
+
+## [Black Formatter](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
+
+python格式化
+
+```json
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  }
+}
+```
