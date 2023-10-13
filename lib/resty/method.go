@@ -49,7 +49,18 @@ func Post(url string, hook ReqHook) (*resty.Response, error) {
 	return res, err
 }
 
-// PostLog post请求并记录日志
+// PostNew post请求并记录日志 新创建客户端
+func PostNew(
+	headers map[string]string,
+	body, result any,
+	url string,
+	info map[string]any,
+) (*resty.Response, error) {
+	req := resty.New().R().SetHeaders(headers).SetBody(body).SetResult(result)
+	return PostLog(req, url, info)
+}
+
+// PostLog post请求并记录日志 传入请求对象
 // 请求前 路径 请求体 自定义日志
 // 请求后 路径 请求体 自定义日志 响应码+描述 响应体 耗时
 func PostLog(req *resty.Request, url string, info map[string]any) (*resty.Response, error) {
