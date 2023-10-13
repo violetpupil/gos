@@ -3,6 +3,8 @@ package resty
 import "github.com/go-resty/resty/v2"
 
 // 请求
+// Body 请求体
+//
 // Post() post方法
 // 日志
 // 请求前 路径 请求体 自定义日志
