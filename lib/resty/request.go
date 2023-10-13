@@ -2,6 +2,11 @@ package resty
 
 import "github.com/go-resty/resty/v2"
 
+// 请求
+// Post() post方法
+// 日志
+// 请求前 路径 请求体 自定义日志
+// 请求后 路径 请求体 自定义日志 响应码+描述 响应体 耗时
 type Request = resty.Request
 
 // ReqHook 设置请求信息
