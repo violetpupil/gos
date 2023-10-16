@@ -1,5 +1,10 @@
 // https://go-zero.dev/
 // https://github.com/zeromicro/zero-examples
+//
+// go zero 目前支持k8s版本
+// k8s.io/api v0.26.3
+// k8s.io/apimachinery v0.27.0-alpha.3
+// k8s.io/client-go v0.26.3
 package zero
 
 import "github.com/zeromicro/go-zero/zrpc"
