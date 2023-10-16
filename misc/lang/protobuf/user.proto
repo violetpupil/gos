@@ -1,6 +1,7 @@
 // https://protobuf.dev/programming-guides/proto3/
 //
 // Scalar Value Types
+// int32 int64
 // bool 布尔
 //
 // message
