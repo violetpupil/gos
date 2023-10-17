@@ -37,7 +37,7 @@ func Init(api, secret string) (*Client, error) {
 func InitEnv() (*Client, error) {
 	Baidu = new(Client)
 	err := env.Parse(Baidu)
-	if err != nil{
+	if err != nil {
 		logrus.Errorln("env parse error", err)
 		return nil, err
 	}
