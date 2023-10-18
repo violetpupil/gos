@@ -8,6 +8,19 @@
 
 [predeclared identifiers](https://pkg.go.dev/builtin)
 
+## Operator
+
+Unary operators have the highest precedence.
+
+```text
+Precedence    Operator
+    5             *  /  %  <<  >>  &  &^
+    4             +  -  |  ^
+    3             ==  !=  <  <=  >  >=
+    2             &&
+    1             ||
+```
+
 ## 函数
 
 `copy()` 深拷贝切片，返回拷贝元素数=min(len(dst), len(src))
