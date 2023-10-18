@@ -22,12 +22,7 @@ media 多媒体处理
 
 misc 杂项
 
-- job 工作
-- lang 辅助语言
-- protocol 协议文档
-- skill 生活技能
-
-os 操作系统文档
+os 操作系统
 
 spec go语言文档及util代码
 
@@ -37,4 +32,4 @@ spider 爬虫
 
 [sub](https://pkg.go.dev/golang.org/x) go sub库
 
-tools 工具文档
+tools 工具
