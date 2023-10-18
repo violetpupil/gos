@@ -25,3 +25,7 @@
 `tags` 选择runner
 
 `variables` 定义script中使用的变量
+
+### [Predefined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
+
+`CI_COMMIT_REF_NAME` The branch or tag name for which project is built.
