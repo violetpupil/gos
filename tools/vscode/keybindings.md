@@ -14,6 +14,8 @@
 
 `Ctrl+Shift+Alt+C` editor.action.transformToCamelcase
 
+`Ctrl+Shift+Alt+K` editor.action.transformToKebabcase -连接单词
+
 ## Basic Editing
 
 `Ctrl+Shift+L` Select all occurrences of current selection
