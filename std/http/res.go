@@ -15,6 +15,7 @@ type (
 	// Write() 写响应体
 	// 直接调用Write()，会自动调用WriteHeader()，使用200响应码
 	// 如果响应头没有Content-Type，Write()会自动检测并设置
+	// 两个方法都不调用，处理器会返回200响应码
 	ResponseWriter = http.ResponseWriter
 	// Response http响应
 	// Body 响应体
