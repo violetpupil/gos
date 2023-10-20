@@ -2,6 +2,8 @@
 
 [Antimalware Service Executable CPU占用过高](https://www.zhihu.com/tardis/zm/art/421563141)
 
+C:\Windows\System32\drivers\etc\hosts
+
 ## 环境变量
 
 windows环境变量键不区分大小写
