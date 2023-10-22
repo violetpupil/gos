@@ -13,6 +13,7 @@
 // - res 响应对象
 // handler 处理器函数 接口逻辑
 // service 数据处理
+// - err.go 错误类型
 package gin
 
 import (
