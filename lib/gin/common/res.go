@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// 处理结果码
 const (
 	ResCodeOK                  = 0 // 处理成功
 	ResCodeBadRequest          = 1 // 请求有误
