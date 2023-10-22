@@ -30,6 +30,14 @@ func ResBadRequest(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
+// ResBadRequestM 请求参数无效 自定义msg
+func ResBadRequestM(c *gin.Context, msg string) {
+	var res Res
+	res.Code = 1
+	res.Msg = msg
+	c.JSON(http.StatusOK, res)
+}
+
 // ResInternalServerError 服务错误
 func ResInternalServerError(c *gin.Context) {
 	var res Res
