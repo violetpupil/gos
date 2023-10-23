@@ -5,6 +5,7 @@
 // 项目结构示例
 // handler -> service -> dao
 //
+// api 外部接口调用
 // global 全局对象及初始化
 // - init.go 初始化
 // dao 数据库操作
