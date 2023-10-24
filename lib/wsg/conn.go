@@ -36,12 +36,19 @@ func CheckConn(key string) bool {
 // 返回nil不代表向连接写消息成功
 // t是websocket消息类型
 func WriteMessage(key string, t int, data []byte) error {
+	logger := logrus.WithFields(logrus.Fields{
+		"key":  key,
+		"type": t,
+		"data": string(data),
+	})
 	i, ok := Hub.Load(key)
 	if !ok {
+		logger.Infoln("websocket connection not in hub")
 		return errors.New("websocket connection not in hub")
 	}
 	c, ok := i.(*Conn)
 	if !ok {
+		logger.Errorln("hub value type mismatch")
 		return errors.New("hub value type mismatch")
 	}
 
