@@ -39,7 +39,7 @@ func HmacSha256(key string, s string) []byte {
 
 // HmacSha1Hex hmac消息认证码sha256 16进制摘要
 func HmacSha256Hex(key, s string) string {
-	return fmt.Sprintf("%x", Sum(sha1.New, key, s))
+	return fmt.Sprintf("%x", Sum(sha256.New, key, s))
 }
 
 // HmacSha256Base64 hmac消息认证码sha256 base64摘要
