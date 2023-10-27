@@ -26,9 +26,14 @@ func Pointer(i any) any {
 	}
 
 	v := reflect.ValueOf(i)
+	// 直到非指针或nil指针
+	// nil指针，Elem会返回零值 <invalid reflect.Value>
 	for v.Kind() == reflect.Ptr && !v.IsNil() {
-		// 指针是nil，Elem会返回零值
 		v = v.Elem()
+	}
+	// 处理nil指针
+	if v.IsNil() {
+		return nil
 	}
 	return v.Interface()
 }
@@ -38,13 +43,17 @@ func Pointer(i any) any {
 func FieldNames(v any) ([]string, error) {
 	r := make([]string, 0)
 	v = Pointer(v)
+	if v == nil {
+		return nil, errors.New("cannot be nil")
+	}
 
 	t := reflect.TypeOf(v)
 	if t.Kind() != reflect.Struct {
 		return nil, errors.New("not struct type")
 	}
 	for i := 0; i < t.NumField(); i++ {
-		r = append(r, t.Field(i).Name)
+		f := t.Field(i)
+		r = append(r, f.Name)
 	}
 	return r, nil
 }
