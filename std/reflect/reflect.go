@@ -34,8 +34,10 @@ func Pointer(i any) any {
 }
 
 // FieldNames 获取结构体所有字段名
+// v 是结构体或结构体指针
 func FieldNames(v any) ([]string, error) {
 	r := make([]string, 0)
+	v = Pointer(v)
 
 	t := reflect.TypeOf(v)
 	if t.Kind() != reflect.Struct {
