@@ -20,6 +20,8 @@ var (
 type Value = reflect.Value
 
 // Pointer 提取指针指向的值
+// 可以传入非指针，原样返回
+// 发现nil指针，返回nil
 func Pointer(i any) any {
 	if i == nil {
 		return nil
