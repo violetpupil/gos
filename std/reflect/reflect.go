@@ -1,6 +1,7 @@
 package reflect
 
 import (
+	"errors"
 	"fmt"
 	"reflect"
 )
@@ -30,4 +31,18 @@ func Pointer(i any) any {
 		v = v.Elem()
 	}
 	return v.Interface()
+}
+
+// FieldNames 获取结构体所有字段名
+func FieldNames(v any) ([]string, error) {
+	r := make([]string, 0)
+
+	t := reflect.TypeOf(v)
+	if t.Kind() != reflect.Struct {
+		return nil, errors.New("not struct type")
+	}
+	for i := 0; i < t.NumField(); i++ {
+		r = append(r, t.Field(i).Name)
+	}
+	return r, nil
 }
