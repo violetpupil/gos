@@ -32,7 +32,7 @@ func Pointer(i any) any {
 		v = v.Elem()
 	}
 	// 处理nil指针
-	if v.IsNil() {
+	if v.Kind() == reflect.Ptr && v.IsNil() {
 		return nil
 	}
 	return v.Interface()
