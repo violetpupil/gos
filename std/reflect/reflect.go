@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"reflect"
+
+	"github.com/sirupsen/logrus"
 )
 
 // 具体接口类型
@@ -41,21 +43,38 @@ func Pointer(i any) any {
 }
 
 // FieldNames 获取结构体所有字段名
-// v 是结构体或结构体指针
+// v 是结构体或结构体指针，指针不能为nil
+// 因为嵌入结构体的字段也会解析，嵌入结构体指针也不能为nil
 func FieldNames(v any) ([]string, error) {
 	r := make([]string, 0)
+	// 去掉可能的指针
 	v = Pointer(v)
 	if v == nil {
 		return nil, errors.New("cannot be nil")
 	}
 
-	t := reflect.TypeOf(v)
-	if t.Kind() != reflect.Struct {
+	// 确保为结构体
+	typ := reflect.TypeOf(v)
+	val := reflect.ValueOf(v)
+	if typ.Kind() != reflect.Struct {
 		return nil, errors.New("not struct type")
 	}
-	for i := 0; i < t.NumField(); i++ {
-		f := t.Field(i)
-		r = append(r, f.Name)
+
+	// 解析字段名
+	for i := 0; i < typ.NumField(); i++ {
+		ft := typ.Field(i)
+		fv := val.Field(i)
+		if !ft.Anonymous {
+			r = append(r, ft.Name)
+		} else {
+			// 递归处理嵌入结构体
+			var err error
+			r, err = FieldNames(fv.Interface())
+			if err != nil {
+				logrus.Errorln("field names error", err)
+				return nil, err
+			}
+		}
 	}
 	return r, nil
 }

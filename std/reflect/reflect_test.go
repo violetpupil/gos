@@ -11,11 +11,16 @@ func TestPointer(t *testing.T) {
 	fmt.Println(Pointer(p))
 }
 
+type Embed struct {
+	B int
+}
+
 type Tmp struct {
+	*Embed
 	A int
 }
 
 func TestFieldNames(t *testing.T) {
-	r, err := FieldNames(Tmp{})
+	r, err := FieldNames(Tmp{Embed: &Embed{}})
 	fmt.Println(r, err)
 }
