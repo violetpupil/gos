@@ -31,6 +31,9 @@ func Test_query_First(t *testing.T) {
 	}
 	fmt.Printf("%+v\n", tmp)
 
+	if len(tmp.Extend) == 0 {
+		return
+	}
 	var extend Extend
 	err = json.Unmarshal(tmp.Extend, &extend)
 	if err != nil {
@@ -58,4 +61,16 @@ func Test_query_FirstOrCreate(t *testing.T) {
 		Tmp{Extend: datatypes.JSON("18888888888")},
 	)
 	fmt.Println(r, err)
+}
+
+func TestOrder(t *testing.T) {
+	godotenv.Load("../../.env")
+	err := InitMySQLEnv()
+	if err != nil {
+		panic(err)
+	}
+	err = Crud.AutoMigrate("", &Tmp{})
+	if err != nil {
+		panic(err)
+	}
 }

@@ -114,3 +114,8 @@ func (q *query) Count(model any, query any, args ...any) (int64, error) {
 	err := db.Count(&count).Error
 	return count, err
 }
+
+// Order 指定排序字段
+func Order(db *gorm.DB, value any) *gorm.DB {
+	return db.Order(value)
+}
