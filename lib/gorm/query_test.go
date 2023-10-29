@@ -73,4 +73,11 @@ func TestOrder(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
+
+	var users []User
+	err = Order(D, "id").Find(&users).Error
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", users)
 }
