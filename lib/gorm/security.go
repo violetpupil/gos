@@ -8,7 +8,7 @@ import (
 )
 
 // OrderCheck 排序字段检查
-func OrderCheck(fields []string, s string) (bool, error) {
+func OrderCheck(fields []string, s string) bool {
 	s = strings.ToLower(s)
 	s = strings.ReplaceAll(s, ",", " ")
 	parts := strings.Split(s, " ")
@@ -19,7 +19,7 @@ func OrderCheck(fields []string, s string) (bool, error) {
 		if slices.Contains(fields, p) {
 			continue
 		}
-		return false, nil
+		return false
 	}
-	return true, nil
+	return true
 }
