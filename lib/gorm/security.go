@@ -4,23 +4,11 @@ package gorm
 import (
 	"strings"
 
-	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/gos/std/reflect"
 	"golang.org/x/exp/slices"
 )
 
 // OrderCheck 排序字段检查
-// v 是结构体或结构体指针，指针不能为nil，嵌入结构体指针也不能为nil
-func OrderCheck(v, any, s string) (bool, error) {
-	if s == "" {
-		return true, nil
-	}
-	fields, err := reflect.FieldNames(v)
-	if err != nil {
-		logrus.Errorln("field names error", err)
-		return false, err
-	}
-
+func OrderCheck(fields []string, s string) (bool, error) {
 	s = strings.ToLower(s)
 	s = strings.ReplaceAll(s, ",", " ")
 	parts := strings.Split(s, " ")
