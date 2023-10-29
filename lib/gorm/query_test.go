@@ -21,9 +21,13 @@ func Test_query_First(t *testing.T) {
 	}
 
 	var tmp Tmp
-	_, err = Crud.R.First(&tmp)
+	ok, err := Crud.R.First(&tmp)
 	if err != nil {
 		panic(err)
+	}
+	if !ok {
+		fmt.Println("not found")
+		return
 	}
 	fmt.Printf("%+v\n", tmp)
 
