@@ -16,12 +16,18 @@ import (
 
 type (
 	// 数据库对象
+	//
 	// Select() 指定字段
 	// 查询
 	// Select("name, age")
 	// Select("name", "age")
 	// Select([]string{"name", "age"})
 	// 如果两个字段名相同，使用后面的一个
+	//
+	// Order() 指定排序字段
+	// 可能发生 sql 注入
+	// id# 这样会注释掉语句之后的部分
+	// SELECT * FROM `users` ORDER BY id# LIMIT 1
 	DB = gorm.DB
 )
 

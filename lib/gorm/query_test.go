@@ -62,22 +62,3 @@ func Test_query_FirstOrCreate(t *testing.T) {
 	)
 	fmt.Println(r, err)
 }
-
-func TestOrder(t *testing.T) {
-	godotenv.Load("../../.env")
-	err := InitMySQLEnv()
-	if err != nil {
-		panic(err)
-	}
-	err = Crud.AutoMigrate("", &User{})
-	if err != nil {
-		panic(err)
-	}
-
-	var users []User
-	err = Order(D, "id").Limit(1).Find(&users).Error
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%+v\n", users)
-}
