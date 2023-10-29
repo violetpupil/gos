@@ -15,12 +15,12 @@ func Test_query_First(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Crud.AutoMigrate("", &Tmp{})
+	err = Crud.AutoMigrate("", &User{})
 	if err != nil {
 		panic(err)
 	}
 
-	var tmp Tmp
+	var tmp User
 	ok, err := Crud.R.First(&tmp)
 	if err != nil {
 		panic(err)
@@ -48,17 +48,17 @@ func Test_query_FirstOrCreate(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Crud.AutoMigrate("", &Tmp{})
+	err = Crud.AutoMigrate("", &User{})
 	if err != nil {
 		panic(err)
 	}
 
-	var tmp Tmp
+	var tmp User
 	r, err := Crud.R.FirstOrCreate(
 		&tmp,
-		Tmp{Age: 10},
-		Tmp{Name: "jay"},
-		Tmp{Extend: datatypes.JSON("18888888888")},
+		User{Age: 10},
+		User{Name: "jay"},
+		User{Extend: datatypes.JSON("18888888888")},
 	)
 	fmt.Println(r, err)
 }
@@ -69,7 +69,7 @@ func TestOrder(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Crud.AutoMigrate("", &Tmp{})
+	err = Crud.AutoMigrate("", &User{})
 	if err != nil {
 		panic(err)
 	}

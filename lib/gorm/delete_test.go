@@ -13,11 +13,11 @@ func Test_delete_Delete(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	err = Crud.AutoMigrate("", &Tmp{})
+	err = Crud.AutoMigrate("", &User{})
 	if err != nil {
 		panic(err)
 	}
 
-	r, err := Crud.D.Delete(&Tmp{Id: 1})
+	r, err := Crud.D.Delete(&User{Id: 1})
 	fmt.Println(r, err)
 }

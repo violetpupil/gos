@@ -18,7 +18,7 @@ type Extend struct {
 	Addr string
 }
 
-type Tmp struct {
+type User struct {
 	Id   int
 	Age  int    `gorm:"uniqueIndex:idx_age_name"`
 	Name string `gorm:"uniqueIndex:idx_age_name;type:varchar(10)"`
@@ -35,6 +35,6 @@ func Test_crud_AutoMigrate(t *testing.T) {
 		panic(err)
 	}
 
-	err = Crud.AutoMigrate("", &Tmp{})
+	err = Crud.AutoMigrate("", &User{})
 	fmt.Println(err)
 }
