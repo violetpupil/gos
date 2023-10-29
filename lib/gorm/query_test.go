@@ -75,7 +75,7 @@ func TestOrder(t *testing.T) {
 	}
 
 	var users []User
-	err = Order(D, "id").Find(&users).Error
+	err = Order(D, "id").Limit(1).Find(&users).Error
 	if err != nil {
 		panic(err)
 	}
