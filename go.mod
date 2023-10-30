@@ -57,7 +57,7 @@ require (
 	google.golang.org/protobuf v1.31.0
 	gorm.io/datatypes v1.1.1
 	gorm.io/driver/mysql v1.4.7
-	gorm.io/gorm v1.25.2
+	gorm.io/gorm v1.25.5
 	k8s.io/api v0.26.3
 	k8s.io/apimachinery v0.27.0-alpha.3
 	k8s.io/client-go v0.26.3
