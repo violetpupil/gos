@@ -42,6 +42,7 @@ Fin:
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	// 设置响应头
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(bs)
