@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/violetpupil/gos/spec/types"
+	"github.com/violetpupil/gos/pkg/types"
 )
 
 var ParseInt = strconv.ParseInt

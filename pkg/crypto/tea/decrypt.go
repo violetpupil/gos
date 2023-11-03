@@ -4,7 +4,7 @@ import (
 	"encoding/hex"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/gos/spec/types"
+	"github.com/violetpupil/gos/pkg/types"
 	"github.com/violetpupil/gos/std/binary"
 )
 

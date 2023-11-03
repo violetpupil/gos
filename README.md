@@ -8,25 +8,30 @@ test_data是测试数据
 
 ## 目录
 
-ald 算法和数据结构
-
 api 平台api
 
 cloud 云原生文档
 
-crypto 密码学
-
 lib 第三方库
-
-media 多媒体处理
 
 misc 杂项
 
+- job 找工作
+- lang 小众开发语言
+- protocol 协议
+- skill 生活技能
+
 os 操作系统
 
-spec go语言文档及util代码
+pkg 领域包
 
-spider 爬虫
+- ald 算法和数据结构
+- crypto 密码学
+- media 多媒体处理
+- spider 爬虫
+- go类型操作
+
+spec go语言文档
 
 [std](https://pkg.go.dev/std) go标准库
 
