@@ -7,6 +7,7 @@ const (
 	HeaderContentLength = "Content-Length"
 )
 
+// 函数
 var (
 	// 运行http服务
 	// handler 传 nil，使用 http.DefaultServeMux
@@ -16,6 +17,7 @@ var (
 	NewServeMux = http.NewServeMux
 )
 
+// 类型
 type (
 	// 处理器函数类型，并实现Handler接口
 	HandlerFunc = http.HandlerFunc
@@ -23,6 +25,7 @@ type (
 	ServeMux = http.ServeMux
 )
 
+// 默认路由器及操作函数
 var (
 	// 默认路由器
 	DefaultServeMux = http.DefaultServeMux
