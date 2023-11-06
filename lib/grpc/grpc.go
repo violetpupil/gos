@@ -1,3 +1,4 @@
+// https://grpc.io/
 // https://grpc.io/docs/languages/go/
 // https://github.com/grpc/grpc-go/tree/master/Documentation
 // https://github.com/grpc/grpc-go/tree/master/examples
@@ -15,6 +16,10 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
+)
+
+type (
+	ServiceRegistrar = grpc.ServiceRegistrar
 )
 
 // RegisterHealthServer 注册健康检查
