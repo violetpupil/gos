@@ -26,7 +26,7 @@ syntax = "proto3";
 // protobuf包
 package user;
 
-// golang包路径
+// golang包路径，包名与文件夹名相同
 option go_package = "./examples/user";
 
 // google.protobuf.Any 任意类型
