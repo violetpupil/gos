@@ -9,6 +9,16 @@ const (
 	CodeUnknownError  = 2 // 未知错误
 )
 
+// HTTP status codes as registered with IANA.
+// See: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
+const (
+	StatusOK                  = http.StatusOK
+	StatusBadRequest          = http.StatusBadRequest       // 400
+	StatusForbidden           = http.StatusForbidden        // 403
+	StatusMethodNotAllowed    = http.StatusMethodNotAllowed // 405
+	StatusInternalServerError = http.StatusInternalServerError
+)
+
 type (
 	// ResponseWriter http响应构造器
 	// WriteHeader() 写响应行和响应头

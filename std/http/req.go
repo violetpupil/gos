@@ -8,6 +8,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+const (
+	MethodGet = http.MethodGet
+)
+
 // Request http请求
 // Header 请求头
 // Body 请求体
