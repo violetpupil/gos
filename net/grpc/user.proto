@@ -27,7 +27,7 @@ syntax = "proto3";
 package user;
 
 // golang包路径
-option go_package = "./user";
+option go_package = "./examples/user";
 
 // google.protobuf.Any 任意类型
 import "google/protobuf/any.proto";
