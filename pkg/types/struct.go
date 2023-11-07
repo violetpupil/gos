@@ -2,6 +2,7 @@
 // 如果S嵌套*T，T和*T的方法都可以通过S或*S调用
 package types
 
+// KeyValue 键值对
 type KeyValue struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
