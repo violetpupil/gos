@@ -43,3 +43,8 @@ func Type(value any) {
 	t := fmt.Sprintf("%T", value)
 	logrus.WithField("Type", t).Info("check type ", value)
 }
+
+// WithStruct 添加结构体字段，打印键名
+func WithStruct(key string, value any) *logrus.Entry {
+	return logrus.WithField(key, fmt.Sprintf("%+v", value))
+}
