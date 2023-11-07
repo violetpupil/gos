@@ -8,8 +8,6 @@ import (
 	"github.com/violetpupil/gos/lib/gin/common"
 )
 
-type responseWriter struct{}
-
 // LogContext 记录请求响应信息中间件
 func LogContext(c *gin.Context) {
 	// 解码查询字符串
@@ -20,8 +18,8 @@ func LogContext(c *gin.Context) {
 		return
 	}
 	logrus.WithFields(logrus.Fields{
-		"Query":  query,
-		"Header": c.Request.Header,
+		"query":  query,
+		"header": c.Request.Header,
 	}).Infoln("request info")
 
 	// 嵌套执行下一个处理器
