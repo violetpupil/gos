@@ -64,10 +64,19 @@ type Conn struct {
 	Write chan Message
 }
 
+func (c *Conn) Logger(key string) *logrus.Entry {
+	return logrus.WithFields(logrus.Fields{
+		"key":        key,
+		"localAddr":  c.Conn.LocalAddr(),
+		"remoteAddr": c.Conn.RemoteAddr(),
+	})
+}
+
 // NewConn 保存连接到Hub
 // 读取消息直到异常，f为消息处理函数，参数为消息类型和内容
 // 创建goroutine，将Conn.Write中的消息写到连接
-func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) {
+// 如果 Hub 中已经有 key 的连接，则报错
+func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) error {
 	// 读消息异常后，会使写消息goroutine退出
 	// 先从Hub去掉，再关闭channel，防止panic
 	c := &Conn{
@@ -75,9 +84,14 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) {
 		Write: make(chan Message),
 	}
 	defer close(c.Write)
-	Hub.Store(key, c)
+	logger := c.Logger(key)
+
+	_, ok := Hub.LoadOrStore(key, c)
+	if ok {
+		logger.Infoln("conn established")
+		return errors.New("conn established")
+	}
 	defer Hub.Delete(key)
-	logger := logrus.WithField("key", key)
 
 	// 写消息
 	go func() {
@@ -114,4 +128,5 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) {
 			f(key, t, p)
 		}
 	}
+	return nil
 }

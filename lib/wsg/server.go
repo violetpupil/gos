@@ -12,17 +12,18 @@ var Upgrader = websocket.Upgrader{}
 
 // Upgrade 升级协议，实现http.HandlerFunc函数类型
 func Upgrade(w http.ResponseWriter, r *http.Request) {
-	logrus.Infoln("upgrade websocket request", r.RemoteAddr)
+	logger := logrus.WithField("remoteAddr", r.RemoteAddr)
+	logger.Infoln("upgrade websocket request")
 	// If the upgrade fails, then Upgrade replies to the client with an HTTP error response.
 	conn, err := Upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		logrus.Errorln("upgrade websocket error", err)
+		logger.Errorln("upgrade websocket error", err)
 		return
 	}
 	defer conn.Close()
 	logrus.WithFields(logrus.Fields{
-		"LocalAddr":  conn.LocalAddr(),
-		"RemoteAddr": conn.RemoteAddr(),
+		"localAddr":  conn.LocalAddr(),
+		"remoteAddr": conn.RemoteAddr(),
 	}).Infoln("upgrade websocket conn")
 
 	Echo(conn)
