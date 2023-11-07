@@ -92,6 +92,7 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) erro
 		return errors.New("conn established")
 	}
 	defer Hub.Delete(key)
+	logger.Infoln("conn store")
 
 	// 写消息
 	go func() {
