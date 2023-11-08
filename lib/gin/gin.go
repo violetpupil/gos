@@ -17,6 +17,8 @@
 // service 服务逻辑 整合 api, dao, dto
 // 可将服务划分为不同包
 // - err.go 错误类型
+// - service.go 服务实现
+// - util.go 辅助逻辑
 package gin
 
 import (
