@@ -17,3 +17,9 @@
 ## macros
 
 `@yearly` `@monthly` `@weekly` `@daily` `@hourly`
+
+## crontab
+
+`-e` edit user's crontab
+
+`-l` list user's crontab
