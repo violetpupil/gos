@@ -14,7 +14,8 @@
 // - req 请求对象 前端处理64位整型会越界，改用字符串
 // - res 响应对象 前端处理64位整型会越界，改用字符串
 // handler 处理器函数 接口逻辑
-// service 数据处理
+// service 服务逻辑 整合 api, dao, dto
+// 可将服务划分为不同包
 // - err.go 错误类型
 package gin
 
