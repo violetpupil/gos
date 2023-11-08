@@ -8,9 +8,9 @@ type raw struct {
 }
 
 // Exec 直接执行sql语句，不能获取查询结果
-func (r *raw) Exec(sql string, values ...interface{}) error {
-	err := r.db.Exec(sql, values...).Error
-	return err
+func (r *raw) Exec(sql string, values ...interface{}) (int64, error) {
+	db := r.db.Exec(sql, values...)
+	return db.RowsAffected, db.Error
 }
 
 // RawScan 直接执行sql语句，并获取结果
