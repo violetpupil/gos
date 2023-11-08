@@ -17,6 +17,7 @@ func (u *update) Save(value any) (bool, error) {
 }
 
 // Update 更新数据表的一个字段，返回更新记录条数
+// 数据没有改变，或者没有匹配到记录，都会返回 0
 // model 为数据模型指针
 // value为nil，表示更新为null
 //
