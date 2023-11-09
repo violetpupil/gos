@@ -19,6 +19,11 @@ const (
 	StatusInternalServerError = http.StatusInternalServerError
 )
 
+var (
+	// 根据状态码获取文本
+	StatusText = http.StatusText
+)
+
 type (
 	// ResponseWriter http响应构造器
 	// WriteHeader() 写响应行和响应头

@@ -1,6 +1,9 @@
 package middle
 
 import (
+	"fmt"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
@@ -18,8 +21,9 @@ func LogContext(c *gin.Context) {
 	// 嵌套执行下一个处理器
 	c.Next()
 
+	status := c.Writer.Status()
 	logger.WithFields(logrus.Fields{
-		"status":    c.Writer.Status(), // 状态码
+		"status":    fmt.Sprintf("%d %s", status, http.StatusText(status)),
 		"resHeader": nil,
 		"resBody":   nil,
 	}).Infoln("response info")
