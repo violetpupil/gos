@@ -1,27 +1,26 @@
 package middle
 
 import (
-	"net/url"
-
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/gos/lib/gin/common"
 )
 
 // LogContext 记录请求响应信息中间件
 func LogContext(c *gin.Context) {
-	// 解码查询字符串
-	query, err := url.QueryUnescape(c.Request.URL.RawQuery)
-	if err != nil {
-		logrus.Errorln("query unescape error", err)
-		common.AbortBadRequest(c)
-		return
-	}
-	logrus.WithFields(logrus.Fields{
-		"query":  query,
-		"header": c.Request.Header,
-	}).Infoln("request info")
+	logger := logrus.WithFields(logrus.Fields{
+		"method":    c.Request.Method,
+		"path":      c.Request.URL, // 包括查询字符串
+		"reqHeader": c.Request.Header,
+		"reqBody":   nil,
+	})
+	logger.Infoln("request info")
 
 	// 嵌套执行下一个处理器
 	c.Next()
+
+	logger.WithFields(logrus.Fields{
+		"status":    nil,
+		"resHeader": nil,
+		"resBody":   nil,
+	}).Infoln("response info")
 }
