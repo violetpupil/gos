@@ -4,6 +4,7 @@ import "github.com/gin-gonic/gin"
 
 type (
 	// ResponseWriter 响应构造器
+	// Status() HTTP response status code
 	ResponseWriter = gin.ResponseWriter
 	// Context 请求上下文
 	// Request http请求

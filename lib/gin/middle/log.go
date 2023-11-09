@@ -19,7 +19,7 @@ func LogContext(c *gin.Context) {
 	c.Next()
 
 	logger.WithFields(logrus.Fields{
-		"status":    nil,
+		"status":    c.Writer.Status(), // 状态码
 		"resHeader": nil,
 		"resBody":   nil,
 	}).Infoln("response info")
