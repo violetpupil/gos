@@ -54,6 +54,7 @@
 - gin http服务框架
 - grpc rpc框架
 - zero http服务和rpc框架
+- jwt jwt框架
 - ws websocket
 - wsg websocket
 - wsn websocket

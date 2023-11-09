@@ -43,7 +43,7 @@ type Request = resty.Request
 //
 // 认证请求头 `Authorization: <scheme> <token>`
 // https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml
-// SetAuthScheme 认证方案，默认为Bearer - OAuth 2.0
+// SetAuthScheme 认证方案，默认为Bearer
 // SetAuthToken 认证令牌
 // SetBasicAuth basic认证 "Basic <base64-encoded-value>"
 //
