@@ -2,6 +2,7 @@ package url
 
 import (
 	"fmt"
+	"net/url"
 	"testing"
 )
 
@@ -14,4 +15,9 @@ func TestPath(t *testing.T) {
 func TestQuery(t *testing.T) {
 	r, err := Query("", "")
 	fmt.Println(r, err)
+}
+
+func TestParse(t *testing.T) {
+	u, err := url.Parse("http://host?a=b")
+	fmt.Println(u, err)
 }
