@@ -33,12 +33,19 @@ func LogContext(c *gin.Context) {
 	logger = logger.WithField("reqBody", string(reqBody))
 	logger.Infoln("request info")
 
+	// 换掉响应构造器
+	writer := &ResponseWriter{
+		Body:           new(bytes.Buffer),
+		ResponseWriter: c.Writer,
+	}
+	c.Writer = writer
+
 	// 嵌套执行下一个处理器
 	c.Next()
 
 	status := c.Writer.Status()
 	logger.WithFields(logrus.Fields{
 		"status":  fmt.Sprintf("%d %s", status, http.StatusText(status)),
-		"resBody": nil,
+		"resBody": writer.Body.String(),
 	}).Infoln("response info")
 }
