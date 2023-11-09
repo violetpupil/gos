@@ -26,6 +26,7 @@ var (
 
 type (
 	// ResponseWriter http响应构造器
+	// Header() 响应头map
 	// WriteHeader() 写响应行和响应头
 	// Write() 写响应体
 	// 直接调用Write()，会自动调用WriteHeader()，使用200响应码
