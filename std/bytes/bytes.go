@@ -15,6 +15,11 @@ type (
 	Buffer = bytes.Buffer
 )
 
+var (
+	// 创建字节缓存
+	NewBuffer = bytes.NewBuffer
+)
+
 // NewBufferReader 从io.Reader构建bytes.Buffer
 func NewBufferReader(src io.Reader) (*bytes.Buffer, error) {
 	buf := new(bytes.Buffer)

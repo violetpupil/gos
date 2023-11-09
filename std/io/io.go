@@ -15,4 +15,10 @@ var (
 var (
 	// 向writer里写字符串
 	WriteString = io.WriteString
+	// 读取 io.Reader
+	// 正常读取结束，不返回 io.EOF
+	ReadAll = io.ReadAll
+	// 将 io.Reader 转为 io.ReadCloser
+	// Close() 方法直接返回
+	NopCloser = io.NopCloser
 )

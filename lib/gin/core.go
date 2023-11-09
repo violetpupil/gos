@@ -24,6 +24,8 @@ type (
 	// Abort() 放弃剩下的处理器
 	// AbortWithStatus() 指定状态码
 	// AbortWithStatusJSON() 指定状态码并响应json
+	// Next() 嵌套执行之后的处理器
+	// 不调用 Next() 剩下的处理器也会执行
 	//
 	// Header() 设置响应头，如果值为""，移除响应头
 	// JSON() 生成json响应体，并设置Content-Type
