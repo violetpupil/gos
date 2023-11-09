@@ -13,7 +13,7 @@ func LogContext(c *gin.Context) {
 	logger := logrus.WithFields(logrus.Fields{
 		"ip":      c.ClientIP(),
 		"method":  c.Request.Method,
-		"path":    c.Request.URL, // 包括查询字符串
+		"url":     c.Request.URL, // 包括查询字符串
 		"reqBody": nil,
 	})
 	logger.Infoln("request info")
