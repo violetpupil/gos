@@ -14,6 +14,7 @@ const (
 
 // Request http请求
 // Method 请求方法
+// URL 请求地址
 // Header 请求头
 // Body 请求体
 // Form 包含查询字符串和请求体中的表单数据，必须先调用ParseForm()
