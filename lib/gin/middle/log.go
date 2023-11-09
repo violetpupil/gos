@@ -11,6 +11,7 @@ import (
 // LogContext 记录请求响应信息中间件
 func LogContext(c *gin.Context) {
 	logger := logrus.WithFields(logrus.Fields{
+		"ip":        c.ClientIP(),
 		"method":    c.Request.Method,
 		"path":      c.Request.URL, // 包括查询字符串
 		"reqHeader": c.Request.Header,
