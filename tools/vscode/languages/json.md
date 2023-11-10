@@ -5,6 +5,7 @@
 ```json
 // 在 package.json 中指定 schema，可消除 schema 下载告警
 {
-  "$schema": "http://json.schemastore.org/package.json"
+  "$schema": "https://json.schemastore.org/package.json",
+  "$schema": "https://json.schemastore.org/tsconfig.json"
 }
 ```
