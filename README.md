@@ -2,6 +2,8 @@
 
 examples目录是示例
 
+example.* 是示例文件
+
 test_data是测试数据
 
 环境变量使用全大写蛇形命名
