@@ -4,5 +4,5 @@
 
 ```sql
 # 根据得分划分级别
-SELECT elt( INTERVAL ( score, 0, 50, 100 ), "B", "A", "S" ) AS `level` FROM t
+SELECT elt( INTERVAL ( score, 0, 50, 100 ), "0-49", "50-99", "100-" ) AS `level` FROM t
 ```
