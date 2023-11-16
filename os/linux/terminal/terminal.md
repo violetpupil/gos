@@ -5,6 +5,8 @@
 nslookup www.baidu.com
 # 设置 每次执行命令前，先打印
 set -x
+# 查看网络流量
+iftop
 
 # report file system disk space usage
 # -h 使用单位
