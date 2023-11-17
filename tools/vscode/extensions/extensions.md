@@ -22,6 +22,9 @@ javascript代码检查
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   // 可以有注释的json
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

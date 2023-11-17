@@ -18,6 +18,7 @@ var (
 	Ext = path.Ext
 	// Join 拼接路径，用/
 	// 去掉结尾的/，开头的/如果有会保留
+	// 连续的 / 会被替换成单个
 	Join = path.Join
 )
 

@@ -5,21 +5,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/violetpupil/gos/lib/godotenv"
 	"gorm.io/datatypes"
 )
 
 func Test_query_First(t *testing.T) {
-	godotenv.Load("../../.env")
-	err := InitMySQLEnv()
-	if err != nil {
-		panic(err)
-	}
-	err = Crud.AutoMigrate("", &User{})
-	if err != nil {
-		panic(err)
-	}
-
 	var tmp User
 	ok, err := Crud.R.First(&tmp)
 	if err != nil {
@@ -43,16 +32,6 @@ func Test_query_First(t *testing.T) {
 }
 
 func Test_query_FirstOrCreate(t *testing.T) {
-	godotenv.Load("../../.env")
-	err := InitMySQLEnv()
-	if err != nil {
-		panic(err)
-	}
-	err = Crud.AutoMigrate("", &User{})
-	if err != nil {
-		panic(err)
-	}
-
 	var tmp User
 	r, err := Crud.R.FirstOrCreate(
 		&tmp,
@@ -60,5 +39,10 @@ func Test_query_FirstOrCreate(t *testing.T) {
 		User{Name: "jay"},
 		User{Extend: datatypes.JSON("18888888888")},
 	)
+	fmt.Println(r, err)
+}
+
+func Test_query_Count(t *testing.T) {
+	r, err := Crud.R.Count(&User{}, nil)
 	fmt.Println(r, err)
 }

@@ -17,6 +17,8 @@ type (
 )
 
 var (
+	// 拼接url
+	JoinPath = url.JoinPath
 	// 查询字符串编码
 	QueryEscape = url.QueryEscape
 	// 查询字符串解码

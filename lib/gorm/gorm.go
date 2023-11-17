@@ -28,6 +28,16 @@ type (
 	// 可能发生 sql 注入
 	// id# 这样会注释掉语句之后的部分
 	// SELECT * FROM `users` ORDER BY id# LIMIT 1
+	//
+	// Model() 指定模型指针
+	// 使用同一个指针，子句不需要重新写
+	// db := D.Model(&User{})
+	// db.Where("id=1").Count(&total)
+	// db.Find(&users)
+	// 否则子句需要重新写
+	// db := D
+	// db.Model(&User{}).Where("id=1").Count(&total)
+	// db.Where("id=1").Find(&users)
 	DB = gorm.DB
 )
 
