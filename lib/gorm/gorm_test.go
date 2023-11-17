@@ -1,18 +1,11 @@
 package gorm
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/violetpupil/gos/lib/godotenv"
 	"gorm.io/datatypes"
 )
-
-func TestInitMySQLEnv(t *testing.T) {
-	godotenv.Load("../../.env")
-	err := InitMySQLEnv()
-	fmt.Println(err)
-}
 
 type Extend struct {
 	Addr string
@@ -28,13 +21,16 @@ type User struct {
 	Extend    datatypes.JSON
 }
 
-func Test_crud_AutoMigrate(t *testing.T) {
+func TestMain(m *testing.M) {
 	godotenv.Load("../../.env")
 	err := InitMySQLEnv()
 	if err != nil {
 		panic(err)
 	}
-
 	err = Crud.AutoMigrate("", &User{})
-	fmt.Println(err)
+	if err != nil {
+		panic(err)
+	}
+
+	m.Run()
 }
