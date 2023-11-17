@@ -5,6 +5,7 @@ import (
 
 	"github.com/violetpupil/gos/lib/godotenv"
 	"gorm.io/datatypes"
+	"gorm.io/gorm"
 )
 
 type Extend struct {
@@ -12,9 +13,10 @@ type Extend struct {
 }
 
 type User struct {
-	Id   int
-	Age  int    `gorm:"uniqueIndex:idx_age_name"`
-	Name string `gorm:"uniqueIndex:idx_age_name;type:varchar(10)"`
+	Id        int
+	DeletedAt gorm.DeletedAt
+	Age       int    `gorm:"uniqueIndex:idx_age_name"`
+	Name      string `gorm:"uniqueIndex:idx_age_name;type:varchar(10)"`
 	// 用字符串操作，用数字存储
 	CompanyID string `gorm:"type:bigint"`
 	Beauty    bool

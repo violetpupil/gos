@@ -41,3 +41,8 @@ func Test_query_FirstOrCreate(t *testing.T) {
 	)
 	fmt.Println(r, err)
 }
+
+func Test_query_Count(t *testing.T) {
+	r, err := Crud.R.Count(&User{}, nil)
+	fmt.Println(r, err)
+}
