@@ -5,6 +5,7 @@
 - cast 类型转换
 - mapstructure 将map解码为结构体
 - cron 定时执行
+- pflag 命令行
 - cobra 命令行
 - shortid id生成器
 - sonyflake id生成器

@@ -9,5 +9,7 @@ type (
 	// Short short description shown in the 'help' output
 	// Long long message shown in the 'help <this-command>' output
 	// RunE 执行函数，返回错误
+	//
+	// Flags() 选项
 	Command = cobra.Command
 )
