@@ -8,6 +8,8 @@ var (
 	Split = strings.Split
 	// SplitN 用分隔符获取子串，从左限定数量，数量<0相当于Split
 	SplitN = strings.SplitN
+	// TrimSuffix 去除后缀
+	TrimSuffix = strings.TrimSuffix
 )
 
 type (
