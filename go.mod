@@ -25,6 +25,7 @@ require (
 	github.com/golang/glog v1.1.0
 	github.com/google/uuid v1.3.1
 	github.com/gorilla/websocket v1.5.0
+	github.com/imdario/mergo v0.3.6
 	github.com/joho/godotenv v1.5.1
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/redis/go-redis/v9 v9.0.5
@@ -117,7 +118,6 @@ require (
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/imdario/mergo v0.3.6 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
