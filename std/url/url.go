@@ -10,7 +10,10 @@ import (
 
 type (
 	// URL url信息
+	// Host host:port
 	// RawQuery encoded query values, without '?'
+	//
+	// Hostname() 只返回 host，没有端口
 	URL = url.URL
 	// Values 查询字符串或表单，键大小写敏感
 	Values = url.Values
