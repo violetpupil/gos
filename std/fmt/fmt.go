@@ -1,7 +1,6 @@
-// 实现 error 或 fmt.Stringer 接口
+// 实现 error 或 fmt.Stringer 接口，会先转为字符串
 // 打印时优先调用error.Error()
 // 然后调用fmt.Stringer.String()
-// 会使格式动词失效
 //
 // 格式动词
 // %v the value in a default format
