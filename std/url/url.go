@@ -12,6 +12,9 @@ type (
 	// URL url信息
 	// Host host:port
 	// RawQuery encoded query values, without '?'
+	// Path 路径
+	// 参数是不以斜杆开头的路径时，u.Path 也没有前置斜杆
+	// 其它情况 u.Path 会以斜杆开头
 	//
 	// Hostname() 只返回 host，没有端口
 	URL = url.URL
