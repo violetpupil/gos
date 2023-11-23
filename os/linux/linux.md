@@ -2,10 +2,6 @@
 
 [文档](https://docs.kernel.org/)
 
-## 发行版
-
-[CentOS](https://www.centos.org/)
-
 ## [man-pages](https://man7.org/linux/man-pages/)
 
 [index](https://man7.org/linux/man-pages/dir_all_by_section.html)
