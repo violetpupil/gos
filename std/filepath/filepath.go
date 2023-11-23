@@ -26,8 +26,9 @@ func WalkFunc(path string, info fs.FileInfo, err error) error {
 	return nil
 }
 
-// Filenames 获取指定目录下所有文件路径
-func Filenames(path string) ([]string, error) {
+// GlobDir 获取指定目录下所有文件路径
+// 包括目录，不会遍历子目录
+func GlobDir(path string) ([]string, error) {
 	// 根据路径模式，返回文件列表
 	// *代表任意字符串
 	return filepath.Glob(filepath.Join(path, "*"))

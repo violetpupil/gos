@@ -11,11 +11,11 @@ func TestJoin(t *testing.T) {
 }
 
 func TestWalk(t *testing.T) {
-	err := Walk("D:/test/avatar")
+	err := Walk("video")
 	fmt.Println(err)
 }
 
-func TestFilenames(t *testing.T) {
-	r, err := Filenames("video")
+func TestGlobDir(t *testing.T) {
+	r, err := GlobDir("video")
 	fmt.Println(r, err)
 }
