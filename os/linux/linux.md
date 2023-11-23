@@ -14,9 +14,3 @@
 6. games
 7. overview and miscellany section
 8. administration and privileged commands
-
-## 常用文件
-
-`/etc/sysconfig/network-script/ifcfg-eth0` 网卡配置
-
-`/proc/$PID/status` 进程状态
