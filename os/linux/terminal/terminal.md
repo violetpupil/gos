@@ -1,6 +1,13 @@
 # 终端工具
 
 ```bash
+# 后台运行程序
+# &> 标准输出和标准错误重定向到文件
+# >> 追加写入文件
+# 程序不能操作server.log
+nohup ./server &>> server.log &
+# 筛选进程id，并发送term信号
+ps -ef | grep ./server | grep -v grep | awk '{print $2}' | xargs kill
 # 查询域名ip地址
 nslookup www.baidu.com
 # 设置 每次执行命令前，先打印
