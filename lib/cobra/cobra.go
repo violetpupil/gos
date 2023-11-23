@@ -11,8 +11,8 @@ type (
 	// Long long message shown in the 'help <this-command>' output
 	// RunE 执行函数，返回错误
 	//
-	// Execute() 执行命令
-	// ExecuteC() 执行命令，并返回命令
+	// Execute() 执行对应命令
+	// ExecuteC() 执行对应命令，并返回命令
 	// Flags() 选项
 	Command = cobra.Command
 )
