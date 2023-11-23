@@ -24,7 +24,10 @@ var (
 
 var (
 	// Args hold the command-line arguments, starting with the program name.
-	Args = os.Args
+	Args   = os.Args
+	Stdin  = os.Stdin  // standard input
+	Stdout = os.Stdout // standard output
+	Stderr = os.Stderr // standard error
 )
 
 // LogSyscallError 打印os.SyscallError相关信息

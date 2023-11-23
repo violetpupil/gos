@@ -19,6 +19,8 @@ import (
 var (
 	// 写io.Writer
 	Fprintf = fmt.Fprintf
+	// 参数间加空格，最后加换行
+	Fprintln = fmt.Fprintln
 )
 
 // PrettyPrintln 美化换行打印
