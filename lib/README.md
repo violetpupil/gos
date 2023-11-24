@@ -5,6 +5,7 @@
 - cast 类型转换
 - mapstructure 将map解码为结构体
 - mergo 合并结构体、map
+- fsnotify 文件系统通知
 - cron 定时执行
 - pflag 命令行
 - cobra 命令行
@@ -31,7 +32,8 @@
 - excelize excel处理
 - exl excel处理
 - fastjson json处理
-- json json处理
+- json json处理 兼容标准库 好像比 jsoniter 快
+- jsoniter json处理 兼容标准库
 
 ## 客户端
 

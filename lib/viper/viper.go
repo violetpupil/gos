@@ -8,6 +8,14 @@ import (
 	"github.com/spf13/viper"
 )
 
+var (
+	// 设置配置文件改变时的处理函数
+	OnConfigChange = viper.OnConfigChange
+	// starts watching a config file for changes
+	// 不会阻塞
+	WatchConfig = viper.WatchConfig
+)
+
 // Unmarshal 加载配置文件到结构体
 // s是结构体指针，标签用mapstructure
 func Unmarshal(in string, s any) error {
