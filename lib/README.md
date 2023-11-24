@@ -26,6 +26,7 @@
 - gocsv csv处理
 - protobuf protobuf处理
 - yaml yaml处理
+- toml toml处理
 - goquery html处理
 - excelize excel处理
 - exl excel处理
