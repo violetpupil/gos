@@ -1,3 +1,6 @@
+// json toml 互转
+// go install github.com/pelletier/go-toml/v2/cmd/tomljson@latest
+// go install github.com/pelletier/go-toml/v2/cmd/jsontoml@latest
 package toml
 
 import (
