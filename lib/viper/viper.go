@@ -4,6 +4,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
@@ -16,8 +17,8 @@ var (
 	WatchConfig = viper.WatchConfig
 )
 
-// Unmarshal 加载配置文件到结构体
-// s是结构体指针，标签用mapstructure
+// Unmarshal 加载配置文件到 s
+// s 是结构体指针，标签用 mapstructure
 func Unmarshal(in string, s any) error {
 	viper.SetConfigFile(in)
 	// 加载配置文件
@@ -29,6 +30,29 @@ func Unmarshal(in string, s any) error {
 
 	err = viper.Unmarshal(s)
 	return err
+}
+
+// UnmarshalWatch 加载配置文件到 s，并监听文件变动，同步到 s
+// s 是结构体指针，标签用 mapstructure
+func UnmarshalWatch(in string, s any) error {
+	err := Unmarshal(in, s)
+	if err != nil {
+		logrus.Errorln("unmarshal error", err)
+		return err
+	}
+	logrus.Infof("unmarshal config %+v", s)
+
+	viper.OnConfigChange(func(in fsnotify.Event) {
+		logger := logrus.WithField("event", in)
+		err := viper.Unmarshal(s)
+		if err != nil {
+			logger.Errorln("config change fail", err)
+		} else {
+			logger.Infof("config change success %+v", s)
+		}
+	})
+	viper.WatchConfig()
+	return nil
 }
 
 // UnmarshalEnv 加载配置文件到结构体 自动加载环境变量
