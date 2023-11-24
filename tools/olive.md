@@ -4,6 +4,8 @@
 
 [二进制下载](https://github.com/go-olive/olive/releases)
 
+[Olived](https://olived.app/)
+
 ```bash
 # 安装
 go install github.com/go-olive/olive@latest
