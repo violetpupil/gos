@@ -14,9 +14,20 @@ import (
 func UnmarshalFile(f string, v any) error {
 	bs, err := os.ReadFile(f)
 	if err != nil {
-		logrus.Error("read file error ", err)
+		logrus.Errorln("read file error", err)
 		return err
 	}
 	err = toml.Unmarshal(bs, v)
+	return err
+}
+
+// MarshalFile 写 toml 文件
+func MarshalFile(f string, v any) error {
+	bs, err := toml.Marshal(v)
+	if err != nil {
+		logrus.Errorln("toml marshal error", err)
+		return err
+	}
+	err = os.WriteFile(f, bs, 0666)
 	return err
 }
