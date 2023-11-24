@@ -28,6 +28,7 @@ require (
 	github.com/imdario/mergo v0.3.6
 	github.com/joho/godotenv v1.5.1
 	github.com/nsqio/go-nsq v1.1.0
+	github.com/pelletier/go-toml/v2 v2.1.0
 	github.com/redis/go-redis/v9 v9.0.5
 	github.com/robertkrimen/otto v0.2.1
 	github.com/robfig/cron/v3 v3.0.1
@@ -58,6 +59,7 @@ require (
 	golang.org/x/net v0.15.0
 	google.golang.org/grpc v1.58.2
 	google.golang.org/protobuf v1.31.0
+	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/datatypes v1.1.1
 	gorm.io/driver/mysql v1.4.7
 	gorm.io/gorm v1.25.5
@@ -146,7 +148,6 @@ require (
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/openzipkin/zipkin-go v0.4.1 // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
-	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
 	github.com/pierrec/lz4/v4 v4.1.17 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
@@ -203,7 +204,6 @@ require (
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/sourcemap.v1 v1.0.5 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/klog/v2 v2.90.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20230308215209-15aac26d736a // indirect
 	k8s.io/utils v0.0.0-20230209194617-a36077c30491 // indirect

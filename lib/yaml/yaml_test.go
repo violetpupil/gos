@@ -6,7 +6,7 @@ import (
 )
 
 type Data struct {
-	A string `yaml:"A"`
+	A string
 }
 
 func TestUnmarshalFile(t *testing.T) {
