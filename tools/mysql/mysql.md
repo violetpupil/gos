@@ -13,3 +13,8 @@ docker run -d --name mysql ^
 -v d:/docker/mysql:/var/lib/mysql ^
 mysql
 ```
+
+```sql
+# 匹配字符串时，大小写不敏感
+select 'A' = 'a'
+```
