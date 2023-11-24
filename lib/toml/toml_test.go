@@ -11,6 +11,8 @@ type MyConfig struct {
 	Name    string
 	Tags    []string
 	T       time.Time
+	O       struct{ A string }
+	S       []struct{ B string }
 }
 
 func TestUnmarshalFile(t *testing.T) {
@@ -25,6 +27,8 @@ func TestUnmarshalFile(t *testing.T) {
 func TestMarshalFile(t *testing.T) {
 	var c MyConfig
 	c.T = time.Now()
+	c.S = append(c.S, struct{ B string }{"s1"})
+	c.S = append(c.S, struct{ B string }{"s2"})
 	err := MarshalFile("tmp.toml", c)
 	fmt.Println(err)
 }
