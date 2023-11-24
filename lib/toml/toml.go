@@ -14,6 +14,7 @@ import (
 // 结构体字段使用 toml 标签指定键名
 // 不指定，则使用字段名
 // 指定与否，都是大小写不敏感匹配
+// `toml:"-"` 忽略字段
 func UnmarshalFile(f string, v any) error {
 	bs, err := os.ReadFile(f)
 	if err != nil {

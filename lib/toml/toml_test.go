@@ -8,7 +8,7 @@ import (
 
 type MyConfig struct {
 	Version int
-	Name    string
+	Name    string `toml:"-"`
 	Tags    []string
 	T       time.Time
 	O       struct{ A string }
