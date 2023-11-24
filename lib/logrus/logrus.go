@@ -19,6 +19,13 @@ var (
 	Fatalln = logrus.Fatalln
 )
 
+type (
+	// 日志
+	Entry = logrus.Entry
+	// 日志器
+	Logger = logrus.Logger
+)
+
 // Init 最佳选项设置
 func Init() {
 	// 包含调用信息
