@@ -31,6 +31,8 @@ var (
 	Stdin  = os.Stdin  // standard input
 	Stdout = os.Stdout // standard output
 	Stderr = os.Stderr // standard error
+	// 文件权限 777
+	ModePerm = os.ModePerm
 )
 
 // LogSyscallError 打印os.SyscallError相关信息
