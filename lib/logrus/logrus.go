@@ -10,6 +10,14 @@ var (
 	// 创建日志器
 	New = logrus.New
 
+	// 默认日志器
+	// 使用 logrus.New() 创建
+	// Out os.Stderr
+	// Formatter new(logrus.TextFormatter)
+	// ReportCaller false
+	//
+	// 设置格式器
+	SetFormatter = logrus.SetFormatter
 	// 两个操作数都不是字符串时，会添加空格
 	Info  = logrus.Info
 	Infof = logrus.Infof
@@ -27,6 +35,8 @@ type (
 	Entry = logrus.Entry
 	// 日志器
 	// Out 输出 writer
+	// Formatter 格式器
+	// ReportCaller 是否记录调用信息
 	Logger = logrus.Logger
 )
 
@@ -35,18 +45,6 @@ func Init() {
 	// 包含调用信息
 	logrus.SetReportCaller(true)
 	DisableQuote()
-}
-
-// DisableQuote 值不添加引号
-func DisableQuote() {
-	// 日志格式，空日志不显示msg字段
-	// time=2023-03-10T15:43:04+08:00 level=info msg=log
-	logrus.SetFormatter(
-		// 等号形式 - 默认
-		&logrus.TextFormatter{
-			DisableQuote: true,
-		},
-	)
 }
 
 // Type 打印接口实际类型
