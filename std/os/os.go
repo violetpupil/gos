@@ -21,18 +21,11 @@ var (
 	Exit = os.Exit
 	// 将${var}或$var替换为环境变量或者空字符串
 	ExpandEnv = os.ExpandEnv
-	// 运行程序的目录
-	Getwd = os.Getwd
 )
 
 var (
 	// Args hold the command-line arguments, starting with the program name.
-	Args   = os.Args
-	Stdin  = os.Stdin  // standard input
-	Stdout = os.Stdout // standard output
-	Stderr = os.Stderr // standard error
-	// 文件权限 777
-	ModePerm = os.ModePerm
+	Args = os.Args
 )
 
 // LogSyscallError 打印os.SyscallError相关信息

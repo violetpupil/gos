@@ -23,16 +23,6 @@ func TestExist(t *testing.T) {
 	fmt.Println(r, err)
 }
 
-func TestMkdir(t *testing.T) {
-	err := Mkdir("tmp")
-	fmt.Println(err)
-}
-
-func TestMkdirAll(t *testing.T) {
-	err := MkdirAll("tmp/1/2")
-	fmt.Println(err)
-}
-
 func TestRemove(t *testing.T) {
 	err := os.Remove("tmp.txt")
 	fmt.Println(err)
