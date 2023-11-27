@@ -24,3 +24,8 @@ var (
 	// 写入多个 writer
 	MultiWriter = io.MultiWriter
 )
+
+type (
+	// Write writes len(p) bytes from p to the underlying data stream.
+	Writer = io.Writer
+)
