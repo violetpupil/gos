@@ -21,4 +21,6 @@ var (
 	// 将 io.Reader 转为 io.ReadCloser
 	// Close() 方法直接返回
 	NopCloser = io.NopCloser
+	// 写入多个 writer
+	MultiWriter = io.MultiWriter
 )
