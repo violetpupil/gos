@@ -7,6 +7,9 @@ import (
 )
 
 var (
+	// 创建日志器
+	New = logrus.New
+
 	// 两个操作数都不是字符串时，会添加空格
 	Info  = logrus.Info
 	Infof = logrus.Infof
@@ -23,6 +26,7 @@ type (
 	// 日志
 	Entry = logrus.Entry
 	// 日志器
+	// Out 输出 writer
 	Logger = logrus.Logger
 )
 
