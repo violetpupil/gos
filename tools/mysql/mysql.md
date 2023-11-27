@@ -18,3 +18,7 @@ mysql
 # 匹配字符串时，大小写不敏感
 select 'A' = 'a'
 ```
+
+## 常见问题
+
+[MySQL排序分页查询数据顺序错乱的原因和解决办法](https://blog.csdn.net/weixin_44299027/article/details/121627609)
