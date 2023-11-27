@@ -56,6 +56,7 @@
 
 - imap imap库
 - resty http请求库
+- req http请求库
 - swag http文档生成器
 - gin http服务框架
 - grpc rpc框架
