@@ -26,4 +26,11 @@ type (
 	// Done() decrements the WaitGroup counter by one.
 	// Wait() blocks until the WaitGroup counter is zero.
 	WaitGroup = sync.WaitGroup
+
+	// 读写锁
+	// Lock() 写锁，阻塞等待其它锁释放
+	// RLock() 读锁
+	// RUnlock() 读解锁
+	// Unlock() 写解锁
+	RWMutex = sync.RWMutex
 )
