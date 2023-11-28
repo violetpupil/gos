@@ -29,6 +29,6 @@ func TestMarshalFile(t *testing.T) {
 	c.T = time.Now()
 	c.S = append(c.S, struct{ B string }{"s1"})
 	c.S = append(c.S, struct{ B string }{"s2"})
-	err := MarshalFile("tmp.toml", c)
+	err := MarshalFile("data.toml", c)
 	fmt.Println(err)
 }

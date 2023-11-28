@@ -1,3 +1,12 @@
-version = 2
-name = "go-toml"
-tags = ["go", "toml"]
+Version = 0
+Tags = []
+T = 2023-11-28T11:23:34.1041368+08:00
+
+[O]
+A = ''
+
+[[S]]
+B = 's1'
+
+[[S]]
+B = 's2'
