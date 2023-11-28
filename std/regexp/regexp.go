@@ -8,6 +8,13 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+type (
+	// 正则表达式
+	// FindStringSubmatch() 查找第一个匹配的字符串及子组
+	// FindAllStringSubmatch() 查找所有匹配的字符串及子组
+	Regexp = regexp.Regexp
+)
+
 // FindAllString 查找所有匹配的字符串
 func FindAllString(expr, s string) ([]string, error) {
 	r, err := regexp.Compile(expr)
@@ -19,7 +26,7 @@ func FindAllString(expr, s string) ([]string, error) {
 	return res, nil
 }
 
-// FindAllStringSubmatch 查找所有匹配的字符串 - 子匹配
+// FindAllStringSubmatch 查找所有匹配的字符串及子组
 func FindAllStringSubmatch(expr, s string) ([][]string, error) {
 	r, err := regexp.Compile(expr)
 	if err != nil {
