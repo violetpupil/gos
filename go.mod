@@ -29,6 +29,7 @@ require (
 	github.com/imdario/mergo v0.3.6
 	github.com/joho/godotenv v1.5.1
 	github.com/json-iterator/go v1.1.12
+	github.com/lthibault/jitterbug/v2 v2.2.2
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/pelletier/go-toml/v2 v2.1.0
 	github.com/redis/go-redis/v9 v9.0.5

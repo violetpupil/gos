@@ -6,6 +6,7 @@
 - mapstructure 将map解码为结构体
 - mergo 合并结构体、map
 - fsnotify 文件系统通知
+- jitterbug Tickers with random jitter
 - cron 定时执行
 - pflag 命令行
 - cobra 命令行
