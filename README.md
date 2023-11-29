@@ -20,6 +20,7 @@ misc 杂项
 
 - job 找工作
 - lang 小众开发语言
+- math 数学
 - skill 生活技能
 
 net 网络
