@@ -1,5 +1,9 @@
 # math
 
+方差 每一个值与平均数差值的平方的平均数
+
+标准差 Standard Deviation 方差开平方
+
 ## [正态分布](https://zh.wikipedia.org/zh-hans/正态分布)
 
 平均数 μ 决定曲线中间的 x 坐标
