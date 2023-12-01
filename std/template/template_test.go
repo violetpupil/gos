@@ -2,9 +2,9 @@ package template
 
 import (
 	"fmt"
-	"html/template"
 	"os"
 	"testing"
+	"text/template"
 )
 
 type Inventory struct {
