@@ -5,6 +5,7 @@
 - cast 类型转换
 - mapstructure 将map解码为结构体
 - mergo 合并结构体、map
+- sprig 模板函数
 - filenamify Convert a string to a valid safe filename
 - fsnotify 文件系统通知
 - jitterbug Tickers with random jitter

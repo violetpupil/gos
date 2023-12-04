@@ -8,3 +8,18 @@
 // print An alias for fmt.Sprint
 // printf An alias for fmt.Sprintf
 package template
+
+import "text/template"
+
+var (
+	// 创建模板
+	New = template.New
+)
+
+type (
+	// 模板
+	// Funcs() 添加函数
+	// Parse() 设置模板文本
+	// Execute() 填充模板并输出
+	Template = template.Template
+)
