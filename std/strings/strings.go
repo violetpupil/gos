@@ -21,7 +21,9 @@ type (
 )
 
 // SplitLast 用分隔符获取最后一个子串
+// 源字符串结尾的分隔符会先去掉
 func SplitLast(s, sep string) string {
+	s = strings.TrimSuffix(s, sep)
 	sub := strings.Split(s, sep)
 	return sub[len(sub)-1]
 }
