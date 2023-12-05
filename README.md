@@ -31,6 +31,7 @@ pkg 领域包
 
 - ald 算法和数据结构
 - crypto 密码学
+- [design](https://refactoringguru.cn/design-patterns/go) 设计模式
 - media 多媒体处理
 - spider 爬虫
 - go类型操作
