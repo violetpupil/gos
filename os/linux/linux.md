@@ -14,3 +14,7 @@
 6. games
 7. overview and miscellany section
 8. administration and privileged commands
+
+## 环境变量
+
+HOME 用户主目录
