@@ -7,6 +7,8 @@ show processlist
 show variables like 'wait_timeout'
 # 查看最大连接数
 show variables like 'max_connections'
+# 查看表索引
+SHOW INDEX FROM tbl_name
 # 关闭连接
 kill CONNECTION processlist_id
 ```
