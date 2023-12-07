@@ -6,6 +6,8 @@
 
 [image](https://hub.docker.com/r/prom/prometheus)
 
+[exporters](https://prometheus.io/docs/instrumenting/exporters/)
+
 ```bash
 # prometheus.yml 要先创建
 # http://localhost:9090/
