@@ -4,10 +4,13 @@
 
 [文档](https://prometheus.io/docs/introduction/overview/)
 
+[image](https://hub.docker.com/r/prom/prometheus)
+
 ```bash
 # prometheus.yml 要先创建
+# http://localhost:9090/
 docker run -dp 9090:9090 ^
--v d:/docker/prometheus/prometheus.yml:/prometheus/prometheus.yml ^
+-v d:/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml ^
 --name prometheus ^
 prom/prometheus
 ```
