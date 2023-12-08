@@ -8,8 +8,6 @@
 nohup ./server &>> server.log &
 # 筛选进程id，并发送term信号
 ps -ef | grep ./server | grep -v grep | awk '{print $2}' | xargs kill
-# 查询域名ip地址
-nslookup www.baidu.com
 # 设置 每次执行命令前，先打印
 set -x
 # 查看网络流量
