@@ -64,6 +64,7 @@
 - gin http服务框架
 - grpc rpc框架
 - zero http服务和rpc框架
+- casbin 权限控制框架
 - jwt jwt框架
 - ws websocket
 - wsg websocket
