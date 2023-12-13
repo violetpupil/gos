@@ -27,6 +27,8 @@ var (
 	// ParseDuration parses a duration string.
 	// 1ms -1s 1h0.5m
 	ParseDuration = time.ParseDuration
+	// 创建 time.Ticker
+	NewTicker = time.NewTicker
 )
 
 type (

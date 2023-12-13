@@ -55,3 +55,5 @@
 [文心一言](https://yiyan.baidu.com/)
 
 [Youtube Downloader](https://yt1s.ltd/zh-cn178hb/)
+
+[网速测试](https://www.whatismybrowser.com/detect/speed-test)

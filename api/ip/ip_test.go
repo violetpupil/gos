@@ -45,7 +45,11 @@ func TestProxyIpLumFive(t *testing.T) {
 	fmt.Println(ip, err)
 }
 
+var proxyS = []string{}
+
 func TestProxyIpEchoStr(t *testing.T) {
-	ip, err := ProxyIpEchoStr("")
-	fmt.Println(ip, err)
+	for _, proxy := range proxyS {
+		ip, err := ProxyIpEchoStr(proxy)
+		fmt.Println(ip, err)
+	}
 }

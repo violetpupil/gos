@@ -8,6 +8,8 @@
 
 `FROM_UNIXTIME()` 将秒级时间戳转为时间字符串
 
+`MONTH()` 获取月份
+
 `NOW()` Return the current date and time
 
 `TIME()` Extract the time portion of the expression passed

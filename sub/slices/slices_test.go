@@ -1,4 +1,4 @@
-package exp
+package slices
 
 import (
 	"fmt"

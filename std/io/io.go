@@ -21,4 +21,11 @@ var (
 	// 将 io.Reader 转为 io.ReadCloser
 	// Close() 方法直接返回
 	NopCloser = io.NopCloser
+	// 写入多个 writer
+	MultiWriter = io.MultiWriter
+)
+
+type (
+	// Write writes len(p) bytes from p to the underlying data stream.
+	Writer = io.Writer
 )

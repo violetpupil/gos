@@ -4,7 +4,14 @@
 
 - cast 类型转换
 - mapstructure 将map解码为结构体
+- mergo 合并同类型结构体、map
+- sprig 模板函数
+- filenamify Convert a string to a valid safe filename
+- fsnotify 文件系统通知
+- jitterbug Tickers with random jitter
 - cron 定时执行
+- pflag 命令行
+- cobra 命令行
 - shortid id生成器
 - sonyflake id生成器
 - uuid id生成器
@@ -23,11 +30,13 @@
 - gocsv csv处理
 - protobuf protobuf处理
 - yaml yaml处理
+- toml toml处理
 - goquery html处理
 - excelize excel处理
 - exl excel处理
 - fastjson json处理
-- json json处理
+- json json处理 兼容标准库 好像比 jsoniter 快
+- jsoniter json处理 兼容标准库
 
 ## 客户端
 
@@ -50,10 +59,12 @@
 
 - imap imap库
 - resty http请求库
+- req http请求库
 - swag http文档生成器
 - gin http服务框架
 - grpc rpc框架
 - zero http服务和rpc框架
+- casbin 权限控制框架
 - jwt jwt框架
 - ws websocket
 - wsg websocket

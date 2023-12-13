@@ -5,6 +5,11 @@ import (
 	"time"
 )
 
+var (
+	// 文件权限 777
+	ModePerm = fs.ModePerm
+)
+
 // FileInfo 文件信息接口
 type FileInfo = fs.FileInfo
 

@@ -8,12 +8,37 @@ import (
 	"github.com/violetpupil/gos/std/fs"
 )
 
+var (
+	// 文件操作
+	// Exactly one of O_RDONLY, O_WRONLY, or O_RDWR must be specified.
+	O_RDONLY = os.O_RDONLY // 只读
+	O_WRONLY = os.O_WRONLY // 只写
+	O_RDWR   = os.O_RDWR   // 读写
+	// The remaining values may be or'ed in to control behavior.
+	O_APPEND = os.O_APPEND // append data to the file when writing.
+	O_CREATE = os.O_CREATE // create a new file if none exists.
+	O_EXCL   = os.O_EXCL   // used with O_CREATE, file must not exist.
+	O_SYNC   = os.O_SYNC   // open for synchronous I/O.
+	O_TRUNC  = os.O_TRUNC  // truncate regular writable file when opened.
+
+	// 文件权限 777
+	ModePerm = os.ModePerm
+
+	Stdin  = os.Stdin  // standard input
+	Stdout = os.Stdout // standard output
+	Stderr = os.Stderr // standard error
+)
+
 // 函数
 var (
 	// ReadFile 读取文件字节
 	ReadFile = os.ReadFile
+	// Open 打开文件，只读
+	Open = os.Open
 	// Create 创建文件，如果文件存在，先清空
 	Create = os.Create
+	// OpenFile 打开文件，指定操作
+	OpenFile = os.OpenFile
 	// Remove 删除文件或空文件夹，路径不存在则报错
 	Remove = os.Remove
 	// RemoveAll 删除文件或整个文件夹，路径不存在则忽略
@@ -108,23 +133,6 @@ func Rename(dir string, fn func(string) string) error {
 		}
 	}
 	return nil
-}
-
-// Mkdir 创建单级文件夹，存在返回nil
-func Mkdir(name string) error {
-	err := os.Mkdir(name, 0666)
-	if err == nil || os.IsExist(err) {
-		return nil
-	} else {
-		logrus.Errorln("mkdir error", err)
-		return err
-	}
-}
-
-// Mkdir 创建多级文件夹，存在返回nil
-func MkdirAll(path string) error {
-	err := os.MkdirAll(path, 0666)
-	return err
 }
 
 // Clear 清空文件

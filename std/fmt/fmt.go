@@ -1,7 +1,6 @@
-// 实现 error 或 fmt.Stringer 接口
+// 实现 error 或 fmt.Stringer 接口，会先转为字符串
 // 打印时优先调用error.Error()
 // 然后调用fmt.Stringer.String()
-// 会使格式动词失效
 //
 // 格式动词
 // %v the value in a default format
@@ -18,8 +17,14 @@ import (
 )
 
 var (
+	// 根据格式字符串，创建 error
+	// 使用 %w 格式动词，包裹 error
+	// 返回的 error 会实现 Unwrap 方法
+	Errorf = fmt.Errorf
 	// 写io.Writer
 	Fprintf = fmt.Fprintf
+	// 参数间加空格，最后加换行
+	Fprintln = fmt.Fprintln
 )
 
 // PrettyPrintln 美化换行打印

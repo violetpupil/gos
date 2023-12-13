@@ -10,4 +10,6 @@ type (
 var (
 	// NewRandom returns a Random (Version 4) UUID.
 	NewRandom = uuid.NewRandom
+	// NewString 获取随机 uuid 字符串，出错则 panic
+	NewString = uuid.NewString
 )

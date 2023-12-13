@@ -16,6 +16,9 @@ type (
 )
 
 var (
+	// 退出程序，0 表示成功，1~125 表示失败
+	// deferred functions are not run
+	Exit = os.Exit
 	// 将${var}或$var替换为环境变量或者空字符串
 	ExpandEnv = os.ExpandEnv
 )
