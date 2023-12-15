@@ -29,6 +29,17 @@ import (
 	"github.com/violetpupil/gos/lib/gin/middle"
 )
 
+var (
+	DebugMode   = gin.DebugMode   // debug
+	ReleaseMode = gin.ReleaseMode // release
+	TestMode    = gin.TestMode    // test
+)
+
+var (
+	Mode    = gin.Mode    // 查询mode
+	SetMode = gin.SetMode // 设置mode
+)
+
 type (
 	// H is a shortcut for map[string]any
 	H = gin.H
