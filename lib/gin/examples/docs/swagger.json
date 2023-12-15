@@ -1,7 +1,9 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "title": "gin示例",
+        "contact": {},
+        "version": "v0.0.1"
     },
     "paths": {}
 }

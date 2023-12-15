@@ -3,17 +3,16 @@
 // swag init
 //
 // General API Info
-// Mime Types
-// Security
-// Attribute
+// @title 必须
+// @version 必须
 //
 // API Operation
+// @router 路由信息 `/echo [get]` 必要字段
 // @description A verbose explanation of the operation behavior.
 // @tags 逗号分隔的标签列表
 // @summary A short summary of what the operation does.
 // @param 参数名 参数类型 数据类型 是否必须true "comment"
 // @response 200 {object} 数据类型 "comment"
-// @router 路由信息 `/echo [get]` 必要字段
 //
 // Param Type
 // query path header body
