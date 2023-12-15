@@ -37,7 +37,7 @@ var (
 
 var (
 	Mode    = gin.Mode    // 查询mode
-	SetMode = gin.SetMode // 设置mode
+	SetMode = gin.SetMode // 设置mode，如果不是gin预设值会panic
 )
 
 type (
