@@ -42,6 +42,7 @@
 
 - ali 阿里云
 - aws Amazon Web Services
+- ip2locationio IP2Location
 
 - k8s k8s客户端
 - otel otel客户端
