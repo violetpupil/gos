@@ -16,6 +16,7 @@ import (
 
 type (
 	// 数据库对象
+	// Association() 操作关联数据
 	//
 	// Select() 指定字段
 	// 查询
