@@ -1,6 +1,6 @@
 # storage
 
-[MySQL 一行记录是怎么存储的？](https://xiaolincoding.com/mysql/base/row_format.htm)
+[MySQL 一行记录是怎么存储的？](https://xiaolincoding.com/mysql/base/row_format.html)
 
 `.frm` 表结构
 
