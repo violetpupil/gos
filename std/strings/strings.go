@@ -6,7 +6,7 @@ var (
 	// Split 用分隔符获取子串
 	// 如果分隔符不是空，字符串中不包含分隔符，结果是原字符串切片
 	Split = strings.Split
-	// SplitN 用分隔符获取子串，从左限定数量，数量<0相当于Split
+	// SplitN 用分隔符获取子串，从左限定结果数量，数量<0相当于Split
 	SplitN = strings.SplitN
 	// TrimSuffix 去除后缀
 	TrimSuffix = strings.TrimSuffix
