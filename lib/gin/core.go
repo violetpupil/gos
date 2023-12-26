@@ -31,6 +31,7 @@ type (
 	// JSON() 生成json响应体，并设置Content-Type
 	// Status() sets the HTTP response code.
 	// ClientIP() 客户端ip
+	// Cookie() 返回指定cookie值，找不到返回错误
 	Context = gin.Context
 	// Engine 服务引擎
 	// Use() 配置全局中间件
