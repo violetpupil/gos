@@ -21,6 +21,10 @@
 // Enum() 枚举类型指针
 // String() 枚举字符串
 // Number() 枚举值
+//
+// golang
+// https://protobuf.dev/getting-started/gotutorial/
+// go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 syntax = "proto3";
 
 // protobuf包
