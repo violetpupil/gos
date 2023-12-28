@@ -13,7 +13,7 @@ var (
 	L = zap.L
 
 	// 字段
-	Any      = zap.Any      // any接口
+	Any      = zap.Any      // any接口，会将结构体转为json字符串
 	String   = zap.String   // 字符串
 	Int      = zap.Int      // 整型
 	Duration = zap.Duration // 持续时间

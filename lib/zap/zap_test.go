@@ -6,6 +6,18 @@ import (
 	"go.uber.org/zap"
 )
 
+type Tmp struct {
+	A string
+}
+
+func TestAny(t *testing.T) {
+	err := InitDevelopment()
+	if err != nil {
+		panic(err)
+	}
+	zap.L().Info("test", zap.Any("tmp", Tmp{A: "a"}))
+}
+
 func TestInfo(t *testing.T) {
 	err := InitDevelopment()
 	if err != nil {
