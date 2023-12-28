@@ -7,12 +7,20 @@
 // @version 必须
 //
 // API Operation
-// @router 路由信息 `/echo [get]` 必要字段
+// @router 路由信息 必要字段
 // @summary A short summary of what the operation does.
 // @description A verbose explanation of the operation behavior.
 // @tags 逗号分隔的标签列表
 // @param 参数名 参数类型 数据类型 是否必须true "comment"
 // @response 200 {object} 数据类型 "comment"
+// 示例
+// func 接口作用
+// @router /echo [post]
+// @summary 接口作用
+// @description 接口作用
+// @tags 标签
+// @param req body struct true "req"
+// @response 200 {object} struct
 //
 // Param Type
 // query path header body
