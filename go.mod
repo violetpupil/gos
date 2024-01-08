@@ -52,6 +52,7 @@ require (
 	github.com/valyala/fastjson v1.6.4
 	github.com/xdg-go/scram v1.1.2
 	github.com/xuri/excelize/v2 v2.8.0
+	github.com/yudeguang/ratelimit v0.0.0-20240108053714-dcabc0e41abd
 	github.com/zeromicro/go-zero v1.5.6
 	github.com/zsais/go-gin-prometheus v0.1.0
 	go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin v0.40.0
@@ -92,6 +93,7 @@ require (
 	github.com/quic-go/qtls-go1-20 v0.3.3 // indirect
 	github.com/quic-go/quic-go v0.38.1 // indirect
 	github.com/refraction-networking/utls v1.5.3 // indirect
+	github.com/yudeguang/iox v0.0.0-20220912082704-297952f8e912 // indirect
 	golang.org/x/mod v0.12.0 // indirect
 )
 

@@ -67,6 +67,7 @@
 - zero http服务和rpc框架
 - casbin 权限控制框架
 - jwt jwt框架
+- ratelimit 访问次数限制
 - ws websocket
 - wsg websocket
 - wsn websocket
