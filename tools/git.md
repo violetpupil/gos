@@ -19,4 +19,6 @@ git clone -b <branch> <url> <folder>
 git checkout <commit-id> -b <branch>
 # 创建孤儿分支
 git checkout --orphan <branch>
+# 删除远程分支
+git push origin --delete <branch>
 ```
