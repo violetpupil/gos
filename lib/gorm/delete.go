@@ -10,7 +10,7 @@ type delete struct {
 	db *gorm.DB
 }
 
-// Delete 删除数据，value是数据模型或模型切片指针
+// Delete 删除数据，value是数据模型指针或模型切片指针
 // 当value主键有值
 // DELETE from emails where id = 10;
 // var email = Email{ID: 10}
