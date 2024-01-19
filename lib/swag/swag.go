@@ -1,6 +1,8 @@
 // https://github.com/swaggo/swag
 // go install github.com/swaggo/swag/cmd/swag@latest
 // swag init
+// swaggertype 结构体标签
+// swaggerignore 结构体标签
 //
 // General API Info
 // @title 必须
