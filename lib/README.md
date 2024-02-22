@@ -21,6 +21,7 @@
 - glog 日志
 - logrus 日志
 - zap 日志
+- [lo](https://pkg.go.dev/github.com/samber/lo) Iterate over slices, maps, channels...
 
 ## 数据处理
 
