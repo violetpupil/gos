@@ -17,11 +17,11 @@ type Exchange struct {
 }
 
 // ExchangeSingle 单个货币汇率查询
-func ExchangeSingle(appCode string) (ExchangeSingleRes, error) {
+func ExchangeSingle(appCode, currency string) (ExchangeSingleRes, error) {
 	var result ExchangeSingleRes
 	_, err := resty.New().R().
 		SetHeader("Authorization", "APPCODE "+appCode).
-		SetQueryParam("currency", "USD").
+		SetQueryParam("currency", currency).
 		SetResult(&result).
 		Get("https://jisuhuilv.market.alicloudapi.com/exchange/single")
 	return result, err
