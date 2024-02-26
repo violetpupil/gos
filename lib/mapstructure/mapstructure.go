@@ -6,9 +6,10 @@
 // When decoding to a struct, mapstructure will use the field name by default to perform the mapping.
 // 大小写不敏感
 // The default struct tag that mapstructure looks for is "mapstructure"
+// 嵌入字段解码 `mapstructure:",squash"`
 package mapstructure
 
-import "github.com/goinggo/mapstructure"
+import "github.com/mitchellh/mapstructure"
 
 var (
 	// 将map解码为结构体

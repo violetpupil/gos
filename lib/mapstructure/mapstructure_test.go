@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/goinggo/mapstructure"
+	"github.com/mitchellh/mapstructure"
 )
 
 type Tmp struct {
