@@ -22,6 +22,7 @@
 - logrus 日志
 - zap 日志
 - [lo](https://pkg.go.dev/github.com/samber/lo) Iterate over slices, maps, channels...
+- [decimal](https://pkg.go.dev/github.com/shopspring/decimal) 小数四舍五入
 
 ## 数据处理
 
