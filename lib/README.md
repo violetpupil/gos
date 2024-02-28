@@ -6,7 +6,7 @@
 - mapstructure 将map解码为结构体
 - mergo 合并同类型结构体、map
 - sprig 模板函数
-- filenamify Convert a string to a valid safe filename
+- [filenamify](https://pkg.go.dev/github.com/go-dora/filenamify) Convert a string to a valid safe filename
 - fsnotify 文件系统通知
 - jitterbug Tickers with random jitter
 - cron 定时执行
