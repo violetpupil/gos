@@ -25,7 +25,7 @@
 // @response 200 {object} struct
 //
 // Param Type
-// query path header body
+// query path header body formData
 //
 // Data Type
 // string int uint uint32 uint64 float32 bool 自定义类型
