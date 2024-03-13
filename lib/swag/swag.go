@@ -29,6 +29,7 @@
 //
 // Data Type
 // string int uint uint32 uint64 float32 bool 自定义类型
+// file 上传文件
 // 指定字段类型 Response{d1=string,d2=[]string}
 package swag
 
