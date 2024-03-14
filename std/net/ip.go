@@ -56,3 +56,8 @@ func Private(ip net.IP) net.IP {
 	}
 	return nil
 }
+
+// IsIP 判断host是否是ip地址
+func IsIP(host string) bool {
+	return net.ParseIP(host) != nil
+}
