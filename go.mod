@@ -25,7 +25,7 @@ require (
 	github.com/goccy/go-json v0.10.2
 	github.com/golang/glog v1.1.0
 	github.com/google/uuid v1.3.1
-	github.com/gorilla/websocket v1.5.0
+	github.com/gorilla/websocket v1.5.1
 	github.com/imdario/mergo v0.3.6
 	github.com/ip2location/ip2location-io-go v1.0.3
 	github.com/joho/godotenv v1.5.1

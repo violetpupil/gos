@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/gorilla/websocket"
-	"github.com/sirupsen/logrus"
+	"go.uber.org/zap"
 )
 
 // websocket消息类型
@@ -36,19 +36,20 @@ func CheckConn(key string) bool {
 // 返回nil不代表向连接写消息成功
 // t是websocket消息类型
 func WriteMessage(key string, t int, data []byte) error {
-	logger := logrus.WithFields(logrus.Fields{
-		"key":  key,
-		"type": t,
-		"data": string(data),
-	})
+	logger := zap.L().With(
+		zap.String("key", key),
+		zap.Int("type", t),
+		zap.String("data", string(data)),
+	)
+
 	i, ok := Hub.Load(key)
 	if !ok {
-		logger.Infoln("websocket connection not in hub")
+		logger.Info("websocket connection not in hub")
 		return errors.New("websocket connection not in hub")
 	}
 	c, ok := i.(*Conn)
 	if !ok {
-		logger.Errorln("hub value type mismatch")
+		logger.Info("hub value type mismatch")
 		return errors.New("hub value type mismatch")
 	}
 
@@ -64,19 +65,19 @@ type Conn struct {
 	Write chan Message
 }
 
-func (c *Conn) Logger(key string) *logrus.Entry {
-	return logrus.WithFields(logrus.Fields{
-		"key":        key,
-		"localAddr":  c.Conn.LocalAddr(),
-		"remoteAddr": c.Conn.RemoteAddr(),
-	})
+func (c *Conn) Logger(key string) *zap.Logger {
+	return zap.L().With(
+		zap.String("key", key),
+		zap.String("localAddr", c.Conn.LocalAddr().String()),
+		zap.String("remoteAddr", c.Conn.RemoteAddr().String()),
+	)
 }
 
 // NewConn 保存连接到Hub
-// 读取消息直到异常，f为消息处理函数，参数为消息类型和内容
+// 读取消息直到异常，f为消息处理函数
 // 创建goroutine，将Conn.Write中的消息写到连接
 // 如果 Hub 中已经有 key 的连接，则报错
-func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) error {
+func NewConn(conn *websocket.Conn, key string, f func(key string, t int, data []byte)) error {
 	// 读消息异常后，会使写消息goroutine退出
 	// 先从Hub去掉，再关闭channel，防止panic
 	c := &Conn{
@@ -84,28 +85,27 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) erro
 		Write: make(chan Message),
 	}
 	defer close(c.Write)
+
 	logger := c.Logger(key)
 
 	_, ok := Hub.LoadOrStore(key, c)
 	if ok {
-		logger.Infoln("conn established")
+		logger.Info("conn established")
 		return errors.New("conn established")
+	} else {
+		logger.Info("conn store")
 	}
 	defer Hub.Delete(key)
-	logger.Infoln("conn store")
 
 	// 写消息
 	go func() {
 		for msg := range c.Write {
 			err := conn.WriteMessage(msg.Type, msg.Data)
 			if err != nil {
-				logger.Errorln("write message error", err)
-				continue
+				logger.Error("write message error", zap.Error(err))
+			} else {
+				logger.Info("write message success", zap.Int("type", msg.Type), zap.String("data", string(msg.Data)))
 			}
-			logger.WithFields(logrus.Fields{
-				"type":    msg.Type,
-				"message": string(msg.Data),
-			}).Infoln("write message success")
 		}
 	}()
 
@@ -113,18 +113,14 @@ func NewConn(conn *websocket.Conn, key string, f func(string, int, []byte)) erro
 	for {
 		t, p, e := conn.ReadMessage()
 		if websocket.IsCloseError(e, websocket.CloseNormalClosure) {
-			logger.Infoln("client normal close")
+			logger.Info("client normal close")
 			break
-		}
-		if e != nil {
-			logger.Errorln("read message error", e)
+		} else if e != nil {
+			logger.Error("read message error", zap.Error(e))
 			break
 		}
 
-		logger.WithFields(logrus.Fields{
-			"type":    t,
-			"message": string(p),
-		}).Infoln("read message success")
+		logger.Info("read message success", zap.Int("type", t), zap.String("data", string(p)))
 		if f != nil {
 			f(key, t, p)
 		}
