@@ -60,6 +60,8 @@ func WriteMessage(key string, t int, data []byte) error {
 
 // Conn websocket连接
 type Conn struct {
+	// The default close handler sends a close message to the peer.
+	// The default ping handler sends a pong message to the peer.
 	Conn *websocket.Conn
 	// websocket.Conn support one concurrent reader and one concurrent writer.
 	Write chan Message

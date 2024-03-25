@@ -3,12 +3,31 @@ package wsg
 import (
 	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"github.com/sirupsen/logrus"
+	"go.uber.org/zap"
 )
 
 // Upgrader http升级到websocket
 var Upgrader = websocket.Upgrader{}
+
+func GinUpgrade(c *gin.Context) {
+	conn, err := Upgrader.Upgrade(c.Writer, c.Request, nil)
+	if err != nil {
+		// If the upgrade fails, then Upgrade replies to the client with an HTTP error response.
+		zap.L().Error("upgrade error", zap.Error(err))
+		return
+	}
+	defer conn.Close()
+
+	zap.L().Info("upgrade websocket conn",
+		zap.String("localAddr", conn.LocalAddr().String()),
+		zap.String("remoteAddr", conn.RemoteAddr().String()),
+	)
+
+	// 处理连接
+}
 
 // Upgrade 升级协议，实现http.HandlerFunc函数类型
 func Upgrade(w http.ResponseWriter, r *http.Request) {
