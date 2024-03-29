@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/sirupsen/logrus"
+	"go.uber.org/zap"
 )
 
 var (
@@ -66,7 +67,7 @@ func Stdout(v any) {
 	// 将编码结果写入writer，并添加换行
 	err := e.Encode(v)
 	if err != nil {
-		logrus.Errorln("json stdout error", err)
+		zap.L().Error("json stdout error", zap.Error(err))
 		fmt.Println(v)
 	}
 }
