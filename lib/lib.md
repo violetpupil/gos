@@ -17,4 +17,10 @@ Convert a string to a valid safe filename
 filenamify.FilenamifyMustCompile
 ```
 
-## [i18n](https://pkg.go.dev/github.com/nicksnyder/go-i18n/v2/i18n)
+## [lo](https://pkg.go.dev/github.com/samber/lo)
+
+Iterate over slices, maps, channels...
+
+```golang
+GroupBy // 切片分组成map
+```
