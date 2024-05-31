@@ -34,12 +34,15 @@ type User struct {
 
 ```golang
 type User struct {
- ID         uint
- CreditCard CreditCard
+  gorm.Model
+  Name       string     `gorm:"index"`
+  CreditCard CreditCard `gorm:"foreignKey:UserName;references:name"`
 }
 
 type CreditCard struct {
- UserID uint
+  gorm.Model
+  Number   string
+  UserName string
 }
 ```
 
