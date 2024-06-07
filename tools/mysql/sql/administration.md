@@ -13,4 +13,7 @@ SHOW VARIABLES LIKE 'datadir'
 SHOW INDEX FROM tbl_name
 # 关闭连接
 kill CONNECTION processlist_id
+# 查看innodb状态
+# LATEST DETECTED DEADLOCK 最近一次死锁
+show engine innodb status
 ```
