@@ -24,3 +24,5 @@ Iterate over slices, maps, channels...
 ```golang
 GroupBy // 切片分组成map
 ```
+
+## [sqlparser](github.com/xwb1989/sqlparser)
