@@ -24,6 +24,7 @@ func Lock() error {
 	var sync *redsync.Redsync
 	key := ""
 
+	// 默认重试32次，每次重试间隔50~250ms
 	lock := sync.NewMutex(
 		key,
 		redsync.WithExpiry(time.Minute),
