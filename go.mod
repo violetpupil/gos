@@ -23,6 +23,7 @@ require (
 	github.com/gobwas/ws v1.2.1
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/goccy/go-json v0.10.2
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/golang/glog v1.1.0
 	github.com/google/uuid v1.3.1
 	github.com/gorilla/websocket v1.5.1
