@@ -3,8 +3,7 @@ package crypto
 import (
 	"crypto/ecdh"
 	"crypto/rand"
-	"crypto/sha256"
-	"fmt"
+	"encoding/base64"
 
 	"go.uber.org/zap"
 )
@@ -15,12 +14,18 @@ import (
 // 两端生成的密钥是相同的，各自保存密钥，之后通信用AES加密
 
 func ECDH(log *zap.Logger, cliPub string) (svrPub string, shared string, err error) {
+	cliPubB, err := base64.StdEncoding.DecodeString(cliPub)
+	if err != nil {
+		log.Error("base64 decode error", zap.Error(err))
+		return "", "", err
+	}
+
 	svrKey, err := ecdh.P256().GenerateKey(rand.Reader)
 	if err != nil {
 		log.Error("generate key error", zap.Error(err))
 		return "", "", err
 	}
-	cliPubO, err := ecdh.P256().NewPublicKey([]byte(cliPub))
+	cliPubO, err := ecdh.P256().NewPublicKey(cliPubB)
 	if err != nil {
 		log.Error("new public key error", zap.Error(err))
 		return "", "", err
@@ -31,7 +36,8 @@ func ECDH(log *zap.Logger, cliPub string) (svrPub string, shared string, err err
 		return "", "", err
 	}
 
-	svrPub = fmt.Sprintf("%x", sha256.Sum256(svrKey.PublicKey().Bytes()))
-	shared = fmt.Sprintf("%x", sha256.Sum256(sharedB))
+	svrPub = base64.StdEncoding.EncodeToString(svrKey.PublicKey().Bytes())
+	shared = base64.StdEncoding.EncodeToString(sharedB)
+	log.Info("ecdh result", zap.String("svrPub", svrPub), zap.String("shared", shared))
 	return svrPub, shared, nil
 }
