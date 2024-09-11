@@ -18,3 +18,11 @@ func InitDevelopmentLog() {
 		zap.ReplaceGlobals(l)
 	}
 }
+
+// SyncLog 刷写全局logger缓存的日志，程序结束前调用
+func SyncLog() {
+	err := zap.L().Sync()
+	if err != nil {
+		log.Println("sync log error", err)
+	}
+}
