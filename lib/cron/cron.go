@@ -2,19 +2,10 @@ package cron
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/robfig/cron/v3"
 	"github.com/sirupsen/logrus"
 )
-
-// Daily 每天几点
-// @daily 不准，可能一天执行两次
-// 有时候在00:00:00执行
-// 有时候在23:59:59执行
-func Daily(hour int) string {
-	return fmt.Sprintf("0 %d * * *", hour)
-}
 
 // 调度器
 // Start() 在单独的goroutine启动，已经启动则无动作
