@@ -25,3 +25,5 @@ Entry                  | Description                                | Equivalent
 @daily (or @midnight)  | Run once a day, midnight                   | 0 0 * * *
 @hourly                | Run once an hour, beginning of hour        | 0 * * * *
 ```
+
+`@every 1h2m3s`

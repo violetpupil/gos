@@ -8,20 +8,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-const (
-	// cron表达式
-	Minutely = "* * * * *" // 每分钟
-	Hourly   = "@hourly"   // 每小时
-	Weekly   = "@weekly"   // 每周
-	Monthly  = "@monthly"  // 每月
-)
-
-// Every 指定间隔时间 1ms -1s 1h0.5m
-// 参考time.ParseDuration函数
-func Every(duration string) string {
-	return fmt.Sprintf("@every %s", duration)
-}
-
 // Daily 每天几点
 // @daily 不准，可能一天执行两次
 // 有时候在00:00:00执行
