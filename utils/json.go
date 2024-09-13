@@ -28,3 +28,9 @@ func JSONDump(name string, v any) error {
 	}
 	return nil
 }
+
+func JSONPrint(v any) {
+	e := json.NewEncoder(os.Stdout)
+	e.SetIndent("", "  ")
+	e.Encode(v)
+}

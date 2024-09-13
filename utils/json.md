@@ -1,5 +1,10 @@
 # [json](https://pkg.go.dev/encoding/json)
 
+```golang
+// 编码缩进两个空格
+json.MarshalIndent(v, "", "  ")
+```
+
 ## 结构体标签
 
 `json:"myName,omitempty"`
