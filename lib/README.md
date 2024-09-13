@@ -9,7 +9,6 @@
 - [filenamify](https://pkg.go.dev/github.com/go-dora/filenamify) Convert a string to a valid safe filename
 - fsnotify 文件系统通知
 - jitterbug Tickers with random jitter
-- cron 定时执行
 - pflag 命令行
 - cobra 命令行
 - shortid id生成器
