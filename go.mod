@@ -34,7 +34,6 @@ require (
 	github.com/redis/go-redis/v9 v9.0.5
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
 	github.com/robertkrimen/otto v0.2.1
-	github.com/robfig/cron/v3 v3.0.1
 	github.com/sirupsen/logrus v1.9.3
 	github.com/sony/sonyflake v1.1.0
 	github.com/spf13/cast v1.5.1

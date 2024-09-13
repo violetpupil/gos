@@ -27,3 +27,10 @@ Entry                  | Description                                | Equivalent
 ```
 
 `@every 1h2m3s`
+
+## cron.Cron
+
+```golang
+Start() // 创建goroutine启动
+Run() // 阻塞启动
+```
