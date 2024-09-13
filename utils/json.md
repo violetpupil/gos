@@ -3,6 +3,12 @@
 ```golang
 // 编码缩进两个空格
 json.MarshalIndent(v, "", "  ")
+// 解码
+// 1. 字段名大小写不敏感
+// 2. 当字段为any时
+// json array -> []any
+// json object > map[string]any
+json.Unmarshal(data, v)
 ```
 
 ## 结构体标签
