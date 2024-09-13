@@ -18,3 +18,7 @@ json.Unmarshal(data, v)
 `omitempty` 当字段为默认值时，不编码
 
 `string` 字段对应的json类型为string
+
+## 第三方库
+
+[json](https://pkg.go.dev/github.com/goccy/go-json) 替代标准库、快

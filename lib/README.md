@@ -36,9 +36,6 @@
 - goquery html处理
 - excelize excel处理
 - exl excel处理
-- fastjson json处理
-- json json处理 兼容标准库 好像比 jsoniter 快
-- jsoniter json处理 兼容标准库
 
 ## 客户端
 
