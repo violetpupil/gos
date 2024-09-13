@@ -5,4 +5,6 @@
 lo.Uniq(slice)
 // 是否包含元素
 lo.Contains(slice, item)
+// 反转
+lo.Reverse(slice)
 ```

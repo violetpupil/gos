@@ -7,13 +7,6 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-func TestReverse(t *testing.T) {
-	r := []int{2, 1, 3}
-	// 反转切片
-	slices.Reverse[[]int, int](r)
-	fmt.Println(r)
-}
-
 func TestSort(t *testing.T) {
 	r := []int{2, 1, 3}
 	// 升序
@@ -45,9 +38,4 @@ func TestSortStableFunc(t *testing.T) {
 		}
 	})
 	fmt.Println(r)
-}
-
-func TestIndex(t *testing.T) {
-	// 返回第一个索引，没有返回-1
-	fmt.Println(slices.Index([]int{0, 1}, 1))
 }
