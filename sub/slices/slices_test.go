@@ -7,11 +7,6 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-func TestContains(t *testing.T) {
-	r := slices.Contains([]string{""}, "")
-	fmt.Println(r)
-}
-
 func TestReverse(t *testing.T) {
 	r := []int{2, 1, 3}
 	// 反转切片
