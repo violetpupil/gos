@@ -1,5 +1,8 @@
 # [cron](https://pkg.go.dev/github.com/robfig/cron/v3)
 
+,可以指定多个值
+/可以指定间隔时间
+
 ```text
 Field name   | Allowed values  | Allowed special characters
 ----------   | --------------  | --------------------------
