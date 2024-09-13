@@ -71,7 +71,4 @@
 - jwt jwt框架
 - ratelimit 访问次数限制
 - [i18n](https://pkg.go.dev/github.com/nicksnyder/go-i18n/v2/i18n) 国际化
-- ws websocket
-- wsg websocket
-- wsn websocket
 - otto javascript解释器
