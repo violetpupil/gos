@@ -20,7 +20,6 @@ require (
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/go-the-way/exl v1.2.3
-	github.com/gobwas/ws v1.2.1
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/goccy/go-json v0.10.2
 	github.com/golang-jwt/jwt/v4 v4.5.0
@@ -73,7 +72,6 @@ require (
 	k8s.io/api v0.26.3
 	k8s.io/apimachinery v0.27.0-alpha.3
 	k8s.io/client-go v0.26.3
-	nhooyr.io/websocket v1.8.7
 )
 
 require (
@@ -128,8 +126,6 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.14.0 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
-	github.com/gobwas/httphead v0.1.0 // indirect
-	github.com/gobwas/pool v0.2.1 // indirect
 	github.com/gogo/googleapis v1.4.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/gogo/status v1.1.1 // indirect
