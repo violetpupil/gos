@@ -21,7 +21,6 @@ require (
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/go-the-way/exl v1.2.3
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
-	github.com/goccy/go-json v0.10.2
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/golang/glog v1.1.0
 	github.com/google/uuid v1.3.1
@@ -29,7 +28,6 @@ require (
 	github.com/imdario/mergo v0.3.6
 	github.com/ip2location/ip2location-io-go v1.0.3
 	github.com/joho/godotenv v1.5.1
-	github.com/json-iterator/go v1.1.12
 	github.com/lthibault/jitterbug/v2 v2.2.2
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/pelletier/go-toml/v2 v2.1.0
@@ -47,7 +45,6 @@ require (
 	github.com/swaggo/gin-swagger v1.6.0
 	github.com/swaggo/swag v1.16.1
 	github.com/teris-io/shortid v0.0.0-20220617161101-71ec9f2aa569
-	github.com/valyala/fastjson v1.6.4
 	github.com/xdg-go/scram v1.1.2
 	github.com/xuri/excelize/v2 v2.8.0
 	github.com/yudeguang/ratelimit v0.0.0-20240108053714-dcabc0e41abd
@@ -81,8 +78,10 @@ require (
 	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/gaukas/godicttls v0.0.4 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 // indirect
+	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/google/pprof v0.0.0-20230901174712-0191c66da455 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
+	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/onsi/ginkgo/v2 v2.12.0 // indirect

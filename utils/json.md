@@ -22,3 +22,5 @@ json.Unmarshal(data, v)
 ## 第三方库
 
 [json](https://pkg.go.dev/github.com/goccy/go-json) 替代标准库、快
+
+[fastjson](https://pkg.go.dev/github.com/valyala/fastjson) 无需解码，直接获取字段值
