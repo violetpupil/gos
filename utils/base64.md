@@ -1,4 +1,4 @@
-# base64
+# [base64](https://pkg.go.dev/encoding/base64)
 
 每6个bit位编码一个字节，三个字节会变成四个字节，增大三分之一
 
