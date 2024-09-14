@@ -11,4 +11,6 @@ lo.Reverse(slice)
 lo.SliceToMap(slice, transform)
 // 切片用map分组
 lo.GroupBy(slice, iteratee)
+// 求和
+lo.Sum(slice)
 ```
