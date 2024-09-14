@@ -16,13 +16,3 @@ Convert a string to a valid safe filename
 ```golang
 filenamify.FilenamifyMustCompile
 ```
-
-## [lo](https://pkg.go.dev/github.com/samber/lo)
-
-Iterate over slices, maps, channels...
-
-```golang
-GroupBy // 切片分组成map
-```
-
-## [sqlparser](github.com/xwb1989/sqlparser)

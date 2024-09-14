@@ -7,4 +7,8 @@ lo.Uniq(slice)
 lo.Contains(slice, item)
 // 反转
 lo.Reverse(slice)
+// 切片转map
+lo.SliceToMap(slice, transform)
+// 切片用map分组
+lo.GroupBy(slice, iteratee)
 ```
