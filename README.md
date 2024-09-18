@@ -49,6 +49,6 @@ tools 工具
 - [x] spider
 - [x] crypto
 - [x] utils
-- [x] database
+- [x] dependence
 - [x] go.mod
 - [x] go.sum
