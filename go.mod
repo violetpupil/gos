@@ -23,7 +23,6 @@ require (
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/golang/glog v1.1.0
-	github.com/google/uuid v1.3.1
 	github.com/gorilla/websocket v1.5.1
 	github.com/imdario/mergo v0.3.6
 	github.com/ip2location/ip2location-io-go v1.0.3
@@ -44,7 +43,6 @@ require (
 	github.com/swaggo/files v1.0.1
 	github.com/swaggo/gin-swagger v1.6.0
 	github.com/swaggo/swag v1.16.1
-	github.com/teris-io/shortid v0.0.0-20220617161101-71ec9f2aa569
 	github.com/xdg-go/scram v1.1.2
 	github.com/xuri/excelize/v2 v2.8.0
 	github.com/yudeguang/ratelimit v0.0.0-20240108053714-dcabc0e41abd
@@ -70,6 +68,8 @@ require (
 	k8s.io/apimachinery v0.27.0-alpha.3
 	k8s.io/client-go v0.26.3
 )
+
+require github.com/google/uuid v1.3.1 // indirect
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect

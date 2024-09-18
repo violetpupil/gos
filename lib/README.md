@@ -11,9 +11,7 @@
 - jitterbug Tickers with random jitter
 - pflag 命令行
 - cobra 命令行
-- shortid id生成器
 - sonyflake id生成器
-- uuid id生成器
 - godotenv 从文件加载环境变量
 - env 将环境变量加载到结构体
 - viper 配置管理
