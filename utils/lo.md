@@ -13,4 +13,8 @@ lo.SliceToMap(slice, transform)
 lo.GroupBy(slice, iteratee)
 // 求和
 lo.Sum(slice)
+// 创建另一个类型切片
+lo.Map(slice, iteratee)
+// 创建另一个类型切片，可以过滤
+lo.FilterMap(slice, f)
 ```
