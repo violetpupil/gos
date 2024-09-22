@@ -17,4 +17,6 @@ lo.Sum(slice)
 lo.Map(slice, iteratee)
 // 创建另一个类型切片，可以过滤
 lo.FilterMap(slice, f)
+// 求交集
+lo.Intersect(s1, s2)
 ```
