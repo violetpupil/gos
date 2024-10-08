@@ -19,4 +19,6 @@ lo.Map(slice, iteratee)
 lo.FilterMap(slice, f)
 // 求交集
 lo.Intersect(s1, s2)
+// 求差集
+lo.Difference(s1, s2)
 ```
