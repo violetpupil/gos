@@ -3,9 +3,10 @@
 配置文件 `/usr/share/elasticsearch/config/elasticsearch.yml`
 
 ```bash
+export ELASTIC_PASSWORD="your_password"
 # 创建索引
 # 3个分片，2个副本
-curl -X PUT "localhost:9200/my-index-000001?pretty" -H 'Content-Type: application/json' -d'
+curl -u elastic:$ELASTIC_PASSWORD -X PUT "localhost:9200/books?pretty" -H 'Content-Type: application/json' -d'
 {
   "settings": {
     "index": {
@@ -15,4 +16,6 @@ curl -X PUT "localhost:9200/my-index-000001?pretty" -H 'Content-Type: applicatio
   }
 }
 '
+# 删除索引
+curl -u elastic:$ELASTIC_PASSWORD -X DELETE "localhost:9200/books?pretty"
 ```
