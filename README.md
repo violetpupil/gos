@@ -50,5 +50,6 @@ tools 工具
 - [x] crypto
 - [x] misc
 - [x] depend
+- [x] tool
 - [x] go.mod
 - [x] go.sum
