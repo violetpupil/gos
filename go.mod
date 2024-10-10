@@ -48,11 +48,6 @@ require (
 	github.com/yudeguang/ratelimit v0.0.0-20240108053714-dcabc0e41abd
 	github.com/zeromicro/go-zero v1.5.6
 	github.com/zsais/go-gin-prometheus v0.1.0
-	go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin v0.40.0
-	go.opentelemetry.io/otel v1.14.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.14.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.14.0
-	go.opentelemetry.io/otel/sdk v1.14.0
 	go.temporal.io/api v1.13.0
 	go.temporal.io/sdk v1.19.0
 	go.uber.org/zap v1.26.0
@@ -69,7 +64,13 @@ require (
 	k8s.io/client-go v0.26.3
 )
 
-require github.com/google/uuid v1.3.1 // indirect
+require (
+	github.com/google/uuid v1.3.1 // indirect
+	go.opentelemetry.io/otel v1.14.0 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.14.0 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.14.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.14.0 // indirect
+)
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
