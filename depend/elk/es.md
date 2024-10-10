@@ -1,5 +1,7 @@
 # es
 
+配置文件 `/usr/share/elasticsearch/config/elasticsearch.yml`
+
 ```bash
 # 创建索引
 # 3个分片，2个副本
