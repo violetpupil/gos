@@ -6,12 +6,12 @@ import (
 	"encoding/base64"
 	"testing"
 
-	"github.com/violetpupil/gos/utils"
+	"github.com/violetpupil/gos/golang"
 	"go.uber.org/zap"
 )
 
 func TestECDH(t *testing.T) {
-	utils.InitDevelopmentLog()
+	golang.InitDevelopmentLog()
 	log := zap.L()
 
 	cliKey, err := ecdh.P256().GenerateKey(rand.Reader)
