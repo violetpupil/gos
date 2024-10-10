@@ -42,3 +42,35 @@ func main() {
  log.Println(es.Info())
 }
 ```
+
+## 索引文档
+
+```golang
+func IndexDocument(es *elasticsearch.Client, index string, doc []byte) {
+ log := zap.L()
+
+ req := esapi.IndexRequest{
+  Index: index,
+  Body:  bytes.NewReader(doc),
+ }
+
+ res, err := req.Do(context.Background(), es)
+ if err != nil {
+  log.Error("do req error", zap.Error(err))
+  return
+ }
+ defer res.Body.Close()
+ log = log.With(zap.String("status", res.Status()))
+
+ if res.IsError() {
+  log.Error("index document error")
+ } else {
+  var r map[string]any
+  if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
+   log.Error("parse response body error", zap.Error(err))
+  } else {
+   log.Info("index document result", zap.Any("result", r))
+  }
+ }
+}
+```
