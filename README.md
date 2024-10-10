@@ -51,5 +51,3 @@ tools 工具
 - [x] misc
 - [x] depend
 - [x] tool
-- [x] go.mod
-- [x] go.sum
