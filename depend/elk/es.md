@@ -2,6 +2,8 @@
 
 配置文件 `/usr/share/elasticsearch/config/elasticsearch.yml`
 
+## 测试curl
+
 ```bash
 export ELASTIC_PASSWORD="your_password"
 # 创建索引
@@ -18,4 +20,25 @@ curl -u elastic:$ELASTIC_PASSWORD -X PUT "localhost:9200/books?pretty" -H 'Conte
 '
 # 删除索引
 curl -u elastic:$ELASTIC_PASSWORD -X DELETE "localhost:9200/books?pretty"
+```
+
+## 测试golang
+
+```golang
+package main
+
+import (
+ "log"
+
+ "github.com/elastic/go-elasticsearch/v8"
+)
+
+func main() {
+ config := elasticsearch.Config{
+  Username: "elastic",
+  Password: "pass",
+ }
+ es, _ := elasticsearch.NewClient(config)
+ log.Println(es.Info())
+}
 ```
