@@ -20,5 +20,5 @@ type SearchParams struct {
 		Match map[string]any `json:"match"`
 	} `json:"query"`
 	Sort        []any `json:"sort"`
-	SearchAfter any   `json:"search_after"`
+	SearchAfter any   `json:"search_after,omitempty"`
 }
