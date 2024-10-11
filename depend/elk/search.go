@@ -8,6 +8,7 @@ type SearchResult struct {
 		Hits []struct {
 			Source any    `json:"_source"` // 文档对象
 			ID     string `json:"_id"`     // 文档id
+			Sort   any    `json:"sort"`
 		} `json:"hits"`
 	} `json:"hits"`
 	Took float64 `json:"took"` // 请求耗时，毫秒
