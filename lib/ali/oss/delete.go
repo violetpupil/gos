@@ -8,13 +8,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// DeleteObject 删除单个对象，只能删除空文件夹
-// 文件夹以/结尾
-func DeleteObject(key string) error {
-	err := Client.b.DeleteObject(key)
-	return err
-}
-
 // DeleteObjects 删除多个对象
 // 文件夹以/结尾
 func DeleteObjects(keys ...string) error {

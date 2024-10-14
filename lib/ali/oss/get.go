@@ -55,16 +55,3 @@ func GetObjectToFile(objectKey, p string, options ...oss.Option) (string, error)
 	err = Client.b.GetObjectToFile(objectKey, file, options...)
 	return file, err
 }
-
-// Modify 修改文件，先读取文件字节，修改后上传
-// options 是读取文件的选项
-func Modify(f func([]byte) []byte, objectKey string, options ...oss.Option) error {
-	bs, err := GetObject(objectKey, options...)
-	if err != nil {
-		logrus.Errorln("get object error", err)
-		return err
-	}
-	bs = f(bs)
-	err = PutObjectBytes(objectKey, bs)
-	return err
-}
