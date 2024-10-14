@@ -5,16 +5,16 @@ import (
 	"go.uber.org/zap"
 )
 
-func Bucket(endpoint, accessKeyID, accessKeySecret, bucketName string) *oss.Bucket {
+func Bucket(endpoint, accessKeyID, accessKeySecret, bucketName string) (*oss.Bucket, error) {
 	c, err := oss.New(endpoint, accessKeyID, accessKeySecret)
 	if err != nil {
 		zap.L().Error("new client error", zap.Error(err))
-		return nil
+		return nil, err
 	}
 	b, err := c.Bucket(bucketName)
 	if err != nil {
 		zap.L().Error("get bucket error", zap.Error(err))
-		return nil
+		return nil, err
 	}
-	return b
+	return b, nil
 }
