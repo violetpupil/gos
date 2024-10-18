@@ -3,7 +3,7 @@
 ```golang
 var wg sync.WaitGroup
 
-f := func(id any) {
+f := func(arg any) {
  defer wg.Done()
 }
 
