@@ -1,5 +1,7 @@
 # [lock](https://pkg.go.dev/github.com/go-redsync/redsync/v4)
 
+过期设置为此次操作可能的最长时间。重试次数和间隔根据想等多久来设置。
+
 ```golang
 lock := global.Redsync.NewMutex(
  key,
