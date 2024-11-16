@@ -4,7 +4,7 @@
 lock := global.Redsync.NewMutex(
  key,
  redsync.WithExpiry(time.Minute),
- redsync.WithTries(1000),
+ redsync.WithTries(1000), // 默认重试32次，每次间隔rand(50ms, 250ms)
 )
 err := lock.LockContext(c)
 if err != nil {
