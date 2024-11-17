@@ -9,10 +9,7 @@ lock := global.Redsync.NewMutex(
  redsync.WithTries(600), // 默认重试32次，每次间隔rand(50ms, 250ms)
 )
 err := lock.LockContext(c)
-if errors.Is(err, redsync.ErrFailed) {
- log.Info("failed to acquire lock", zap.String("key", key), zap.Error(err))
- return err
-} else if err != nil {
+if err != nil {
  log.Error("lock error", zap.String("key", key), zap.Error(err))
  return err
 } else {
