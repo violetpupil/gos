@@ -5,11 +5,14 @@
 ```golang
 lock := global.Redsync.NewMutex(
  key,
- redsync.WithExpiry(time.Minute),
- redsync.WithTries(1000), // 默认重试32次，每次间隔rand(50ms, 250ms)
+ redsync.WithExpiry(30*time.Second),
+ redsync.WithTries(120), // 默认重试32次，每次间隔rand(50ms, 250ms)
 )
 err := lock.LockContext(c)
-if err != nil {
+if errors.Is(err, redsync.ErrFailed) {
+ log.Info("failed to acquire lock", zap.String("key", key), zap.Error(err))
+ return err
+} else if err != nil {
  log.Error("lock error", zap.String("key", key), zap.Error(err))
  return err
 } else {
