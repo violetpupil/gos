@@ -1,10 +1,2 @@
-# 环境变量
-.env*
-!.env.exp
 # 临时文件
 tmp*
-# go build 编译文件
-app
-!app/
-# windows可执行文件
-*.exe

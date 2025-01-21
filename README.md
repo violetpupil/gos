@@ -9,3 +9,4 @@
 - [x] go.sum
 - [x] import.go
 - [x] readme.md
+- [x] .gitignore
