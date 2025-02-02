@@ -19,7 +19,6 @@ require (
 	github.com/go-echarts/go-echarts/v2 v2.2.6
 	github.com/go-redsync/redsync/v4 v4.13.0
 	github.com/go-resty/resty/v2 v2.7.0
-	github.com/go-sql-driver/mysql v1.7.1
 	github.com/go-the-way/exl v1.2.3
 	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/golang-jwt/jwt/v4 v4.5.0
@@ -63,6 +62,8 @@ require (
 	k8s.io/apimachinery v0.27.0-alpha.3
 	k8s.io/client-go v0.26.3
 )
+
+require github.com/go-sql-driver/mysql v1.7.1 // indirect
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
