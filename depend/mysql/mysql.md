@@ -1,7 +1,5 @@
 # mysql
 
-`order by`默认升序
-
 ```bash
 docker run -d --name mysql ^
 --privileged=true ^
