@@ -3,7 +3,12 @@
 ## AddRetryCondition
 
 ```go
-// 保留原有的重试，不然会被覆盖
-AddRetryAfterErrorCondition().
-AddRetryCondition(func(r *resty.Response, err error) bool {})
+AddRetryCondition(func(r *resty.Response, err error) bool {
+    // 保留原有的重试，不然会被覆盖
+    if err != nil {
+        return true
+    }
+
+    // 添加重试逻辑
+})
 ```
