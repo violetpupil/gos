@@ -17,3 +17,7 @@ type Number interface {
     constraints.Float | constraints.Integer
 }
 ```
+
+## map
+
+map没有初始化，可以取值，但不能添加元素
