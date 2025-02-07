@@ -8,3 +8,7 @@ docker run -d --name mysql ^
 -v d:/docker/mysql:/var/lib/mysql ^
 mysql
 ```
+
+```sql
+SELECT VERSION();
+```
