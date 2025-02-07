@@ -42,3 +42,11 @@ SELECT * FROM table_name WHERE id = 1 FOR SHARE; -- 阻塞
 SELECT * FROM table_name WHERE id = 1 FOR UPDATE; -- 阻塞
 UPDATE table_name SET column_name = 'value' WHERE id = 1; -- 阻塞
 ```
+
+### gorm使用
+
+```go
+"gorm.io/gorm/clause"
+
+tx.Clauses(clause.Locking{Strength: "UPDATE"}).
+```
