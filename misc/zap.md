@@ -11,6 +11,6 @@ defer func() {
 
 ## Config
 
-`OutputPaths` is a list of URLs or file paths to write logging output to.
+`OutputPaths` is a list of URLs or file paths to write logging output to. `c.OutputPaths = append(c.OutputPaths, "tmp.log")`
 
 `ErrorOutputPaths` is a list of URLs to write internal logger errors to.
