@@ -4,13 +4,13 @@ Elasticsearch 默认创建 1 个副本
 
 ```s
 # 创建索引
-# 3个分片，2个副本
+# 3个分片，1个副本
 PUT /books?pretty
 {
   "settings": {
     "index": {
       "number_of_shards": 3,  
-      "number_of_replicas": 2 
+      "number_of_replicas": 1 
     }
   },
   "mappings": {
