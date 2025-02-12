@@ -1,5 +1,7 @@
 # index
 
+Elasticsearch 默认创建 1 个副本
+
 ```s
 # 创建索引
 # 3个分片，2个副本
