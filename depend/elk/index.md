@@ -5,7 +5,7 @@ Elasticsearch 默认创建 1 个副本
 ```s
 # 创建索引
 # 3个分片，1个副本
-PUT /books?pretty
+PUT /books
 {
   "settings": {
     "index": {
@@ -23,5 +23,5 @@ PUT /books?pretty
   }
 }
 # 删除索引
-DELETE /books?pretty
+DELETE /books
 ```
