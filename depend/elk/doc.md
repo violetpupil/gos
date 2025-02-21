@@ -8,4 +8,6 @@ POST /task_log/_doc
     "created_at": 1739346266000,
     "taskId": "553340235904214482"
 }
+# 删除文档
+DELETE /task_log/_doc/1
 ```
