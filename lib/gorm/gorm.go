@@ -48,7 +48,6 @@ type crud struct {
 	C   *create
 	R   *query
 	U   *update
-	T   *transaction
 	Raw *raw
 }
 
@@ -68,7 +67,6 @@ func Init(db *gorm.DB) {
 	Crud.C = &create{db}
 	Crud.R = &query{db}
 	Crud.U = &update{db}
-	Crud.T = &transaction{db}
 	Crud.Raw = &raw{db}
 }
 
