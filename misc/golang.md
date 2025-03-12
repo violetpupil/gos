@@ -23,3 +23,9 @@ type Number interface {
 map没有初始化，可以取值，但不能添加元素
 
 引用类型，赋值是浅拷贝，深拷贝可以用deepcopy库
+
+## build
+
+```bash
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./app .
+```
