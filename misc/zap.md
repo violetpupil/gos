@@ -11,6 +11,12 @@ defer func() {
 
 ## Config
 
-`OutputPaths` is a list of URLs or file paths to write logging output to. `c.OutputPaths = append(c.OutputPaths, "tmp.log")` 追加写入文件
+`OutputPaths` is a list of URLs or file paths to write logging output to.
+
+```golang
+// 追加写入文件
+file := fmt.Sprintf("tmp.%s.log", time.Now().Format("20060102150405"))
+c.OutputPaths = append(c.OutputPaths, file)
+```
 
 `ErrorOutputPaths` is a list of URLs to write internal logger errors to.
