@@ -1,6 +1,3 @@
-# https://yaml.org/
-# https://yaml.org/spec/1.2.2/
-emptyArray: []
 # | 保留每行的换行符
 # > 替换每行的换行符为空格
 # 默认最后的换行符会保留，且不能替换
