@@ -15,7 +15,7 @@ func TestBaiduOCR(t *testing.T) {
 	}
 	str := base64.StdEncoding.EncodeToString(bs)
 
-	r, err := BaiduOCR("", "", "", str)
+	r, err := BaiduOCR("", "", "", BaiduOCRModeGeneral, str)
 	if err != nil {
 		t.Error(err)
 	} else {

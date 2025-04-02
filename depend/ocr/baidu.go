@@ -77,6 +77,11 @@ func (b *BaiduToken) Get(trace string) (string, error) {
 	}
 }
 
+const (
+	BaiduOCRModeAccurate = "accurate" // 通用文字识别（高精度含位置版）
+	BaiduOCRModeGeneral  = "general"  // 通用文字识别（标准含位置版）
+)
+
 type OCRResult struct {
 	LogID          uint64        `json:"log_id"`
 	WordsResultNum uint32        `json:"words_result_num"`
@@ -98,8 +103,9 @@ type Location struct {
 }
 
 // OCR 通用文字识别
-// https://ai.baidu.com/ai-doc/OCR/vk3h7y58v
-func BaiduOCR(trace, apiKey, secretKey, image string) (*OCRResult, error) {
+// 通用文字识别（高精度含位置版） https://ai.baidu.com/ai-doc/OCR/tk3h7y2aq
+// 通用文字识别（标准含位置版） https://ai.baidu.com/ai-doc/OCR/vk3h7y58v
+func BaiduOCR(trace, apiKey, secretKey, mode string, image string) (*OCRResult, error) {
 	log := zap.L().With(zap.String("traceId", trace))
 
 	token, err := NewBaiduToken(apiKey, secretKey).Get(trace)
@@ -114,7 +120,7 @@ func BaiduOCR(trace, apiKey, secretKey, image string) (*OCRResult, error) {
 		SetQueryParam("access_token", token).
 		SetFormData(map[string]string{"image": image}).
 		SetResult(&result).
-		Post("https://aip.baidubce.com/rest/2.0/ocr/v1/general")
+		Post("https://aip.baidubce.com/rest/2.0/ocr/v1/" + mode)
 	if err != nil {
 		log.Error("post ocr error", zap.Error(err))
 		return nil, err
