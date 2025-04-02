@@ -1,5 +1,3 @@
-// 百度客户端
-// https://ai.baidu.com/ai-doc
 package baidu
 
 import (
@@ -12,8 +10,8 @@ import (
 )
 
 type Client struct {
-	APIKey            string `env:"BAIDU_API_KEY"`
-	SecretKey         string `env:"BAIDU_SECRET_KEY"`
+	APIKey            string
+	SecretKey         string
 	AccessToken       string
 	AccessTokenExpire int64 // access token过期时间戳
 }
