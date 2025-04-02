@@ -9,13 +9,13 @@ import (
 )
 
 // TokenResult 获取access token成功响应
-type TokenResult struct {
+type BaiduTokenResult struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int64  `json:"expires_in"` // 多少秒后过期
 }
 
 // TokenError 获取access token失败响应
-type TokenError struct {
+type BaiduTokenError struct {
 	Error            string `json:"error"`             // 错误类型
 	ErrorDescription string `json:"error_description"` // 错误描述
 }
@@ -25,8 +25,8 @@ type TokenError struct {
 func BaiduToken(trace, apiKey, secretKey string) (string, error) {
 	log := zap.L().With(zap.String("traceId", trace))
 
-	var suss TokenResult
-	var fail TokenError
+	var suss BaiduTokenResult
+	var fail BaiduTokenError
 	res, err := resty.New().
 		SetTimeout(5 * time.Second).
 		R().
