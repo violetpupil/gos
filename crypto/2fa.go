@@ -1,4 +1,4 @@
-package misc
+package crypto
 
 import (
 	"crypto/hmac"
