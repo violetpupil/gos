@@ -8,6 +8,11 @@ import (
 	"go.uber.org/zap"
 )
 
+type BaiduToken struct {
+	AccessToken       string
+	AccessTokenExpire int64 // access token过期时间戳
+}
+
 // TokenResult 获取access token成功响应
 type BaiduTokenResult struct {
 	AccessToken string `json:"access_token"`
@@ -22,7 +27,7 @@ type BaiduTokenError struct {
 
 // 访问ocr接口用的token
 // https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjhhu
-func BaiduToken(trace, apiKey, secretKey string) (string, error) {
+func BaiduTokenGen(trace, apiKey, secretKey string) (string, error) {
 	log := zap.L().With(zap.String("traceId", trace))
 
 	var suss BaiduTokenResult
@@ -51,3 +56,26 @@ func BaiduToken(trace, apiKey, secretKey string) (string, error) {
 		return "", fmt.Errorf("%s: %s", fail.Error, fail.ErrorDescription)
 	}
 }
+
+type OCRResult struct {
+	LogID          uint64        `json:"log_id"`
+	WordsResultNum uint32        `json:"words_result_num"`
+	WordsResult    []WordsResult `json:"words_result"`
+	ErrorCode      int           `json:"error_code"` // 错误码
+	ErrorMsg       string        `json:"error_msg"`  // 错误描述
+}
+
+type WordsResult struct {
+	Words    string   `json:"words"`
+	Location Location `json:"location"`
+}
+
+type Location struct {
+	Top    uint32 `json:"top"`
+	Left   uint32 `json:"left"`
+	Width  uint32 `json:"width"`
+	Height uint32 `json:"height"`
+}
+
+// OCR 通用文字识别
+// https://ai.baidu.com/ai-doc/OCR/vk3h7y58v
