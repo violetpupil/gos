@@ -1,7 +1,9 @@
 package ocr
 
 import (
+	"errors"
 	"fmt"
+	"net/http"
 	"time"
 
 	"github.com/violetpupil/gos/lib/resty"
@@ -97,3 +99,36 @@ type Location struct {
 
 // OCR 通用文字识别
 // https://ai.baidu.com/ai-doc/OCR/vk3h7y58v
+func BaiduOCR(trace, apiKey, secretKey, image string) (*OCRResult, error) {
+	log := zap.L().With(zap.String("traceId", trace))
+
+	token, err := NewBaiduToken(apiKey, secretKey).Get(trace)
+	if err != nil {
+		return nil, err
+	}
+
+	var result OCRResult
+	res, err := resty.New().
+		SetTimeout(10*time.Second).
+		R().
+		SetQueryParam("access_token", token).
+		SetFormData(map[string]string{"image": image}).
+		SetResult(&result).
+		Post("https://aip.baidubce.com/rest/2.0/ocr/v1/general")
+	if err != nil {
+		log.Error("post ocr error", zap.Error(err))
+		return nil, err
+	}
+
+	// 错误的响应码也是200
+	if res.StatusCode() != http.StatusOK {
+		log.Error("post ocr status fail", zap.String("status", res.Status()))
+		return nil, errors.New(res.Status())
+	} else if result.ErrorCode == 0 {
+		log.Info("post ocr response", zap.String("body", res.String()))
+		return &result, nil
+	} else {
+		log.Error("post ocr fail", zap.String("body", res.String()))
+		return nil, fmt.Errorf("%d: %s", result.ErrorCode, result.ErrorMsg)
+	}
+}
