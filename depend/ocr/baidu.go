@@ -9,8 +9,17 @@ import (
 )
 
 type BaiduToken struct {
+	APIKey            string
+	SecretKey         string
 	AccessToken       string
 	AccessTokenExpire int64 // access token过期时间戳
+}
+
+func NewBaiduToken(apiKey, secretKey string) *BaiduToken {
+	return &BaiduToken{
+		APIKey:    apiKey,
+		SecretKey: secretKey,
+	}
 }
 
 // TokenResult 获取access token成功响应
@@ -27,9 +36,16 @@ type BaiduTokenError struct {
 
 // 访问ocr接口用的token
 // https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjhhu
-func BaiduTokenGen(trace, apiKey, secretKey string) (string, error) {
+func (b *BaiduToken) Get(trace string) (string, error) {
 	log := zap.L().With(zap.String("traceId", trace))
 
+	// 检查是否过期
+	if b.AccessToken != "" && time.Now().Unix() < b.AccessTokenExpire {
+		log.Info("access token valid")
+		return b.AccessToken, nil
+	}
+
+	// 重新申请
 	var suss BaiduTokenResult
 	var fail BaiduTokenError
 	res, err := resty.New().
@@ -37,8 +53,8 @@ func BaiduTokenGen(trace, apiKey, secretKey string) (string, error) {
 		R().
 		SetQueryParams(map[string]string{
 			"grant_type":    "client_credentials",
-			"client_id":     apiKey,
-			"client_secret": secretKey,
+			"client_id":     b.APIKey,
+			"client_secret": b.SecretKey,
 		}).
 		SetResult(&suss).
 		SetError(&fail).
@@ -50,6 +66,8 @@ func BaiduTokenGen(trace, apiKey, secretKey string) (string, error) {
 
 	if res.IsSuccess() {
 		log.Info("post token success")
+		b.AccessToken = suss.AccessToken
+		b.AccessTokenExpire = time.Now().Unix() + suss.ExpiresIn
 		return suss.AccessToken, nil
 	} else {
 		log.Error("post token fail", zap.Any("body", fail))
