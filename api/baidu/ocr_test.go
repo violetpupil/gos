@@ -6,16 +6,10 @@ import (
 	"log"
 	"os"
 	"testing"
-
-	"github.com/joho/godotenv"
 )
 
 func Test_baidu_OCR(t *testing.T) {
-	err := godotenv.Load("../../.env")
-	if err != nil {
-		panic(err)
-	}
-	_, err = InitEnv()
+	_, err := InitEnv()
 	if err != nil {
 		panic(err)
 	}

@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/caarlos0/env/v7"
 	"github.com/go-resty/resty/v2"
 	"github.com/sirupsen/logrus"
 )
@@ -36,15 +35,8 @@ func Init(api, secret string) (*Client, error) {
 // InitEnv 初始化百度客户端 使用环境变量
 func InitEnv() (*Client, error) {
 	Baidu = new(Client)
-	err := env.Parse(Baidu)
-	if err != nil {
-		logrus.Errorln("env parse error", err)
-		return nil, err
-	}
-
-	if Baidu.APIKey == "" || Baidu.SecretKey == "" {
-		return nil, errors.New("key is empty")
-	}
+	Baidu.APIKey = ""
+	Baidu.SecretKey = ""
 	return Baidu, nil
 }
 
