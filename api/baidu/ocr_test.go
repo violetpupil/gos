@@ -9,7 +9,7 @@ import (
 )
 
 func Test_baidu_OCR(t *testing.T) {
-	_, err := InitEnv()
+	_, err := Init("", "")
 	if err != nil {
 		panic(err)
 	}

@@ -30,14 +30,6 @@ func Init(api, secret string) (*Client, error) {
 	return Baidu, nil
 }
 
-// InitEnv 初始化百度客户端 使用环境变量
-func InitEnv() (*Client, error) {
-	Baidu = new(Client)
-	Baidu.APIKey = ""
-	Baidu.SecretKey = ""
-	return Baidu, nil
-}
-
 // TokenResult 获取access token成功响应
 type TokenResult struct {
 	AccessToken string `json:"access_token"`
