@@ -3,6 +3,8 @@ module github.com/violetpupil/gos
 go 1.22.2
 
 require (
+	cloud.google.com/go/vision v1.2.0
+	cloud.google.com/go/vision/v2 v2.7.2
 	github.com/Masterminds/sprig v2.22.0+incompatible
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/Shopify/sarama v1.38.1
@@ -52,6 +54,7 @@ require (
 	go.uber.org/zap v1.26.0
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 	golang.org/x/net v0.22.0
+	google.golang.org/api v0.126.0
 	google.golang.org/grpc v1.58.2
 	google.golang.org/protobuf v1.31.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -63,7 +66,21 @@ require (
 	k8s.io/client-go v0.26.3
 )
 
-require github.com/go-sql-driver/mysql v1.7.1 // indirect
+require (
+	cloud.google.com/go v0.110.6 // indirect
+	cloud.google.com/go/compute v1.23.0 // indirect
+	cloud.google.com/go/compute/metadata v0.2.3 // indirect
+	cloud.google.com/go/longrunning v0.5.1 // indirect
+	github.com/go-sql-driver/mysql v1.7.1 // indirect
+	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
+	github.com/google/s2a-go v0.1.4 // indirect
+	github.com/googleapis/enterprise-certificate-proxy v0.2.3 // indirect
+	github.com/googleapis/gax-go/v2 v2.11.0 // indirect
+	go.opencensus.io v0.24.0 // indirect
+	golang.org/x/sync v0.6.0 // indirect
+	google.golang.org/genproto v0.0.0-20230803162519-f966b187b2e5 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20230726155614-23370e0ffb3e // indirect
+)
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
