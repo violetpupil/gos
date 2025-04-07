@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/violetpupil/gos/lib/resty"
+	"github.com/go-resty/resty/v2"
 	"go.uber.org/zap"
 )
 
