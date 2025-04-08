@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/go-resty/resty/v2"
+	"github.com/spf13/cast"
 	"go.uber.org/zap"
 )
 
@@ -72,8 +73,8 @@ func (b *BaiduToken) Get(trace string) (string, error) {
 		b.AccessTokenExpire = time.Now().Unix() + suss.ExpiresIn
 		return suss.AccessToken, nil
 	} else {
-		log.Error("post token fail", zap.Any("body", fail))
-		return "", fmt.Errorf("%s: %s", fail.Error, fail.ErrorDescription)
+		log.Info("post token fail", zap.Any("body", fail))
+		return "", OCRError{ErrorType: fail.Error, ErrorMsg: fail.ErrorDescription}
 	}
 }
 
@@ -88,6 +89,15 @@ type OCRResult struct {
 	WordsResult    []WordsResult `json:"words_result"`
 	ErrorCode      int           `json:"error_code"` // 错误码
 	ErrorMsg       string        `json:"error_msg"`  // 错误描述
+}
+
+type OCRError struct {
+	ErrorType string // 错误类型
+	ErrorMsg  string // 错误描述
+}
+
+func (e OCRError) Error() string {
+	return fmt.Sprintf("%s: %s", e.ErrorType, e.ErrorMsg)
 }
 
 type WordsResult struct {
@@ -134,7 +144,7 @@ func BaiduOCR(trace, apiKey, secretKey, mode string, image string) (*OCRResult, 
 		log.Info("post ocr response", zap.String("body", res.String()))
 		return &result, nil
 	} else {
-		log.Error("post ocr fail", zap.String("body", res.String()))
-		return nil, fmt.Errorf("%d: %s", result.ErrorCode, result.ErrorMsg)
+		log.Info("post ocr fail", zap.String("body", res.String()))
+		return nil, OCRError{ErrorType: cast.ToString(result.ErrorCode), ErrorMsg: result.ErrorMsg}
 	}
 }
