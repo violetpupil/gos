@@ -21,8 +21,8 @@ func GoogleOcr(trace, cred string, imageBytes []byte) (*OCRResult, error) {
 
 	client, err := vision.NewImageAnnotatorClient(ctx, option.WithCredentialsJSON([]byte(cred)))
 	if err != nil {
-		log.Error("new client error", zap.Error(err))
-		return nil, err
+		log.Info("new client error", zap.Error(err))
+		return nil, OCRError{ErrorMsg: err.Error()}
 	}
 
 	image := &visionpb.Image{
@@ -30,8 +30,8 @@ func GoogleOcr(trace, cred string, imageBytes []byte) (*OCRResult, error) {
 	}
 	annotations, err := client.DetectTexts(ctx, image, nil, 0)
 	if err != nil {
-		log.Error("detect text error", zap.Error(err))
-		return nil, err
+		log.Info("detect text error", zap.Error(err))
+		return nil, OCRError{ErrorMsg: err.Error()}
 	}
 
 	var result OCRResult

@@ -97,6 +97,9 @@ type OCRError struct {
 }
 
 func (e OCRError) Error() string {
+	if e.ErrorType == "" {
+		return e.ErrorMsg
+	}
 	return fmt.Sprintf("%s: %s", e.ErrorType, e.ErrorMsg)
 }
 
