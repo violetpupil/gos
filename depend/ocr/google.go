@@ -49,9 +49,17 @@ func GoogleOcr(trace, cred string, imageBytes []byte) (*OCRResult, error) {
 		// 坐标点顺序不固定
 		var left, right, bottom, top int
 		for _, vertex := range annotation.BoundingPoly.Vertices {
-			left = int(math.Min(float64(left), float64(vertex.X)))
+			if left == 0 {
+				left = int(vertex.X)
+			} else {
+				left = int(math.Min(float64(left), float64(vertex.X)))
+			}
 			right = int(math.Max(float64(right), float64(vertex.X)))
-			bottom = int(math.Min(float64(bottom), float64(vertex.Y)))
+			if bottom == 0 {
+				bottom = int(vertex.Y)
+			} else {
+				bottom = int(math.Min(float64(bottom), float64(vertex.Y)))
+			}
 			top = int(math.Max(float64(top), float64(vertex.Y)))
 		}
 		width := right - left
