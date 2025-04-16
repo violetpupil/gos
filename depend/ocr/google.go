@@ -47,6 +47,7 @@ func GoogleOcr(trace, cred string, imageBytes []byte) (*OCRResult, error) {
 		log.Info("annotation result", zap.Any("annotation", annotation))
 
 		// 坐标点顺序不固定
+		// 原点是左上角，top取小值，bottom取大值
 		var left, right, bottom, top int
 		for _, vertex := range annotation.BoundingPoly.Vertices {
 			if left == 0 {
@@ -55,15 +56,15 @@ func GoogleOcr(trace, cred string, imageBytes []byte) (*OCRResult, error) {
 				left = int(math.Min(float64(left), float64(vertex.X)))
 			}
 			right = int(math.Max(float64(right), float64(vertex.X)))
-			if bottom == 0 {
-				bottom = int(vertex.Y)
+			if top == 0 {
+				top = int(vertex.Y)
 			} else {
-				bottom = int(math.Min(float64(bottom), float64(vertex.Y)))
+				top = int(math.Min(float64(top), float64(vertex.Y)))
 			}
-			top = int(math.Max(float64(top), float64(vertex.Y)))
+			bottom = int(math.Max(float64(bottom), float64(vertex.Y)))
 		}
 		width := right - left
-		height := top - bottom
+		height := bottom - top
 		if width <= 0 || height <= 0 {
 			log.Error("info invalid")
 			return nil, errors.New("info invalid")
