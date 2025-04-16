@@ -3,6 +3,7 @@ package ocr
 import (
 	"context"
 	"errors"
+	"math"
 	"time"
 
 	vision "cloud.google.com/go/vision/apiv1"
@@ -45,12 +46,17 @@ func GoogleOcr(trace, cred string, imageBytes []byte) (*OCRResult, error) {
 
 		log.Info("annotation result", zap.Any("annotation", annotation))
 
-		// 左下，右下，右上，左上
-		top := annotation.BoundingPoly.Vertices[3].GetY()
-		left := annotation.BoundingPoly.Vertices[3].GetX()
-		width := annotation.BoundingPoly.Vertices[2].GetX() - annotation.BoundingPoly.Vertices[3].GetX()
-		height := annotation.BoundingPoly.Vertices[3].GetY() - annotation.BoundingPoly.Vertices[0].GetY()
-		if width < 0 || height < 0 {
+		// 坐标点顺序不固定
+		var left, right, bottom, top int
+		for _, vertex := range annotation.BoundingPoly.Vertices {
+			left = int(math.Min(float64(left), float64(vertex.X)))
+			right = int(math.Max(float64(right), float64(vertex.X)))
+			bottom = int(math.Min(float64(bottom), float64(vertex.Y)))
+			top = int(math.Max(float64(top), float64(vertex.Y)))
+		}
+		width := right - left
+		height := top - bottom
+		if width <= 0 || height <= 0 {
 			log.Error("info invalid")
 			return nil, errors.New("info invalid")
 		}
