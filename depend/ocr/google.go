@@ -43,12 +43,14 @@ func GoogleOcr(trace, cred string, imageBytes []byte) (*OCRResult, error) {
 			return nil, errors.New("info absent")
 		}
 
+		log.Info("annotation result", zap.Any("annotation", annotation))
+
 		// 左下，右下，右上，左上
 		top := annotation.BoundingPoly.Vertices[3].GetY()
 		left := annotation.BoundingPoly.Vertices[3].GetX()
 		width := annotation.BoundingPoly.Vertices[2].GetX() - annotation.BoundingPoly.Vertices[3].GetX()
 		height := annotation.BoundingPoly.Vertices[3].GetY() - annotation.BoundingPoly.Vertices[0].GetY()
-		if width <= 0 || height <= 0 {
+		if width < 0 || height < 0 {
 			log.Error("info invalid")
 			return nil, errors.New("info invalid")
 		}
