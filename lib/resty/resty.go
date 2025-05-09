@@ -8,11 +8,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	// New method creates a new Resty client.
-	New = resty.New
-)
-
 // Client http客户端
 // SetDebug() Client logs details of every request and response.
 // SetDebugBodyLimit() log请求/响应体最大长度
