@@ -4,10 +4,6 @@
 docker run -dp 6379:6379 -v /root/redis:/data --name redis redis
 ```
 
-## [管道](https://redis.io/docs/manual/pipelining/)
+管道不一定都执行
 
-不一定都执行
-
-## [事务](https://redis.io/docs/manual/transactions/)
-
-要么都执行，要么都不执行，但不保证都成功
+事务要么都执行，要么都不执行，但不保证都成功
