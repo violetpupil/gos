@@ -22,7 +22,7 @@ func Excel(c *gin.Context) {
 	fruits := []*Fruit{{ID: 1, Name: "pear"}}
 	c.Header("content-type", mime.Excel)
 	// 自动写200响应码
-	err := exl.WriteTo[*Fruit](c.Writer, fruits)
+	err := exl.WriteTo(c.Writer, fruits)
 	if err != nil {
 		logrus.Errorln("write to writer error", err)
 	}
