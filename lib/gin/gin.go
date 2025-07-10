@@ -25,7 +25,6 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/violetpupil/gos/lib/gin/handler"
 	"github.com/violetpupil/gos/lib/gin/middle"
 )
 
@@ -51,7 +50,6 @@ func Run(addr ...string) {
 	e := gin.Default()
 	Admin(e)
 
-	e.GET("excel", handler.Excel)
 	// 业务组 - 记录请求响应
 	gLog := e.Group("", middle.LogContext)
 	gLog.Any("echo", func(c *gin.Context) {})
