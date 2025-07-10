@@ -2,7 +2,6 @@
 
 golang开发工具包
 
-- [x] spider 爬虫
 - [x] crypto 密码学
 - [x] misc 基础能力
 - [x] depend 依赖
