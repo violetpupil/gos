@@ -1,4 +1,6 @@
-# [slices](https://pkg.go.dev/slices)
+# type
+
+## [slices](https://pkg.go.dev/slices)
 
 ```golang
 // 原地升序
@@ -9,3 +11,9 @@ slices.Sort(slice)
 // 降序 a=b返回0，a>b返回-1，a<b返回1
 slices.SortFunc(slice, cmp)
 ```
+
+## map
+
+map没有初始化，可以取值，但不能添加元素
+
+引用类型，赋值是浅拷贝，深拷贝可以用deepcopy库
