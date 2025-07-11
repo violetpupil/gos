@@ -42,3 +42,13 @@ lo.Difference(s1, s2)
 map没有初始化，可以取值，但不能添加元素
 
 引用类型，赋值是浅拷贝，深拷贝可以用deepcopy库
+
+## strings
+
+```golang
+// 切分字符串
+// sep不为空，且str不包含sep，则返回[str]
+strings.Split(str, sep)
+// 判断字符串相等，大小写不敏感
+strings.EqualFold(s1, s2)
+```
