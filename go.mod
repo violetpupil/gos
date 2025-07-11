@@ -22,9 +22,7 @@ require (
 	github.com/go-redsync/redsync/v4 v4.13.0
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/go-the-way/exl v1.2.3
-	github.com/gocarina/gocsv v0.0.0-20230325173030-9a18a846a479
 	github.com/golang-jwt/jwt/v4 v4.5.0
-	github.com/golang/glog v1.1.0
 	github.com/gorilla/websocket v1.5.1
 	github.com/imdario/mergo v0.3.6
 	github.com/ip2location/ip2location-io-go v1.0.3
