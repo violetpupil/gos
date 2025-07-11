@@ -52,3 +52,24 @@ strings.Split(str, sep)
 // 判断字符串相等，大小写不敏感
 strings.EqualFold(s1, s2)
 ```
+
+## int
+
+```golang
+// UnitInt 将数字用千位表示 K M B
+// 19000 -> 19K
+// 19500 -> 19.5K
+func UnitInt(n int) string {
+ var s string
+ if n < int(math.Pow10(3)) {
+  s = strconv.Itoa(n)
+ } else if n < int(math.Pow10(6)) {
+  s = fmt.Sprintf("%d.%dK", n/int(math.Pow10(3)), n/100%10)
+ } else if n < int(math.Pow10(9)) {
+  s = fmt.Sprintf("%d.%dM", n/int(math.Pow10(6)), n/int(math.Pow10(5))%10)
+ } else {
+  s = fmt.Sprintf("%d.%dB", n/int(math.Pow10(9)), n/int(math.Pow10(8))%10)
+ }
+ return strings.ReplaceAll(s, ".0", "")
+}
+```
