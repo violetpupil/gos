@@ -2,24 +2,10 @@ package reflect
 
 import (
 	"errors"
-	"fmt"
 	"reflect"
 
 	"github.com/sirupsen/logrus"
 )
-
-// 具体接口类型
-var (
-	TypeStringer = reflect.TypeOf((*fmt.Stringer)(nil)).Elem()
-	TypeError    = reflect.TypeOf((*error)(nil)).Elem()
-)
-
-// Value 接口值
-// 零值方法调用会异常，除了
-// IsValid 返回 false
-// Kind 返回 Invalid
-// String 返回 "<invalid Value>"
-type Value = reflect.Value
 
 // Pointer 提取指针指向的值
 // 可以传入非指针，原样返回
