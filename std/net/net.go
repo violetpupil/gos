@@ -1,12 +1,10 @@
 package net
 
 import (
-	"errors"
 	"fmt"
 	"net"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/gos/std/os"
 )
 
 // 接口
@@ -20,25 +18,6 @@ type (
 	// OpError 读写网络等操作时异常
 	OpError = net.OpError
 )
-
-// LogOpError 打印net.OpError相关信息
-// 如果不是net.OpError，直接返回
-func LogOpError(err error) {
-	opErr := new(net.OpError)
-	if !errors.As(err, &opErr) {
-		return
-	}
-
-	errWrap := errors.Unwrap(opErr)
-	logrus.WithFields(logrus.Fields{
-		"Error":         opErr,
-		"Temporary":     opErr.Temporary(),
-		"Timeout":       opErr.Timeout(),
-		"ErrorWrapType": fmt.Sprintf("%T", errWrap),
-	}).Errorf("%+v", *opErr)
-
-	os.LogSyscallError(errWrap)
-}
 
 // ConnId 连接id，网络名-本地主机端口-远程主机端口
 func ConnId(c net.Conn) string {
