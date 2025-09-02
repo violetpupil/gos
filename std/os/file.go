@@ -5,7 +5,6 @@ import (
 	"path/filepath"
 
 	"github.com/sirupsen/logrus"
-	"github.com/violetpupil/gos/std/fs"
 )
 
 var (
@@ -52,23 +51,6 @@ type (
 	// Close() 关闭文件
 	File = os.File
 )
-
-// Stat 获取文件信息
-func Stat(name string) (*fs.FileInfoS, error) {
-	info, err := os.Stat(name)
-	if err != nil {
-		logrus.Error("stat error ", err)
-		return nil, err
-	}
-	fi := &fs.FileInfoS{
-		Name:    info.Name(),
-		Size:    info.Size(),
-		Mode:    info.Mode(),
-		ModTime: info.ModTime(),
-		IsDir:   info.IsDir(),
-	}
-	return fi, nil
-}
 
 // Size 获取文件大小字节数
 func Size(name string) (int64, error) {
