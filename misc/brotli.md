@@ -9,6 +9,7 @@ func BrotliCompress(p []byte) (string, error) {
   Quality: 3,
  }
  writer := brotli.NewWriterOptions(&buffer, options)
+ defer writer.Close()
 
  _, err := writer.Write(p)
  if err != nil {
