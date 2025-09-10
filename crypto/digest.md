@@ -7,4 +7,13 @@ func main() {
  digest := hex.EncodeToString(bytes[:])
  fmt.Println(digest)
 }
+
+// hmac
+func main() {
+ mac := hmac.New(sha1.New, []byte(key))
+ mac.Write([]byte(s))
+ bytes := mac.Sum(nil)
+ digest := hex.EncodeToString(bytes)
+ fmt.Println(digest)
+}
 ```
