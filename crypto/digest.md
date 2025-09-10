@@ -1,5 +1,7 @@
 # digest
 
+除了使用16进制编码，还可以用base64编码
+
 ```golang
 // md5
 func main() {
