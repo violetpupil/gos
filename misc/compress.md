@@ -1,5 +1,7 @@
 # compress
 
+## [gzip](https://pkg.go.dev/compress/gzip)
+
 ## [brotli](https://pkg.go.dev/github.com/andybalholm/brotli)
 
 ```golang
