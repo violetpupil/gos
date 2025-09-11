@@ -1,4 +1,6 @@
-# [brotli](https://pkg.go.dev/github.com/andybalholm/brotli)
+# compress
+
+## [brotli](https://pkg.go.dev/github.com/andybalholm/brotli)
 
 ```golang
 // 压缩
