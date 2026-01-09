@@ -14,34 +14,6 @@ import (
 	"gorm.io/gorm/schema"
 )
 
-type (
-	// 数据库对象
-	// Association() 操作关联数据
-	//
-	// Select() 指定字段
-	// 查询
-	// Select("name, age")
-	// Select("name", "age")
-	// Select([]string{"name", "age"})
-	// 如果两个字段名相同，使用后面的一个
-	//
-	// Order() 指定排序字段
-	// 可能发生 sql 注入
-	// id# 这样会注释掉语句之后的部分
-	// SELECT * FROM `users` ORDER BY id# LIMIT 1
-	//
-	// Model() 指定模型指针
-	// 使用同一个指针，子句不需要重新写
-	// db := D.Model(&User{})
-	// db.Where("id=1").Count(&total)
-	// db.Find(&users)
-	// 否则子句需要重新写
-	// db := D
-	// db.Model(&User{}).Where("id=1").Count(&total)
-	// db.Where("id=1").Find(&users)
-	DB = gorm.DB
-)
-
 // crud 数据库操作
 type crud struct {
 	db  *gorm.DB
@@ -52,16 +24,12 @@ type crud struct {
 }
 
 var (
-	// 必须先调用 Init 初始化
-	// 数据库对象
-	D *gorm.DB
 	// 数据库操作
 	Crud *crud
 )
 
 // Init 初始化数据库实例
 func Init(db *gorm.DB) {
-	D = db
 	Crud = new(crud)
 	Crud.db = db
 	Crud.C = &create{db}
