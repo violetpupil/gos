@@ -5,8 +5,6 @@ package gorm
 import (
 	"fmt"
 
-	"github.com/caarlos0/env/v7"
-	"github.com/sirupsen/logrus"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -26,16 +24,6 @@ var (
 	// 数据库操作
 	Crud *crud
 )
-
-// Init 初始化数据库实例
-func Init(db *gorm.DB) {
-	Crud = new(crud)
-	Crud.db = db
-	Crud.C = &create{db}
-	Crud.R = &query{db}
-	Crud.U = &update{db}
-	Crud.Raw = &raw{db}
-}
 
 // Config mysql配置
 type Config struct {
@@ -59,31 +47,6 @@ type Config struct {
 	// 设置为0，string类型默认longtext
 	// 否则，string类型默认varchar(DefaultStringSize)
 	DefaultStringSize uint
-}
-
-// InitMySQL 初始化mysql数据库操作
-// https://gorm.io/docs/connecting_to_the_database.html
-// https://github.com/go-sql-driver/mysql
-func InitMySQL(c Config) error {
-	db, err := NewMysqlDB(c)
-	if err != nil {
-		logrus.Errorln("open mysql error", err)
-		return err
-	}
-	Init(db)
-	return nil
-}
-
-// InitMySQLEnv 使用环境变量初始化mysql数据库操作
-func InitMySQLEnv() error {
-	var c Config
-	err := env.Parse(&c)
-	if err != nil {
-		logrus.Errorln("env parse error", err)
-		return err
-	}
-	err = InitMySQL(c)
-	return err
 }
 
 // NewMysqlDB 创建mysql db
