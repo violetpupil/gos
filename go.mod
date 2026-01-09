@@ -56,7 +56,6 @@ require (
 	google.golang.org/grpc v1.58.2
 	google.golang.org/protobuf v1.31.0
 	gopkg.in/yaml.v3 v3.0.1
-	gorm.io/datatypes v1.1.1
 	gorm.io/driver/mysql v1.4.7
 	gorm.io/gorm v1.25.5
 	k8s.io/api v0.26.3
@@ -135,7 +134,6 @@ require (
 	github.com/huandu/xstrings v1.4.0 // indirect
 	github.com/imroc/req/v3 v3.42.2
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
 	github.com/jcmturner/gofork v1.7.6 // indirect
