@@ -3,12 +3,8 @@
 package gorm
 
 import (
-	"fmt"
-
-	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"gorm.io/gorm/schema"
 )
 
 // crud 数据库操作
@@ -49,22 +45,6 @@ type Config struct {
 	DefaultStringSize uint
 }
 
-// NewMysqlDB 创建mysql db
-func NewMysqlDB(c Config) (*gorm.DB, error) {
-	dialector := NewMysqlDialector(c)
-
-	opt := &gorm.Config{
-		Logger:                                   NewLogger(c),
-		DisableForeignKeyConstraintWhenMigrating: c.DisableForeignKeyConstraintWhenMigrating,
-		// tables, columns naming strategy
-		NamingStrategy: schema.NamingStrategy{
-			TablePrefix: c.TablePrefix,
-		},
-	}
-	db, err := gorm.Open(dialector, opt)
-	return db, err
-}
-
 // NewLogger 创建logger
 func NewLogger(c Config) logger.Interface {
 	var l logger.Interface
@@ -81,33 +61,4 @@ func NewLogger(c Config) logger.Interface {
 		}
 	}
 	return l
-}
-
-// NewMysqlDialector 创建mysql dialector
-func NewMysqlDialector(c Config) gorm.Dialector {
-	// 当 SELECT 字段中有 DATE() 函数返回值时
-	// parseTime=True 2023-10-10T00:00:00+08:00
-	// parseTime=False 2023-10-10
-	dsn := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		c.User, c.Pass, c.Host, c.Port, c.Database,
-	)
-	config := mysql.Config{
-		DSN:               dsn,
-		DefaultStringSize: c.DefaultStringSize,
-	}
-	dialector := mysql.New(config)
-	return dialector
-}
-
-// AutoMigrate 自动迁移模型，不会删除列
-// https://gorm.io/docs/migration.html
-// opt是创建表选项 COMMENT='表注释'
-// dst是数据模型指针
-func (c *crud) AutoMigrate(opt string, dst ...any) error {
-	if opt != "" {
-		return c.db.Set("gorm:table_options", opt).AutoMigrate(dst...)
-	} else {
-		return c.db.AutoMigrate(dst...)
-	}
 }
